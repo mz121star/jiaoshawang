@@ -1,1 +1,76 @@
-header
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>叫啥网 </title>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="网上订餐系统多店版,快捷订餐系统多店版"/>
+    <meta name="description" content=" 。"/>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/expand.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/mall.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/css.css"/>
+    <script src="/js/conf.js"></script>
+    <script src="/js/kj.js"></script>
+    <script src="/js/kj.dialog.js"></script>
+    <script src="/js/kj.ajax.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/member.js"></script>
+    <script src="/js/kj.rule.js"></script>
+    <script src="/js/kj.alert.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/kj2.css"/>
+</head>
+<body>
+
+
+<div class="xiala111" id="id_menu_text1" onmouseover="kj.show(this);kj.show('#id_mb_view');" onmouseout="kj.hide(this);"
+     style="display:none">
+    <li><a href="/?autologin=1">个人用户</a></li>
+    <li><a href="/?autologin=2">店铺用户</a></li>
+    <li><a href="/?autologin=3">后台用户</a></li>
+</div>
+<script>
+    var kjtest = new function () {
+        this.showtest = function (o) {
+            var offset = kj.offset(o);
+            kj.set('#id_menu_text1', 'style.left', (offset.left) + 'px');
+            kj.show('#id_menu_text1');
+        }
+        this.hidetest = function () {
+            kj.hide('#id_menu_text1');
+        }
+    }
+    var mb_view = kj.cookie_get('test_mb_view');
+    if (!mb_view) {
+        kj.onload(function () {
+            kj.show("#id_mb_view");
+            kj.cookie_set('test_mb_view', 1, 20000, '');
+        });
+    }
+</script>
+<div class="top">
+    <ul class="main">
+        <li class="x1"><span><img src="/images/position.png"></span><span>&nbsp;A - 大连市&nbsp;<a
+                href="#">[切换地址]</a></span></li>
+        <li class="x2">
+            <span class="xqq"><a href="/common.php?app=api.login&plat=qq"></a></span> <span class="xsina"><a
+                href="/common.php?app=api.login&plat=weibo"></a></span>		<span class="x2x">
+		<a href="javascript:jsheader.showlogin();">登录</a>&nbsp;&nbsp;<a href="javascript:jsheader.showreg();">注册</a>
+				</span>
+        </li>
+    </ul>
+</div>
+<div class="main">
+    <div class="mainbg" id="id_mainbg">
+        <div class="topmenu">
+            <li><img src="/images/logo.png"></li>
+            <li class="x1">
+                <a href="/" class="x2">首页</a>
+                <a href="/index.php?app=act.gift">礼品兑换</a>
+                <a href="/index.php?app_act=help">帮助中心</a>
+                <a href="/index.php?app_act=msg">意见反馈</a>
+                <a href="/index.php?app_act=cart">购物车</a>
+            </li>
+        </div>
+    </div>

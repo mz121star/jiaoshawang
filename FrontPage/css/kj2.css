@@ -9,7 +9,7 @@
 .xiala{top:93px}
 .xiala111{position:absolute;top:23px;width:100px;z-index:10;background:#fff;border:1px #888 solid;z-index:102}
 .xiala111 li{float:left;width:100px;padding:5px 0px 3px 0px;text-align:center}
-.kj2{width:100%;position:absolute;background:url(./common/images/transparent.png);padding-bottom:5px;top:33px;z-index:101}
+.kj2{width:100%;position:absolute;background:url(./images/transparent.png);padding-bottom:5px;top:33px;z-index:101}
 .kj2 ul{float:left;width:100%;background:#fff}
 .kj2 ul li{float:left;margin:5px 10px;text-align:center;height:210px;overflow:hidden;color:#888}
 .kj2 ul a{float:left;border:1px #ccc solid;padding:1px;}
