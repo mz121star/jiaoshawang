@@ -26,10 +26,10 @@ class IndexAction extends Action {
             $this->redirect('Index/index');
         }
         $user = M("User");
-        $_POST['password'] = md5($_POST['password']);
-        $_POST['status'] = 1;
-        $userInfo = $user->where($_POST)->field('id,userid,username,email,type')->find();
-        if(!empty($userInfo) && $userInfo['type'] != 3){
+        $_POST['user_pw'] = md5($_POST['user_pw']);
+        $_POST['user_status'] = 1;
+        $userInfo = $user->where($_POST)->field('id,user_id,user_type')->find();
+        if(!empty($userInfo) && $userInfo['user_type'] != 3){
             session('userinfo', $userInfo);
             $this->redirect('Index/index');
         } else {

@@ -8,8 +8,16 @@ $private_config = array(
                         'URL_ROUTER_ON' => true,
                         'URL_CASE_INSENSITIVE' =>true,
                         'URL_ROUTE_RULES' => array(
-                            'user/lists/:type' => 'User/lists',
-                        )
+                                                  'modshop/:userid' => 'User/modshop',
+                                                  'delshop/:userid' => 'User/delshop',
+                                                  'modpeople/:userid' => 'User/modpeople',
+                                                  'delpeople/:userid' => 'User/delpeople',
+                                                  'upstatus/:userid/:status' => 'User/upstatus',
+                                                  ),
+                        'SHOP_ROLE' => array(
+                                            'Food'=>array('lists', 'showadd', 'add'),
+                                            'Order'=>array('lists')
+                                            )
                         );
 
 return array_merge($common_config, $private_config);

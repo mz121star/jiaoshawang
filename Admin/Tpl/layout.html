@@ -33,18 +33,18 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
 
-            <if condition="$Think.session.userinfo.type eq 1">
+            <if condition="$Think.session.userinfo.user_type eq 1">
            <ul class="nav nav-sidebar">
-            <li <if condition="$current_c eq 'User' and $current_a eq 'lists' and $usertype eq 2">class="active"</if>><a href="__GROUP__/User/lists/2">商户列表</a></li>
-            <li <if condition="$current_c eq 'User' and $current_a eq 'lists' and $usertype eq 3">class="active"</if>><a href="__GROUP__/User/lists/3">普通用户列表</a></li>
+            <li <if condition="$current_c eq 'User' and $current_a eq 'shoplist'">class="active"</if>><a href="__GROUP__/User/shoplist">商户列表</a></li>
+            <li <if condition="$current_c eq 'User' and $current_a eq 'peoplelist'">class="active"</if>><a href="__GROUP__/User/peoplelist">普通用户列表</a></li>
             <li <if condition="$current_c eq 'User' and $current_a eq 'showadd'">class="active"</if>><a href="__GROUP__/User/showadd">添加用户</a></li>
           </ul>
             </if>
 
           <ul class="nav nav-sidebar">
             <li <if condition="$current_c eq 'Food' and $current_a eq 'lists'">class="active"</if>><a href="__GROUP__/Food/lists">菜品列表</a></li>
-             <if condition="$Think.session.userinfo.type eq 2">
-            <li <if condition="$current_c eq 'Food' and $current_a eq 'add'">class="active"</if>><a href="__GROUP__/Food/add">添加菜肴</a></li>
+             <if condition="$Think.session.userinfo.user_type eq 2">
+            <li <if condition="$current_c eq 'Food' and $current_a eq 'add'">class="active"</if>><a href="__GROUP__/Food/showadd">添加菜肴</a></li>
             </if>
           </ul>
 
@@ -52,7 +52,7 @@
             <li <if condition="$current_c eq 'Order' and $current_a eq 'lists'">class="active"</if>><a href="__GROUP__/Order/lists">订单管理</a></li>
           </ul>
 
-            <if condition="$Think.session.userinfo.type eq 1">
+            <if condition="$Think.session.userinfo.user_type eq 1">
           <ul class="nav nav-sidebar">
             <li><a href="javascript:;">系统配置</a></li>
           </ul>
