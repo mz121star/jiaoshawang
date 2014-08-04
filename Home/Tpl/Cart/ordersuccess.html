@@ -1,0 +1,92 @@
+<include file="Public:header"/>
+<div class="mainbg mg_t1">
+    <script src="/webcss/default/header.js"></script>
+    <script src="/webcss/default/member.js"></script>
+    <script src="/webcss/common/js/kj.rule.js"></script>
+    <script src="/webcss/common/js/kj.alert.js"></script>
+    <script>
+        kj.onload(function(){
+            var w = (kj.w()-980)/2;
+            kj.set("#idmenu1" , "style.top" , '120px');
+            kj.set("#idmenu1" , "style.left" , (w+390)+'px');
+            jsheader.rule_uname = "default";
+            jsheader.reg_verify = "1";
+            jsheader.tempurl = "/webcss/default/";
+            jsheader.is_verify = false;
+        });
+    </script><div class="payok mg1">
+    <table align="center" width="380px"><tbody><tr><td>
+        <div class="tipsright">
+            <li class="tit">恭喜！您的订单已经提交！</li>
+            <li>订单编号：<span style="color:#ff8800;">1140804160108192</span></li>
+            <li>订单金额：<span style="color:#ff8800;font-size:20px">￥15</span></li>
+            <li>支付方式：<span style="color:#ff8800;">货到付款</span></li>
+            <li>订单状态：<span style="color:#ff8800;"><font color="#ff0000">等待处理</font></span></li>
+            <li><input type="button" name="btn_detail" value="查看详情" class="button2" onclick="thisjs.detail();">&nbsp;&nbsp;<a href="/">首页</a>&nbsp;&nbsp;<a href="?app_act=shop&amp;id=1">再逛逛</a></li>
+        </div>
+        <div class="tipsblue" id="id_state_info">
+            温馨提示：您可以在下单后5分钟之内取消订单，<a href="javascript:thisjs.cancel();">我要取消订单</a>
+        </div>
+    </td></tr>
+    </tbody></table>
+</div>
+    <div id="id_paymethod_box" style="display:none">
+        <div style="float:left;padding:10px 0px 0px 10px;line-height:30px">
+            <label><input type="radio" name="paymethod" value="alipay">支付宝支付</label>
+
+            <br>
+            <br><br>
+            <input type="button" name="btn_state_ok" value="确认支付" onclick="thisjs.pay();" class="button5">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="btn_state_cancel" value="取消" onclick="kj.dialog.close('#winpaymethod_box');" class="button5x">
+        </div>
+    </div>
+    <script>
+        var thisjs = new function() {
+            this.detail = function () {
+                kj.dialog({id:'detail',title:'订单明细',url:'/index.php?app=member&app_act=order.detail&id=1363',w:700,max_h:650,showbtnmax:false,showbtnhide:false,type:'iframe'});
+            }
+            this.cancel = function() {
+                if( !confirm("确定要取消订单吗？") ) return;
+                kj.ajax.get("/index.php?app=member&app_act=order.cancel&id=1363" , function(data) {
+                    var obj_data = kj.json(data);
+                    if(obj_data.isnull) {
+                        alert("系统繁忙，请稍后再试");
+                        return;
+                    }
+                    if(obj_data.code == "0") {
+                        alert("成功取消");
+                        kj.obj("#id_state_info").innerHTML = "您已取消当前订单，可以重新再点餐";
+                    } else {
+                        alert(obj_data.msg);
+                    }
+                });
+            }
+            //显示支付方式选择框
+            this.show_paymethod = function() {
+                var obj = kj.obj('#id_paymethod_box');
+                if(obj) {
+                    this.state_html = obj.innerHTML;
+                    kj.remove(obj);
+                }
+                kj.dialog({'html':this.state_html,'id':'paymethod_box','type':'html','title':'选择支付方式','w':300,'showbtnmax':false});
+            }
+            //跳转支付
+            this.pay = function() {
+                var obj = kj.obj(":paymethod");
+                var pay_method = '';
+                for(var i = 0 ; i < obj.length ; i++) {
+                    if(obj[i].checked) {
+                        pay_method = obj[i].value;
+                        break;
+                    }
+                }
+                if(pay_method == '') {
+                    alert("请选择支付方式");
+                    return;
+                }
+                window.open("/index.php?app=member&app_act=order_pay&id=1363&pay_method=" + pay_method,'_self');
+            }
+
+        }
+    </script>
+</div>
+<include file="Public:footer"/>

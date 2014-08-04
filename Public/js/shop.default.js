@@ -82,7 +82,8 @@ var jsshop = new function() {
 			return false;
 		}
 		this.save_cookie();
-		window.location.href = kj.cfg('baseurl') + "/index.php?app_act=cart&shop_id="+this.shopid;
+		//window.location.href = kj.cfg('baseurl') + "/index.php?app_act=cart&shop_id="+this.shopid;
+        window.location.href = "/index.php/Cart?app_act=cart&shop_id="+this.shopid;
 	}
 	this.save_cookie = function() {
 		if(this.is_save) return;

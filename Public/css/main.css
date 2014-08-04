@@ -138,7 +138,7 @@ a:active {color:#0AA2DD;}
 .mareali li{float:left;width:150px;margin:3px 0px 2px 0px}
 .mareali a{float:left;width:144px;color:#fff;text-decoration:none;padding:2px 3px}
 .mareali a:hover{background:url(menu_bg1.png);}
-.msearch{float:left;padding:0px 0px 10px 10px}
+.msearch{float:left;padding: 20px 0px 10px 10px;}
 .msearch .txt1{border:1px #ccc solid;width:925px;height:30px;font-size:18px;line-height:30px;padding:0px 0px 0px 25px;margin:0px;float:left;color:#888;background:#fff url(btn_search3.png) 2px center no-repeat}
 
 .sbox{position:absolute;width:auto;border:1px #ccc solid;border-top:0px}
