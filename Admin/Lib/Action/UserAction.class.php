@@ -10,6 +10,7 @@ class UserAction extends PublicAction {
         $user = M("User");
         $userlist = $user->where('type='.$type)->field('id,userid,username,email,phone,status,type')->order(array('id'=>'desc'))->select();
         $this->assign('userlist', $userlist);
+        $this->assign('usertype', $type);
         $this->display();
     }
 
