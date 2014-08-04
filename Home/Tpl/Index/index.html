@@ -34,23 +34,44 @@
     <script src="js/member.js"></script>
     <script src="js/kj.rule.js"></script>
     <script src="js/kj.alert.js"></script>
-
+    <script>
+        kj.onload(function () {
+            var w = (kj.w() - 980) / 2;
+            kj.set("#idmenu1", "style.top", '120px');
+            kj.set("#idmenu1", "style.left", (w + 390) + 'px');
+            jsheader.rule_uname = "default";
+            jsheader.reg_verify = "1";
+            jsheader.tempurl = "/webcss/default/";
+            jsheader.is_verify = false;
+        });
+    </script>
+    <script>if (!kj.slide) {
+        document.write("<style>.kj_slide{float:left;overflow:hidden}.kj_slide .xpic{float:left}.kj_slide .xpic img{}.kj_slide .xbtn{display:inline-block; *display:inline; *zoom:1;position:relative;top:-30px;width:100%;text-align:center;background:url(/images/transparent.png);height:30px;color:#fff;font-size:16px}.kj_slide .xbtn div{float:left;width:100%}.kj_slide .xbtn span{display:inline-block; *display:inline; *zoom:1;margin-top:8px;width:10px;height:10px;background:#fff;margin-left:5px;text-decoration:none;cursor:pointer;border-radius:50px;}.kj_slide .xbtn .ysel{background:#ff0000}</style>");
+        kj.loadjs("/js/kj.slide.js", function () {
+            if (kj.slide) {
+                kj.slide.init();
+            }
+        });
+    }
+    kj.onload(function () {
+        if (kj.slide) {
+            kj.slide.init();
+        }
+    });</script>
     <div class="kj_slide" style="width:980px;height:250px">
         <li class="xpic" style="width:980px;height:250px"><a href="" target="_blank" title=""><img
                 src="upload/ad/pic1.png" style="width:980px;height:250px"></a></li>
         <li class="xbtn" style="width:980px">
-            <div style="float:left;width:auto;padding:3px 0px 0px 15px"><a href="" class="xtxt" style="color:#fff"
-                                                                           target="_blank"></a></div>
-            <div style="float:right;padding:0px 10px 0px 0px;width:auto"><span mysrc="upload/ad/pic1.png" myurl=""
-                                                                               mytit="">&nbsp;</span> <span mysrc="upload/ad/pic3.jpg" myurl=""
-                                                                                                            mytit="">&nbsp;</span></div>
+            <div style="float:left;width:auto;padding:3px 0px 0px 15px">
+                <a href="" class="xtxt" style="color:#fff" target="_blank"></a>
+
+            </div>
+            <div style="float:right;padding:0px 10px 0px 0px;width:auto">
+                <span mysrc="upload/ad/pic1.png" myurl="" mytit="">&nbsp;</span>
+                <span mysrc="upload/ad/pic3.jpg" myurl="" mytit="">&nbsp;</span></div>
         </li>
     </div>
-    <div class="marea" id="id_selarea">
-        <li onclick="jsarea.click(this,0);"></li>
-        <li onclick="jsarea.click(this,1);"></li>
-        <li onclick="jsarea.click(this,2);"></li>
-    </div>
+
     <div id="id_selarealist" class="mareali">
         <ul style="display:none"></ul>
         <ul style="display:none"></ul>
