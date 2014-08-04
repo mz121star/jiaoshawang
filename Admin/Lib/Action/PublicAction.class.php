@@ -10,5 +10,7 @@ class PublicAction extends Action {
             $this->display('Index:showlogin');
             exit;
         }
+        $this->assign('current_c', MODULE_NAME);
+        $this->assign('current_a', ACTION_NAME);
     }
 }

@@ -35,21 +35,21 @@
 
             <if condition="$Think.session.userinfo.type eq 1">
            <ul class="nav nav-sidebar">
-            <li<?php if ($content == 'syssetting') {echo ' class="active"';} ?>><a href="__GROUP__/User/lists/2">商户列表</a></li>
-            <li<?php if ($content == 'syssetting') {echo ' class="active"';} ?>><a href="__GROUP__/User/lists/3">普通用户列表</a></li>
-            <li<?php if ($content == 'syssetting') {echo ' class="active"';} ?>><a href="__GROUP__/User/showadd">添加用户</a></li>
+            <li <if condition="$current_c eq 'User' and $current_a eq 'lists' and $usertype eq 2">class="active"</if>><a href="__GROUP__/User/lists/2">商户列表</a></li>
+            <li <if condition="$current_c eq 'User' and $current_a eq 'lists' and $usertype eq 3">class="active"</if>><a href="__GROUP__/User/lists/3">普通用户列表</a></li>
+            <li <if condition="$current_c eq 'User' and $current_a eq 'showadd'">class="active"</if>><a href="__GROUP__/User/showadd">添加用户</a></li>
           </ul>
             </if>
 
           <ul class="nav nav-sidebar">
-            <li<?php if ($content == 'helpsetting') {echo ' class="active"';} ?>><a href="__GROUP__/Food/lists">菜品列表</a></li>
+            <li <if condition="$current_c eq 'Food' and $current_a eq 'lists'">class="active"</if>><a href="__GROUP__/Food/lists">菜品列表</a></li>
              <if condition="$Think.session.userinfo.type eq 2">
-            <li<?php if ($content == 'gamesetting') {echo ' class="active"';} ?>><a href="__GROUP__/Food/add">添加菜肴</a></li>
+            <li <if condition="$current_c eq 'Food' and $current_a eq 'add'">class="active"</if>><a href="__GROUP__/Food/add">添加菜肴</a></li>
             </if>
           </ul>
 
           <ul class="nav nav-sidebar">
-            <li<?php if ($content == 'delivsetting') {echo ' class="active"';} ?>><a href="__GROUP__/Order/lists">订单管理</a></li>
+            <li <if condition="$current_c eq 'Order' and $current_a eq 'lists'">class="active"</if>><a href="__GROUP__/Order/lists">订单管理</a></li>
           </ul>
 
             <if condition="$Think.session.userinfo.type eq 1">
