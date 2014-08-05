@@ -5,12 +5,21 @@ class FoodAction extends PublicAction {
     public function lists(){
         $food = M("Food");
         $userid = $this->userInfo['user_id'];
-        $foodlist = $food->where('user_id="'.$userid.'"')->field('id,food_name,food_price')->order(array('id'=>'desc'))->select();
+        $usertype = $this->userInfo['user_type'];
+        if ($usertype == 1) {
+            $foodlist = $food->field('id,food_name,food_price')->order(array('id'=>'desc'))->select();
+        } else {
+            $foodlist = $food->where('user_id="'.$userid.'"')->field('id,food_name,food_price')->order(array('id'=>'desc'))->select();
+        }
         $this->assign('foodlist', $foodlist);
         $this->display();
     }
 
     public function showadd(){
+        $usertype = $this->userInfo['user_type'];
+         if ($usertype == 1) {
+             $this->redirect('Food/lists');
+         }
         $this->display();
     }
     
@@ -29,7 +38,12 @@ class FoodAction extends PublicAction {
     public function delfood(){
         $foodid = $this->_get('foodid');
         $userid = $this->userInfo['user_id'];
+        $usertype = $this->userInfo['user_type'];
         $food = M("Food");
+        if ($usertype == 1) {
+            $foodnumber = $food->where('id='.$foodid)->delete();
+             $this->redirect('Food/lists');
+         }
         $foodinfo = $food->where('id='.$foodid.' and user_id="'.$userid.'"')->find();
         if ($foodinfo) {
             $foodnumber = $food->where('id='.$foodid.' and user_id="'.$userid.'"')->delete();
