@@ -18,7 +18,8 @@ $private_config = array(
                                                   ),
                         'SHOP_ROLE' => array(
                                             'Food'=>array('lists', 'showadd', 'save', 'modfood', 'delfood'),
-                                            'Order'=>array('lists')
+                                            'Order'=>array('lists'),
+                                            'User'=>array('modself', 'upself')
                                             )
                         );
 

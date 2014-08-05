@@ -57,6 +57,11 @@
             <li><a href="javascript:;">系统配置</a></li>
           </ul>
             </if>
+            <if condition="$Think.session.userinfo.user_type eq 2">
+          <ul class="nav nav-sidebar">
+            <li <if condition="$current_c eq 'User' and $current_a eq 'modself'">class="active"</if>><a href="__GROUP__/User/modself">信息设定</a></li>
+          </ul>
+            </if>
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

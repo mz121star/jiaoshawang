@@ -1,4 +1,4 @@
-<h2 class="sub-header">菜品列表</h2>
+<h2 class="sub-header">订单列表</h2>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -9,9 +9,9 @@
           </tr>
         </thead>
         <tbody>
-        <foreach name="foodlist" item="food">
+        <foreach name="orderlist" item="order">
           <tr>
-            <td class="col-sm-2">{$food.food_name}</td>
+            <td class="col-sm-2">{$order.food_name}</td>
             <td class="col-sm-2">{$food.food_price}</td>
             <td class="col-sm-2">
                 <if condition="$Think.session.userinfo.user_type eq 2">

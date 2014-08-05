@@ -27,6 +27,45 @@ class UserAction extends PublicAction {
         $this->assign('shopinfo', $shopinfo);
         $this->display();
     }
+    
+    public function modself(){
+        $userid = $this->userInfo['user_id'];
+        $shop = M("Shop");
+        $shopinfo = $shop->where('user_id="'.$userid.'"')->find();
+        $this->assign('shopinfo', $shopinfo);
+        $this->display();
+    }
+    
+    public function upself(){
+        $userid = $this->userInfo['user_id'];
+        $user_pw = $this->_post('user_pw');
+        if ($user_pw) {
+            $user = M("User");
+            $infonum = $user->where('user_id="'.$userid.'"')->setField('user_pw', md5($user_pw));
+        }
+        $isdelimage = $this->_post('delshop_image');
+        if ($isdelimage) {
+            $_POST['shop_image'] = '';
+            unlink('./upload/'.$isdelimage);
+        }
+        if ($_FILES['shop_image']['name']) {
+            import('ORG.Net.UploadFile');
+            $upload = new UploadFile();
+            $upload->maxSize = 3145728;//3M
+            $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg');
+            $upload->savePath = './upload/';
+            if(!$upload->upload()) {
+                $this->error($upload->getErrorMsg());
+            }else{
+                $info = $upload->getUploadFileInfo();
+            }
+            $_POST['shop_image'] = $info[0]['savename'];
+        }
+        $shop = M("Shop");
+        $post = $this->filterAllParam('post');
+        $shop->where('user_id="'.$userid.'"')->save($post);
+        $this->redirect('User/modself');
+    }
 
     public function upshop() {
         $isdelimage = $this->_post('delshop_image');
