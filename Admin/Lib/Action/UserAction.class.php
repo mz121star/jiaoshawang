@@ -29,6 +29,11 @@ class UserAction extends PublicAction {
     }
 
     public function upshop() {
+        $isdelimage = $this->_post('delshop_image');
+        if ($isdelimage) {
+            $_POST['shop_image'] = '';
+            unlink('./upload/'.$isdelimage);
+        }
         if ($_FILES['shop_image']['name']) {
             import('ORG.Net.UploadFile');
             $upload = new UploadFile();
@@ -43,7 +48,8 @@ class UserAction extends PublicAction {
             $_POST['shop_image'] = $info[0]['savename'];
         }
         $shop = M("Shop");
-        $shop->where('user_id="'.$_POST['user_id'].'"')->save($_POST);
+        $post = $this->filterAllParam('post');
+        $shop->where('user_id="'.$post['user_id'].'"')->save($post);
         $this->redirect('User/shoplist');
     }
 
@@ -74,7 +80,8 @@ class UserAction extends PublicAction {
 
     public function uppeople() {
         $people = M("People");
-        $people->where('user_id="'.$_POST['user_id'].'"')->save($_POST);
+        $post = $this->filterAllParam('post');
+        $people->where('user_id="'.$post['user_id'].'"')->save($post);
         $this->redirect('User/peoplelist');
     }
 
@@ -105,20 +112,21 @@ class UserAction extends PublicAction {
 
     public function add(){
         $user = M("User");
-        $userInfo = $user->where('user_id="'.$_POST['user_id'].'"')->field('id')->find();
+        $_POST['user_pw'] = md5($_POST['user_pw']);
+        $post = $this->filterAllParam('post');
+        $userInfo = $user->where('user_id="'.$post['user_id'].'"')->field('id')->find();
         if ($userInfo) {
             $this->error("用户ID已存在", 'showadd');
         }
-        $_POST['user_pw'] = md5($_POST['user_pw']);
-        $userid = $user->add($_POST);
+        $userid = $user->add($post);
         if ($userid) {
-            if ($_POST['user_type'] == 2) {
+            if ($post['user_type'] == 2) {
                 $shop = M("Shop");
-                $shop->add(array('user_id'=>$_POST['user_id']));
+                $shop->add(array('user_id'=>$post['user_id']));
                 $this->redirect('User/shoplist');
             } else {
                 $people = M("People");
-                $people->add(array('user_id'=>$_POST['user_id']));
+                $people->add(array('user_id'=>$post['user_id']));
                 $this->redirect('User/peoplelist');
             }
         } else {

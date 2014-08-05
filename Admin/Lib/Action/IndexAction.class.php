@@ -26,7 +26,8 @@ class IndexAction extends Action {
             $this->redirect('Index/index');
         }
         $user = M("User");
-        $_POST['user_pw'] = md5($_POST['user_pw']);
+        $_POST['user_id'] = $this->_post('user_id');
+        $_POST['user_pw'] = md5($this->_post('user_pw'));
         $_POST['user_status'] = 1;
         $userInfo = $user->where($_POST)->field('id,user_id,user_type')->find();
         if(!empty($userInfo) && $userInfo['user_type'] != 3){
@@ -34,7 +35,6 @@ class IndexAction extends Action {
             $this->redirect('Index/index');
         } else {
             $this->redirect('Index/showlogin');
-//            $this->error("用户名或密码错误!", 'Index/showlogin');
         }
     }
 

@@ -40,3 +40,15 @@ CREATE TABLE `dc_people` (
   PRIMARY KEY (`id`),
   UNIQUE KEY user_id (user_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='普通用户信息表';
+
+
+CREATE TABLE `dc_food` (
+  `id` int(11) NOT NULL auto_increment,
+  `food_name` varchar(250) NOT NULL,
+  `food_price` tinyint(3) unsigned NOT NULL default 0,
+  `food_number` tinyint(3) unsigned NOT NULL default 0,
+  `food_description` text NOT NULL,
+  `food_image` varchar(250) NOT NULL,
+  `user_id` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='菜品表';
