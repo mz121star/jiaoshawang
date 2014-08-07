@@ -94,16 +94,10 @@ class UserAction extends PublicAction {
 
     public function delshop(){
         $userid = $this->_get('userid');
-        $shop = M("Shop");
-        $shopnumber = $shop->where('user_id="'.$userid.'"')->delete();
-        if ($shopnumber) {
-            $user = M("User");
-            $usernumber = $user->where('user_id="'.$userid.'"')->delete();
-            if ($usernumber) {
-                $this->redirect('User/shoplist');
-            } else {
-                $this->error("删除商户失败", 'shoplist');
-            }
+        $user = M("User");
+        $usernumber = $user->where('user_id="'.$userid.'"')->setField('user_status', '0');
+        if ($usernumber) {
+            $this->redirect('User/shoplist');
         } else {
             $this->error("删除商户失败", 'shoplist');
         }
@@ -126,16 +120,10 @@ class UserAction extends PublicAction {
 
     public function delpeople(){
         $userid = $this->_get('userid');
-        $people = M("People");
-        $peoplenumber = $people->where('user_id="'.$userid.'"')->delete();
-        if ($peoplenumber) {
-            $user = M("User");
-            $usernumber = $user->where('user_id="'.$userid.'"')->delete();
-            if ($usernumber) {
-                $this->redirect('User/peoplelist');
-            } else {
-                $this->error("删除用户失败", 'peoplelist');
-            }
+        $user = M("User");
+        $usernumber = $user->where('user_id="'.$userid.'"')->setField('user_status', '0');
+        if ($usernumber) {
+            $this->redirect('User/peoplelist');
         } else {
             $this->error("删除用户失败", 'peoplelist');
         }

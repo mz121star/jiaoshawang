@@ -44,7 +44,14 @@
           <ul class="nav nav-sidebar">
             <li <if condition="$current_c eq 'Food' and $current_a eq 'lists'">class="active"</if>><a href="__GROUP__/Food/lists">菜品列表</a></li>
              <if condition="$Think.session.userinfo.user_type eq 2">
-            <li <if condition="$current_c eq 'Food' and $current_a eq 'add'">class="active"</if>><a href="__GROUP__/Food/showadd">添加菜肴</a></li>
+            <li <if condition="$current_c eq 'Food' and $current_a eq 'showadd'">class="active"</if>><a href="__GROUP__/Food/showadd">添加菜肴</a></li>
+            </if>
+          </ul>
+            
+           <ul class="nav nav-sidebar">
+            <li <if condition="$current_c eq 'Notice' and $current_a eq 'lists'">class="active"</if>><a href="__GROUP__/Notice/lists">公告列表</a></li>
+             <if condition="$Think.session.userinfo.user_type eq 2">
+            <li <if condition="$current_c eq 'Notice' and $current_a eq 'showadd'">class="active"</if>><a href="__GROUP__/Notice/showadd">添加公告</a></li>
             </if>
           </ul>
 
