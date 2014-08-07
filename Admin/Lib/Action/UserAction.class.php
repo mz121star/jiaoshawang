@@ -24,6 +24,12 @@ class UserAction extends PublicAction {
         $userid = $this->_get('userid');
         $shop = M("Shop");
         $shopinfo = $shop->where('user_id="'.$userid.'"')->find();
+        $beginworktime = explode(':', $shopinfo['shop_beginworktime']);
+        $shopinfo['shop_beginworktime1'] = $beginworktime[0];
+        $shopinfo['shop_beginworktime2'] = $beginworktime[1];
+        $endworktime = explode(':', $shopinfo['shop_endworktime']);
+        $shopinfo['shop_endworktime1'] = $endworktime[0];
+        $shopinfo['shop_endworktime2'] = $endworktime[1];
         $this->assign('shopinfo', $shopinfo);
         $this->display();
     }
@@ -32,6 +38,12 @@ class UserAction extends PublicAction {
         $userid = $this->userInfo['user_id'];
         $shop = M("Shop");
         $shopinfo = $shop->where('user_id="'.$userid.'"')->find();
+        $beginworktime = explode(':', $shopinfo['shop_beginworktime']);
+        $shopinfo['shop_beginworktime1'] = $beginworktime[0];
+        $shopinfo['shop_beginworktime2'] = $beginworktime[1];
+        $endworktime = explode(':', $shopinfo['shop_endworktime']);
+        $shopinfo['shop_endworktime1'] = $endworktime[0];
+        $shopinfo['shop_endworktime2'] = $endworktime[1];
         $this->assign('shopinfo', $shopinfo);
         $this->display();
     }
@@ -63,6 +75,8 @@ class UserAction extends PublicAction {
         }
         $shop = M("Shop");
         $post = $this->filterAllParam('post');
+        $post['shop_beginworktime'] = intval($post['shop_beginworktime1']).':'.intval($post['shop_beginworktime2']);
+        $post['shop_endworktime'] = intval($post['shop_endworktime1']).':'.intval($post['shop_endworktime2']);
         $shop->where('user_id="'.$userid.'"')->save($post);
         $this->redirect('User/modself');
     }
@@ -88,6 +102,8 @@ class UserAction extends PublicAction {
         }
         $shop = M("Shop");
         $post = $this->filterAllParam('post');
+        $post['shop_beginworktime'] = intval($post['shop_beginworktime1']).':'.intval($post['shop_beginworktime2']);
+        $post['shop_endworktime'] = intval($post['shop_endworktime1']).':'.intval($post['shop_endworktime2']);
         $shop->where('user_id="'.$post['user_id'].'"')->save($post);
         $this->redirect('User/shoplist');
     }

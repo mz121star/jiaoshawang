@@ -42,8 +42,8 @@ class FoodAction extends PublicAction {
         $food = M("Food");
         if ($usertype == 1) {
             $foodnumber = $food->where('id='.$foodid)->delete();
-             $this->redirect('Food/lists');
-         }
+            $this->redirect('Food/lists');
+        }
         $foodinfo = $food->where('id='.$foodid.' and user_id="'.$userid.'"')->find();
         if ($foodinfo) {
             $foodnumber = $food->where('id='.$foodid.' and user_id="'.$userid.'"')->delete();
@@ -80,6 +80,9 @@ class FoodAction extends PublicAction {
         }
         $food = M("Food");
         $post = $this->filterAllParam('post');
+        if (!isset($post['food_top'])) {
+            $post['food_top'] = 0;
+        }
         $post['user_id'] = $userid;
         if (isset($post['id']) && $post['id']) {
             $foodnumber = $food->where('id='.$post['id'].' and user_id="'.$userid.'"')->save($post);

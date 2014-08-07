@@ -1,4 +1,4 @@
---create database 'jiaosha';
+
 
 CREATE TABLE `dc_user` (
   `id` int(11) NOT NULL auto_increment,
