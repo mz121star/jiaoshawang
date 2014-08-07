@@ -1,0 +1,414 @@
+<include file="Public:header"/>
+
+<div class="mainbg mg_t1">
+    <div id="id_loginbox" style="display:none">
+        <form name="frmlogin" method="post" action="/common.php?app=sys&app_act=login.verify"
+              onsubmit="return jsheader.on_login();">
+            <div class="loginbox">
+                <ul class="xleft">
+                    <li><span class="x1">用户名：</span><span><input type="text" name="uname" class="txt1"/></span></li>
+                    <li><span class="x1">密码：</span><span><input name="pwd" type="password" class="txt1"/></span></li>
+                    <li id="id_verify_code" style="display:none"><span class="x1">验证码：</span><span><input
+                            name="verifycode" type="text" class="txt2" onfocus="jsheader.show_verify('#id_verify');"/>&nbsp;<img
+                            src="" id="id_verify_pic"
+                            onclick="this.src='/common.php?app=sys&app_act=verifycode&app_contenttype=img&app_rnd='+Math.random();"
+                            style="display:none"></span></li>
+                    <li><span class="x1"></span><span><label><input type="checkbox" name="autologin" value="1" checked>下次自动登录</label>&nbsp;&nbsp;<a
+                            href="/index.php?app=index&app_act=findpwd">忘记密码?</a><br><br>
+			<input type="submit" name="btn_submit" value="登 录" class="button1" style="font-size:22px">
+			</span></li>
+                </ul>
+                <ul class="xright">
+                    <li>使用其它账号登录：</li>
+                    <li><a href="/common.php?app=api.login&plat=weibo"><img src="images/btn_sina.png"></a></li>
+                    <li><a href="/common.php?app=api.login&plat=qq"><img src="images/btn_qq.png"></a></li>
+                </ul>
+                <ul class="xboot a1">
+                    <h1>还不是会员？</h1>一分钟轻松注册，就可以方便订餐<a href="javascript:jsheader.showreg();">【立即注册】</a>
+                </ul>
+            </div>
+            <input type="hidden" name="jump_fromurl" value="">
+        </form>
+    </div>
+    <script src="js/header.js"></script>
+    <script src="js/member.js"></script>
+    <script src="js/kj.rule.js"></script>
+    <script src="js/kj.alert.js"></script>
+    <script>
+        kj.onload(function () {
+            var w = (kj.w() - 980) / 2;
+            kj.set("#idmenu1", "style.top", '120px');
+            kj.set("#idmenu1", "style.left", (w + 390) + 'px');
+            jsheader.rule_uname = "default";
+            jsheader.reg_verify = "1";
+            jsheader.tempurl = "/webcss/default/";
+            jsheader.is_verify = false;
+        });
+    </script>
+    <script>if (!kj.slide) {
+        document.write("<style>.kj_slide{float:left;overflow:hidden}.kj_slide .xpic{float:left}.kj_slide .xpic img{}.kj_slide .xbtn{display:inline-block; *display:inline; *zoom:1;position:relative;top:-30px;width:100%;text-align:center;background:url(/images/transparent.png);height:30px;color:#fff;font-size:16px}.kj_slide .xbtn div{float:left;width:100%}.kj_slide .xbtn span{display:inline-block; *display:inline; *zoom:1;margin-top:8px;width:10px;height:10px;background:#fff;margin-left:5px;text-decoration:none;cursor:pointer;border-radius:50px;}.kj_slide .xbtn .ysel{background:#ff0000}</style>");
+        kj.loadjs("/js/kj.slide.js", function () {
+            if (kj.slide) {
+                kj.slide.init();
+            }
+        });
+    }
+    kj.onload(function () {
+        if (kj.slide) {
+            kj.slide.init();
+        }
+    });</script>
+    <div class="kj_slide" style="width:980px;height:250px">
+        <li class="xpic" style="width:980px;height:250px"><a href="" target="_blank" title=""><img
+                src="upload/ad/pic1.png" style="width:980px;height:250px"></a></li>
+        <li class="xbtn" style="width:980px">
+            <div style="float:left;width:auto;padding:3px 0px 0px 15px">
+                <a href="" class="xtxt" style="color:#fff" target="_blank"></a>
+
+            </div>
+            <div style="float:right;padding:0px 10px 0px 0px;width:auto">
+                <span mysrc="upload/ad/pic1.png" myurl="" mytit="">&nbsp;</span>
+                <span mysrc="upload/ad/pic3.jpg" myurl="" mytit="">&nbsp;</span></div>
+        </li>
+    </div>
+
+    <div id="id_selarealist" class="mareali">
+        <ul style="display:none"></ul>
+        <ul style="display:none"></ul>
+        <ul style="display:none"></ul>
+    </div>
+    <div class="msearch"><input type="text" name="s_key" value="" placeholder="请输入您想找的店名/美食" class="txt1"
+                                onkeyup="jsindex.search(this.value);" id="id_form_search"
+                                onfocus="if(this.value!=''){kj.show('#id_search_box');}"></div>
+
+</div>
+<div class="mainbg" style="margin-top:10px">
+    <div class="title1"><h2>推荐餐厅</h2></div>
+    <div class="listall">
+        <ul>
+            <table shopid="1">
+                <tr>
+                    <td class='x1' valign="top">
+                        <a href="__GROUP__/shop/detail/1" style="color:#666"><img src="upload/attatch/1_samll.jpg"></a>
+                        <li>0分钟</li>
+                        <li>0元起</li>
+                    </td>
+                    <td>
+                        <div class="x2">
+                            <li class="xtit"><a href="__GROUP__/shop/detail/1">官网体验店</a></li>
+                            <li>免费配送</li>
+                            <li>
+                                <span class="state_bg3">明天继续</span>
+                                <span class="collect2 id_collect_1" onclick="jsheader.collect_cancel(1);"
+                                      title="点击取消收藏">已收藏</span></li>
+                            <li>
+                                <img src="images/act_3.png" title="每天十点之前下单送饮料">&nbsp;
+                                <img src="images/act_1.png" title="晚上八点以后8折">&nbsp;
+                                <img src="images/act_4.png" title="满50每份再减一元">&nbsp;
+                            </li>
+                        </div>
+                    </td>
+            </table>
+            <table shopid="3">
+                <tr>
+                    <td class='x1' valign="top">
+                        <a href="__GROUP__/shop/detail/3" style="color:#666"><img
+                                src="upload/attatch/1_1367136305_samll.jpg"></a>
+                        <li>30分钟</li>
+                        <li>10元起</li>
+                    </td>
+                    <td>
+                        <div class="x2">
+                            <li class="xtit"><a href="__GROUP__/shop/detail/3">肯德基</a></li>
+                            <li>免费配送</li>
+                            <li>
+                                <span class="state_bg3">明天继续</span>
+                                <span class="collect2 id_collect_3" onclick="jsheader.collect_cancel(3);"
+                                      title="点击取消收藏">已收藏</span></li>
+                            <li>
+                            </li>
+                        </div>
+                    </td>
+            </table>
+            <table shopid="4">
+                <tr>
+                    <td class='x1' valign="top">
+                        <a href="__GROUP__/shop/detail//4" style="color:#666"><img
+                                src="upload/attatch/1_1367136754_samll.jpg"></a>
+                        <li>30分钟</li>
+                        <li>10元起</li>
+                    </td>
+                    <td>
+                        <div class="x2">
+                            <li class="xtit"><a href="__GROUP__/shop/detail/4">天天粥铺</a></li>
+                            <li>免费配送</li>
+                            <li>
+                                <span class="state_bg3">明天继续</span>
+                                <span class="collect2 id_collect_4" onclick="jsheader.collect_cancel(4);"
+                                      title="点击取消收藏">已收藏</span></li>
+                            <li>
+                            </li>
+                        </div>
+                    </td>
+            </table>
+        </ul>
+    </div>
+    <script src="js/index.js"></script>
+</div>
+<div class="ad2">
+    <a href="" title=""><img src="upload/ad/1.gif" alt=""/></a>
+    <a href="" title=""><img src="upload/ad/2.gif" alt=""/></a>
+    <a href="" title=""><img src="upload/ad/3.gif" alt=""/></a>
+    <a href="" title=""><img src="upload/ad/4.gif" alt=""/></a>
+    <a href="" title=""><img src="upload/ad/5.gif" alt=""/></a>
+</div>
+<div class="mainbg" style="margin-top:10px">
+<div class="title1" id="id_typelist">
+    <li onclick="jsindex.selshoptype('',this);" class="xsel">全部</li>
+    <li onclick="jsindex.selshoptype('中式' , this);">中式</li>
+    <li onclick="jsindex.selshoptype('西式' , this);">西式</li>
+    <li onclick="jsindex.selshoptype('港式' , this);">港式</li>
+    <li onclick="jsindex.selshoptype('奶茶' , this);">奶茶</li>
+    <li onclick="jsindex.selshoptype('甜点' , this);">甜点</li>
+    <li onclick="jsindex.selshoptype('汉堡' , this);">汉堡</li>
+</div>
+<div class="sortselect">
+        <span><label><input type="checkbox" name="" id="id_chk_state" value="1"
+                            onclick="jsindex.showstate(this.checked);">仅显示营业店铺</label></span>
+        <span><label><input type="checkbox" name="" id="id_chk_addprice" value="1"
+                            onclick="jsindex.shoppage=0;jsindex.shopmore();">免配送费</label></span>
+
+    <div class="x_sort" id="id_act_sort">
+        <li><b>排序：</b></li>
+        <li onclick="jsindex.sort(1);">最新</li>
+        <li onclick="jsindex.sort(2);">销量</li>
+        <li onclick="jsindex.sort(3);">人气</li>
+    </div>
+</div>
+<div class="listall" id="id_shopall">
+    <ul>
+        <input type="hidden" id="id_pages" value="5">
+        <table shopid="1">
+            <tr>
+                <td class='x1' valign="top">
+                    <a href="__GROUP__/shop/detail/1" style="color:#666"><img src="upload/attatch/1_samll.jpg"></a>
+                    <li>0分钟</li>
+                    <li>0元起</li>
+                </td>
+                <td class="x2">
+                    <li class="xtit"><a href="__GROUP__/shop/detail/1">官网体验店</a></li>
+                    <li>免费配送</li>
+                    <li>
+                        <span class="state_bg3">明天继续</span>
+                        <span class="collect1 id_collect_1" onclick="jsheader.collect(1);">收藏</span></li>
+                    <li>
+                        <img src="images/act_3.png" title="每天十点之前下单送饮料">&nbsp;
+                        <img src="images/act_1.png" title="晚上八点以后8折">&nbsp;
+                        <img src="images/act_4.png" title="满50每份再减一元">&nbsp;
+                    </li>
+                </td>
+        </table>
+        <table shopid="3">
+            <tr>
+                <td class='x1' valign="top">
+                    <a href="__GROUP__/shop/detail/3" style="color:#666"><img
+                            src="upload/attatch/1_1367136305_samll.jpg"></a>
+                    <li>30分钟</li>
+                    <li>10元起</li>
+                </td>
+                <td class="x2">
+                    <li class="xtit"><a href="__GROUP__/shop/detail/3">肯德基</a></li>
+                    <li>免费配送</li>
+                    <li>
+                        <span class="state_bg3">明天继续</span>
+                        <span class="collect1 id_collect_3" onclick="jsheader.collect(3);">收藏</span></li>
+                    <li>
+                    </li>
+                </td>
+        </table>
+        <table shopid="4">
+            <tr>
+                <td class='x1' valign="top">
+                    <a href="__GROUP__/shop/detail/4" style="color:#666"><img
+                            src="upload/attatch/1_1367136754_samll.jpg"></a>
+                    <li>30分钟</li>
+                    <li>10元起</li>
+                </td>
+                <td class="x2">
+                    <li class="xtit"><a href="__GROUP__/shop/detail/4">天天粥铺</a></li>
+                    <li>免费配送</li>
+                    <li>
+                        <span class="state_bg3">明天继续</span>
+                        <span class="collect1 id_collect_4" onclick="jsheader.collect(4);">收藏</span></li>
+                    <li>
+                    </li>
+                </td>
+        </table>
+        <table shopid="6">
+            <tr>
+                <td class='x1' valign="top">
+                    <a href="__GROUP__/shop/detail/6" style="color:#666"><img
+                            src="upload/attatch/1_1367137337_samll.jpg"></a>
+                    <li>30分钟</li>
+                    <li>5元起</li>
+                </td>
+                <td class="x2">
+                    <li class="xtit"><a href="__GROUP__/shop/detail/6">农家骨头饭</a></li>
+                    <li>免费配送</li>
+                    <li>
+                        <span class="state_bg1">营业</span>
+                        <span class="collect1 id_collect_6" onclick="jsheader.collect(6);">收藏</span></li>
+                    <li>
+                    </li>
+                </td>
+        </table>
+        <table shopid="5">
+            <tr>
+                <td class='x1' valign="top">
+                    <a href="__GROUP__/shop/detail/5" style="color:#666"><img
+                            src="upload/attatch/1_1367136548_samll.jpg"></a>
+                    <li>30分钟</li>
+                    <li>10元起</li>
+                </td>
+                <td class="x2">
+                    <li class="xtit"><a href="__GROUP__/shop/detail/5">隆江猪脚店</a></li>
+                    <li>免费配送</li>
+                    <li>
+                        <span class="state_bg1">营业</span>
+                        <span class="collect1 id_collect_5" onclick="jsheader.collect(5);">收藏</span></li>
+                    <li>
+                        <img src="images/act_4.png" title="三份以上送500积分">&nbsp;
+                    </li>
+                </td>
+        </table>
+        <table shopid="20">
+            <tr>
+                <td class='x1' valign="top">
+                    <a href="__GROUP__/shop/detail/20" style="color:#666"><img
+                            src="upload/attatch/1_1367142480_samll.jpg"></a>
+                    <li>30分钟</li>
+                    <li>15元起</li>
+                </td>
+                <td class="x2">
+                    <li class="xtit"><a href="__GROUP__/shop/detail/20">韩国拌饭</a></li>
+                    <li>配送费：5元/次</li>
+                    <li>
+                        <span class="state_bg3">明天继续</span>
+                        <span class="collect1 id_collect_20" onclick="jsheader.collect(20);">收藏</span></li>
+                    <li>
+                    </li>
+                </td>
+        </table>
+        <table shopid="19">
+            <tr>
+                <td class='x1' valign="top">
+                    <a href="__GROUP__/shop/detail/19" style="color:#666"><img
+                            src="upload/attatch/1_1367142382_samll.jpg"></a>
+                    <li>40分钟</li>
+                    <li>10元起</li>
+                </td>
+                <td class="x2">
+                    <li class="xtit"><a href="__GROUP__/shop/detail/19">南粉北面</a></li>
+                    <li>免费配送</li>
+                    <li>
+                        <span class="state_bg3">明天继续</span>
+                        <span class="collect1 id_collect_19" onclick="jsheader.collect(19);">收藏</span></li>
+                    <li>
+                    </li>
+                </td>
+        </table>
+        <table shopid="47">
+            <tr>
+                <td class='x1' valign="top">
+                    <a href="__GROUP__/shop/detail/47" style="color:#666"><img src="images/nopic.png"></a>
+                    <li>20分钟</li>
+                    <li>10元起</li>
+                </td>
+                <td class="x2">
+                    <li class="xtit"><a href="__GROUP__/shop/detail/47">千千干饼店</a></li>
+                    <li>免费配送</li>
+                    <li>
+                        <span class="state_bg1">营业</span>
+                        <span class="collect1 id_collect_47" onclick="jsheader.collect(47);">收藏</span></li>
+                    <li>
+                    </li>
+                </td>
+        </table>
+        <table shopid="22">
+            <tr>
+                <td class='x1' valign="top">
+                    <a href="__GROUP__/shop/detail/22" style="color:#666"><img
+                            src="upload/attatch/1_1367143593_samll.jpg"></a>
+                    <li>30分钟</li>
+                    <li>10元起</li>
+                </td>
+                <td class="x2">
+                    <li class="xtit"><a href="__GROUP__/shop/detail/22">骨头饭</a></li>
+                    <li>配送费：5元/次</li>
+                    <li>
+                        <span class="state_bg3">明天继续</span>
+                        <span class="collect1 id_collect_22" onclick="jsheader.collect(22);">收藏</span></li>
+                    <li>
+                    </li>
+                </td>
+        </table>
+        <table shopid="17">
+            <tr>
+                <td class='x1' valign="top">
+                    <a href="__GROUP__/shop/detail/17" style="color:#666"><img
+                            src="upload/attatch/1_1367142163_samll.jpg"></a>
+                    <li>30分钟</li>
+                    <li>10元起</li>
+                </td>
+                <td class="x2">
+                    <li class="xtit"><a href="__GROUP__/shop/detail/17">川东一秀</a></li>
+                    <li>免费配送</li>
+                    <li>
+                        <span class="state_bg3">明天继续</span>
+                        <span class="collect1 id_collect_17" onclick="jsheader.collect(17);">收藏</span></li>
+                    <li>
+                    </li>
+                </td>
+        </table>
+    </ul>
+</div>
+<div class="listmore" id="id_listmore"><a href="javascript:jsindex.shopmore();">加载更多...</a></div>
+<div class="sbox" id="id_search_box">
+    <ul>
+    </ul>
+</div>
+</div>
+</div>
+<include file="Public:footer"/>
+
+<script>
+    var jsfooter = new function () {
+        this.align_height = function () {
+            var objright = kj.obj("#id_right");
+            var objleft = kj.obj("#id_left");
+            if (!objright || !objleft) return;
+            kj.set("#id_left", "style.height", "auto");
+            kj.set("#id_right", "style.height", "auto");
+            var h_left = kj.h("#id_left");
+            var h_right = kj.h("#id_right");
+            (h_left > h_right) ? kj.set("#id_right", 'style.height', h_left + "px") : kj.set("#id_left", 'style.height', h_right + "px");
+        }
+    }
+    jsfooter.align_height();
+    var w = (kj.w() - 980) / 2;
+    w = w + 980 + 50;
+    kj.set("#id_qrcode", 'style.left', w + 'px');
+</script>
+<script>
+    jsindex.cssdir = "";
+    jsindex.shoppage = kj.toint("1");
+    jsindex.shoppages = kj.toint("5");
+    jsindex.pagesize = kj.toint("20");
+    jsindex.sortby = kj.toint("3");
+    jsindex.sortval = kj.toint("2");
+    jsindex.sort_init();
+    cls_select.init();
+</script>
+<script src="js/area.js"></script>
+</body>
+</html>
