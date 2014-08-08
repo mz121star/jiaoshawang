@@ -4,13 +4,20 @@ class FoodAction extends PublicAction {
 
     public function lists(){
         $food = M("Food");
+        import('ORG.Util.Page');
         $userid = $this->userInfo['user_id'];
         $usertype = $this->userInfo['user_type'];
         if ($usertype == 1) {
-            $foodlist = $food->field('id,food_name,food_price')->order(array('id'=>'desc'))->select();
+            $count = $food->count();
+            $page = new Page($count, 10);
+            $foodlist = $food->field('id,food_name,food_price')->order(array('id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
         } else {
-            $foodlist = $food->where('user_id="'.$userid.'"')->field('id,food_name,food_price')->order(array('id'=>'desc'))->select();
+            $count = $food->where('user_id="'.$userid.'"')->count();
+            $page = new Page($count, 10);
+            $foodlist = $food->where('user_id="'.$userid.'"')->field('id,food_name,food_price')->order(array('id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
         }
+        $show = $page->show();
+        $this->assign('page',$show);
         $this->assign('foodlist', $foodlist);
         $this->display();
     }

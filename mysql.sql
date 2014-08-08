@@ -1,4 +1,13 @@
 
+CREATE TABLE `dc_system` (
+  `id` int(11) NOT NULL auto_increment,
+  `system_name` varchar(250) NOT NULL,
+  `system_title` varchar(250) NOT NULL,
+  `system_description` varchar(255) NOT NULL,
+  `system_keyword` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='系统信息表';
+
 
 CREATE TABLE `dc_user` (
   `id` int(11) NOT NULL auto_increment,
@@ -38,6 +47,7 @@ CREATE TABLE `dc_shopnotice` (
   `notice_title` varchar(250) NOT NULL,
   `notice_content` text NOT NULL,
   `notice_date` datetime NOT NULL,
+  `notice_top` enum('0','1') NOT NULL,
   `user_id` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='商户公告表';

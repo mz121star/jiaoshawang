@@ -1,0 +1,30 @@
+<h2 class="sub-header">添加公告</h2>
+<div class="row placeholders">
+    <div class="col-md-7">
+        <form class="form-horizontal" role="form" method="post" action="__GROUP__/Notice/save">
+            <div class="form-group">
+              <label for="userid" class="col-sm-2 control-label">公告名称</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="notice_title" name="notice_title" value="" required autofocus>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="type1" class="col-sm-2 control-label">公告内容</label>
+              <div class="col-sm-5">
+                  <textarea id="notice_content" name="notice_content" class="form-control" rows="5"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="address" class="col-sm-2 control-label">置顶公告</label>
+              <div class="col-sm-1">
+                <input type="checkbox" class="form-control" id="notice_top" name="notice_top" value="1">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">添加</button>
+              </div>
+            </div>
+          </form>
+  </div>
+</div>

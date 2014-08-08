@@ -15,9 +15,12 @@ $private_config = array(
                                                   'upstatus/:userid/:status' => 'User/upstatus',
                                                   'modfood/:foodid' => 'Food/modfood',
                                                   'delfood/:foodid' => 'Food/delfood',
+                                                  'modnotice/:noticeid' => 'Notice/modnotice',
+                                                  'delnotice/:noticeid' => 'Notice/delnotice',
                                                   ),
                         'SHOP_ROLE' => array(
                                             'Food'=>array('lists', 'showadd', 'save', 'modfood', 'delfood'),
+                                            'Notice'=>array('lists', 'showadd', 'save', 'modnotice', 'delnotice'),
                                             'Order'=>array('lists'),
                                             'User'=>array('modself', 'upself')
                                             )

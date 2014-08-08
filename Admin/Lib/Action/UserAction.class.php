@@ -4,15 +4,25 @@ class UserAction extends PublicAction {
 
     public function shoplist(){
         $shop = M("Shop");
-        $userlist = $shop->join(' dc_user ON dc_user.user_id = dc_shop.user_id')->field('dc_user.user_id,shop_name,shop_email,shop_phone,user_status')->order(array('dc_user.id'=>'desc'))->select();
+        import('ORG.Util.Page');
+        $count = $shop->count();
+        $page = new Page($count, 10);
+        $show = $page->show();
+        $userlist = $shop->join(' dc_user ON dc_user.user_id = dc_shop.user_id')->field('dc_user.user_id,shop_name,shop_email,shop_phone,user_status')->order(array('dc_user.id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
         $this->assign('userlist', $userlist);
+        $this->assign('page',$show);
         $this->display();
     }
 
     public function peoplelist(){
         $people = M("People");
-        $userlist = $people->join(' dc_user ON dc_user.user_id = dc_people.user_id')->field('dc_user.user_id,people_name,people_phone,user_status')->order(array('dc_user.id'=>'desc'))->select();
+        import('ORG.Util.Page');
+        $count = $people->count();
+        $page = new Page($count, 10);
+        $show = $page->show();
+        $userlist = $people->join(' dc_user ON dc_user.user_id = dc_people.user_id')->field('dc_user.user_id,people_name,people_phone,user_status')->order(array('dc_user.id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
         $this->assign('userlist', $userlist);
+        $this->assign('page',$show);
         $this->display();
     }
 

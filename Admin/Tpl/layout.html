@@ -61,7 +61,7 @@
 
             <if condition="$Think.session.userinfo.user_type eq 1">
           <ul class="nav nav-sidebar">
-            <li><a href="javascript:;">系统配置</a></li>
+            <li <if condition="$current_c eq 'System' and $current_a eq 'showset'">class="active"</if>><a href="__GROUP__/System/showset">系统配置</a></li>
           </ul>
             </if>
             <if condition="$Think.session.userinfo.user_type eq 2">
