@@ -112,6 +112,9 @@ class UserAction extends PublicAction {
         }
         $shop = M("Shop");
         $post = $this->filterAllParam('post');
+        if (!isset($post['shop_top'])) {
+            $post['shop_top'] = 0;
+        }
         $post['shop_beginworktime'] = intval($post['shop_beginworktime1']).':'.intval($post['shop_beginworktime2']);
         $post['shop_endworktime'] = intval($post['shop_endworktime1']).':'.intval($post['shop_endworktime2']);
         $shop->where('user_id="'.$post['user_id'].'"')->save($post);

@@ -86,71 +86,31 @@
     <div class="title1"><h2>推荐餐厅</h2></div>
     <div class="listall">
         <ul>
-            <table shopid="1">
+            <foreach name="topshop" item="shop">
+            <table>
                 <tr>
                     <td class='x1' valign="top">
-                        <a href="__GROUP__/shop/detail/1" style="color:#666"><img src="upload/attatch/1_samll.jpg"></a>
-                        <li>0分钟</li>
-                        <li>0元起</li>
+                        <a href="__GROUP__/shop/detail/{$shop.user_id}" style="color:#666"><img width="80" height="80" src="/upload/{$shop.shop_image}"></a>
+                        <li>{$shop.shop_deliver_time}分钟</li>
+                        <li>{$shop.shop_deliver_beginmoney}元起</li>
                     </td>
                     <td>
                         <div class="x2">
-                            <li class="xtit"><a href="__GROUP__/shop/detail/1">官网体验店</a></li>
-                            <li>免费配送</li>
+                            <li class="xtit"><a href="__GROUP__/shop/detail/{$shop.user_id}">{$shop.shop_name}</a></li>
+                            <li><if condition="$shop.shop_deliver_money eq 0">免费配送<else />配送费：{$shop.shop_deliver_money}元/次</if></li>
                             <li>
-                                <span class="state_bg3">明天继续</span>
-                                <span class="collect2 id_collect_1" onclick="jsheader.collect_cancel(1);"
-                                      title="点击取消收藏">已收藏</span></li>
-                            <li>
+                                <if condition="$shop.is_working eq 1"><span class="state_bg1">营业</span><else /><span class="state_bg3">明天继续</span></if>
+                                <if condition="$shop.is_fav eq 1"><span class="collect2 id_collect_1" onclick="jsheader.collect_cancel(1);" title="点击取消收藏">已收藏</span><else /><span onclick="jsheader.collect(3);" class="collect1 id_collect_3">收藏</span></if>
+                            </li>
+                            <!-- <li>
                                 <img src="images/act_3.png" title="每天十点之前下单送饮料">&nbsp;
                                 <img src="images/act_1.png" title="晚上八点以后8折">&nbsp;
                                 <img src="images/act_4.png" title="满50每份再减一元">&nbsp;
-                            </li>
+                            </li> -->
                         </div>
                     </td>
             </table>
-            <table shopid="3">
-                <tr>
-                    <td class='x1' valign="top">
-                        <a href="__GROUP__/shop/detail/3" style="color:#666"><img
-                                src="upload/attatch/1_1367136305_samll.jpg"></a>
-                        <li>30分钟</li>
-                        <li>10元起</li>
-                    </td>
-                    <td>
-                        <div class="x2">
-                            <li class="xtit"><a href="__GROUP__/shop/detail/3">肯德基</a></li>
-                            <li>免费配送</li>
-                            <li>
-                                <span class="state_bg3">明天继续</span>
-                                <span class="collect2 id_collect_3" onclick="jsheader.collect_cancel(3);"
-                                      title="点击取消收藏">已收藏</span></li>
-                            <li>
-                            </li>
-                        </div>
-                    </td>
-            </table>
-            <table shopid="4">
-                <tr>
-                    <td class='x1' valign="top">
-                        <a href="__GROUP__/shop/detail//4" style="color:#666"><img
-                                src="upload/attatch/1_1367136754_samll.jpg"></a>
-                        <li>30分钟</li>
-                        <li>10元起</li>
-                    </td>
-                    <td>
-                        <div class="x2">
-                            <li class="xtit"><a href="__GROUP__/shop/detail/4">天天粥铺</a></li>
-                            <li>免费配送</li>
-                            <li>
-                                <span class="state_bg3">明天继续</span>
-                                <span class="collect2 id_collect_4" onclick="jsheader.collect_cancel(4);"
-                                      title="点击取消收藏">已收藏</span></li>
-                            <li>
-                            </li>
-                        </div>
-                    </td>
-            </table>
+            </foreach>
         </ul>
     </div>
     <script src="js/index.js"></script>
@@ -188,188 +148,29 @@
 <div class="listall" id="id_shopall">
     <ul>
         <input type="hidden" id="id_pages" value="5">
-        <table shopid="1">
+        <foreach name="commonshop" item="shop">
+        <table>
             <tr>
                 <td class='x1' valign="top">
-                    <a href="__GROUP__/shop/detail/1" style="color:#666"><img src="upload/attatch/1_samll.jpg"></a>
-                    <li>0分钟</li>
-                    <li>0元起</li>
+                    <a href="__GROUP__/shop/detail/{$shop.user_id}" style="color:#666"><img src="/upload/{$shop.shop_image}"></a>
+                    <li>{$shop.shop_deliver_time}分钟</li>
+                    <li>{$shop.shop_deliver_beginmoney}元起</li>
                 </td>
                 <td class="x2">
-                    <li class="xtit"><a href="__GROUP__/shop/detail/1">官网体验店</a></li>
-                    <li>免费配送</li>
+                    <li class="xtit"><a href="__GROUP__/shop/detail/{$shop.user_id}">{$shop.shop_name}</a></li>
+                    <li><if condition="$shop.shop_deliver_money eq 0">免费配送<else />配送费：{$shop.shop_deliver_money}元/次</if></li>
                     <li>
-                        <span class="state_bg3">明天继续</span>
-                        <span class="collect1 id_collect_1" onclick="jsheader.collect(1);">收藏</span></li>
-                    <li>
+                        <if condition="$shop.is_working eq 1"><span class="state_bg1">营业</span><else /><span class="state_bg3">明天继续</span></if>
+                        <if condition="$shop.is_fav eq 1"><span class="collect2 id_collect_1" onclick="jsheader.collect_cancel(1);" title="点击取消收藏">已收藏</span><else /><span class="collect1 id_collect_1" onclick="jsheader.collect(1);">收藏</span></if>
+                    </li>
+                    <!-- <li>
                         <img src="images/act_3.png" title="每天十点之前下单送饮料">&nbsp;
                         <img src="images/act_1.png" title="晚上八点以后8折">&nbsp;
                         <img src="images/act_4.png" title="满50每份再减一元">&nbsp;
-                    </li>
+                    </li> -->
                 </td>
         </table>
-        <table shopid="3">
-            <tr>
-                <td class='x1' valign="top">
-                    <a href="__GROUP__/shop/detail/3" style="color:#666"><img
-                            src="upload/attatch/1_1367136305_samll.jpg"></a>
-                    <li>30分钟</li>
-                    <li>10元起</li>
-                </td>
-                <td class="x2">
-                    <li class="xtit"><a href="__GROUP__/shop/detail/3">肯德基</a></li>
-                    <li>免费配送</li>
-                    <li>
-                        <span class="state_bg3">明天继续</span>
-                        <span class="collect1 id_collect_3" onclick="jsheader.collect(3);">收藏</span></li>
-                    <li>
-                    </li>
-                </td>
-        </table>
-        <table shopid="4">
-            <tr>
-                <td class='x1' valign="top">
-                    <a href="__GROUP__/shop/detail/4" style="color:#666"><img
-                            src="upload/attatch/1_1367136754_samll.jpg"></a>
-                    <li>30分钟</li>
-                    <li>10元起</li>
-                </td>
-                <td class="x2">
-                    <li class="xtit"><a href="__GROUP__/shop/detail/4">天天粥铺</a></li>
-                    <li>免费配送</li>
-                    <li>
-                        <span class="state_bg3">明天继续</span>
-                        <span class="collect1 id_collect_4" onclick="jsheader.collect(4);">收藏</span></li>
-                    <li>
-                    </li>
-                </td>
-        </table>
-        <table shopid="6">
-            <tr>
-                <td class='x1' valign="top">
-                    <a href="__GROUP__/shop/detail/6" style="color:#666"><img
-                            src="upload/attatch/1_1367137337_samll.jpg"></a>
-                    <li>30分钟</li>
-                    <li>5元起</li>
-                </td>
-                <td class="x2">
-                    <li class="xtit"><a href="__GROUP__/shop/detail/6">农家骨头饭</a></li>
-                    <li>免费配送</li>
-                    <li>
-                        <span class="state_bg1">营业</span>
-                        <span class="collect1 id_collect_6" onclick="jsheader.collect(6);">收藏</span></li>
-                    <li>
-                    </li>
-                </td>
-        </table>
-        <table shopid="5">
-            <tr>
-                <td class='x1' valign="top">
-                    <a href="__GROUP__/shop/detail/5" style="color:#666"><img
-                            src="upload/attatch/1_1367136548_samll.jpg"></a>
-                    <li>30分钟</li>
-                    <li>10元起</li>
-                </td>
-                <td class="x2">
-                    <li class="xtit"><a href="__GROUP__/shop/detail/5">隆江猪脚店</a></li>
-                    <li>免费配送</li>
-                    <li>
-                        <span class="state_bg1">营业</span>
-                        <span class="collect1 id_collect_5" onclick="jsheader.collect(5);">收藏</span></li>
-                    <li>
-                        <img src="images/act_4.png" title="三份以上送500积分">&nbsp;
-                    </li>
-                </td>
-        </table>
-        <table shopid="20">
-            <tr>
-                <td class='x1' valign="top">
-                    <a href="__GROUP__/shop/detail/20" style="color:#666"><img
-                            src="upload/attatch/1_1367142480_samll.jpg"></a>
-                    <li>30分钟</li>
-                    <li>15元起</li>
-                </td>
-                <td class="x2">
-                    <li class="xtit"><a href="__GROUP__/shop/detail/20">韩国拌饭</a></li>
-                    <li>配送费：5元/次</li>
-                    <li>
-                        <span class="state_bg3">明天继续</span>
-                        <span class="collect1 id_collect_20" onclick="jsheader.collect(20);">收藏</span></li>
-                    <li>
-                    </li>
-                </td>
-        </table>
-        <table shopid="19">
-            <tr>
-                <td class='x1' valign="top">
-                    <a href="__GROUP__/shop/detail/19" style="color:#666"><img
-                            src="upload/attatch/1_1367142382_samll.jpg"></a>
-                    <li>40分钟</li>
-                    <li>10元起</li>
-                </td>
-                <td class="x2">
-                    <li class="xtit"><a href="__GROUP__/shop/detail/19">南粉北面</a></li>
-                    <li>免费配送</li>
-                    <li>
-                        <span class="state_bg3">明天继续</span>
-                        <span class="collect1 id_collect_19" onclick="jsheader.collect(19);">收藏</span></li>
-                    <li>
-                    </li>
-                </td>
-        </table>
-        <table shopid="47">
-            <tr>
-                <td class='x1' valign="top">
-                    <a href="__GROUP__/shop/detail/47" style="color:#666"><img src="images/nopic.png"></a>
-                    <li>20分钟</li>
-                    <li>10元起</li>
-                </td>
-                <td class="x2">
-                    <li class="xtit"><a href="__GROUP__/shop/detail/47">千千干饼店</a></li>
-                    <li>免费配送</li>
-                    <li>
-                        <span class="state_bg1">营业</span>
-                        <span class="collect1 id_collect_47" onclick="jsheader.collect(47);">收藏</span></li>
-                    <li>
-                    </li>
-                </td>
-        </table>
-        <table shopid="22">
-            <tr>
-                <td class='x1' valign="top">
-                    <a href="__GROUP__/shop/detail/22" style="color:#666"><img
-                            src="upload/attatch/1_1367143593_samll.jpg"></a>
-                    <li>30分钟</li>
-                    <li>10元起</li>
-                </td>
-                <td class="x2">
-                    <li class="xtit"><a href="__GROUP__/shop/detail/22">骨头饭</a></li>
-                    <li>配送费：5元/次</li>
-                    <li>
-                        <span class="state_bg3">明天继续</span>
-                        <span class="collect1 id_collect_22" onclick="jsheader.collect(22);">收藏</span></li>
-                    <li>
-                    </li>
-                </td>
-        </table>
-        <table shopid="17">
-            <tr>
-                <td class='x1' valign="top">
-                    <a href="__GROUP__/shop/detail/17" style="color:#666"><img
-                            src="upload/attatch/1_1367142163_samll.jpg"></a>
-                    <li>30分钟</li>
-                    <li>10元起</li>
-                </td>
-                <td class="x2">
-                    <li class="xtit"><a href="__GROUP__/shop/detail/17">川东一秀</a></li>
-                    <li>免费配送</li>
-                    <li>
-                        <span class="state_bg3">明天继续</span>
-                        <span class="collect1 id_collect_17" onclick="jsheader.collect(17);">收藏</span></li>
-                    <li>
-                    </li>
-                </td>
-        </table>
+        </foreach>
     </ul>
 </div>
 <div class="listmore" id="id_listmore"><a href="javascript:jsindex.shopmore();">加载更多...</a></div>

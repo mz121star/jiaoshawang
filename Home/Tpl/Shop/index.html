@@ -5,333 +5,50 @@
  <div class="left mg1 w1" id="id_left">
 <div class="title w1"><h1>本店推荐</h1></div>
 <div class="list w1">
-    <ul onmouseover="jsshop.mouseover('237');" onmouseout="jsshop.mouseout('237');" class="Tmenu237">
-        <li><h2>攸县香干</h2></li>
-        <li class="pic"><a href="/index.php?app_act=menu&id=237" target="_blank"><img src = "/upload/attatch/2012/攸县香干_small.gif"></a></li>
-        <li><span style="float:left"><font style="color:#CC0000;font-size:24px">￥10</font><font style="color:#CC0000;font-size:16px">.00</font><br><a href="javascript:jsshop.comment(237);">评论：<font color="#ff0000">3</font>条</a></span><span style="float:right">
-																	<input type="button" name="btnse" value="订一份" class="button1" onclick="jsshop.cart_add({id:'237',name:'攸县香干',pic:'/upload/attatch/2012/攸县香干_small.gif',price:'10',type:'6'});">
+    <foreach name="topfoodlist" item="topfood">
+    <ul class="Tmenu237">
+        <li><h2>{$topfood.food_name}</h2></li>
+        <li class="pic"><img src = "/upload/{$topfood.food_image}"></li>
+        <li><span style="float:left"><font style="color:#CC0000;font-size:24px">￥{$topfood.food_price}</font><font style="color:#CC0000;font-size:16px">.00</font><br><a href="javascript:jsshop.comment(237);">评论：<font color="#ff0000">3</font>条</a></span><span style="float:right">
+																	<input type="button" name="btnse" value="订一份" class="button1" onclick="jsshop.cart_add({ id:'{$topfood.id}',name:'{$topfood.food_name}',pic:'/upload/{$topfood.food_image}',price:'{$topfood.food_price}',type:'6'});">
 															</span><span class="xnum Tnum237"></span></li>
     </ul>
-    <ul onmouseover="jsshop.mouseover('247');" onmouseout="jsshop.mouseout('247');" class="Tmenu247">
-        <li><h2>酸菜小笋肉沫饭</h2></li>
-        <li class="pic"><a href="/index.php?app_act=menu&id=247" target="_blank"><img src = "/upload/attatch/2012/酸菜小笋肉沫_small.gif"></a></li>
-        <li><span style="float:left"><font style="color:#CC0000;font-size:24px">￥10</font><font style="color:#CC0000;font-size:16px">.00</font><br><a href="javascript:jsshop.comment(247);">评论：<font color="#ff0000">0</font>条</a></span><span style="float:right">
-																	<input type="button" name="btnse" value="订一份" class="button1" onclick="jsshop.cart_add({id:'247',name:'酸菜小笋肉沫饭',pic:'/upload/attatch/2012/酸菜小笋肉沫_small.gif',price:'10',type:'6'});">
-															</span><span class="xnum Tnum247"></span></li>
-    </ul>
-    <ul onmouseover="jsshop.mouseover('287');" onmouseout="jsshop.mouseout('287');" class="Tmenu287">
-        <li><h2>脆皮鸭饭</h2></li>
-        <li class="pic"><a href="/index.php?app_act=menu&id=287" target="_blank"><img src = "/upload/attatch/2012/脆皮鸭饭_small.gif"></a></li>
-        <li><span style="float:left"><font style="color:#CC0000;font-size:24px">￥15</font><font style="color:#CC0000;font-size:16px">.00</font><br><a href="javascript:jsshop.comment(287);">评论：<font color="#ff0000">1</font>条</a></span><span style="float:right">
-																	<input type="button" name="btnse" value="订一份" class="button1" onclick="jsshop.cart_add({id:'287',name:'脆皮鸭饭',pic:'/upload/attatch/2012/脆皮鸭饭_small.gif',price:'15',type:'6'});">
-															</span><span class="xnum Tnum287"></span></li>
-    </ul>
-    <ul onmouseover="jsshop.mouseover('265');" onmouseout="jsshop.mouseout('265');" class="Tmenu265">
-        <li><h2>剁椒鱼头饭</h2></li>
-        <li class="pic"><a href="/index.php?app_act=menu&id=265" target="_blank"><img src = "/upload/attatch/2012/剁椒鱼头_small.gif"></a></li>
-        <li><span style="float:left"><font style="color:#CC0000;font-size:24px">￥12</font><font style="color:#CC0000;font-size:16px">.00</font><br><a href="javascript:jsshop.comment(265);">评论：<font color="#ff0000">0</font>条</a></span><span style="float:right">
-																	<input type="button" name="btnse" value="订一份" class="button1" onclick="jsshop.cart_add({id:'265',name:'剁椒鱼头饭',pic:'/upload/attatch/2012/剁椒鱼头_small.gif',price:'12',type:'6'});">
-															</span><span class="xnum Tnum265"></span></li>
-    </ul>
-    <ul onmouseover="jsshop.mouseover('238');" onmouseout="jsshop.mouseout('238');" class="Tmenu238">
-        <li><h2>酸辣鸡杂饭</h2></li>
-        <li class="pic"><a href="/index.php?app_act=menu&id=238" target="_blank"><img src = "/upload/attatch/2012/酸辣鸡杂饭_50_50.gif"></a></li>
-        <li><span style="float:left"><font style="color:#CC0000;font-size:24px">￥10</font><font style="color:#CC0000;font-size:16px">.00</font><br><a href="javascript:jsshop.comment(238);">评论：<font color="#ff0000">1</font>条</a></span><span style="float:right">
-																	<input type="button" name="btnse" value="订一份" class="button1" onclick="jsshop.cart_add({id:'238',name:'酸辣鸡杂饭',pic:'/upload/attatch/2012/酸辣鸡杂饭_50_50.gif',price:'10',type:'6'});">
-															</span><span class="xnum Tnum238"></span></li>
-    </ul>
-    <ul onmouseover="jsshop.mouseover('263');" onmouseout="jsshop.mouseout('263');" class="Tmenu263">
-        <li><h2>椒盐虾饭</h2></li>
-        <li class="pic"><a href="/index.php?app_act=menu&id=263" target="_blank"><img src = "/upload/attatch/2012/椒盐虾饭_small.gif"></a></li>
-        <li><span style="float:left"><font style="color:#CC0000;font-size:24px">￥12</font><font style="color:#CC0000;font-size:16px">.00</font><br><a href="javascript:jsshop.comment(263);">评论：<font color="#ff0000">2</font>条</a></span><span style="float:right">
-																	<input type="button" name="btnse" value="订一份" class="button1" onclick="jsshop.cart_add({id:'263',name:'椒盐虾饭',pic:'/upload/attatch/2012/椒盐虾饭_small.gif',price:'12',type:'6'});">
-															</span><span class="xnum Tnum263"></span></li>
-    </ul>
-    <ul onmouseover="jsshop.mouseover('246');" onmouseout="jsshop.mouseout('246');" class="Tmenu246">
-        <li><h2>番茄炒蛋饭</h2></li>
-        <li class="pic"><a href="/index.php?app_act=menu&id=246" target="_blank"><img src = "/upload/attatch/2012/番茄炒蛋_small.gif"></a></li>
-        <li><span style="float:left"><font style="color:#CC0000;font-size:24px">￥10</font><font style="color:#CC0000;font-size:16px">.00</font><br><a href="javascript:jsshop.comment(246);">评论：<font color="#ff0000">2</font>条</a></span><span style="float:right">
-																	<input type="button" name="btnse" value="订一份" class="button1" onclick="jsshop.cart_add({id:'246',name:'番茄炒蛋饭',pic:'/upload/attatch/2012/番茄炒蛋_small.gif',price:'10',type:'6'});">
-															</span><span class="xnum Tnum246"></span></li>
-    </ul>
-    <ul onmouseover="jsshop.mouseover('288');" onmouseout="jsshop.mouseout('288');" class="Tmenu288">
-        <li><h2>铁板鸡扒饭</h2></li>
-        <li class="pic"><a href="/index.php?app_act=menu&id=288" target="_blank"><img src = "/upload/attatch/2012/铁板鸡扒_small.gif"></a></li>
-        <li><span style="float:left"><font style="color:#CC0000;font-size:24px">￥15</font><font style="color:#CC0000;font-size:16px">.00</font><br><a href="javascript:jsshop.comment(288);">评论：<font color="#ff0000">2</font>条</a></span><span style="float:right">
-																	<input type="button" name="btnse" value="订一份" class="button1" onclick="jsshop.cart_add({id:'288',name:'铁板鸡扒饭',pic:'/upload/attatch/2012/铁板鸡扒_small.gif',price:'15',type:'6'});">
-															</span><span class="xnum Tnum288"></span></li>
-    </ul>
-    <ul onmouseover="jsshop.mouseover('286');" onmouseout="jsshop.mouseout('286');" class="Tmenu286">
-        <li><h2>客家咸鸡饭</h2></li>
-        <li class="pic"><a href="/index.php?app_act=menu&id=286" target="_blank"><img src = "/upload/attatch/2012/客家咸鸡_small.gif"></a></li>
-        <li><span style="float:left"><font style="color:#CC0000;font-size:24px">￥15</font><font style="color:#CC0000;font-size:16px">.00</font><br><a href="javascript:jsshop.comment(286);">评论：<font color="#ff0000">0</font>条</a></span><span style="float:right">
-																	<input type="button" name="btnse" value="订一份" class="button1" onclick="jsshop.cart_add({id:'286',name:'客家咸鸡饭',pic:'/upload/attatch/2012/客家咸鸡_small.gif',price:'15',type:'6'});">
-															</span><span class="xnum Tnum286"></span></li>
-    </ul>
-    <ul onmouseover="jsshop.mouseover('264');" onmouseout="jsshop.mouseout('264');" class="Tmenu264">
-        <li><h2>糖醋鸡丁饭</h2></li>
-        <li class="pic"><a href="/index.php?app_act=menu&id=264" target="_blank"><img src = "/upload/attatch/2012/糖醋鸡丁_small.gif"></a></li>
-        <li><span style="float:left"><font style="color:#CC0000;font-size:24px">￥12</font><font style="color:#CC0000;font-size:16px">.00</font><br><a href="javascript:jsshop.comment(264);">评论：<font color="#ff0000">0</font>条</a></span><span style="float:right">
-																	<input type="button" name="btnse" value="订一份" class="button1" onclick="jsshop.cart_add({id:'264',name:'糖醋鸡丁饭',pic:'/upload/attatch/2012/糖醋鸡丁_small.gif',price:'12',type:'6'});">
-															</span><span class="xnum Tnum264"></span></li>
-    </ul>
+    </foreach>
 </div>
 <div class="w1" style="float:left" id="id_grouplist">
 <div class="title w1"><h1><a name="hash_price_20"></a></h1></div>
 <div class="list2 w1">
-    <li onmouseover="jsshop.mouseover('237');" onmouseout="jsshop.mouseout('237');" onclick="jsshop.cart_add({id:'237',name:'攸县香干',pic:'/upload/attatch/2012/攸县香干_small.gif',price:'10',type:'6'});" class="Tmenu237">
-        <span class="x_nosel" id="id_nosel_237">&nbsp;</span>
-        <span class="tit" id="id_title_237">攸县香干</span>
-        <span class="price">￥10</span>					<span class="xnum Tnum237"></span>
+    <foreach name="commonfoodlist" item="commonfood">
+    <li onmouseover="jsshop.mouseover('{$commonfood.id}');" onmouseout="jsshop.mouseout('{$commonfood.id}');" onclick="jsshop.cart_add({ id:'{$commonfood.id}',name:'{$commonfood.food_name}',pic:'/upload/{$commonfood.food_image}',price:'{$commonfood.food_price}',type:'6'});" class="Tmenu{$commonfood.id}">
+        <span class="x_nosel" id="id_nosel_{$commonfood.id}">&nbsp;</span>
+        <span class="tit" id="id_title_{$commonfood.id}">{$commonfood.food_name}</span>
+        <span class="price">￥{$commonfood.food_price}</span>					<span class="xnum Tnum{$commonfood.id}"></span>
     </li>
     <li class="xcomment">(<a href="javascript:jsshop.comment(237);"><font color="#ff0000">3</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('242');" onmouseout="jsshop.mouseout('242');" onclick="jsshop.cart_add({id:'242',name:'青笋肉丝饭',pic:'',price:'10',type:'6'});" class="Tmenu242">
-        <span class="x_nosel" id="id_nosel_242">&nbsp;</span>
-        <span class="tit" id="id_title_242">青笋肉丝饭</span>
-        <span class="price">￥10</span>					<span class="xnum Tnum242"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(242);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('247');" onmouseout="jsshop.mouseout('247');" onclick="jsshop.cart_add({id:'247',name:'酸菜小笋肉沫饭',pic:'/upload/attatch/2012/酸菜小笋肉沫_small.gif',price:'10',type:'6'});" class="Tmenu247">
-        <span class="x_nosel" id="id_nosel_247">&nbsp;</span>
-        <span class="tit" id="id_title_247">酸菜小笋肉沫饭</span>
-        <span class="price">￥10</span>					<span class="xnum Tnum247"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(247);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('240');" onmouseout="jsshop.mouseout('240');" onclick="jsshop.cart_add({id:'240',name:'尖椒猪头肉饭',pic:'',price:'10',type:'6'});" class="Tmenu240">
-        <span class="x_nosel" id="id_nosel_240">&nbsp;</span>
-        <span class="tit" id="id_title_240">尖椒猪头肉饭</span>
-        <span class="price">￥10</span>					<span class="xnum Tnum240"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(240);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('245');" onmouseout="jsshop.mouseout('245');" onclick="jsshop.cart_add({id:'245',name:'小炒腐丝饭',pic:'',price:'10',type:'6'});" class="Tmenu245">
-        <span class="x_nosel" id="id_nosel_245">&nbsp;</span>
-        <span class="tit" id="id_title_245">小炒腐丝饭</span>
-        <span class="price">￥10</span>					<span class="xnum Tnum245"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(245);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('238');" onmouseout="jsshop.mouseout('238');" onclick="jsshop.cart_add({id:'238',name:'酸辣鸡杂饭',pic:'/upload/attatch/2012/酸辣鸡杂饭_50_50.gif',price:'10',type:'6'});" class="Tmenu238">
-        <span class="x_nosel" id="id_nosel_238">&nbsp;</span>
-        <span class="tit" id="id_title_238">酸辣鸡杂饭</span>
-        <span class="price">￥10</span>					<span class="xnum Tnum238"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(238);"><font color="#ff0000">1</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('243');" onmouseout="jsshop.mouseout('243');" onclick="jsshop.cart_add({id:'243',name:'茄子豆角饭',pic:'',price:'10',type:'6'});" class="Tmenu243">
-        <span class="x_nosel" id="id_nosel_243">&nbsp;</span>
-        <span class="tit" id="id_title_243">茄子豆角饭</span>
-        <span class="price">￥10</span>					<span class="xnum Tnum243"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(243);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('241');" onmouseout="jsshop.mouseout('241');" onclick="jsshop.cart_add({id:'241',name:'平菇芹菜肉丝饭',pic:'',price:'10',type:'6'});" class="Tmenu241">
-        <span class="x_nosel" id="id_nosel_241">&nbsp;</span>
-        <span class="tit" id="id_title_241">平菇芹菜肉丝饭</span>
-        <span class="price">￥10</span>					<span class="xnum Tnum241"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(241);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('246');" onmouseout="jsshop.mouseout('246');" onclick="jsshop.cart_add({id:'246',name:'番茄炒蛋饭',pic:'/upload/attatch/2012/番茄炒蛋_small.gif',price:'10',type:'6'});" class="Tmenu246">
-        <span class="x_nosel" id="id_nosel_246">&nbsp;</span>
-        <span class="tit" id="id_title_246">番茄炒蛋饭</span>
-        <span class="price">￥10</span>					<span class="xnum Tnum246"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(246);"><font color="#ff0000">2</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('239');" onmouseout="jsshop.mouseout('239');" onclick="jsshop.cart_add({id:'239',name:'家常豆腐饭',pic:'',price:'10',type:'6'});" class="Tmenu239">
-        <span class="x_nosel" id="id_nosel_239">&nbsp;</span>
-        <span class="tit" id="id_title_239">家常豆腐饭</span>
-        <span class="price">￥10</span>					<span class="xnum Tnum239"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(239);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('244');" onmouseout="jsshop.mouseout('244');" onclick="jsshop.cart_add({id:'244',name:'菜梗炒肉饭',pic:'',price:'10',type:'6'});" class="Tmenu244">
-        <span class="x_nosel" id="id_nosel_244">&nbsp;</span>
-        <span class="tit" id="id_title_244">菜梗炒肉饭</span>
-        <span class="price">￥10</span>					<span class="xnum Tnum244"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(244);"><font color="#ff0000">0</font>评论</a>)</li>
+    </foreach>
 </div>
 <div class="title w1"><h1><a name="hash_price_21"></a></h1></div>
-<div class="list2 w1">
-    <li onmouseover="jsshop.mouseover('269');" onmouseout="jsshop.mouseout('269');" onclick="jsshop.cart_add({id:'269',name:'烟笋培根肉饭',pic:'',price:'12',type:'6'});" class="Tmenu269">
-        <span class="x_nosel" id="id_nosel_269">&nbsp;</span>
-        <span class="tit" id="id_title_269">烟笋培根肉饭</span>
-        <span class="price">￥12</span>					<span class="xnum Tnum269"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(269);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('267');" onmouseout="jsshop.mouseout('267');" onclick="jsshop.cart_add({id:'267',name:'腐竹红烧肉饭',pic:'',price:'12',type:'6'});" class="Tmenu267">
-        <span class="x_nosel" id="id_nosel_267">&nbsp;</span>
-        <span class="tit" id="id_title_267">腐竹红烧肉饭</span>
-        <span class="price">￥12</span>					<span class="xnum Tnum267"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(267);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('265');" onmouseout="jsshop.mouseout('265');" onclick="jsshop.cart_add({id:'265',name:'剁椒鱼头饭',pic:'/upload/attatch/2012/剁椒鱼头_small.gif',price:'12',type:'6'});" class="Tmenu265">
-        <span class="x_nosel" id="id_nosel_265">&nbsp;</span>
-        <span class="tit" id="id_title_265">剁椒鱼头饭</span>
-        <span class="price">￥12</span>					<span class="xnum Tnum265"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(265);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('270');" onmouseout="jsshop.mouseout('270');" onclick="jsshop.cart_add({id:'270',name:'香芋粉蒸肉饭',pic:'',price:'12',type:'6'});" class="Tmenu270">
-        <span class="x_nosel" id="id_nosel_270">&nbsp;</span>
-        <span class="tit" id="id_title_270">香芋粉蒸肉饭</span>
-        <span class="price">￥12</span>					<span class="xnum Tnum270"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(270);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('263');" onmouseout="jsshop.mouseout('263');" onclick="jsshop.cart_add({id:'263',name:'椒盐虾饭',pic:'/upload/attatch/2012/椒盐虾饭_small.gif',price:'12',type:'6'});" class="Tmenu263">
-        <span class="x_nosel" id="id_nosel_263">&nbsp;</span>
-        <span class="tit" id="id_title_263">椒盐虾饭</span>
-        <span class="price">￥12</span>					<span class="xnum Tnum263"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(263);"><font color="#ff0000">2</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('268');" onmouseout="jsshop.mouseout('268');" onclick="jsshop.cart_add({id:'268',name:'土豆辣子鸡饭',pic:'',price:'12',type:'6'});" class="Tmenu268">
-        <span class="x_nosel" id="id_nosel_268">&nbsp;</span>
-        <span class="tit" id="id_title_268">土豆辣子鸡饭</span>
-        <span class="price">￥12</span>					<span class="xnum Tnum268"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(268);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('266');" onmouseout="jsshop.mouseout('266');" onclick="jsshop.cart_add({id:'266',name:'农家小炒鱼饭',pic:'',price:'12',type:'6'});" class="Tmenu266">
-        <span class="x_nosel" id="id_nosel_266">&nbsp;</span>
-        <span class="tit" id="id_title_266">农家小炒鱼饭</span>
-        <span class="price">￥12</span>					<span class="xnum Tnum266"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(266);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('271');" onmouseout="jsshop.mouseout('271');" onclick="jsshop.cart_add({id:'271',name:'农家一碗香饭',pic:'',price:'12',type:'6'});" class="Tmenu271">
-        <span class="x_nosel" id="id_nosel_271">&nbsp;</span>
-        <span class="tit" id="id_title_271">农家一碗香饭</span>
-        <span class="price">￥12</span>					<span class="xnum Tnum271"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(271);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('264');" onmouseout="jsshop.mouseout('264');" onclick="jsshop.cart_add({id:'264',name:'糖醋鸡丁饭',pic:'/upload/attatch/2012/糖醋鸡丁_small.gif',price:'12',type:'6'});" class="Tmenu264">
-        <span class="x_nosel" id="id_nosel_264">&nbsp;</span>
-        <span class="tit" id="id_title_264">糖醋鸡丁饭</span>
-        <span class="price">￥12</span>					<span class="xnum Tnum264"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(264);"><font color="#ff0000">0</font>评论</a>)</li>
-</div>
-<div class="title w1"><h1><a name="hash_price_23"></a></h1></div>
-<div class="list2 w1">
-    <li onmouseover="jsshop.mouseover('301');" onmouseout="jsshop.mouseout('301');" onclick="jsshop.cart_add({id:'301',name:'铁板猪扒+酸辣鸡杂',pic:'',price:'18',type:'6'});" class="Tmenu301">
-        <span class="x_nosel" id="id_nosel_301">&nbsp;</span>
-        <span class="tit" id="id_title_301">铁板猪扒+酸辣鸡杂</span>
-        <span class="price">￥18</span>					<span class="xnum Tnum301"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(301);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('306');" onmouseout="jsshop.mouseout('306');" onclick="jsshop.cart_add({id:'306',name:'客家咸鸡+粉蒸肉',pic:'',price:'18',type:'6'});" class="Tmenu306">
-        <span class="x_nosel" id="id_nosel_306">&nbsp;</span>
-        <span class="tit" id="id_title_306">客家咸鸡+粉蒸肉</span>
-        <span class="price">￥18</span>					<span class="xnum Tnum306"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(306);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('304');" onmouseout="jsshop.mouseout('304');" onclick="jsshop.cart_add({id:'304',name:'客家咸鸡+红烧肉',pic:'',price:'18',type:'6'});" class="Tmenu304">
-        <span class="x_nosel" id="id_nosel_304">&nbsp;</span>
-        <span class="tit" id="id_title_304">客家咸鸡+红烧肉</span>
-        <span class="price">￥18</span>					<span class="xnum Tnum304"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(304);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('302');" onmouseout="jsshop.mouseout('302');" onclick="jsshop.cart_add({id:'302',name:'铁板鱼类 + 红烧猪手',pic:'',price:'18',type:'6'});" class="Tmenu302">
-        <span class="x_nosel" id="id_nosel_302">&nbsp;</span>
-        <span class="tit" id="id_title_302">铁板鱼类 + 红烧猪手</span>
-        <span class="price">￥18</span>					<span class="xnum Tnum302"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(302);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('307');" onmouseout="jsshop.mouseout('307');" onclick="jsshop.cart_add({id:'307',name:'脆皮烧鸭+农家小炒肉',pic:'',price:'18',type:'6'});" class="Tmenu307">
-        <span class="x_nosel" id="id_nosel_307">&nbsp;</span>
-        <span class="tit" id="id_title_307">脆皮烧鸭+农家小炒肉</span>
-        <span class="price">￥18</span>					<span class="xnum Tnum307"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(307);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('300');" onmouseout="jsshop.mouseout('300');" onclick="jsshop.cart_add({id:'300',name:'铁板鸡扒+攸县香干',pic:'',price:'18',type:'6'});" class="Tmenu300">
-        <span class="x_nosel" id="id_nosel_300">&nbsp;</span>
-        <span class="tit" id="id_title_300">铁板鸡扒+攸县香干</span>
-        <span class="price">￥18</span>					<span class="xnum Tnum300"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(300);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('305');" onmouseout="jsshop.mouseout('305');" onclick="jsshop.cart_add({id:'305',name:'糖醋鸡丁+茄子豆角',pic:'',price:'18',type:'6'});" class="Tmenu305">
-        <span class="x_nosel" id="id_nosel_305">&nbsp;</span>
-        <span class="tit" id="id_title_305">糖醋鸡丁+茄子豆角</span>
-        <span class="price">￥18</span>					<span class="xnum Tnum305"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(305);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('303');" onmouseout="jsshop.mouseout('303');" onclick="jsshop.cart_add({id:'303',name:'椒盐虾+青笋肉丝',pic:'',price:'18',type:'6'});" class="Tmenu303">
-        <span class="x_nosel" id="id_nosel_303">&nbsp;</span>
-        <span class="tit" id="id_title_303">椒盐虾+青笋肉丝</span>
-        <span class="price">￥18</span>					<span class="xnum Tnum303"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(303);"><font color="#ff0000">0</font>评论</a>)</li>
-</div>
-<div class="title w1"><h1><a name="hash_price_22"></a></h1></div>
-<div class="list2 w1">
-    <li onmouseover="jsshop.mouseover('284');" onmouseout="jsshop.mouseout('284');" onclick="jsshop.cart_add({id:'284',name:'梅菜扣肉饭',pic:'',price:'15',type:'6'});" class="Tmenu284">
-        <span class="x_nosel" id="id_nosel_284">&nbsp;</span>
-        <span class="tit" id="id_title_284">梅菜扣肉饭</span>
-        <span class="price">￥15</span>					<span class="xnum Tnum284"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(284);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('289');" onmouseout="jsshop.mouseout('289');" onclick="jsshop.cart_add({id:'289',name:'铁板猪扒饭',pic:'',price:'15',type:'6'});" class="Tmenu289">
-        <span class="x_nosel" id="id_nosel_289">&nbsp;</span>
-        <span class="tit" id="id_title_289">铁板猪扒饭</span>
-        <span class="price">￥15</span>					<span class="xnum Tnum289"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(289);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('287');" onmouseout="jsshop.mouseout('287');" onclick="jsshop.cart_add({id:'287',name:'脆皮鸭饭',pic:'/upload/attatch/2012/脆皮鸭饭_small.gif',price:'15',type:'6'});" class="Tmenu287">
-        <span class="x_nosel" id="id_nosel_287">&nbsp;</span>
-        <span class="tit" id="id_title_287">脆皮鸭饭</span>
-        <span class="price">￥15</span>					<span class="xnum Tnum287"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(287);"><font color="#ff0000">1</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('292');" onmouseout="jsshop.mouseout('292');" onclick="jsshop.cart_add({id:'292',name:'南昌鱼饭',pic:'',price:'15',type:'6'});" class="Tmenu292">
-        <span class="x_nosel" id="id_nosel_292">&nbsp;</span>
-        <span class="tit" id="id_title_292">南昌鱼饭</span>
-        <span class="price">￥15</span>					<span class="xnum Tnum292"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(292);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('285');" onmouseout="jsshop.mouseout('285');" onclick="jsshop.cart_add({id:'285',name:'红烧福寿鱼饭',pic:'',price:'15',type:'6'});" class="Tmenu285">
-        <span class="x_nosel" id="id_nosel_285">&nbsp;</span>
-        <span class="tit" id="id_title_285">红烧福寿鱼饭</span>
-        <span class="price">￥15</span>					<span class="xnum Tnum285"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(285);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('290');" onmouseout="jsshop.mouseout('290');" onclick="jsshop.cart_add({id:'290',name:'铁板秋刀鱼饭',pic:'',price:'15',type:'6'});" class="Tmenu290">
-        <span class="x_nosel" id="id_nosel_290">&nbsp;</span>
-        <span class="tit" id="id_title_290">铁板秋刀鱼饭</span>
-        <span class="price">￥15</span>					<span class="xnum Tnum290"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(290);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('288');" onmouseout="jsshop.mouseout('288');" onclick="jsshop.cart_add({id:'288',name:'铁板鸡扒饭',pic:'/upload/attatch/2012/铁板鸡扒_small.gif',price:'15',type:'6'});" class="Tmenu288">
-        <span class="x_nosel" id="id_nosel_288">&nbsp;</span>
-        <span class="tit" id="id_title_288">铁板鸡扒饭</span>
-        <span class="price">￥15</span>					<span class="xnum Tnum288"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(288);"><font color="#ff0000">2</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('286');" onmouseout="jsshop.mouseout('286');" onclick="jsshop.cart_add({id:'286',name:'客家咸鸡饭',pic:'/upload/attatch/2012/客家咸鸡_small.gif',price:'15',type:'6'});" class="Tmenu286">
-        <span class="x_nosel" id="id_nosel_286">&nbsp;</span>
-        <span class="tit" id="id_title_286">客家咸鸡饭</span>
-        <span class="price">￥15</span>					<span class="xnum Tnum286"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(286);"><font color="#ff0000">0</font>评论</a>)</li>
-    <li onmouseover="jsshop.mouseover('291');" onmouseout="jsshop.mouseout('291');" onclick="jsshop.cart_add({id:'291',name:'铁板黄花鱼饭',pic:'',price:'15',type:'6'});" class="Tmenu291">
-        <span class="x_nosel" id="id_nosel_291">&nbsp;</span>
-        <span class="tit" id="id_title_291">铁板黄花鱼饭</span>
-        <span class="price">￥15</span>					<span class="xnum Tnum291"></span>
-    </li>
-    <li class="xcomment">(<a href="javascript:jsshop.comment(291);"><font color="#ff0000">0</font>评论</a>)</li>
-</div>
+
 </div>
 </div>
 <div class="right" id="id_right">
-    <li class="pic"><span><a href="/index.php?app_act=shop.info&shop_id=4" title="查看天天粥铺详细信息"><img src = "/upload/attatch/1/1_1367136754.jpg"></a>&nbsp;</span><font onclick="jsheader.collect(4,this)" class="xcollect collect1 id_collect_4">收藏</font></li>
-    <li class="info"><span class='xtit'><a href="/index.php?app_act=shop.info&shop_id=4" title="查看天天粥铺详细信息">天天粥铺</a></span><span><font color="#666666">餐品：</font>71</span><span><a href="javascript:jsheader.comment_shop('4')"><font color="#666666">评论：</font>7</a></span></li>
+    <li class="pic"><span><img src = "/upload/{$shopinfo.shop_image}" width="120" height="120">&nbsp;</span><font onclick="jsheader.collect(4,this)" class="xcollect collect1 id_collect_4">收藏</font></li>
+    <li class="info"><span class='xtit'>{$shopinfo.shop_name}</span><span><font color="#666666">餐品：</font>{$foodnumber}</span><span><a href="javascript:jsheader.comment_shop('4')"><font color="#666666">评论：</font>7</a></span></li>
     <li class="tit">商家信息</li>
     <li class="li2">
         <span class="xcol1">营业时段:</span>
 	<span class="xcol2">
-		9:00-14:00<br>
-		16:00-20:00<br>
+		{$shopinfo.shop_beginworktime}-{$shopinfo.shop_endworktime}<br>
 		</span>
     </li>
-    <li class="li2"><span class="xcol1">配送费:</span><span class="xcol2">免费</span></li>
-    <li class="li2"><span class="xcol1">起送价:</span><span class="xcol2">10.00 元</span></li>
-    <li class="li2"><span class="xcol1">配送时间:</span><span class="xcol2">30分钟</span></li>
-    <li class="li2"><span class="xcol1">订餐电话:</span><span class="xcol2">88888888</span></li>	<li class="li2"><span class="xcol1">店铺地址:</span><span class="xcol2">福田区车公庙泰然四路210栋109号</span></li>	<li class="tit"><span style="float:left">店铺公告</span><a href="/index.php?app_act=shop.news&shop_id=4&channel_key=activitie" style="float:right;margin-right:10px;font-size:12px;color:#ff8800;font-weight:200">更多</a></li>
+    <li class="li2"><span class="xcol1">配送费:</span><span class="xcol2"><if condition="$shopinfo.shop_deliver_money eq 0">免费<else />{$shopinfo.shop_deliver_money}元/次</if></span></li>
+    <li class="li2"><span class="xcol1">起送价:</span><span class="xcol2">{$shopinfo.shop_deliver_beginmoney} 元</span></li>
+    <li class="li2"><span class="xcol1">配送时间:</span><span class="xcol2">{$shopinfo.shop_deliver_time}分钟</span></li>
+    <li class="li2"><span class="xcol1">订餐电话:</span><span class="xcol2">{$shopinfo.shop_phone}</span></li>	<li class="li2"><span class="xcol1">店铺地址:</span><span class="xcol2">{$shopinfo.shop_addr}</span></li>	<li class="tit"><span style="float:left">店铺公告</span><a href="/index.php/notice/list" style="float:right;margin-right:10px;font-size:12px;color:#ff8800;font-weight:200">更多</a></li>
     <li class="li">
-        <a href="/index.php?app_act=shop.view&id=6">节日放假通知</a>
-        <a href="/index.php?app_act=shop.view&id=7">得多有优惠吗？有赠送吗？</a>
-        <a href="/index.php?app_act=shop.view&id=8">最新优惠 订餐送苹果</a>
+        <foreach name="noticelist" item="notice">
+        <a href="/index.php/notice/{$notice.id}">{$notice.notice_title}</a>
+        </foreach>
     </li>
 
 </div>
