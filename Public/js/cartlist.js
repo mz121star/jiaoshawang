@@ -62,6 +62,20 @@ var jscartlist = new function() {
 		}
 		this.refresh_price(shopid , p2);
 	}
+    this.sendcartnum = function (id, number) {
+        var ids = id.split("_");
+        alert(ids[2]);alert(number);
+        if (number == 1) {
+            $.post("/index.php/cart/inc", { 'id': ids[2]} );
+        } else if (number == -1) {
+            $.post("/index.php/cart/dec", { 'id': ids[2]} );
+        } else {
+            $.post("/index.php/cart/setnum", { 'id': ids[2], 'num': number} );
+        }
+    }
+    this.delfromcart = function (id) {
+        $.post("/index.php/cart/delete", { 'id': id } );
+    }
 	//移除行
 	this.cart_remove = function(o , shopid ,menuid) {
 		var obj_p = kj.parent(o,"tr");
@@ -81,6 +95,7 @@ var jscartlist = new function() {
 			kj.remove("#id_shop_"+shopid);
 		}
 		this.refresh_price(shopid);
+        this.delfromcart(menuid);
 	}
 	//刷新价格
 	this.refresh_price = function(shopid , objrow) {
@@ -733,7 +748,10 @@ var jscartlist = new function() {
 			val+=kj.toint(num);
 			if(val<1) return;
 			obj_cart_num.value = val;
-		}
+		    this.sendcartnum(id, num);
+		} else {
+            this.sendcartnum(id, val);
+        }
 		num = kj.toint(obj_cart_num.value);
 		var shopid = "id_" + this.shopid;
 		var key = id.replace('#id_num_','');

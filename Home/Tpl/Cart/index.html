@@ -26,44 +26,32 @@
         <div class="xtitle"><a href="/index.php?app_act=shop&id=4">天天粥铺</a></div>
         <div style="float:left;width:100%" id="id_shop_4">
             <div id="id_list_4">
-                <table class="mlist"><tr class="tit"><td class="sort">序号</td><td>菜品</td><td class="num">数量</td><td class="count">金额小计</td><td class="act">操作</td></tr>
-                    <tr class="x_list1"><td class="sort">1</td><td>
-                        客家咸鸡+粉蒸肉				<input type="hidden" name="menuprice[]" value="18">
+                <table class="mlist"><tr class="tit"><td>菜品</td><td>单价</td><td class="num">数量</td><td class="count">金额小计</td><td class="act">操作</td></tr>
+                    <foreach name="cartlist" item="cart">
+                    <tr class="x_list1"><td>
+                        {$cart[name]}<input type="hidden" name="menuprice[]" value="{$cart[price]}">
                     </td><td>
-                        <input type="button" name="btn_jian" value="" class="btn_jian" onclick="jscartlist.change_num('#id_num_306',-1);"> <input type="text" name="menunum[]" value="1" id="id_num_306" class="x_num" onkeyup="jscartlist.change_num('#id_num_306')"> <input type="button" name="btn_jian" value="" class="btn_jia" onclick="jscartlist.change_num('#id_num_306',1);">
-                    </td><td>￥<span class="menu_price">18</span></td><td><img src="/images/pic_del.png" onclick="jscartlist.cart_remove(this , 4,306)" style="cursor:pointer"></td></tr>
-                    <script>
-                        thisdata[thisdata.length] = "306";
-                    </script>
-                    <tr class="x_list1"><td class="sort">2</td><td>
-                        铁板鱼类 + 红烧猪手				<input type="hidden" name="menuprice[]" value="18">
+                        {$cart[price]}
                     </td><td>
-                        <input type="button" name="btn_jian" value="" class="btn_jian" onclick="jscartlist.change_num('#id_num_302',-1);"> <input type="text" name="menunum[]" value="1" id="id_num_302" class="x_num" onkeyup="jscartlist.change_num('#id_num_302')"> <input type="button" name="btn_jian" value="" class="btn_jia" onclick="jscartlist.change_num('#id_num_302',1);">
-                    </td><td>￥<span class="menu_price">18</span></td><td><img src="/images/pic_del.png" onclick="jscartlist.cart_remove(this , 4,302)" style="cursor:pointer"></td></tr>
+                        <input type="button" name="btn_jian" value="" class="btn_jian" onclick="jscartlist.change_num('#id_num_{$cart[id]}',-1);"> <input type="text" name="menunum[]" value="{$cart[num]}" id="id_num_{$cart[id]}" class="x_num" onkeyup="jscartlist.change_num('#id_num_{$cart[id]}')"> <input type="button" name="btn_jian" value="" class="btn_jia" onclick="jscartlist.change_num('#id_num_{$cart[id]}',1);">
+                    </td><td>￥<span class="menu_price">{$cart[price]*$cart[num]}</span></td><td><img src="/images/pic_del.png" onclick="jscartlist.cart_remove(this , 4,{$cart[id]})" style="cursor:pointer"></td></tr>
                     <script>
-                        thisdata[thisdata.length] = "302";
+                        thisdata[thisdata.length] = "{$cart[id]}";
                     </script>
-                    <tr class="x_list1"><td class="sort">3</td><td>
-                        酸菜小笋肉沫饭				<input type="hidden" name="menuprice[]" value="10">
-                    </td><td>
-                        <input type="button" name="btn_jian" value="" class="btn_jian" onclick="jscartlist.change_num('#id_num_247',-1);"> <input type="text" name="menunum[]" value="1" id="id_num_247" class="x_num" onkeyup="jscartlist.change_num('#id_num_247')"> <input type="button" name="btn_jian" value="" class="btn_jia" onclick="jscartlist.change_num('#id_num_247',1);">
-                    </td><td>￥<span class="menu_price">10</span></td><td><img src="/images/pic_del.png" onclick="jscartlist.cart_remove(this , 4,247)" style="cursor:pointer"></td></tr>
-                    <script>
-                        thisdata[thisdata.length] = "247";
-                    </script>
+                    </foreach>
                 </table>
             </div>
-            <table class="tabact" id="id_score_4">
+            <table class="tabact" id="id_score_4" style='display:none'>
                 <tr><td class="col1">预付款支付抵扣</td><td><input type='text' name='repayment' value="" class="txtbox1 pTxtL100 w_full" onblur="jscartlist.repayment_input(4);" onkeyup="jscartlist.repayment_input(4);" id="id_repayment_input">&nbsp;您还有 <b class="x_sel3 red" id="id_my_repayment">0.00</b> 元</td></tr>
             </table>
-            <table class="tabact" id="id_score_4"style='display:none'>
+            <table class="tabact" id="id_score_4" style='display:none'>
                 <tr><td class="col1">积分抵扣<br>100积分可抵1元</td><td><input type='text' name='score' value="" class="txtbox1 pTxtL100" onblur="jscartlist.score_input(4);" onkeyup="jscartlist.score_input(4);" id="id_score_input"> × 100&nbsp;&nbsp;您还有 <span class="x_sel3" id="id_my_score">70</span> 积分，可抵扣 <span class="x_sel3">0</span> 元</td></tr>
             </table>
             <table class="tabact" style='display:none'>
                 <tr><td class="col1">优惠活动</td><td id="id_act_4"></td></tr>
             </table>
             <div class="total" id="id_total_4">
-                合计金额：<span class="x_sel1">￥</span><span id="id_shop_total_4" class="x_sel1">46</span> (菜品金额)<span> +<font class="x_sel1"  id="id_shop_addprice_4">￥0</font>(配送费)</span><span> - <font class="x_sel1"  id="id_shop_repayment_4">￥0</font>(预付款)</span><span style='display:none'> - <font class="x_sel1">￥</font><font id="id_shop_score_4" class="x_sel1">0</font> (积分抵扣)</span><span> - <font class="x_sel1">￥</font><font id="id_shop_act_4" class="x_sel1">0</font> (优惠金额)</span> = <span class="x_sel2">￥</span><span class="x_sel2 id_shop_price_4">46</span>&nbsp;&nbsp;&nbsp;
+                合计金额：<span class="x_sel1">￥</span><span id="id_shop_total_4" class="x_sel1">{$cartprice}</span> (菜品金额)<span> +<font class="x_sel1"  id="id_shop_addprice_4">￥0</font>(配送费)</span><span> - <font class="x_sel1"  id="id_shop_repayment_4">￥0</font>(预付款)</span><span style='display:none'> - <font class="x_sel1">￥</font><font id="id_shop_score_4" class="x_sel1">0</font> (积分抵扣)</span><span> - <font class="x_sel1">￥</font><font id="id_shop_act_4" class="x_sel1">0</font> (优惠金额)</span> = <span class="x_sel2">￥</span><span class="x_sel2 id_shop_price_4">{$cartprice}</span>&nbsp;&nbsp;&nbsp;
             </div>
             <div class="scoretotal" style="color:#ff0000;padding-right:10px;display:none">
                 本次订单可获得：<span id="id_scoreintro_4"></span> 积分<br><span style="color:#888">(将在订单成交以后送出)</span>

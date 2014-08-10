@@ -20,6 +20,20 @@ class ShopAction extends PublicAction {
         $shopnotice = M("shopnotice");
         $noticelist = $shopnotice->where('user_id="'.$shopid.'"')->field('id, notice_title')->order(array('notice_date'=>'desc'))->select();
         $this->assign('noticelist', $noticelist);
+
+        $cartlist = array();
+        $carttotle = 0;
+        $cartprice = 0;
+        if (isset($_SESSION['cart']) && count($_SESSION['cart'])) {
+            $cartlist = $_SESSION['cart'];
+            $carttotle = count($_SESSION['cart']);
+            foreach ($_SESSION['cart'] as $cart) {
+                $cartprice += $cart['price']*$cart['num'];
+            }
+        }
+        $this->assign('cartlist', $cartlist);
+        $this->assign('cartprice', $cartprice);
+        $this->assign('carttotle', $carttotle);
         $this->display();
     }
 

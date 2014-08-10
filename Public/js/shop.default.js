@@ -21,11 +21,28 @@ var jsshop = new function() {
 			kj.set(".Tnum"+o.id,'innerHTML',1);
 		}
 		this.refresh_price();
+        this.sendtocart(o);
 	}
+    this.sendtocart = function (obj) {
+        $.post("/index.php/cart/add", { 'id': obj.id, 'food_name': obj.name, 'food_price': obj.price, 'food_image': obj.pic } );
+    }
+    this.sendcartnum = function (id, number) {
+        if (number == 1) {
+            $.post("/index.php/cart/inc", { 'id': id} );
+        } else if (number == -1) {
+            $.post("/index.php/cart/dec", { 'id': id} );
+        } else {
+            $.post("/index.php/cart/setnum", { 'id': id, 'num': number} );
+        }
+    }
+    this.delfromcart = function (id) {
+        $.post("/index.php/cart/delete", { 'id': id } );
+    }
 	//删除
 	this.del = function(id) {
 		kj.remove("#id_cart_"+id);
 		this.refresh_price();
+        this.delfromcart(id);
 	}
 	//改变数量
 	this.change_num = function(id , num) {
@@ -35,7 +52,10 @@ var jsshop = new function() {
 			val+=num;
 			if(val<1) return;
 			obj_cart_num.value = val;
-		}
+            this.sendcartnum(id, num);
+		} else {
+            this.sendcartnum(id, val);
+        }
 		if(obj_cart_num) {
 			var obj_cart_price = kj.obj("#id_cart_price_" + id);
 			var obj_price = kj.obj("#id_price_"+id);
@@ -83,7 +103,7 @@ var jsshop = new function() {
 		}
 		this.save_cookie();
 		//window.location.href = kj.cfg('baseurl') + "/index.php?app_act=cart&shop_id="+this.shopid;
-        window.location.href = "/index.php/Cart?app_act=cart&shop_id="+this.shopid;
+        window.location.href = "/index.php/Cart";
 	}
 	this.save_cookie = function() {
 		if(this.is_save) return;
