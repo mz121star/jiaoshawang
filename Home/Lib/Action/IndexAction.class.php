@@ -1,7 +1,7 @@
 <?php
 
 class IndexAction extends PublicAction {
-    pubic function reg(){
+    public function reg(){
       $this->display();
     }
     public function index() {
