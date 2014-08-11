@@ -63,6 +63,28 @@
     </ul>
 </div>
 <div class="main">
+    <div id="id_loginbox" style="display:none">
+        <form name="frmlogin" method="post" action="/common.php?app=sys&app_act=login.verify" onsubmit="return jsheader.on_login();">
+            <div class="loginbox">
+                <ul class="xleft">
+                    <li><span class="x1">用户名：</span><span><input type="text" name="uname" class="txt1"/></span></li>
+                    <li><span class="x1">密码：</span><span><input name="pwd" type="password" class="txt1"/></span></li>
+                    <li id="id_verify_code" style="display:none"><span class="x1">验证码：</span><span><input name="verifycode" type="text" class="txt2"  onfocus="jsheader.show_verify('#id_verify');"/>&nbsp;<img src="/webcss/default/" id="id_verify_pic" onclick="this.src='/common.php?app=sys&app_act=verifycode&app_contenttype=img&app_rnd='+Math.random();" style="display:none"></span></li>
+                    <li><span class="x1"></span><span><label><input type="checkbox" name="autologin" value="1" checked>下次自动登录</label>&nbsp;&nbsp;<a href="/index.php?app=index&app_act=findpwd">忘记密码?</a><br><br>
+			<input type="submit" name="btn_submit" value="登 录" class="button1" style="font-size:22px">
+			</span></li>
+                </ul>
+                <ul class="xright">
+                    <li>使用其它账号登录：</li>
+                    <li><a href="/common.php?app=api.login&plat=weibo"><img src="/webcss/default/images/btn_sina.png"></a></li>			<li><a href="/common.php?app=api.login&plat=qq"><img src="/webcss/default/images/btn_qq.png"></a></li>		</ul>
+                <ul class="xboot a1">
+                    <h1>还不是会员？</h1>一分钟轻松注册，就可以方便订餐<a href="javascript:jsheader.showreg();">【立即注册】</a>
+                </ul>
+            </div>
+            <input type="hidden" name="jump_fromurl" value="">
+        </form>
+    </div>
+
     <div class="mainbg" id="id_mainbg">
         <div class="topmenu">
             <li><img src="/images/logo.png"></li>
