@@ -84,7 +84,7 @@ var jsheader = new function() {
 		if("reg" in this.html) {
 			kj.dialog({'html':this.html['reg'],'id':'showreg','type':'html','title':'注册会员','w':600,'showbtnmax':false,'showbtnhide':false});
 		} else {
-			kj.ajax.get(kj.cfg('baseurl') + "/index.php?app_act=reg" , function(data) {
+			kj.ajax.get(kj.cfg('baseurl') + "/index.php/index/reg" , function(data) {
 				jsheader.html['reg'] = data;
 				kj.dialog({'html':data,'id':'showreg','type':'html','title':'注册会员','w':600,'showbtnmax':false,'showbtnhide':false});
 				kj.loadjs(jsheader.tempurl + "reg.js",function() {
