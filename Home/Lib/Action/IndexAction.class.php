@@ -1,7 +1,9 @@
 <?php
 
 class IndexAction extends PublicAction {
-
+    pubic function reg(){
+      $this->display();
+    }
     public function index() {
         $userid = $this->userInfo['user_id'];
 
