@@ -112,8 +112,8 @@ class UserAction extends PublicAction {
         }
         $shop = M("Shop");
         $post = $this->filterAllParam('post');
-        if (!isset($post['shop_top'])) {
-            $post['shop_top'] = 0;
+        if (!isset($post['shop_top']) || !$post['shop_top']) {
+            $post['shop_top'] = "0";
         }
         $post['shop_beginworktime'] = intval($post['shop_beginworktime1']).':'.intval($post['shop_beginworktime2']);
         $post['shop_endworktime'] = intval($post['shop_endworktime1']).':'.intval($post['shop_endworktime2']);
@@ -124,8 +124,13 @@ class UserAction extends PublicAction {
     public function delshop(){
         $userid = $this->_get('userid');
         $user = M("User");
-        $usernumber = $user->where('user_id="'.$userid.'"')->setField('user_status', '0');
+        $usernumber = $user->where('user_id="'.$userid.'"')->find();
         if ($usernumber) {
+            $user->where('user_id="'.$userid.'"')->delete();
+            $shop = M("Shop");
+            $shop->where('user_id="'.$userid.'"')->delete();
+            $food = M("Food");
+            $food->where('user_id="'.$userid.'"')->delete();
             $this->redirect('User/shoplist');
         } else {
             $this->error("删除商户失败", 'shoplist');

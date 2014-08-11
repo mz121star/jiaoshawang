@@ -30,6 +30,7 @@ class CartAction extends PublicAction {
 
     public function ordersuccess() {
         $orderobj = M("order");
+        $food = M("food");
         $orderdetailobj = M("orderdetail");
         $allfoodid = array_keys($_SESSION['cart']);
         $order = array();

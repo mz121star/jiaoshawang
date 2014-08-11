@@ -88,7 +88,7 @@ class FoodAction extends PublicAction {
         $food = M("Food");
         $post = $this->filterAllParam('post');
         if (!isset($post['food_top'])) {
-            $post['food_top'] = 0;
+            $post['food_top'] = "0";
         }
         $post['user_id'] = $userid;
         if (isset($post['id']) && $post['id']) {
