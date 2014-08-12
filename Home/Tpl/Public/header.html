@@ -61,7 +61,7 @@
 		<a href="javascript:jsheader.showlogin();">登录</a>&nbsp;&nbsp;<a href="javascript:jsheader.showreg();">注册</a>
 				</span>
             <else />
-            welcome {$Think.session.userinfo.user_id}    
+            welcome {$Think.session.userinfo.user_id} , <a href="/index.php/index/logout">logout</a>
             </if>
         </li>
     </ul>

@@ -61,12 +61,10 @@
             <tr><td class="col1" valign="top">配送信息：(<font style="color:#ff0000">*</font>)</td>
                 <td id="id_address_info">
                     <table class="x_sel1" id="id_info_191">
-                        <tr><td style="color:#0099FF" width="150px" valign="top"><label><input name="area_select" type="radio" id="id_info_radior191" value="191"  checked onclick="jscartlist.infosel(this ,191);">&nbsp;<span  id="id_info_name191">asda（先生）</span></label></td>
+                        <tr><td style="color:#0099FF" width="150px" valign="top"><label><input name="area_select" type="radio" id="id_info_radior191" value="191"  checked onclick="jscartlist.infosel(this ,191);">&nbsp;<span  id="id_info_name191">{$peopleinfo.people_name}</span></label></td>
                             <td valign="top" id="id_info_base191">
-                                福田区 车公庙 安华工业区4栋 东座&nbsp; — &nbsp;asds<br>
-                                固话：  / 手机：<span class="Tmobile">13800138000</span>
-                                <br><span class="x_sel2" id="id_dispatch_191">起送价：10.00</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="x_sel2" id="id_addprice_191">配送费：0</span>
+                                {$peopleinfo.people_addr}&nbsp; — &nbsp;{$peopleinfo.people_name}<br>
+                                电话：<span class="Tmobile">{$peopleinfo.people_phone}</span>
                             </td>
                             <td width="200px" valign="top"><input type="button" name="btnedit[]" value="编辑" class="button4" onclick="jscartlist.info_edit(191);">&nbsp;<input type="button" name="btndel[]" value="删除" class="button4y" onclick="jscartlist.info_del(191);"></td></tr>
                     </table>

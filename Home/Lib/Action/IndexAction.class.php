@@ -4,7 +4,7 @@ class IndexAction extends PublicAction {
     public function reg() {
         $this->display();
     }
-    
+
     public function login() {
         $userInfo = session('userinfo');
         if(!empty($userInfo)){
@@ -17,6 +17,14 @@ class IndexAction extends PublicAction {
         $userInfo = $user->where($_POST)->field('id,user_id,user_type')->find();
         if(!empty($userInfo)){
             session('userinfo', $userInfo);
+        }
+        $this->redirect('Index/index');
+    }
+
+    public function logout() {
+        $userInfo = session('userinfo');
+        if(!empty($userInfo)){
+            session('userinfo', null);
         }
         $this->redirect('Index/index');
     }

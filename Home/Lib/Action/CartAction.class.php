@@ -8,10 +8,10 @@ class CartAction extends PublicAction {
     }
 
     public function index(){
-//        $userid = $this->userInfo['user_id'];
-//        if(empty($userid)){
-//            $this->redirect('Index/index');
-//        }
+        $userid = $this->userInfo['user_id'];
+        if(empty($userid)){
+            $this->error('请先登录', 'Index/index');
+        }
         $cartlist = array();
         $carttotle = 0;
         $cartprice = 0;
@@ -25,10 +25,16 @@ class CartAction extends PublicAction {
         $this->assign('cartlist', $cartlist);
         $this->assign('cartprice', $cartprice);
         $this->assign('carttotle', $carttotle);
+        $people = M("People");
+        $peopleinfo = $people->where('user_id="'.$userid.'"')->find();
+        $this->assign('peopleinfo', $peopleinfo);
         $this->display();
     }
 
     public function ordersuccess() {
+        echo '<pre>';
+        print_r($_POST);
+        echo '</pre>';exit;
         $orderobj = M("order");
         $food = M("food");
         $orderdetailobj = M("orderdetail");
@@ -49,6 +55,10 @@ class CartAction extends PublicAction {
 
  //购物车ajax方法
     public function add() {
+        $userid = $this->userInfo['user_id'];
+        if(empty($userid)){
+            echo 'error';exit;
+        }
         $cart = new Cart();
         $foodinfo = $this->filterAllParam('post');
         $cart->addItem($foodinfo['id'], $foodinfo['food_name'], $foodinfo['food_price'], 1, $foodinfo['food_image']);
@@ -56,6 +66,10 @@ class CartAction extends PublicAction {
     }
 
     public function delete() {
+        $userid = $this->userInfo['user_id'];
+        if(empty($userid)){
+            echo 'error';exit;
+        }
         $cart = new Cart();
         $foodid = $this->_post('id');
         $cart->delItem($foodid);
@@ -63,6 +77,10 @@ class CartAction extends PublicAction {
     }
 
     public function inc() {
+        $userid = $this->userInfo['user_id'];
+        if(empty($userid)){
+            echo 'error';exit;
+        }
         $cart = new Cart();
         $foodid = $this->_post('id');
         $cart->incNum($foodid);
@@ -70,6 +88,10 @@ class CartAction extends PublicAction {
     }
 
     public function dec() {
+        $userid = $this->userInfo['user_id'];
+        if(empty($userid)){
+            echo 'error';exit;
+        }
         $cart = new Cart();
         $foodid = $this->_post('id');
         $cart->decNum($foodid);
@@ -77,6 +99,10 @@ class CartAction extends PublicAction {
     }
     
     public function setnum() {
+        $userid = $this->userInfo['user_id'];
+        if(empty($userid)){
+            echo 'error';exit;
+        }
         $cart = new Cart();
         $foodid = $this->_post('id');
         $foodnumber = $this->_post('num');
