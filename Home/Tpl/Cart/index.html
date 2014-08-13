@@ -66,58 +66,31 @@
                                 {$peopleinfo.people_addr}&nbsp; — &nbsp;{$peopleinfo.people_name}<br>
                                 电话：<span class="Tmobile">{$peopleinfo.people_phone}</span>
                             </td>
-                            <td width="200px" valign="top"><input type="button" name="btnedit[]" value="编辑" class="button4" onclick="jscartlist.info_edit(191);">&nbsp;<input type="button" name="btndel[]" value="删除" class="button4y" onclick="jscartlist.info_del(191);"></td></tr>
+                            <td width="200px" valign="top">
+                                <input type="button" name="btnedit[]" value="编辑" class="button4" onclick="jscartlist.info_edit(191);">
+                                &nbsp;<!--<input type="button" name="btndel[]" value="删除" class="button4y" onclick="jscartlist.info_del(191);">--></td></tr>
                     </table>
 
                     <table  >
                         <tr><td style="color:#0099FF" width="150px" valign="top"><label><input type="radio" name="area_select" value="0" id="id_new_info_radior" onclick="jscartlist.infosel(this,'0');" >使用新地址</label></td>
                             <td valign="top" id="id_new_infocol">
                                 <table  style="display:none" id="id_new_infosel">
-                                    <tr><td>所在区域：<span style="color:#ff0000">*</span></td><td>
-                                        <input type="hidden" name="area_id" id="id_area_id" value="">
-                                        <input type="hidden" name="area_allid" id="id_area_allid" value="">
-                                        <input type="hidden" name="area" id="id_area" value="">
-                                        <select name="info_area_id[]" onchange="jscartlist.changearea(this.value,0);" id="id_area_0">
-                                            <option value=""></option>
-                                            <option value="2299">宝安区</option>
-                                            <option value="2300">龙岗区</option>
-                                            <option value="2301">盐田区</option>
-                                            <option value="2296">罗湖区</option>
-                                            <option value="2297">福田区</option>
-                                            <option value="2298">南山区</option>
-                                        </select>
-                                        <select name="info_area_id[]" onchange="jscartlist.changearea(this.value,1);" id="id_area_1">
-                                        </select>
-                                        <select name="info_area_id[]" onchange="jscartlist.changearea(this.value,2);" id="id_area_2">
-                                        </select>
-                                        <select name="info_area_id[]" onchange="jscartlist.changearea(this.value,3);" id="id_area_3">
-                                        </select>
 
-                                        <br><span class="x_sel2">起送价：</span><span class="x_sel2" id="id_dispatch_0">10.00</span>
-                                        &nbsp;&nbsp;<span class="x_sel2">配送费：</span><span class="x_sel2" id="id_addprice_0">0</span>
-                                    </td></tr>
-                                    <tr><td>具体位置：<span style="color:#ff0000">*</span></td><td>
+                                    <tr><td>配送地址：<span style="color:#ff0000">*</span></td><td>
                                         <input name="louhao1" type="text" maxlength="50" value="" style="width:200px">&nbsp;
                                         <input name="louhao2" type="hidden" value="">
                                     </td></tr>
                                     <tr><td>收 件 人：<span style="color:#ff0000">*</span></td><td>
                                         <input name="name" type="text" maxlength="5">
-                                        <label><input name="sex" type="radio" value="先生" checked>先生</label>
-                                        <label><input type="radio" name="sex" value="小姐">小姐</label><span class="txt_gary"> (如果有同事与您同姓，建议您填全名!)</span>
+
 
                                     </td></tr>
-                                    <tr><td>手机号码：</td><td>
+                                    <tr><td>电话：</td><td>
                                         <input name="mobile" type="text" maxlength="11">
 
                                     </td></tr>
-                                    <tr><td>固定电话：</td><td>
-                                        <input name="tel" type="text" maxlength="8" value="" placeholder="八位数字不带区号">
-                                        <input name="telext" type="text" maxlength="4" style="width:60px" value="" placeholder="分机选填">
-                                    </td></tr>
-                                    <tr><td>公司部门：</td><td>
-                                        <input name="company" type="text" maxlength="12" value="" placeholder="公司名称-选填">
-                                        <input name="depart" type="text" maxlength="5" value="" placeholder="部门-选填">
-                                    </td></tr>
+
+
                                 </table>
                             </td></tr>
                     </table>
@@ -148,7 +121,9 @@
             <tr><td class="col1" valign="top">支付方式(<font style="color:#ff0000">*</font>)</td>
                 <td>
                     <li style="display:none"><label><input type="radio" name="paymethod" value="paymented">已抵扣，无需要付款</label></li>
-                    <li><label><input type="radio" name="paymethod" value="afterpayment" checked>货到付款</label></li>		<li><label><input type="radio" name="paymethod" value="onlinepayment">在线支付</label></li>		</td></tr>
+                    <li><label><input type="radio" name="paymethod" value="afterpayment" checked>货到付款</label></li>
+              <!--      <li><label><input type="radio" name="paymethod" value="onlinepayment">在线支付</label></li>		-->
+                </td></tr>
         </table>
         <table class="tabact" id="id_ticket_4">
             <tr><td class="col1" valign="top">索取发票</td>
