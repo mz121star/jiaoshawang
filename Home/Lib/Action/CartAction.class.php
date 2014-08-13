@@ -57,10 +57,16 @@ class CartAction extends PublicAction {
     public function add() {
         $userid = $this->userInfo['user_id'];
         if(empty($userid)){
-            echo 'error';exit;
+            echo '请先登录';exit;
         }
         $cart = new Cart();
         $foodinfo = $this->filterAllParam('post');
+        $number = $cart->getCnt();
+        if ($number > 0) {
+            foreach ($_SESSION['cart'] as $foodid => $food) {
+                
+            }
+        }
         $cart->addItem($foodinfo['id'], $foodinfo['food_name'], $foodinfo['food_price'], 1, $foodinfo['food_image']);
         exit;
     }
@@ -68,7 +74,7 @@ class CartAction extends PublicAction {
     public function delete() {
         $userid = $this->userInfo['user_id'];
         if(empty($userid)){
-            echo 'error';exit;
+            echo '请先登录';exit;
         }
         $cart = new Cart();
         $foodid = $this->_post('id');
@@ -79,7 +85,7 @@ class CartAction extends PublicAction {
     public function inc() {
         $userid = $this->userInfo['user_id'];
         if(empty($userid)){
-            echo 'error';exit;
+            echo '请先登录';exit;
         }
         $cart = new Cart();
         $foodid = $this->_post('id');
@@ -90,7 +96,7 @@ class CartAction extends PublicAction {
     public function dec() {
         $userid = $this->userInfo['user_id'];
         if(empty($userid)){
-            echo 'error';exit;
+            echo '请先登录';exit;
         }
         $cart = new Cart();
         $foodid = $this->_post('id');
@@ -101,7 +107,7 @@ class CartAction extends PublicAction {
     public function setnum() {
         $userid = $this->userInfo['user_id'];
         if(empty($userid)){
-            echo 'error';exit;
+            echo '请先登录';exit;
         }
         $cart = new Cart();
         $foodid = $this->_post('id');
