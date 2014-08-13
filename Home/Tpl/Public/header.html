@@ -54,20 +54,24 @@
     <ul class="main">
         <li class="x1"><span><img src="/images/position.png"></span><span>&nbsp;A - 大连市&nbsp; </span></li>
         <li class="x2">
+            <if condition="$Think.session.userinfo.user_id eq ''">
             <span class="xqq"><a href="/common.php?app=api.login&plat=qq"></a></span> <span class="xsina"><a
                 href="/common.php?app=api.login&plat=weibo"></a></span>		<span class="x2x">
 		<a href="javascript:jsheader.showlogin();">登录</a>&nbsp;&nbsp;<a href="javascript:jsheader.showreg();">注册</a>
 				</span>
+            <else />
+            welcome {$Think.session.userinfo.user_id} , <a href="/index.php/index/logout">logout</a>
+            </if>
         </li>
     </ul>
 </div>
 <div class="main">
     <div id="id_loginbox" style="display:none">
-        <form name="frmlogin" method="post" action="/common.php?app=sys&app_act=login.verify" onsubmit="return jsheader.on_login();">
+        <form name="frmlogin" method="post" action="/index.php/Index/login" onsubmit="return jsheader.on_login();">
             <div class="loginbox">
                 <ul class="xleft">
-                    <li><span class="x1">用户名：</span><span><input type="text" name="uname" class="txt1"/></span></li>
-                    <li><span class="x1">密码：</span><span><input name="pwd" type="password" class="txt1"/></span></li>
+                    <li><span class="x1">用户名：</span><span><input type="text" name="user_id" class="txt1"/></span></li>
+                    <li><span class="x1">密码：</span><span><input name="user_pw" type="password" class="txt1"/></span></li>
                     <li id="id_verify_code" style="display:none"><span class="x1">验证码：</span><span><input name="verifycode" type="text" class="txt2"  onfocus="jsheader.show_verify('#id_verify');"/>&nbsp;<img src="/webcss/default/" id="id_verify_pic" onclick="this.src='/common.php?app=sys&app_act=verifycode&app_contenttype=img&app_rnd='+Math.random();" style="display:none"></span></li>
                     <li><span class="x1"></span><span><label><input type="checkbox" name="autologin" value="1" checked>下次自动登录</label>&nbsp;&nbsp;<a href="/index.php?app=index&app_act=findpwd">忘记密码?</a><br><br>
 			<input type="submit" name="btn_submit" value="登 录" class="button1" style="font-size:22px">

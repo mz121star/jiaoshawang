@@ -1,12 +1,12 @@
-<form name="frmReg" method="post" action="/index.php?app=ajax&app_act=reg" onsubmit="return jsreg.on_reg(true);">
+<form name="frmReg" method="post" action="/index.php/index/adduser" onsubmit="return jsreg.on_reg(true);">
     <input type="hidden" name="verifycode" value="">
     <input type="hidden" name="jump_fromurl" value="http://mall.meal.kjcms.com/index.php" id="id_jump_fromurl">
     <div class="loginbox">
         <ul class="xleft">
-            <li><span class="x1">用户名：</span><span><input name="uname" type="text" class="txt1"/> <font class="txt_red">*</font></span></li>
-            <li><span class="x1">密码：</span><span><input type="password" name="pwd1" class="txt1"/> <font class="txt_red">*</font></span></li>
-            <li><span class="x1">确认密码：</span><span><input type="password" name="pwd2" class="txt1"/> <font class="txt_red">*</font></span></li>
-            <li><span class="x1">邮箱：</span><span><input type="text" name="email" class="txt1"/> <font class="txt_red">*</font></span></li>
+            <li><span class="x1">用户名：</span><span><input name="user_id" type="text" class="txt1"/> <font class="txt_red">*</font></span></li>
+            <li><span class="x1">密码：</span><span><input type="password" name="user_pw1" class="txt1"/> <font class="txt_red">*</font></span></li>
+            <li><span class="x1">确认密码：</span><span><input type="password" name="user_pw2" class="txt1"/> <font class="txt_red">*</font></span></li>
+            <li><span class="x1">邮箱：</span><span><input type="text" name="people_email" class="txt1"/> <font class="txt_red">*</font></span></li>
             <li><span class="x1"></span><span><input type="checkbox" name="regargreement" value="1" checked disabled>我接授&nbsp;<a href="/common.php?app=article&app_act=view&key=regargreement" target="_blank" style="color:#0000ff">本站服务条款和协议。</a><br><label><input type="checkbox" name="autologin" value="1" checked>下次自动登录</label><br><br>
 			<input type="submit" name="btn_submit" value="注 册" class="button1" style="font-size:22px">
 			</span></li>
