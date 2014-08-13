@@ -89,11 +89,11 @@ CREATE TABLE `dc_food` (
 
 CREATE TABLE `dc_order` (
   `id` int(11) NOT NULL auto_increment,
-  `order_id` varchar(250) NOT NULL,
   `order_people` varchar(250) NOT NULL COMMENT '订购人，关联dc_user表的user_id',
   `food_shop` varchar(250) NOT NULL COMMENT '菜品所属餐厅，关联dc_user表的user_id',
   `order_addr` varchar(250) NOT NULL,
   `order_phone` varchar(250) NOT NULL,
+  `order_peoplename` varchar(250) NOT NULL,
   `order_pay` enum('1','2') NOT NULL COMMENT '支付方式，1是货到付款，2是在线支付',
   `order_paystatus` enum('1','2') NOT NULL COMMENT '支付状态，1是未付款，2是已付款',
   `order_delivery` enum('1','2') NOT NULL COMMENT '发货状态，1是未发货，2是已发货',
@@ -109,7 +109,7 @@ CREATE TABLE `dc_order` (
 
 CREATE TABLE `dc_orderdetail` (
   `id` int(11) NOT NULL auto_increment,
-  `order_id` varchar(250) NOT NULL,
+  `order_id` varchar(250) NOT NULL COMMENT '订单ID，关联dc_order表的id',
   `food_id` int(11) NOT NULL,
   `food_name` varchar(250) NOT NULL,
   `food_price` tinyint(3) unsigned NOT NULL,

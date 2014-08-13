@@ -6,26 +6,29 @@ var jsshop = new function() {
 	this.cart_lock = false;
 	this.is_save = false;
 	this.cart_add = function(o) {
-		var obj = kj.obj("#id_cart_box");
-		var obj_cart_num = kj.obj("#id_cart_num_" + o.id);
-		if(obj_cart_num) {
-			var obj_cart_price = kj.obj("#id_cart_price_" + o.id);
-			obj_cart_num.value = kj.toint(obj_cart_num.value) + 1;
-			obj_cart_price.innerHTML = "￥"+kj.toint(obj_cart_num.value) * o.price;
-			kj.set(".Tnum"+o.id,'innerHTML',obj_cart_num.value);
-		} else {
-			var obj_li=document.createElement("li");
-			obj_li.id = "id_cart_" + o.id;
-			obj_li.innerHTML = '<input type="hidden" name="cartid[]" value="'+o.id+'"><input type="hidden" name="price[]" id="id_price_'+o.id+'" value="'+o.price+'"><span class="col1">'+o.name+'</span><span class="col2">￥'+kj.toint(o.price)+'</span><span class="col3"><input type="button" name="btn_jian" value="" class="btn_jian" onclick="jsshop.change_num('+o.id+',-1);"> <input type="text" name="num'+o.id+'[]" value="1" id="id_cart_num_'+o.id+'" class="x_num" onkeyup="jsshop.change_num('+o.id+')"> <input type="button" name="btn_jian" value="" class="btn_jia" onclick="jsshop.change_num('+o.id+',1);"></span><span class="col4" id="id_cart_price_'+o.id+'">￥'+kj.toint(o.price)+'</span><span class="col5"><input type="button" name="btn_del" value="" class="x_del" onclick="jsshop.del('+o.id+')"></span>';
-			obj.appendChild(obj_li);
-			kj.set(".Tnum"+o.id,'innerHTML',1);
-		}
-		this.refresh_price();
-        this.sendtocart(o);
+        var thisobj = this;
+        $.post("/index.php/cart/add", { 'id': o.id, 'food_name': o.name, 'food_price': o.price, 'food_image': o.pic }, function (data) {
+            if (data == "OK") {
+                var obj = kj.obj("#id_cart_box");
+                var obj_cart_num = kj.obj("#id_cart_num_" + o.id);
+                if(obj_cart_num) {
+                    var obj_cart_price = kj.obj("#id_cart_price_" + o.id);
+                    obj_cart_num.value = kj.toint(obj_cart_num.value) + 1;
+                    obj_cart_price.innerHTML = "￥"+kj.toint(obj_cart_num.value) * o.price;
+                    kj.set(".Tnum"+o.id,'innerHTML',obj_cart_num.value);
+                } else {
+                    var obj_li=document.createElement("li");
+                    obj_li.id = "id_cart_" + o.id;
+                    obj_li.innerHTML = '<input type="hidden" name="cartid[]" value="'+o.id+'"><input type="hidden" name="price[]" id="id_price_'+o.id+'" value="'+o.price+'"><span class="col1">'+o.name+'</span><span class="col2">￥'+kj.toint(o.price)+'</span><span class="col3"><input type="button" name="btn_jian" value="" class="btn_jian" onclick="jsshop.change_num('+o.id+',-1);"> <input type="text" name="num'+o.id+'[]" value="1" id="id_cart_num_'+o.id+'" class="x_num" onkeyup="jsshop.change_num('+o.id+')"> <input type="button" name="btn_jian" value="" class="btn_jia" onclick="jsshop.change_num('+o.id+',1);"></span><span class="col4" id="id_cart_price_'+o.id+'">￥'+kj.toint(o.price)+'</span><span class="col5"><input type="button" name="btn_del" value="" class="x_del" onclick="jsshop.del('+o.id+')"></span>';
+                    obj.appendChild(obj_li);
+                    kj.set(".Tnum"+o.id,'innerHTML',1);
+                }
+                thisobj.refresh_price();
+            } else {
+                alert(data);
+            }
+        });
 	}
-    this.sendtocart = function (obj) {
-        $.post("/index.php/cart/add", { 'id': obj.id, 'food_name': obj.name, 'food_price': obj.price, 'food_image': obj.pic } );
-    }
     this.sendcartnum = function (id, number) {
         if (number == 1) {
             $.post("/index.php/cart/inc", { 'id': id} );

@@ -64,7 +64,6 @@ var jscartlist = new function() {
 	}
     this.sendcartnum = function (id, number) {
         var ids = id.split("_");
-        alert(ids[2]);alert(number);
         if (number == 1) {
             $.post("/index.php/cart/inc", { 'id': ids[2]} );
         } else if (number == -1) {
@@ -424,13 +423,11 @@ var jscartlist = new function() {
 					var str_ids = arr.join("||");
 					kj.cookie_set("cart_ids" , str_ids , 24);
 					if(kj.cfg("isremote") == '1' && 'state' in obj_data && obj_data.state=='0') {
-						kj.ajax.get(kj.cfg('baseurl') + "/common.php?app_module=meal&app=call&app_act=print&isremote=1&order_id=" + obj_data.id, function(){
-							window.open(kj.cfg('baseurl') + "/index.php?app=member&app_act=payok&id="+obj_data.id,"_self");
-						});
 						kj.alert.show("订餐成功");
+                        location.href = "/index.php";
 					} else {
 						kj.alert.show("订餐成功" , function(){
-							window.open(kj.cfg('baseurl') + "/index.php?app=member&app_act=payok&id="+obj_data.id,"_self");
+							location.href = "/index.php";
 						});
 					}
 				}else{
