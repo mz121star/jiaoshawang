@@ -105,7 +105,7 @@ var jsheader = new function() {
 			this.collect_cancel(shop_id);
 			return;
 		}
-		kj.ajax.get(kj.cfg('baseurl') +"/index.php?app=ajax&app_act=collect&shop_id=" + shop_id , function(data) {
+		kj.ajax.get(kj.cfg('baseurl') +"/index.php/shop/fav/" + shop_id , function(data) {
 			var obj = kj.json(data);
 			if(obj.isnull) return;
 			if(obj.code=='0') {
@@ -126,7 +126,7 @@ var jsheader = new function() {
 			this.collect(shop_id);
 			return;
 		}
-		kj.ajax.get(kj.cfg('baseurl') + "/index.php?app=ajax&app_act=collect.cancel&shop_id=" + shop_id , function(data) {
+		kj.ajax.get(kj.cfg('baseurl') + "/index.php/shop/cancelfav/" + shop_id , function(data) {
 			var obj = kj.json(data);
 			if(obj.isnull) return;
 			if(obj.code=='0') {
