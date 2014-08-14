@@ -1,6 +1,6 @@
 <?php
 
-class ShopAction extends PublicAction {
+class UserAction extends PublicAction {
 
   public function index(){
     $this->display();
