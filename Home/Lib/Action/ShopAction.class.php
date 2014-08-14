@@ -49,6 +49,19 @@ class ShopAction extends PublicAction {
         }
         exit;
     }
+    
+    public function cancelfav() {
+        $shopid = $this->_get('shopid');
+        $userid = $this->userInfo['user_id'];
+        $peoplefav = M("peoplefav");
+        $favid = $peoplefav->where(array('user_people'=>$userid, 'user_shop'=>$shopid))->delete();
+        if ($favid) {
+            echo '删除收藏成功';
+        } else {
+            echo '删除收藏失败';
+        }
+        exit;
+    }
 
     public function noticelist() {
         
