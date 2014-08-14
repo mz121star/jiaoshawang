@@ -70,11 +70,67 @@ class ShopAction extends PublicAction {
     }
     
     public function lastestsort() {
-        
+        $getparam = $this->filterAllParam('get');
+        $page = $getparam['page'];
+        $iswork = $getparam['iswork'];
+        if ($iswork) {
+            $morewhere = ' and "'.date('G:i:s').'" between shop_beginworktime and shop_endworktime';
+        } else {
+            $morewhere = '';
+        }
+        $shopobj = M("Shop");
+        $shoplist = $shopobj->where('shop_top="0"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
+        $commonshop = array();
+        $current_time = date('Gis');
+        foreach ($shoplist as $shop) {
+            $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
+            $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
+            if ($current_time >= $beginworktime && $current_time <= $endworktime) {
+                $shop['is_working'] = 1;
+            } else {
+                $shop['is_working'] = 0;
+            }
+            if ($userid &&$shop['user_people'] == $userid) {
+                $shop['is_fav'] = 1;
+            } else {
+                $shop['is_fav'] = 0;
+            }
+            $commonshop[] = $shop;
+        }
+        echo json_encode($commonshop);
+        exit;
     }
     
     public function sellsort() {
-        
+        $getparam = $this->filterAllParam('get');
+        $page = $getparam['page'];
+        $iswork = $getparam['iswork'];
+        if ($iswork) {
+            $morewhere = ' and "'.date('G:i:s').'" between shop_beginworktime and shop_endworktime';
+        } else {
+            $morewhere = '';
+        }
+        $shopobj = M("Shop");
+        $shoplist = $shopobj->where('shop_top="0"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id')->join(' dc_order ON dc_order.food_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
+        $commonshop = array();
+        $current_time = date('Gis');
+        foreach ($shoplist as $shop) {
+            $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
+            $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
+            if ($current_time >= $beginworktime && $current_time <= $endworktime) {
+                $shop['is_working'] = 1;
+            } else {
+                $shop['is_working'] = 0;
+            }
+            if ($userid &&$shop['user_people'] == $userid) {
+                $shop['is_fav'] = 1;
+            } else {
+                $shop['is_fav'] = 0;
+            }
+            $commonshop[] = $shop;
+        }
+        echo json_encode($commonshop);
+        exit;
     }
     
     public function favsort() {
@@ -82,13 +138,12 @@ class ShopAction extends PublicAction {
         $page = $getparam['page'];
         $iswork = $getparam['iswork'];
         if ($iswork) {
-            $morewhere = ' and '.date('G:i:s').' between shop_beginworktime and shop_endworktime';
+            $morewhere = ' and "'.date('G:i:s').'" between shop_beginworktime and shop_endworktime';
         } else {
             $morewhere = '';
         }
         $shopobj = M("Shop");
-        $shoplist = $shopobj->where('shop_top="1"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
-        print_r($shoplist);
+        $shoplist = $shopobj->where('shop_top="0"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
         $commonshop = array();
         $current_time = date('Gis');
         foreach ($shoplist as $shop) {
