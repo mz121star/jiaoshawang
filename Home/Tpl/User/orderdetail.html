@@ -1,9 +1,249 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+<include file="Public:header"/>
 
+
+
+
+<div class="mainbg mg_t1">
+<script src="/js/header.js"></script>
+<script src="/js/member.js"></script>
+<script src="/js/kj.rule.js"></script>
+<script src="/js/kj.alert.js"></script>
+<script>
+    kj.onload(function(){
+        var w = (kj.w()-980)/2;
+        kj.set("#idmenu1" , "style.top" , '120px');
+        kj.set("#idmenu1" , "style.left" , (w+390)+'px');
+        jsheader.rule_uname = "default";
+        jsheader.reg_verify = "1";
+        jsheader.tempurl = "/webcss/default/";
+        jsheader.is_verify = false;
+    });
+</script>	<div class="h10">&nbsp;</div>
+<div class="mleft">
+    <div class="x1">
+        <div class="xpic"><img src="/webcss/default/images/sir.gif"></div>
+        <div class="xname">您好，<span class="txt_orangeB">测试用户</span> !</div>
+        <div class="xvip">等级：<img src="/webcss/default/images/vip3.png" align="absmiddle"></div>
+        <div class="x2">积分：<span class="txt_redB">29</span> 分</div>
+        <div class="x3">经验值：<span class="txt_redB">1299</span> 点</div>
+        <div class="x4">
+            <div class="y1">成长状态：</div>
+            <div class="y2" style="width:109.116px;white-space:nowrap;">1299 / 2000 &nbsp;</div>
+        </div>
+        <div class="x5">仅需<font class="txt_redB"> 701 </font>点经验值, 晋升为<font class="txt_orangeB"> V4 </font>会员。</div>
+    </div>
+    <div class="x6">
+        <li class="xtit">会员中心</li>
+        <li class="xlist">
+            <a href="/index.php?app=member" class="xsel">订单明细</a>
+            <a href="/index.php?app=member&amp;app_act=myvip">会员等级 + 经验值</a>
+            <a href="/index.php?app=member&amp;app_act=myintegral">我的积分</a>
+            <a href="/index.php?app=member&amp;app_act=repayment">我的预付款</a>
+            <a href="/index.php?app=act.gift&amp;app_act=mygift">我的礼品</a>
+            <a href="/index.php?app=member&amp;app_act=msg">我的留言</a>
+            <a href="/index.php?app=member&amp;app_act=pwd">修改密码</a>
+            <a href="/common.php?app=sys&amp;app_act=login.out&amp;jump_url=%2F" style="color:#ff8800;font-weight:bold">退出登录</a>
+        </li>
+    </div>
+</div>
+
+<table class="orderlist bgcolor2">
+    <tbody><tr><td colspan="3" class="tit"><font class="txt_redB">2014-08-13</font>（星期三）</td></tr>
+    <tr><td class="col1">
+        <a href="index.php?app_act=shop&amp;id=5" style="color:#888888" target="_top">Array</a><br>		<font class="txt_orangeB">23:16</font><br>A/先生<br>【<a href="javascript:parent.kj.dialog({id:'detail',title:'订单明细',url:'index.php?app=member&app_act=order.detail&id=1437',w:700,max_h:650,showbtnmax:false,showbtnhide:false,type:'iframe'});">订单详情</a>】</td>
+        <td>
+            <div class="row1" style="background:none">
+                <ul class="x1">
+                    <li>叉烧饭(小)</li>
+                    <li> + 猪脚饭(小)</li>
+                    <li> + 鸭肾饭(小)</li>
+                    <li> + 猪舌饭(小)</li>
+                </ul>
+                <ul class="x2">
+                    ￥48×1=￥48			</ul>
+            </div>
+        </td><td class="col2">
+            总计：48<br>配送：0.00<br>优惠：-1<br>应付：<font class="txt_redB">47</font>			<br><font color="#ff0000">(等待处理)</font>
+        </td></tr>
+    <tr><td class="col1">
+        <a href="index.php?app_act=shop&amp;id=1" style="color:#888888" target="_top">Array</a><br>		<font class="txt_orangeB">18:08</font><br>A/先生<br>【<a href="javascript:parent.kj.dialog({id:'detail',title:'订单明细',url:'index.php?app=member&app_act=order.detail&id=1434',w:700,max_h:650,showbtnmax:false,showbtnhide:false,type:'iframe'});">订单详情</a>】</td>
+        <td>
+            <div class="row1" style="background:none">
+                <ul class="x1">
+                    <li>红烧鱼块</li>
+                </ul>
+                <ul class="x2">
+                    ￥13×1=￥13			</ul>
+            </div>
+        </td><td class="col2">
+            总计：13<br>配送：0.00<br>应付：<font class="txt_redB">13</font>			<br><font color="#ff0000">(待付款)</font>
+        </td></tr>
+    <tr><td class="col1">
+        <a href="index.php?app_act=shop&amp;id=1" style="color:#888888" target="_top">Array</a><br>		<font class="txt_orangeB">17:44</font><br>A/先生<br>【<a href="javascript:parent.kj.dialog({id:'detail',title:'订单明细',url:'index.php?app=member&app_act=order.detail&id=1433',w:700,max_h:650,showbtnmax:false,showbtnhide:false,type:'iframe'});">订单详情</a>】</td>
+        <td>
+            <div class="row1" style="background:none">
+                <ul class="x1">
+                    <li>蒜苔腊肉</li>
+                </ul>
+                <ul class="x2">
+                    ￥15×5=￥75			</ul>
+            </div>
+            <div class="row1">
+                <ul class="x1">
+                    <li>土豆排骨</li>
+                </ul>
+                <ul class="x2">
+                    ￥13×1=￥13			</ul>
+            </div>
+            <div class="row1">
+                <ul class="x1">
+                    <li>木耳炒肉</li>
+                </ul>
+                <ul class="x2">
+                    ￥11×1=￥11			</ul>
+            </div>
+        </td><td class="col2">
+            总计：99<br>配送：0.00<br>优惠：-7<br>应付：<font class="txt_redB">92</font>			<br><font color="#ff0000">(等待处理)</font>
+        </td></tr>
+    <tr><td class="col1">
+        <a href="index.php?app_act=shop&amp;id=1" style="color:#888888" target="_top">Array</a><br>		<font class="txt_orangeB">13:35</font><br>A/先生<br>【<a href="javascript:parent.kj.dialog({id:'detail',title:'订单明细',url:'index.php?app=member&app_act=order.detail&id=1432',w:700,max_h:650,showbtnmax:false,showbtnhide:false,type:'iframe'});">订单详情</a>】</td>
+        <td>
+            <div class="row1" style="background:none">
+                <ul class="x1">
+                    <li>红烧鱼块</li>
+                </ul>
+                <ul class="x2">
+                    ￥13×1=￥13			</ul>
+            </div>
+            <div class="row1">
+                <ul class="x1">
+                    <li>土匪猪肝</li>
+                </ul>
+                <ul class="x2">
+                    ￥12×1=￥12			</ul>
+            </div>
+        </td><td class="col2">
+            总计：25<br>配送：0.00<br>应付：<font class="txt_redB">25</font>			<br><font color="#ff0000">(待付款)</font>
+        </td></tr>
+    <tr><td class="col1">
+        <a href="index.php?app_act=shop&amp;id=58" style="color:#888888" target="_top">Array</a><br>		<font class="txt_orangeB">12:57</font><br>A/先生<br>【<a href="javascript:parent.kj.dialog({id:'detail',title:'订单明细',url:'index.php?app=member&app_act=order.detail&id=1431',w:700,max_h:650,showbtnmax:false,showbtnhide:false,type:'iframe'});">订单详情</a>】</td>
+        <td>
+            <div class="row1" style="background:none">
+                <ul class="x1">
+                    <li>热那亚风味罗勒松子酱面</li>
+                </ul>
+                <ul class="x2">
+                    ￥16×1=￥16			</ul>
+            </div>
+            <div class="row1">
+                <ul class="x1">
+                    <li>美味金枪鱼色拉</li>
+                </ul>
+                <ul class="x2">
+                    ￥16×1=￥16			</ul>
+            </div>
+            <div class="row1">
+                <ul class="x1">
+                    <li>玛格丽特双重芝士匹萨</li>
+                </ul>
+                <ul class="x2">
+                    ￥26×2=￥52			</ul>
+            </div>
+        </td><td class="col2">
+            总计：84<br>配送：8.00<br>应付：<font class="txt_redB">92</font>			<br><font color="#ff0000">(用户取消)</font>
+        </td></tr>
+    <tr><td class="col1">
+        <a href="index.php?app_act=shop&amp;id=3" style="color:#888888" target="_top">Array</a><br>		<font class="txt_orangeB">11:51</font><br>A/先生<br>【<a href="javascript:parent.kj.dialog({id:'detail',title:'订单明细',url:'index.php?app=member&app_act=order.detail&id=1430',w:700,max_h:650,showbtnmax:false,showbtnhide:false,type:'iframe'});">订单详情</a>】</td>
+        <td>
+            <div class="row1" style="background:none">
+                <ul class="x1">
+                    <li>铁板煎鸡扒+茄子豆角</li>
+                </ul>
+                <ul class="x2">
+                    ￥18×2=￥36			</ul>
+            </div>
+            <div class="row1">
+                <ul class="x1">
+                    <li>鱼香肉丝</li>
+                </ul>
+                <ul class="x2">
+                    ￥10×1=￥10			</ul>
+            </div>
+            <div class="row1">
+                <ul class="x1">
+                    <li>客家咸鸡</li>
+                </ul>
+                <ul class="x2">
+                    ￥15×1=￥15			</ul>
+            </div>
+            <div class="row1">
+                <ul class="x1">
+                    <li>客家咸鸡+尖椒猪头肉</li>
+                </ul>
+                <ul class="x2">
+                    ￥18×1=￥18			</ul>
+            </div>
+            <div class="row1">
+                <ul class="x1">
+                    <li>辣仔鸡翅</li>
+                </ul>
+                <ul class="x2">
+                    ￥15×1=￥15			</ul>
+            </div>
+        </td><td class="col2">
+            总计：94<br>配送：0.00<br>应付：<font class="txt_redB">94</font>			<br><font color="#ff0000">(待付款)</font>
+        </td></tr>
+    <tr><td class="col1">
+        <a href="index.php?app_act=shop&amp;id=1" style="color:#888888" target="_top">Array</a><br>		<font class="txt_orangeB">11:01</font><br>A/先生<br>【<a href="javascript:parent.kj.dialog({id:'detail',title:'订单明细',url:'index.php?app=member&app_act=order.detail&id=1429',w:700,max_h:650,showbtnmax:false,showbtnhide:false,type:'iframe'});">订单详情</a>】</td>
+        <td>
+            <div class="row1" style="background:none">
+                <ul class="x1">
+                    <li>红烧鱼块</li>
+                </ul>
+                <ul class="x2">
+                    ￥13×4=￥52			</ul>
+            </div>
+        </td><td class="col2">
+            总计：52<br>配送：0.00<br>优惠：-4<br>应付：<font class="txt_redB">48</font>			<input type="button" name="btncomment[]" value="评论" class="button5" onclick="parent.kj.dialog({id:'comment',title:'评论订单',url:'/index.php?app=member&amp;app_act=comment&amp;order_id=1429',w:500,max_h:650,showbtnhide:false,showbtnmax:false,type:'iframe'});">
+        </td></tr>
+    <tr><td class="col1">
+        <a href="index.php?app_act=shop&amp;id=3" style="color:#888888" target="_top">Array</a><br>		<font class="txt_orangeB">09:14</font><br>A/先生<br>【<a href="javascript:parent.kj.dialog({id:'detail',title:'订单明细',url:'index.php?app=member&app_act=order.detail&id=1428',w:700,max_h:650,showbtnmax:false,showbtnhide:false,type:'iframe'});">订单详情</a>】</td>
+        <td>
+            <div class="row1" style="background:none">
+                <ul class="x1">
+                    <li>铁板煎鸡扒+茄子豆角</li>
+                </ul>
+                <ul class="x2">
+                    ￥18×1=￥18			</ul>
+            </div>
+            <div class="row1">
+                <ul class="x1">
+                    <li>客家咸鸡+尖椒猪头肉</li>
+                </ul>
+                <ul class="x2">
+                    ￥18×1=￥18			</ul>
+            </div>
+        </td><td class="col2">
+            总计：36<br>配送：0.00<br>应付：<font class="txt_redB">36</font>			<br><font color="#ff0000">(待付款)</font>
+        </td></tr>
+    </tbody></table>
+
+
+<div class="page">
+    <li class="xnone"><a href="javascript:void(0);">上一页</a></li>
+    <li class="xsel"><a href="/index.php?app=member&amp;page=1">1</a></li>
+    <li><a href="/index.php?app=member&amp;page=2">2</a></li>
+    <li><a href="/index.php?app=member&amp;page=3">3</a></li>
+    <li><a href="/index.php?app=member&amp;page=4">4</a></li>
+    <li><a href="/index.php?app=member&amp;page=5">5</a></li>
+    <li class="xnone"><font>...</font></li>
+    <li><a href="/index.php?app=member&amp;page=19">19</a></li>
+    <li><a href="/index.php?app=member&amp;page=2">下一页</a></li>
+
+</div>
+
+<script src="/js/kj.page.js"></script>
+</div>
+<include file="Public:footer"/>
 </body>
 </html>
