@@ -8,7 +8,7 @@ class ShopAction extends PublicAction {
         $food = M("Food");
         $topfoodlist = $food->where('user_id="'.$shopid.'" and food_top="1"')->order(array('id'=>'desc'))->select();
         $this->assign('topfoodlist', $topfoodlist);
-        $commonfoodlist = $food->where('user_id="'.$shopid.'" and food_top=""')->order(array('id'=>'desc'))->select();
+        $commonfoodlist = $food->where('user_id="'.$shopid.'" and food_top="0"')->order(array('id'=>'desc'))->select();
         $this->assign('commonfoodlist', $commonfoodlist);
         //获取店铺信息
         $shop = M("Shop");
@@ -35,6 +35,19 @@ class ShopAction extends PublicAction {
         $this->assign('cartprice', $cartprice);
         $this->assign('carttotle', $carttotle);
         $this->display();
+    }
+    
+    public function fav() {
+        $shopid = $this->_get('shopid');
+        $userid = $this->userInfo['user_id'];
+        $peoplefav = M("peoplefav");
+        $favid = $peoplefav->add(array('user_people'=>$userid, 'user_shop'=>$shopid, 'fav_date'=>date('Y-m-d H:i:s')));
+        if ($favid) {
+            echo '收藏成功';
+        } else {
+            echo '收藏失败';
+        }
+        exit;
     }
 
     public function noticelist() {

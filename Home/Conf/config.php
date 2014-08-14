@@ -5,6 +5,7 @@ $private_config = array(
                            'URL_CASE_INSENSITIVE' =>true,
                            'URL_ROUTE_RULES' => array(
                                                     'shop/detail/:shopid' => 'Shop/index',
+                                                    'shop/fav/:shopid' => 'Shop/fav',
                                                     'notice/:noticeid' => 'Shop/notice',
                                                     'notice/list' => 'Shop/noticelist',
                                                 ));//私有配置
