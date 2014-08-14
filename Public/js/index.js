@@ -77,6 +77,7 @@ var jsindex = new function() {
 		}
 
 		this.shopmore = function() {
+                         $("#id_listmore a").html("没有更多..");
 			this.shoppage++;
 			if(this.shoppage>this.shoppages && this.shoppage>1) return;
 			if(this.shoppage==this.shoppages) kj.hide("#id_listmore");
