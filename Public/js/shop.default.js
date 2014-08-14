@@ -100,10 +100,10 @@ var jsshop = new function() {
 			return false;
 		}
 		//点餐价格是否达到起送价
-		if(this.mintotal>0 && this.total < this.mintotal) {
+	/*	if(this.mintotal>0 && this.total < this.mintotal) {
 			alert("温馨提示：由于人力成本等问题，外卖定餐需起送不得低于"+this.mintotal+"元，不便之处还请您多多包涵！");
 			return false;
-		}
+		}*/
 		this.save_cookie();
 		//window.location.href = kj.cfg('baseurl') + "/index.php?app_act=cart&shop_id="+this.shopid;
         window.location.href = "/index.php/Cart";

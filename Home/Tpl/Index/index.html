@@ -161,7 +161,7 @@
                     <li><if condition="$shop.shop_deliver_money eq 0">免费配送<else />配送费：{$shop.shop_deliver_money}元/次</if></li>
                     <li>
                         <if condition="$shop.is_working eq 1"><span class="state_bg1">营业</span><else /><span class="state_bg3">明天继续</span></if>
-                        <if condition="$shop.is_fav eq 1"><span class="collect2 id_collect_1" onclick="jsheader.collect_cancel(1);" title="点击取消收藏">已收藏</span><else /><span class="collect1 id_collect_1" onclick="jsheader.collect(1);">收藏</span></if>
+                        <if condition="$shop.is_fav eq 1"><span class="collect2 id_collect_1" onclick="jsheader.collect_cancel({$shop.user_id});" title="点击取消收藏">已收藏</span><else /><span class="collect1 id_collect_1" onclick="jsheader.collect({$shop.user_id});">收藏</span></if>
                     </li>
                     <!-- <li>
                         <img src="images/act_3.png" title="每天十点之前下单送饮料">&nbsp;
