@@ -4,7 +4,7 @@ class IndexAction extends Action {
 
     public function index(){
         $userInfo = session('userinfo');
-        if(empty($userInfo)){
+        if(empty($userInfo) || $userInfo['user_type'] == 3){
             $this->redirect('Index/showlogin');
         } else {
             $this->display();
@@ -13,7 +13,7 @@ class IndexAction extends Action {
 
     public function showlogin(){
         $userInfo = session('userinfo');
-        if(empty($userInfo)){
+        if(empty($userInfo) || $userInfo['user_type'] == 3){
             $this->display();
         } else {
             $this->redirect('Index/index');
@@ -22,7 +22,7 @@ class IndexAction extends Action {
 
     public function login(){
         $userInfo = session('userinfo');
-        if(!empty($userInfo)){
+        if(!empty($userInfo) && $userInfo['user_type'] != 3){
             $this->redirect('Index/index');
         }
         $user = M("User");

@@ -6,7 +6,7 @@ class PublicAction extends Action {
 
     public function __construct(){
         $this->userInfo = session('userinfo');
-        if(empty($this->userInfo)){
+        if(empty($this->userInfo) || $this->userInfo['user_type'] == 3){
             $this->display('Index:showlogin');
             exit;
         }
