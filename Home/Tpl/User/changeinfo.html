@@ -1,8 +1,25 @@
 <include file="Public:header"/>
 
+<include file="Public:userleft"/>
 
+
+
+<form name="frmMpwd" method="post" action="?app=ajax&amp;app_act=useredit" onsubmit="return jsmember.save_pwd();">
+    <div class="loginbox" style="background:#fff;width:710px;padding:10px 0px;margin-left:10px">
+        <ul class="xleft" style="width:500px;margin-left:50px">
+            <li><span class="x1">登录账号：</span><span style="padding-top:10px">测试用户</span></li>
+            <li><span class="x1">原密码：</span><span><input type="password" name="oldpwd" class="txt1"></span></li>
+            <li><span class="x1">新的密码：</span><span><input type="password" name="pwd1" class="txt1"></span></li>
+            <li><span class="x1">确认密码：</span><span><input type="password" name="pwd2" class="txt1"></span></li>
+            <li><span class="x1">收货地址：</span><span><input type="text" name="address" class="txt1"></span></li>
+            <li><span class="x1">联系电话：</span><span><input type="text" name="phone" class="txt1"></span></li>
+            <li><span class="x1"></span><span><input type="submit" name="btn_submit" value="确认修改" class="button3"></span></li>
+        </ul>
+    </div>
+</form>
+
+<script src="/js/kj.page.js"></script>
+</div>
 <include file="Public:footer"/>
-
-
 </body>
 </html>
