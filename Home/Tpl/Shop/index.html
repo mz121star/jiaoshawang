@@ -60,7 +60,7 @@
         <li class="x_3">￥{$cartprice}</li>
         <li class="x_2">共 {$carttotle}  份，合计</li>
     </div>
-    <div class="x_tit" onmouseover="jsshop.showcart(1);"><li><span class="col1">餐品</span><span class="col2">单价</span><span class="col3">数量</span><span class="col4">小计</span><span class="col5 x_clear" onclick="jsshop.clear()">清空</span></li></div>
+    <div class="x_tit" onmouseover="jsshop.showcart(1);"><li><span class="col1">餐品</span><span class="col2">单价</span><span class="col3">数量</span><span class="col4">小计</span><span class="col5 x_clear" <!--onclick="jsshop.clear()"-->>清空</span></li></div>
     <div class="x_list" id="id_cart_box">
     <foreach name="cartlist" item="cart">
     <li id="id_cart_{$cart.id}"><input type="hidden" value="{$cart.id}" name="cartid[]"><input type="hidden" value="{$cart.price}" id="id_price_{$cart.id}" name="price[]"><span class="col1">{$cart.name}</span><span class="col2">￥{$cart.price}</span><span class="col3"><input type="button" onclick="jsshop.change_num({$cart.id},-1);" class="btn_jian" value="" name="btn_jian"> <input type="text" onkeyup="jsshop.change_num({$cart.id})" class="x_num" id="id_cart_num_{$cart.id}" value="{$cart[num]}" name="num{$cart.id}[]"> <input type="button" onclick="jsshop.change_num({$cart.id},1);" class="btn_jia" value="" name="btn_jian"></span><span id="id_cart_price_{$cart.id}" class="col4">￥{$cart[price]*$cart[num]}</span><span class="col5"><input type="button" onclick="jsshop.del({$cart.id})" class="x_del" value="" name="btn_del"></span></li>
