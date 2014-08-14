@@ -6,6 +6,7 @@ $private_config = array(
                            'URL_ROUTE_RULES' => array(
                                                     'shop/detail/:shopid' => 'Shop/index',
                                                     'shop/fav/:shopid' => 'Shop/fav',
+                                                    'shop/cancelfav/:shopid' => 'Shop/cancelfav',
                                                     'notice/:noticeid' => 'Shop/notice',
                                                     'notice/list' => 'Shop/noticelist',
                                                 ));//私有配置
