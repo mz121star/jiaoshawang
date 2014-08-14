@@ -7,6 +7,9 @@ $private_config = array(
                                                     'shop/detail/:shopid' => 'Shop/index',
                                                     'shop/fav/:shopid' => 'Shop/fav',
                                                     'shop/cancelfav/:shopid' => 'Shop/cancelfav',
+                               'shop/lastestsort/:page/:iswork' => 'Shop/lastestsort',
+                               'shop/sellsort/:page/:iswork' => 'Shop/sellsort',
+                               'shop/favsort/:page/:iswork' => 'Shop/favsort',
                                                     'notice/:noticeid' => 'Shop/notice',
                                                     'notice/list' => 'Shop/noticelist',
                                                 ));//私有配置

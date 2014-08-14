@@ -40,6 +40,9 @@ class ShopAction extends PublicAction {
     public function fav() {
         $shopid = $this->_get('shopid');
         $userid = $this->userInfo['user_id'];
+        if (!$userid) {
+            echo '请登录后收藏';exit;
+        }
         $peoplefav = M("peoplefav");
         $favid = $peoplefav->add(array('user_people'=>$userid, 'user_shop'=>$shopid, 'fav_date'=>date('Y-m-d H:i:s')));
         if ($favid) {
@@ -53,6 +56,9 @@ class ShopAction extends PublicAction {
     public function cancelfav() {
         $shopid = $this->_get('shopid');
         $userid = $this->userInfo['user_id'];
+        if (!$userid) {
+            echo '请登录后删除收藏';exit;
+        }
         $peoplefav = M("peoplefav");
         $favid = $peoplefav->where(array('user_people'=>$userid, 'user_shop'=>$shopid))->delete();
         if ($favid) {
@@ -60,6 +66,47 @@ class ShopAction extends PublicAction {
         } else {
             echo '删除收藏失败';
         }
+        exit;
+    }
+    
+    public function lastestsort() {
+        
+    }
+    
+    public function sellsort() {
+        
+    }
+    
+    public function favsort() {
+        $getparam = $this->filterAllParam('get');
+        $page = $getparam['page'];
+        $iswork = $getparam['iswork'];
+        if ($iswork) {
+            $morewhere = ' and '.date('G:i:s').' between shop_beginworktime and shop_endworktime';
+        } else {
+            $morewhere = '';
+        }
+        $shopobj = M("Shop");
+        $shoplist = $shopobj->where('shop_top="1"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
+        print_r($shoplist);
+        $commonshop = array();
+        $current_time = date('Gis');
+        foreach ($shoplist as $shop) {
+            $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
+            $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
+            if ($current_time >= $beginworktime && $current_time <= $endworktime) {
+                $shop['is_working'] = 1;
+            } else {
+                $shop['is_working'] = 0;
+            }
+            if ($userid &&$shop['user_people'] == $userid) {
+                $shop['is_fav'] = 1;
+            } else {
+                $shop['is_fav'] = 0;
+            }
+            $commonshop[] = $shop;
+        }
+        echo json_encode($commonshop);
         exit;
     }
 

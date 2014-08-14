@@ -68,7 +68,7 @@ class IndexAction extends PublicAction {
             } else {
                 $shop['is_working'] = 0;
             }
-            if ($shop['user_people'] == $userid) {
+            if ($userid && $shop['user_people'] == $userid) {
                 $shop['is_fav'] = 1;
             } else {
                 $shop['is_fav'] = 0;
@@ -91,7 +91,7 @@ class IndexAction extends PublicAction {
             } else {
                 $shop['is_working'] = 0;
             }
-            if ($shop['user_people'] == $userid) {
+            if ($userid &&$shop['user_people'] == $userid) {
                 $shop['is_fav'] = 1;
             } else {
                 $shop['is_fav'] = 0;
