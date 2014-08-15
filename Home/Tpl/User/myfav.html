@@ -15,13 +15,8 @@
             <td class="x2">
                 <li class="xtit"><a href="?app_act=shop&amp;id=2" style="color:#666">{$shop.shop_name}</a></li>
                 <li><if condition="$shop.shop_deliver_money eq 0">免费配送<else />配送费：{$shop.shop_deliver_money}元/次</if></li>
-                <li>
-                    <if condition="$shop.is_working eq 1"><span class="state_bg1">营业</span><else /><span class="state_bg3">明天继续</span></if>
-                    <span class="collect2 id_collect_2" onclick="jsheader.collect_cancel({$shop.user_id});" title="点击取消收藏">已收藏</span></li>
-                <li>
-                    <img src="/webcss/default/images/act_1.png" title="晚上8点以后5份以上85折">&nbsp;
-                    <img src="/webcss/default/images/act_4.png" title="满5份每份减1元">&nbsp;
-                </li>
+
+
             </td>
         </tr>
         </tbody></table>

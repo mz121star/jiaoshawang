@@ -110,6 +110,7 @@ var jsheader = new function() {
 
 		kj.ajax.get(  "/index.php/shop/cancelfav/" + shop_id , function(data) {
 			alert(data);
+
 		});
 	}
 

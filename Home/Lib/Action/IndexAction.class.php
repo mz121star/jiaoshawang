@@ -53,7 +53,7 @@ class IndexAction extends PublicAction {
             $people = M("People");
             $peopleid = $people->add(array('user_id'=>$post['user_id'], 'people_email'=>$post['people_email']));
         }
-        $this->redirect('Index/index');
+        $this->redirect('User/changeinfo');
     }
 
     public function index() {
