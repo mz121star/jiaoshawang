@@ -4,7 +4,9 @@ class IndexAction extends PublicAction {
     public function reg() {
         $this->display();
     }
-
+        public function map() {
+             $this->display();
+         }
     public function login() {
         $userInfo = session('userinfo');
         if(!empty($userInfo) && $userInfo['user_type'] == 3 ){
