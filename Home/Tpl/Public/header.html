@@ -52,7 +52,7 @@
 </script>
 <div class="top">
     <ul class="main">
-        <li class="x1"><span><img src="images/position.png"></span><span>&nbsp;A - 大连市&nbsp;<a
+        <li class="x1"><span><img src="/images/position.png"></span><span>&nbsp;A - 大连市&nbsp;<a
                 href="/index.php/index/map">[切换地址]</a></span></li>
         <li class="x2">
             <if condition="$Think.session.userinfo.user_id eq ''">
@@ -61,7 +61,7 @@
 		<a href="javascript:jsheader.showlogin();">登录</a>&nbsp;&nbsp;<a href="javascript:jsheader.showreg();">注册</a>
 				</span>
             <else />
-            welcome {$Think.session.userinfo.user_id} , <a href="/index.php/index/logout">logout</a>
+            欢迎： {$Think.session.userinfo.user_id} , <a href="/index.php/index/logout">退出登录</a>
             </if>
         </li>
     </ul>
@@ -95,7 +95,7 @@
               <!--  <a href="/index.php?app=act.gift">礼品兑换</a>-->
                 <a href="/index.php?app_act=help">帮助中心 </a>
                 <a href="/index.php?app_act=msg">意见反馈 </a>
-                <a href="/index.php?app_act=cart">管理中心 </a>
+                <a href="/index.php/User/orderdetail">管理中心 </a>
             </li>
         </div>
     </div>
