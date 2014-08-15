@@ -17,11 +17,13 @@ $private_config = array(
                                                   'delfood/:foodid' => 'Food/delfood',
                                                   'modnotice/:noticeid' => 'Notice/modnotice',
                                                   'delnotice/:noticeid' => 'Notice/delnotice',
+                                                  'cancelorder/:orderid' => 'Order/cancelorder',
+                                                  'detailorder/:orderid' => 'Order/detailorder',
                                                   ),
                         'SHOP_ROLE' => array(
                                             'Food'=>array('lists', 'showadd', 'save', 'modfood', 'delfood'),
                                             'Notice'=>array('lists', 'showadd', 'save', 'modnotice', 'delnotice'),
-                                            'Order'=>array('lists'),
+                                            'Order'=>array('lists', 'cancelorder', 'detailorder'),
                                             'User'=>array('modself', 'upself')
                                             )
                         );

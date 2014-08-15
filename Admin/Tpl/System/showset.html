@@ -1,6 +1,6 @@
 <h2 class="sub-header">系统设定</h2>
 <div class="row placeholders">
-    <div class="col-md-7">
+    <div class="col-md-8">
         <form class="form-horizontal" role="form" method="post" action="__GROUP__/System/setting">
             <input type="hidden" name="id" value="{$sysinfo.id}">
             <div class="form-group">
@@ -25,6 +25,12 @@
               <label for="userid" class="col-sm-2 control-label">系统关键字</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="system_keyword" name="system_keyword" value="{$sysinfo.system_keyword}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="userid" class="col-sm-2 control-label">首页广告图片</label>
+              <div class="col-sm-10">
+                <input type="file"  id="system_pic" name="system_pic">
               </div>
             </div>
             <div class="form-group">

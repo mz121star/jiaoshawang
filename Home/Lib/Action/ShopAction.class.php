@@ -44,6 +44,10 @@ class ShopAction extends PublicAction {
             echo '请登录后收藏';exit;
         }
         $peoplefav = M("peoplefav");
+        $isfav = $peoplefav->where('user_people="'.$userid.'" and user_shop="'.$shopid.'"')->find();
+        if ($isfav) {
+            echo '已经收藏过该店';exit;
+        }
         $favid = $peoplefav->add(array('user_people'=>$userid, 'user_shop'=>$shopid, 'fav_date'=>date('Y-m-d H:i:s')));
         if ($favid) {
             echo '收藏成功';
@@ -79,7 +83,7 @@ class ShopAction extends PublicAction {
             $morewhere = '';
         }
         $shopobj = M("Shop");
-        $shoplist = $shopobj->where('shop_top="0"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
+        $shoplist = $shopobj->where('shop_top="0"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
         $commonshop = array();
         $current_time = date('Gis');
         foreach ($shoplist as $shop) {
@@ -142,8 +146,8 @@ class ShopAction extends PublicAction {
         } else {
             $morewhere = '';
         }
-        $shopobj = M("Shop");
-        $shoplist = $shopobj->where('shop_top="0"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
+        $peoplefavobj = M("peoplefav");
+        $shoplist = $peoplefavobj->where('shop_top="0"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
         $commonshop = array();
         $current_time = date('Gis');
         foreach ($shoplist as $shop) {

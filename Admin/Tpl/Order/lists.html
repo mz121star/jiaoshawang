@@ -3,24 +3,29 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>菜名</th>
+            <th>名称</th>
             <th>价格</th>
+            <th>状态</th>
+            <th>下单日期</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
         <foreach name="orderlist" item="order">
           <tr>
-            <td class="col-sm-2">{$order.food_name}</td>
-            <td class="col-sm-2">{$food.food_price}</td>
+            <td class="col-sm-2">{$order.name}</td>
+            <td class="col-sm-2">{$order.order_price}</td>
+            <td class="col-sm-2"><if condition="$order.order_status eq 1">正常<elseif condition="$order.order_status eq 2"/>完结<elseif condition="$order.order_status eq 3"/>取消</if></td>
+            <td class="col-sm-2">{$order.order_createdate}</td>
             <td class="col-sm-2">
-                <if condition="$Think.session.userinfo.user_type eq 2">
-                <a href="__GROUP__/modfood/{$food.id}">编辑</a> 
+                <if condition="$order.order_status eq 1">
+                <a href="__GROUP__/cancelorder/{$order.id}">取消</a> 
                 </if>
-                <a href="__GROUP__/delfood/{$food.id}">删除</a>
+                <a href="__GROUP__/detailorder/{$order.id}">查看详细</a>
             </td>
           </tr>
         </foreach>
         </tbody>
       </table>
+        {$page}
     </div>
