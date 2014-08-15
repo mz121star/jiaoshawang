@@ -102,7 +102,7 @@ var jsheader = new function() {
 			this.collect_cancel(shop_id);
 			return;
 		}*/
-		kj.ajax.get(kj.cfg('baseurl') +"/index.php/shop/fav/" + shop_id , function(data) {
+		kj.ajax.get("/index.php/shop/fav/" + shop_id , function(data) {
 			var obj = kj.json(data);
 			if(obj.isnull) return;
 			if(obj.code=='0') {
@@ -115,15 +115,8 @@ var jsheader = new function() {
 		});
 	}
 	this.collect_cancel = function(shop_id , o) {
-		if(kj.cfg('uid')<1) {
-			jsheader.showlogin();
-			return;
-		}
-		if(o && o.innerHTML!='已收藏') {
-			this.collect(shop_id);
-			return;
-		}
-		kj.ajax.get(kj.cfg('baseurl') + "/index.php/shop/cancelfav/" + shop_id , function(data) {
+
+		kj.ajax.get(  "/index.php/shop/cancelfav/" + shop_id , function(data) {
 			var obj = kj.json(data);
 			if(obj.isnull) return;
 			if(obj.code=='0') {
