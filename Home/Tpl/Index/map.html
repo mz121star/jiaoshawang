@@ -53,7 +53,7 @@
             var addComp = rs.addressComponents;
             var sContent =
                     " " +
-                            "<a href='/index.php'>查看"+  addComp.district + ", " + addComp.street + ", " + addComp.streetNumber+"附近餐厅</a> " +
+                            "<a href='/index.php?address=" +addComp.district + ", " + addComp.street + ", " + addComp.streetNumber+"'>查看"+  addComp.district + ", " + addComp.street + ", " + addComp.streetNumber+"附近餐厅</a> " +
                             "</div>";
             // 百度地图API功能
             var infoWindow = new BMap.InfoWindow(sContent);
