@@ -68,6 +68,36 @@ class UserAction extends PublicAction {
     }
 
     public function orderdetail(){
+        $userid = $this->userInfo['user_id'];
+        $orderobj = M("order");
+        $orderdetailobj = M("orderdetail");
+        $shopobj = M("shop");
+        import('ORG.Util.Page');
+        $count = $orderobj->where('order_people="'.$userid.'"')->count();
+        $page = new Page($count, 10);
+        $orderlist = $orderobj->where('order_people="'.$userid.'"')->limit($page->firstRow.','.$page->listRows)->order(array('order_createdate'=>'desc'))->select();
+        foreach ($orderlist as $key => $order) {
+            $detaillist = $orderdetailobj->where('order_id="'.$order['id'].'"')->select();
+            $orderlist[$key]['orderdetail'] = $detaillist;
+            
+            $shopinfo = $shopobj->where('user_id="'.$order['food_shop'].'"')->field('shop_deliver_money')->find();
+            $orderlist[$key]['shop_deliver_money'] = $shopinfo['shop_deliver_money'];
+        }
+        $show = $page->show();
+        $this->assign('page',$show);
+        $this->assign('orderlist', $orderlist);
         $this->display();
+    }
+    
+    public function cancelorder() {
+        $userid = $this->userInfo['user_id'];
+        $get = $this->filterAllParam('get');
+        $orderobj = M("order");
+        $isCancel = $orderobj->where('id = '.$get['id'].' and order_people="'.$userid.'"')->setField('order_status', '3');
+        if ($isCancel) {
+            $this->redirect('User/orderdetail');
+        } else {
+            $this->error("订单取消失败", 'orderdetail');
+        }
     }
 }

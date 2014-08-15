@@ -10,6 +10,7 @@ $private_config = array(
                                                       'shop/lastestsort/:page/:iswork' => 'Shop/lastestsort',
                                                       'shop/sellsort/:page/:iswork' => 'Shop/sellsort',
                                                       'shop/favsort/:page/:iswork' => 'Shop/favsort',
+                                                      'user/cancelorder/:id' => 'User/cancelorder',
                                                       'notice/:noticeid' => 'Shop/notice',
                                                       'notice/list' => 'Shop/noticelist',
                                                       ));//私有配置

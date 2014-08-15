@@ -453,10 +453,6 @@ var jscartlist = new function() {
 					return false;
 				}
 			}
-			if(document.frm_main.company.value=="公司名称-选填")  document.frm_main.company.value="";
-			if(document.frm_main.depart.value=="部门-选填")  document.frm_main.depart.value="";
-			if(document.frm_main.tel.value=="八位数字不带区号")  document.frm_main.tel.value="";
-			if(document.frm_main.telext.value=="分机选填")  document.frm_main.telext.value="";
 			if(document.frm_main.louhao1.value=="") {
 				alert("请填写您所在的具体位置");
 				document.frm_main.louhao1.focus();
@@ -468,19 +464,9 @@ var jscartlist = new function() {
 				return false;
 			}
 
-			if(document.frm_main.tel.value=='' && document.frm_main.mobile.value=='') {
-				alert("电话与手机必须填一项");
+			if(document.frm_main.mobile.value=='') {
+				alert("手机必须填");
 				document.frm_main.tel.focus();
-				return false;
-			}
-			if(document.frm_main.tel.value!='' && !kj.rule.types.tel(document.frm_main.tel.value)) {
-				alert("输入电话格式不正确");
-				document.frm_main.tel.focus();
-				return false;
-			}
-			if(document.frm_main.mobile.value!='' && !kj.rule.types.mobile(document.frm_main.mobile.value)) {
-				alert("输入手机格式不正确");
-				document.frm_main.mobile.focus();
 				return false;
 			}
 

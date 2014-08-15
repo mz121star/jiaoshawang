@@ -6,77 +6,37 @@
 
 
 <table class="orderlist bgcolor2">
-    <tbody><tr><td colspan="3" class="tit"><font class="txt_redB">2014-08-13</font>（星期三）</td></tr>
+    <tbody>
+        <foreach name="orderlist" item="order">
     <tr><td class="col1">
-        <a href="index.php?app_act=shop&amp;id=5" style="color:#888888" target="_top">Array</a><br>		<font class="txt_orangeB">23:16</font><br>A/先生<br>【<a href="javascript:parent.kj.dialog({id:'detail',title:'订单明细',url:'index.php?app=member&app_act=order.detail&id=1437',w:700,max_h:650,showbtnmax:false,showbtnhide:false,type:'iframe'});">订单详情</a>】</td>
+        <a href="index.php?app_act=shop&amp;id=1" style="color:#888888" target="_top">{$order.order_createdate}</a><if condition="$order.order_status eq 1"><br>【<a href="/index.php/user/cancelorder/{$order.id}">取消订单</a>】</if></td>
         <td>
+            <foreach name="order['orderdetail']" item="detail">
             <div class="row1" style="background:none">
                 <ul class="x1">
-                    <li>叉烧饭(小)</li>
-                    <li> + 猪脚饭(小)</li>
-                    <li> + 鸭肾饭(小)</li>
-                    <li> + 猪舌饭(小)</li>
+                    <li>{$detail.food_name}</li>
                 </ul>
                 <ul class="x2">
-                    ￥48×1=￥48			</ul>
+                    ￥{$detail.food_price}×{$detail.food_count}=￥{$detail[food_price]*$detail[food_count]}</ul>
             </div>
+            </foreach>
         </td><td class="col2">
-            总计：48<br>配送：0.00<br>优惠：-1<br>应付：<font class="txt_redB">47</font>			<br><font color="#ff0000">(等待处理)</font>
+            总计：{$order.order_price}<br>配送：{$order.shop_deliver_money}<br>应付：<font class="txt_redB">{$order[order_price]+$order[shop_deliver_money]}</font><br>
+            <if condition="$order.order_status eq 1">
+            <font color="#ff0000">(等待处理)</font>
+            <elseif condition="$order.order_status eq 2"/>
+            <font color="#ff0000">(已完成)</font>
+            <elseif condition="$order.order_status eq 3"/>
+            <font color="#ff0000">(已取消)</font>
+            </if>
         </td></tr>
-    <tr><td class="col1">
-        <a href="index.php?app_act=shop&amp;id=1" style="color:#888888" target="_top">Array</a><br>		<font class="txt_orangeB">18:08</font><br>A/先生<br>【<a href="javascript:parent.kj.dialog({id:'detail',title:'订单明细',url:'index.php?app=member&app_act=order.detail&id=1434',w:700,max_h:650,showbtnmax:false,showbtnhide:false,type:'iframe'});">订单详情</a>】</td>
-        <td>
-            <div class="row1" style="background:none">
-                <ul class="x1">
-                    <li>红烧鱼块</li>
-                </ul>
-                <ul class="x2">
-                    ￥13×1=￥13			</ul>
-            </div>
-        </td><td class="col2">
-            总计：13<br>配送：0.00<br>应付：<font class="txt_redB">13</font>			<br><font color="#ff0000">(待付款)</font>
-        </td></tr>
-    <tr><td class="col1">
-        <a href="index.php?app_act=shop&amp;id=1" style="color:#888888" target="_top">Array</a><br>		<font class="txt_orangeB">17:44</font><br>A/先生<br>【<a href="javascript:parent.kj.dialog({id:'detail',title:'订单明细',url:'index.php?app=member&app_act=order.detail&id=1433',w:700,max_h:650,showbtnmax:false,showbtnhide:false,type:'iframe'});">订单详情</a>】</td>
-        <td>
-            <div class="row1" style="background:none">
-                <ul class="x1">
-                    <li>蒜苔腊肉</li>
-                </ul>
-                <ul class="x2">
-                    ￥15×5=￥75			</ul>
-            </div>
-            <div class="row1">
-                <ul class="x1">
-                    <li>土豆排骨</li>
-                </ul>
-                <ul class="x2">
-                    ￥13×1=￥13			</ul>
-            </div>
-            <div class="row1">
-                <ul class="x1">
-                    <li>木耳炒肉</li>
-                </ul>
-                <ul class="x2">
-                    ￥11×1=￥11			</ul>
-            </div>
-        </td><td class="col2">
-            总计：99<br>配送：0.00<br>优惠：-7<br>应付：<font class="txt_redB">92</font>			<br><font color="#ff0000">(等待处理)</font>
-        </td></tr>
-
+    </foreach>
+    
     </tbody></table>
 
 
 <div class="page">
-    <li class="xnone"><a href="javascript:void(0);">上一页</a></li>
-    <li class="xsel"><a href="/index.php?app=member&amp;page=1">1</a></li>
-    <li><a href="/index.php?app=member&amp;page=2">2</a></li>
-    <li><a href="/index.php?app=member&amp;page=3">3</a></li>
-    <li><a href="/index.php?app=member&amp;page=4">4</a></li>
-    <li><a href="/index.php?app=member&amp;page=5">5</a></li>
-    <li class="xnone"><font>...</font></li>
-    <li><a href="/index.php?app=member&amp;page=19">19</a></li>
-    <li><a href="/index.php?app=member&amp;page=2">下一页</a></li>
+    {$page}
 
 </div>
 

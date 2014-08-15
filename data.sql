@@ -7,15 +7,6 @@
 -- 服务器版本: 5.6.15-log
 -- PHP 版本: 5.5.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
---
--- 数据库: `jiaosha`
---
-CREATE DATABASE IF NOT EXISTS `jiaosha` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `jiaosha`;
-
 --
 -- 转存表中的数据 `dc_food`
 --

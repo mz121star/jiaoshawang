@@ -67,6 +67,7 @@ class CartAction extends PublicAction {
         $insertdata['order_delivery'] = 1;
         $insertdata['order_receipt'] = 1;
         $insertdata['order_invoice'] = 1;
+        $insertdata['order_status'] = 1;
         $order_id = $orderobj->add($insertdata);
         foreach ($_SESSION['cart'] as $foodid => $food) {
             $detailid = $orderdetailobj->add(array(
