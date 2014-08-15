@@ -79,7 +79,7 @@ class ShopAction extends PublicAction {
             $morewhere = '';
         }
         $shopobj = M("Shop");
-        $shoplist = $shopobj->where('shop_top="0"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
+        $shoplist = $shopobj->where('shop_top="0"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
         $commonshop = array();
         $current_time = date('Gis');
         foreach ($shoplist as $shop) {
