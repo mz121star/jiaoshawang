@@ -97,14 +97,11 @@ var jsheader = new function() {
 	}
 
 	this.collect = function(shop_id , o) {
-		if(kj.cfg('uid')<1) {
-			jsheader.showlogin();
-			return;
-		}
-		if(o && o.innerHTML!='收藏') {
+
+		/*if(o && o.innerHTML!='收藏') {
 			this.collect_cancel(shop_id);
 			return;
-		}
+		}*/
 		kj.ajax.get(kj.cfg('baseurl') +"/index.php/shop/fav/" + shop_id , function(data) {
 			var obj = kj.json(data);
 			if(obj.isnull) return;
