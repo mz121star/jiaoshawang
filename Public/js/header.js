@@ -103,30 +103,13 @@ var jsheader = new function() {
 			return;
 		}*/
 		kj.ajax.get("/index.php/shop/fav/" + shop_id , function(data) {
-			var obj = kj.json(data);
-			if(obj.isnull) return;
-			if(obj.code=='0') {
-				kj.set(".id_collect_" + obj.shop_id , "innerHTML" , "已收藏");
-				kj.delClassName(".id_collect_" + obj.shop_id , "collect1");
-				kj.addClassName(".id_collect_" + obj.shop_id , "collect2");
-			} else {
-				alert(obj.msg);
-			}
+            alert(data);
 		});
 	}
 	this.collect_cancel = function(shop_id , o) {
 
 		kj.ajax.get(  "/index.php/shop/cancelfav/" + shop_id , function(data) {
-			var obj = kj.json(data);
-			if(obj.isnull) return;
-			if(obj.code=='0') {
-				kj.set(".id_collect_" + obj.shop_id , "innerHTML" , "收藏");
-				kj.delClassName(".id_collect_" + obj.shop_id , "collect2");
-				kj.addClassName(".id_collect_" + obj.shop_id , "collect1");
-				kj.remove("#id_collect_"+obj.shop_id);
-			} else {
-				alert(obj.msg);
-			}
+			alert(data);
 		});
 	}
 
