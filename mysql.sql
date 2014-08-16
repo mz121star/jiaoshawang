@@ -44,10 +44,18 @@ CREATE TABLE `dc_shop` (
   `shop_phone` varchar(250) NOT NULL,
   `shop_addr` varchar(250) NOT NULL,
   `shop_top` enum('0','1') NOT NULL,
+  `shop_type` int(11) unsigned NOT NULL COMMENT '类型ID，关联dc_shoptype表的id',,
   `user_id` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY user_id (user_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='商户信息表';
+
+
+CREATE TABLE `dc_shoptype` (
+  `id` int(11) NOT NULL auto_increment,
+  `type_name` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='商户类型表';
 
 
 CREATE TABLE `dc_shopnotice` (
@@ -67,6 +75,7 @@ CREATE TABLE `dc_people` (
   `people_email` varchar(250) NOT NULL,
   `people_phone` varchar(250) NOT NULL,
   `people_addr` varchar(250) NOT NULL,
+  `people_point` int(11) unsigned NOT NULL default 0,
   `user_id` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY user_id (user_id)

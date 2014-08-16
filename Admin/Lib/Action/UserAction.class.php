@@ -20,7 +20,7 @@ class UserAction extends PublicAction {
         $count = $people->count();
         $page = new Page($count, 10);
         $show = $page->show();
-        $userlist = $people->join(' dc_user ON dc_user.user_id = dc_people.user_id')->field('dc_user.user_id,people_name,people_phone,user_status')->order(array('dc_user.id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
+        $userlist = $people->join(' dc_user ON dc_user.user_id = dc_people.user_id')->field('dc_user.user_id,people_name,people_phone,people_point,user_status')->order(array('dc_user.id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
         $this->assign('userlist', $userlist);
         $this->assign('page',$show);
         $this->display();
@@ -41,6 +41,9 @@ class UserAction extends PublicAction {
         $shopinfo['shop_endworktime1'] = $endworktime[0];
         $shopinfo['shop_endworktime2'] = $endworktime[1];
         $this->assign('shopinfo', $shopinfo);
+        $shoptype = M("Shoptype");
+        $typelist = $shoptype->order(array('id'=>'desc'))->select();
+        $this->assign('typelist', $typelist);
         $this->display();
     }
     
@@ -193,5 +196,25 @@ class UserAction extends PublicAction {
         } else {
             $this->error("用户添加失败", 'showadd');
         }
+    }
+
+    public function shoptype(){
+        $shoptype = M("Shoptype");
+        if ($this->isPost()){
+            $post = $this->filterAllParam('post');
+            if ($post['id']) {
+                $shoptype->save($post);
+            } else {
+                $shoptype->add($post);
+            }
+        } else {
+            $get = $this->filterAllParam('get');
+            if ($get['typeid']) {
+                $shoptype->where('id = '.$get['typeid'])->delete();
+            }
+        }
+        $typelist = $shoptype->order(array('id'=>'desc'))->select();
+        $this->assign('typelist', $typelist);
+        $this->display();
     }
 }
