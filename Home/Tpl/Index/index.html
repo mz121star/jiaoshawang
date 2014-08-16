@@ -60,15 +60,17 @@
     });</script>
     <div class="kj_slide" style="width:980px;height:250px">
         <li class="xpic" style="width:980px;height:250px"><a href="" target="_blank" title=""><img
-                src="/upload/ad/pic1.png" style="width:980px;height:250px"></a></li>
+                src="/upload/ad/{$firstpicinfo}" style="width:980px;height:250px"></a></li>
         <li class="xbtn" style="width:980px">
             <div style="float:left;width:auto;padding:3px 0px 0px 15px">
                 <a href="" class="xtxt" style="color:#fff" target="_blank"></a>
 
             </div>
             <div style="float:right;padding:0px 10px 0px 0px;width:auto">
-                <span mysrc="/upload/ad/pic1.png" myurl="" mytit="">&nbsp;</span>
-                <span mysrc="/upload/ad/pic3.jpg" myurl="" mytit="">&nbsp;</span></div>
+            <foreach name="syspicinfo" item="pic">
+                <span mysrc="/upload/ad/{$pic.system_pic}" myurl="" mytit="">&nbsp;</span>
+                </foreach>
+                </div>
         </li>
     </div>
 

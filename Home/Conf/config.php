@@ -11,6 +11,7 @@ $private_config = array(
                                                       'shop/sellsort/:page/:iswork' => 'Shop/sellsort',
                                                       'shop/favsort/:page/:iswork' => 'Shop/favsort',
                                                       'user/cancelorder/:id' => 'User/cancelorder',
+                                                      'user/confirmorder/:id' => 'User/confirmorder',
                                                       'notice/:noticeid' => 'Shop/notice',
                                                       'notice/list' => 'Shop/noticelist',
                                                       ));//私有配置

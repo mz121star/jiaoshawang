@@ -9,7 +9,7 @@
     <tbody>
         <foreach name="orderlist" item="order">
     <tr><td class="col1">
-        <a href="index.php?app_act=shop&amp;id=1" style="color:#888888" target="_top">{$order.order_createdate}</a><if condition="$order.order_status eq 1"><br>【<a href="/index.php/user/cancelorder/{$order.id}">取消订单</a>】</if></td>
+        <a href="index.php?app_act=shop&amp;id=1" style="color:#888888" target="_top">{$order.order_createdate}</a><if condition="$order.order_status eq 1"><br>【<a href="/index.php/user/cancelorder/{$order.id}">取消订单</a>】<br>【<a href="/index.php/user/confirmorder/{$order.id}">确认订单</a>】</if></td>
         <td>
             <foreach name="order['orderdetail']" item="detail">
             <div class="row1" style="background:none">

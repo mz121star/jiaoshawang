@@ -1,0 +1,74 @@
+<h2 class="sub-header">订单详情</h2>
+<div class="row placeholders">
+    <div class="col-md-8">
+        <table class="table table-condensed">
+            <tr>
+                <td class="col-md-2">订购者姓名</td>
+                <td>{$orderinfo.order_peoplename}</td>
+            </tr>
+            <tr>
+                <td>送餐地址</td>
+                <td>{$orderinfo.order_addr}</td>
+            </tr>
+            <tr>
+                <td>联系电话</td>
+                <td>{$orderinfo.order_phone}</td>
+            </tr>
+            <tr>
+                <td>订单状态</td>
+                <td><if condition="$orderinfo.order_status eq 1">正常<elseif condition="$orderinfo.order_status eq 2"/>完结<elseif condition="$orderinfo.order_status eq 3"/>取消</if></td>
+            </tr>
+            <tr>
+                <td>订单总金额</td>
+                <td>{$orderinfo.order_price}</td>
+            </tr>
+            <tr>
+                <td>支付方式</td>
+                <td><if condition="$orderinfo.order_pay eq 1">货到入款<elseif condition="$orderinfo.order_pay eq 2"/>在线支付</if></td>
+            </tr>
+            <tr>
+                <td>支付状态</td>
+                <td><if condition="$orderinfo.order_paystatus eq 1">未付款<elseif condition="$orderinfo.order_paystatus eq 2"/>已付款</if></td>
+            </tr>
+            <tr>
+                <td>配送状态</td>
+                <td><if condition="$orderinfo.order_delivery eq 1">未发货<elseif condition="$orderinfo.order_delivery eq 2"/>已发货</if></td>
+            </tr>
+            <tr>
+                <td>收货状态</td>
+                <td><if condition="$orderinfo.order_receipt eq 1">未收货<elseif condition="$orderinfo.order_receipt eq 2"/>已收货</if></td>
+            </tr>
+            <tr>
+                <td>发票</td>
+                <td><if condition="$orderinfo.order_invoice eq 1">不索取发票<elseif condition="$orderinfo.order_invoice eq 2"/>索要发票</if></td>
+            </tr>
+            <tr>
+                <td>送货时间</td>
+                <td>{$orderinfo.order_sendtime}</td>
+            </tr>
+            <tr>
+                <td>备注</td>
+                <td>{$orderinfo.order_remark}</td>
+            </tr>
+            <tr>
+                <td>下单时间</td>
+                <td>{$orderinfo.order_createdate}</td>
+            </tr>
+        </table>
+        具体菜品
+        <table class="table">
+            <tr>
+                <td>菜名</td>
+                <td>单价</td>
+                <td>数量</td>
+            </tr>
+        <foreach name="orderinfo['orderdetail']" item="detail">
+            <tr>
+                <td>{$detail.food_name}</td>
+                <td>{$detail.food_price}</td>
+                <td>{$detail.food_count}</td>
+            </tr>
+        </foreach>
+        </table>
+  </div>
+</div>

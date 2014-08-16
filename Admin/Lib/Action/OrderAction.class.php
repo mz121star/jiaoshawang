@@ -40,10 +40,44 @@ class OrderAction extends PublicAction {
             $this->error("未知订单ID", 'lists');
         }
     }
-    
+
+    public function confirmorder() {
+        $userid = $this->userInfo['user_id'];
+        $usertype = $this->userInfo['user_type'];
+        $get = $this->filterAllParam('get');
+        if ($get['orderid']) {
+            $order = M("Order");
+            $changeorder = array('order_status'=>'2', 'order_paystatus'=>'2', 'order_delivery'=>'2', 'order_receipt'=>'2');
+            if ($usertype == 1) {
+                $order->where('id= '.$get['orderid'])->save($changeorder);
+            } else {
+                $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->save($changeorder);
+            }
+            $this->redirect('Order/lists');
+        } else {
+            $this->error("未知订单ID", 'lists');
+        }
+    } 
+
     public function detailorder() {
         $userid = $this->userInfo['user_id'];
         $usertype = $this->userInfo['user_type'];
         $get = $this->filterAllParam('get');
+        if ($get['orderid']) {
+            $order = M("Order");
+            $orderdetail = M("orderdetail");
+            if ($usertype == 1) {
+                $orderinfo = $order->where('id= '.$get['orderid'])->find();
+            } else {
+                $orderinfo = $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->find();
+            }
+            if ($orderinfo) {
+                $orderinfo['orderdetail'] = $orderdetail->where('order_id = '.$get['orderid'])->select();
+            }
+            $this->assign('orderinfo', $orderinfo);
+            $this->display();
+        } else {
+            $this->error("未知订单ID", 'lists');
+        }
     }
 }

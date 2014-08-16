@@ -20,6 +20,7 @@ class UserAction extends PublicAction {
         $this->assign('peopleinfo', $peopleinfo);
         $this->display();
     }
+
     public function upinfo(){
         $userid = $this->userInfo['user_id'];
         $post = $this->filterAllParam('post');
@@ -98,6 +99,19 @@ class UserAction extends PublicAction {
             $this->redirect('User/orderdetail');
         } else {
             $this->error("订单取消失败", 'orderdetail');
+        }
+    }
+
+    public function confirmorder() {
+        $userid = $this->userInfo['user_id'];
+        $get = $this->filterAllParam('get');
+        $orderobj = M("order");
+        $changeorder = array('order_status'=>'2', 'order_paystatus'=>'2', 'order_delivery'=>'2', 'order_receipt'=>'2');
+        $isConfirm = $orderobj->where('id = '.$get['id'].' and order_people="'.$userid.'"')->save($changeorder);
+        if ($isConfirm) {
+            $this->redirect('User/orderdetail');
+        } else {
+            $this->error("订单确认失败", 'orderdetail');
         }
     }
 }

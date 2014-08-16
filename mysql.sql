@@ -8,6 +8,14 @@ CREATE TABLE `dc_system` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='系统信息表';
 
+CREATE TABLE `dc_systempic` (
+  `id` int(11) NOT NULL auto_increment,
+  `system_pic` varchar(250) NOT NULL,
+  `system_picurl` varchar(250) NOT NULL default '',
+  `system_pictitle` varchar(250) NOT NULL default '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='首页广告图片表';
+
 
 CREATE TABLE `dc_user` (
   `id` int(11) NOT NULL auto_increment,

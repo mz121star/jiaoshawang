@@ -19,6 +19,7 @@ $private_config = array(
                                                   'delnotice/:noticeid' => 'Notice/delnotice',
                                                   'cancelorder/:orderid' => 'Order/cancelorder',
                                                   'detailorder/:orderid' => 'Order/detailorder',
+                                                  'confirmorder/:orderid' => 'Order/confirmorder',
                                                   ),
                         'SHOP_ROLE' => array(
                                             'Food'=>array('lists', 'showadd', 'save', 'modfood', 'delfood'),

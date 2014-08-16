@@ -101,6 +101,11 @@ class IndexAction extends PublicAction {
             $commonshop[] = $shop;
         }
         $this->assign('commonshop', $commonshop);
+
+        $system = M("systempic");
+        $syspicinfo = $system->select();
+        $this->assign('syspicinfo', $syspicinfo);
+        $this->assign('firstpicinfo', $syspicinfo[0]['system_pic']);
         $this->display();
     }
     
