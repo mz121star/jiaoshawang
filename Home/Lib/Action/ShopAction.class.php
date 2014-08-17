@@ -77,10 +77,13 @@ class ShopAction extends PublicAction {
         $getparam = $this->filterAllParam('get');
         $page = $getparam['page'];
         $iswork = $getparam['iswork'];
+        $shoptype = $getparam['shoptype'];
+        $morewhere = '';
         if ($iswork) {
-            $morewhere = ' and "'.date('G:i:s').'" between shop_beginworktime and shop_endworktime';
-        } else {
-            $morewhere = '';
+            $morewhere .= ' and "'.date('G:i:s').'" between shop_beginworktime and shop_endworktime';
+        }
+        if ($shoptype) {
+            $morewhere .= ' and shop_type = '.$shoptype;
         }
         $shopobj = M("Shop");
         $shoplist = $shopobj->where('shop_top="0"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
@@ -109,10 +112,13 @@ class ShopAction extends PublicAction {
         $getparam = $this->filterAllParam('get');
         $page = $getparam['page'];
         $iswork = $getparam['iswork'];
+        $shoptype = $getparam['shoptype'];
+        $morewhere = '';
         if ($iswork) {
             $morewhere = ' and "'.date('G:i:s').'" between shop_beginworktime and shop_endworktime';
-        } else {
-            $morewhere = '';
+        }
+        if ($shoptype) {
+            $morewhere .= ' and shop_type = '.$shoptype;
         }
         $shopobj = M("Shop");
         $shoplist = $shopobj->where('shop_top="0"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id')->join(' dc_order ON dc_order.food_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();
@@ -141,10 +147,13 @@ class ShopAction extends PublicAction {
         $getparam = $this->filterAllParam('get');
         $page = $getparam['page'];
         $iswork = $getparam['iswork'];
+        $shoptype = $getparam['shoptype'];
+        $morewhere = '';
         if ($iswork) {
             $morewhere = ' and "'.date('G:i:s').'" between shop_beginworktime and shop_endworktime';
-        } else {
-            $morewhere = '';
+        }
+        if ($shoptype) {
+            $morewhere .= ' and shop_type = '.$shoptype;
         }
         $peoplefavobj = M("peoplefav");
         $shoplist = $peoplefavobj->where('shop_top="0"'.$morewhere)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->page($page.', 10')->select();

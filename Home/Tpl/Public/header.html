@@ -91,11 +91,11 @@
         <div class="topmenu">
             <li><img src="/images/logo.png"></li>
             <li class="x1">
-                <a href="/" class="x2">首页</a>
+                <a href="/" <if condition="$current_c neq 'User'">class="x2"</if>>首页</a>
               <!--  <a href="/index.php?app=act.gift">礼品兑换</a>-->
             <!--    <a href="/index.php?app_act=help">帮助中心 </a>
                 <a href="/index.php?app_act=msg">意见反馈 </a>-->
-                <a href="/index.php/User/orderdetail">管理中心 </a>
+                <a href="/index.php/User/orderdetail" <if condition="$current_c eq 'User'">class="x2"</if>>管理中心</a>
             </li>
         </div>
     </div>

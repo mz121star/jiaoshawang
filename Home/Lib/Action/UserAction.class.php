@@ -50,8 +50,8 @@ class UserAction extends PublicAction {
 
     public function myfav(){
         $userid = $this->userInfo['user_id'];
-        $shopobj = M("Shop");
-        $shoplist = $shopobj->where('user_people="'.$userid.'"')->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->select();
+        $shopobj = M("peoplefav");
+        $shoplist = $shopobj->where('user_people="'.$userid.'"')->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id')->join(' dc_shop ON dc_shop.user_id = dc_peoplefav.user_shop')->order(array('dc_shop.id'=>'desc'))->select();
         $favshop = array();
         $current_time = date('Gis');
         foreach ($shoplist as $shop) {

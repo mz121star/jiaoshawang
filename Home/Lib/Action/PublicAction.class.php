@@ -6,6 +6,8 @@ class PublicAction extends Action {
 
     function __construct(){
         $this->userInfo = session('userinfo');
+        $this->assign('current_c', MODULE_NAME);
+        $this->assign('current_a', ACTION_NAME);
     }
 
     protected function filterAllParam($type = 'get') {

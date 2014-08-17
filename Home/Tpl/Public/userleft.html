@@ -24,9 +24,9 @@
         <div class="x6">
             <li class="xtit">会员中心</li>
             <li class="xlist">
-                <a href="/index.php/User/orderdetail" class="xsel">订单明细</a>
-                <a href="/index.php/User/myfav">我的收藏</a>
-                <a href="/index.php/User/changeinfo">资料修改</a>
+                <a href="/index.php/User/orderdetail" <if condition="$current_a eq 'orderdetail'">class="xsel"</if>>订单明细</a>
+                <a href="/index.php/User/myfav" <if condition="$current_a eq 'myfav'">class="xsel"</if>>我的收藏</a>
+                <a href="/index.php/User/changeinfo" <if condition="$current_a eq 'changeinfo'">class="xsel"</if>>资料修改</a>
 
             </li>
         </div>
