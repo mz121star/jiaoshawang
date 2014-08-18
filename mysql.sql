@@ -1,4 +1,5 @@
 
+DROP TABLE IF EXISTS `dc_system`;
 CREATE TABLE `dc_system` (
   `id` int(11) NOT NULL auto_increment,
   `system_name` varchar(250) NOT NULL,
@@ -8,6 +9,8 @@ CREATE TABLE `dc_system` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='系统信息表';
 
+
+DROP TABLE IF EXISTS `dc_systempic`;
 CREATE TABLE `dc_systempic` (
   `id` int(11) NOT NULL auto_increment,
   `system_pic` varchar(250) NOT NULL,
@@ -17,6 +20,7 @@ CREATE TABLE `dc_systempic` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='首页广告图片表';
 
 
+DROP TABLE IF EXISTS `dc_user`;
 CREATE TABLE `dc_user` (
   `id` int(11) NOT NULL auto_increment,
   `user_id` varchar(250) NOT NULL,
@@ -30,6 +34,7 @@ CREATE TABLE `dc_user` (
 INSERT INTO `dc_user` VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', 1);
 
 
+DROP TABLE IF EXISTS `dc_shop`;
 CREATE TABLE `dc_shop` (
   `id` int(11) NOT NULL auto_increment,
   `shop_name` varchar(250) NOT NULL,
@@ -44,13 +49,14 @@ CREATE TABLE `dc_shop` (
   `shop_phone` varchar(250) NOT NULL,
   `shop_addr` varchar(250) NOT NULL,
   `shop_top` enum('0','1') NOT NULL,
-  `shop_type` int(11) unsigned NOT NULL COMMENT '类型ID，关联dc_shoptype表的id',,
+  `shop_type` int(11) unsigned NOT NULL COMMENT '类型ID，关联dc_shoptype表的id',
   `user_id` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY user_id (user_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='商户信息表';
 
 
+DROP TABLE IF EXISTS `dc_shoptype`;
 CREATE TABLE `dc_shoptype` (
   `id` int(11) NOT NULL auto_increment,
   `type_name` varchar(250) NOT NULL,
@@ -58,6 +64,7 @@ CREATE TABLE `dc_shoptype` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='商户类型表';
 
 
+DROP TABLE IF EXISTS `dc_shopnotice`;
 CREATE TABLE `dc_shopnotice` (
   `id` int(11) NOT NULL auto_increment,
   `notice_title` varchar(250) NOT NULL,
@@ -69,6 +76,7 @@ CREATE TABLE `dc_shopnotice` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='商户公告表';
 
 
+DROP TABLE IF EXISTS `dc_people`;
 CREATE TABLE `dc_people` (
   `id` int(11) NOT NULL auto_increment,
   `people_name` varchar(250) NOT NULL,
@@ -82,6 +90,7 @@ CREATE TABLE `dc_people` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='普通用户信息表';
 
 
+DROP TABLE IF EXISTS `dc_peoplefav`;
 CREATE TABLE `dc_peoplefav` (
   `id` int(11) NOT NULL auto_increment,
   `user_people` varchar(250) NOT NULL COMMENT '收藏人，关联dc_user表的user_id',
@@ -91,6 +100,7 @@ CREATE TABLE `dc_peoplefav` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户收藏表';
 
 
+DROP TABLE IF EXISTS `dc_food`;
 CREATE TABLE `dc_food` (
   `id` int(11) NOT NULL auto_increment,
   `food_name` varchar(250) NOT NULL,
@@ -104,6 +114,7 @@ CREATE TABLE `dc_food` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='菜品表';
 
 
+DROP TABLE IF EXISTS `dc_order`;
 CREATE TABLE `dc_order` (
   `id` int(11) NOT NULL auto_increment,
   `order_people` varchar(250) NOT NULL COMMENT '订购人，关联dc_user表的user_id',
@@ -125,6 +136,7 @@ CREATE TABLE `dc_order` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='订单表';
 
 
+DROP TABLE IF EXISTS `dc_orderdetail`;
 CREATE TABLE `dc_orderdetail` (
   `id` int(11) NOT NULL auto_increment,
   `order_id` varchar(250) NOT NULL COMMENT '订单ID，关联dc_order表的id',

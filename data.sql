@@ -66,7 +66,6 @@ INSERT INTO `dc_shop` (`id`, `shop_name`, `shop_email`, `shop_description`, `sho
 --
 
 INSERT INTO `dc_user` (`id`, `user_id`, `user_pw`, `user_status`, `user_type`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', 1),
 (2, 'miao', '1058a42a81e5252c76cb308bcd6a0214', '1', 2),
 (3, 'test1', '5a105e8b9d40e1329780d62ea2265d8a', '1', 2),
 (4, 'test2', 'ad0234829205b9033196ba818f7a872b', '1', 2),
