@@ -45,7 +45,7 @@ class UserAction extends PublicAction {
         }
         $people = M("People");
         $people->where('user_id="'.$userid.'"')->save($post);
-        $this->redirect('User/index');
+        $this->redirect('User/orderdetail');
     }
 
     public function myfav(){
