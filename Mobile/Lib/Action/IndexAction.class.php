@@ -8,4 +8,7 @@ class IndexAction extends PublicAction {
        public function detail(){
             $this->display();
         }
+         public function cart(){
+                    $this->display();
+                }
 }
