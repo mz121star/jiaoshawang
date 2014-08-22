@@ -66,6 +66,7 @@
             <span class="ui-rmb cdish-cost ng-binding" ng-bind="extra.price">0</span>
         </li> end ngRepeat: extra in extras track by $index -->
         </ul>
+        <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" name="loginform" action="__GROUP__/cart/ordersuccess" method="post">
         <footer class="cart-footer">
             <p class="cart-summary">
 
@@ -73,9 +74,9 @@
                 <span class="ui-rmb total-cost ng-binding" ng-bind="totalCost">{$cartprice}</span>
             </p>
 
-
-            <button class="ui-btn btn-confirm" >确认美食</button>
+            <input type="submit" class="ui-btn btn-confirm" value="确认美食">
         </footer>
+            </form>
     </div>
 
 

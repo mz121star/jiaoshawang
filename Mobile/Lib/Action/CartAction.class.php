@@ -79,7 +79,7 @@ class CartAction extends PublicAction {
                                                   ));
         }
         unset($_SESSION['cart']);
-        echo json_encode(array('code'=>0, 'state'=>0));exit;
+        $this->redirect('Index/index');
     }
 
     //购物车ajax方法
@@ -102,7 +102,7 @@ class CartAction extends PublicAction {
             }
         }
         $cart->addItem($foodinfo['id'], $foodinfo['food_name'], $foodinfo['food_price'], 1, $foodinfo['food_image']);
-        echo 'OK';
+        echo '成功加入购物车';
         exit;
     }
 

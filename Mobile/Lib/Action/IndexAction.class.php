@@ -50,6 +50,7 @@ class IndexAction extends PublicAction {
         if(!empty($userInfo)){
             session('userinfo', null);
         }
+        unset($_SESSION['cart']);
         $this->redirect('Index/index');
     }
     

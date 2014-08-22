@@ -53,8 +53,8 @@
                     <use xlink:href="#svg-minus"></use>
                 </svg>
                 </div>
-                <div class="mdish-ordered ng-isolate-scope" sync-food="food.id" id="id_4080285"></div>
-                <div class="mdish-price ui-rmb ng-binding" parabola="" role="button" data-count="1" data-food-name="港式腊肠饭" data-food-originprice="" data-food-payonline="0">{$food.food_price}</div>
+                <div class="mdish-ordered ng-isolate-scope" sync-food="food.id" data-foodid="{$food.id}|{$food.food_name}|{$food.food_price}|{$food.food_image}"></div>
+                <div class="add-cart mdish-price ui-rmb ng-binding" parabola="" role="button" data-foodname="{$food.food_name}" data-price="{$food.food_price}" data-foodimg="{$food.food_image}"  data-foodid="{$food.id}">{$food.food_price}</div>
             </div>
             <!-- ngIf: food.originPrice -->
             <!-- ngIf: menu.mustPayOnline -->
@@ -69,5 +69,21 @@
     <!-- Menu navigation -->
     <include file="Index:sidebar"/>
 </div>
+    <script>
+    $(function(){
+        $(".add-cart").on("click",function(){
+           var _self=this;
+            var _data = {
+                "id": $(_self).data("foodid"),
+                 "food_name": $(_self).data("foodname"),
+                "food_price": $(_self).data("price"),
+                "food_image": $(_self).data("foodimg")
+            }
+            $.post("/mobile.php/cart/add", _data).success(function(d){
+                    alert(d);
+                    })
+        })
+    })
+</script>
 </body>
 </html>
