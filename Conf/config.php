@@ -5,7 +5,7 @@ return array(
       '
     'SHOW_PAGE_TRACE' => true,
     'DEFAULT_FILTER'=>'htmlspecialchars,stripslashes',
-      APP_GROUP_LIST'     => 'Home,Mobile,Admin',
+      'APP_GROUP_LIST'     => 'Home,Mobile,Admin',
              'DEFAULT_GROUP'      =>'Mobile',
      'APP_SUB_DOMAIN_DEPLOY'=>1, // 开启子域名配置
         /*子域名配置
