@@ -34,61 +34,7 @@
 
     <!-- Content -->
 
-    <div class="menu-dish ng-scope" ng-repeat="food in foods">
-        <div class="mdish-info">
-            <p class="mdish-name ng-binding" ng-bind="food.name">港式腊肠饭</p>
-            <p class="mdish-misc">
-                <span class="state_bg1">营业</span>
-                <!-- ngIf: food.sales > 0 --><span class="mdish-sales ng-scope" ng-if="food.sales > 0">月售<strong class="quantity ng-binding" ng-bind="food.sales">112</strong>份</span><!-- end ngIf: food.sales > 0 -->
-            </p>
-            <!-- ngIf: food.description -->
-            <!-- ngIf: food.attributes.length > 0 || menu.isActivity --><div class="mdish-badges ng-scope" ng-if="food.attributes.length > 0 || menu.isActivity">
-            <!-- ngRepeat: attr in food.attributes -->
-            <!-- ngIf: menu.isActivity && menu.imageText -->
-        </div><!-- end ngIf: food.attributes.length > 0 || menu.isActivity -->
-        </div>
-        <div class="mdish-status" ng-hide="!(restaurant.status === 1 || restaurant.status === 5) || food.stock === 0">
-            <div class="mdish-controls">
-                <div class="mdish-minus" role="button"  ><svg class="eleme-svg svg-minus" viewBox="0 0 12 2">
-                    <use xlink:href="#svg-minus"></use>
-                </svg>
-                </div>
-                <div class="mdish-ordered ng-isolate-scope" sync-food="food.id" id="id_4080285"></div>
-                <div class="mdish-price ui-rmb ng-binding" parabola="" role="button" data-count="1" data-food-name="港式腊肠饭" data-food-originprice="" data-food-payonline="0">13</div>
-            </div>
-            <!-- ngIf: food.originPrice -->
-            <!-- ngIf: menu.mustPayOnline -->
-        </div>
 
-    </div>
-
-    <div class="menu-dish ng-scope" ng-repeat="food in foods">
-        <div class="mdish-info">
-            <p class="mdish-name ng-binding" ng-bind="food.name">港式腊肠饭</p>
-            <p class="mdish-misc">
-                <span class="state_bg1">营业</span>
-                <!-- ngIf: food.sales > 0 --><span class="mdish-sales ng-scope" ng-if="food.sales > 0">月售<strong class="quantity ng-binding" ng-bind="food.sales">112</strong>份</span><!-- end ngIf: food.sales > 0 -->
-            </p>
-            <!-- ngIf: food.description -->
-            <!-- ngIf: food.attributes.length > 0 || menu.isActivity --><div class="mdish-badges ng-scope" ng-if="food.attributes.length > 0 || menu.isActivity">
-            <!-- ngRepeat: attr in food.attributes -->
-            <!-- ngIf: menu.isActivity && menu.imageText -->
-        </div><!-- end ngIf: food.attributes.length > 0 || menu.isActivity -->
-        </div>
-        <div class="mdish-status" ng-hide="!(restaurant.status === 1 || restaurant.status === 5) || food.stock === 0">
-            <div class="mdish-controls">
-                <div class="mdish-minus" role="button"  ><svg class="eleme-svg svg-minus" viewBox="0 0 12 2">
-                    <use xlink:href="#svg-minus"></use>
-                </svg>
-                </div>
-                <div class="mdish-ordered ng-isolate-scope" sync-food="food.id" id="id_4080285"></div>
-                <div class="mdish-price ui-rmb ng-binding" parabola="" role="button" data-count="1" data-food-name="港式腊肠饭" data-food-originprice="" data-food-payonline="0">13</div>
-            </div>
-            <!-- ngIf: food.originPrice -->
-            <!-- ngIf: menu.mustPayOnline -->
-        </div>
-
-    </div>
 
     <div class="menu-dish ng-scope" ng-repeat="food in foods">
         <div class="mdish-info">
@@ -117,6 +63,62 @@
         </div>
 
     </div>
+    <div class="menu-dish ng-scope" ng-repeat="food in foods">
+        <div class="mdish-info">
+            <p class="mdish-name ng-binding" ng-bind="food.name">港式腊肠饭</p>
+            <p class="mdish-misc">
+                <span class="state_bg1">营业</span>
+                <!-- ngIf: food.sales > 0 --><span class="mdish-sales ng-scope" ng-if="food.sales > 0">月售<strong class="quantity ng-binding" ng-bind="food.sales">112</strong>份</span><!-- end ngIf: food.sales > 0 -->
+            </p>
+            <!-- ngIf: food.description -->
+            <!-- ngIf: food.attributes.length > 0 || menu.isActivity --><div class="mdish-badges ng-scope" ng-if="food.attributes.length > 0 || menu.isActivity">
+            <!-- ngRepeat: attr in food.attributes -->
+            <!-- ngIf: menu.isActivity && menu.imageText -->
+        </div><!-- end ngIf: food.attributes.length > 0 || menu.isActivity -->
+        </div>
+        <div class="mdish-status" ng-hide="!(restaurant.status === 1 || restaurant.status === 5) || food.stock === 0">
+            <div class="mdish-controls">
+                <div class="mdish-minus" role="button"  ><svg class="eleme-svg svg-minus" viewBox="0 0 12 2">
+                    <use xlink:href="#svg-minus"></use>
+                </svg>
+                </div>
+                <div class="mdish-ordered ng-isolate-scope" sync-food="food.id" id="id_4080285"></div>
+                <a   class="add-cart mdish-price ui-rmb ng-binding" >13</a>
+            </div>
+            <!-- ngIf: food.originPrice -->
+            <!-- ngIf: menu.mustPayOnline -->
+        </div>
+
+    </div>
+    <div class="menu-dish ng-scope" ng-repeat="food in foods">
+        <div class="mdish-info">
+            <p class="mdish-name ng-binding" ng-bind="food.name">港式腊肠饭</p>
+            <p class="mdish-misc">
+                <span class="state_bg1">营业</span>
+                <!-- ngIf: food.sales > 0 --><span class="mdish-sales ng-scope" ng-if="food.sales > 0">月售<strong class="quantity ng-binding" ng-bind="food.sales">112</strong>份</span><!-- end ngIf: food.sales > 0 -->
+            </p>
+            <!-- ngIf: food.description -->
+            <!-- ngIf: food.attributes.length > 0 || menu.isActivity --><div class="mdish-badges ng-scope" ng-if="food.attributes.length > 0 || menu.isActivity">
+            <!-- ngRepeat: attr in food.attributes -->
+            <!-- ngIf: menu.isActivity && menu.imageText -->
+        </div><!-- end ngIf: food.attributes.length > 0 || menu.isActivity -->
+        </div>
+        <div class="mdish-status" ng-hide="!(restaurant.status === 1 || restaurant.status === 5) || food.stock === 0">
+            <div class="mdish-controls">
+                <div class="mdish-minus" role="button"  ><svg class="eleme-svg svg-minus" viewBox="0 0 12 2">
+                    <use xlink:href="#svg-minus"></use>
+                </svg>
+                </div>
+                <div class="mdish-ordered ng-isolate-scope" sync-food="food.id" id="id_4080285"></div>
+                <a   class="add-cart mdish-price ui-rmb ng-binding" >13</a>
+            </div>
+            <!-- ngIf: food.originPrice -->
+            <!-- ngIf: menu.mustPayOnline -->
+        </div>
+
+    </div>
+
+
     <a class="menu-cart ng-scope" href="/cart"  >
 
         <div class="mcart-checkout"  >去结算</div>
@@ -141,5 +143,17 @@
         </ul>
     </nav>
 </div>
+<script>
+    $(function(){
+        $(".add-cart").on("click",function(){
+            $.ajax({
+                method:"POST"
+
+            }).success(function(d){
+
+                    })
+        })
+    })
+</script>
 </body>
 </html>
