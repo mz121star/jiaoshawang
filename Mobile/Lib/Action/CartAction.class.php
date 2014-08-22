@@ -10,7 +10,7 @@ class CartAction extends PublicAction {
     public function cart(){
         $userid = $this->userInfo['user_id'];
         if(empty($userid)){
-            $this->error('请先登录', 'Index/index');
+            $this->redirect('Index/index');
         }
         $cartlist = array();
         $carttotle = 0;
