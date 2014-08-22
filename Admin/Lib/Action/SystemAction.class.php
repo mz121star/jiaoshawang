@@ -54,7 +54,7 @@ class SystemAction extends PublicAction {
             $upload = new UploadFile();
             $upload->maxSize = 3145728;//3M
             $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg');
-            $upload->savePath = './upload/';
+            $upload->savePath = './upload/ad/';
             if(!$upload->upload()) {
                 $this->error($upload->getErrorMsg());
             }else{
