@@ -60,7 +60,7 @@ p
 }
 a, a:link, a:active, a:visited, a:hover
 {
-    color: #000000;
+    color: #FFFFFF;
     text-decoration: none;
 }
 pre
@@ -115,7 +115,7 @@ pre
 #header a,
 .header a
 {
-    background: url('fonts/icons.svg') no-repeat -21px -303px;
+    /* background: url('fonts/icons.svg') no-repeat -21px -303px; */
     display: block;
     width: 40px;
     height: 40px;
@@ -126,7 +126,7 @@ pre
 
 #header a.backBtn
 {
-    background: url('fonts/icons.svg') no-repeat -97px -303px;
+    /* background: url('fonts/icons.svg') no-repeat -97px -303px; */
     display: block;
     width: 40px;
     height: 40px;
