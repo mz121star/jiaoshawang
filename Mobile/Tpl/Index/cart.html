@@ -102,21 +102,18 @@
         </ul>
         <footer class="cart-footer">
             <p class="cart-summary">
-                <span class="use-coupon-btn ng-hide" ng-click="showCoupon = true;" ng-show="isSupportCoupon">使用抵价券</span>
+
                 <span ng-bind="totalPieces" class="ng-binding">6</span> 份美食
                 <span class="ui-rmb total-cost ng-binding" ng-bind="totalCost">97</span>
             </p>
 
-            <a class="ui-btn btn-confirm disabled ng-hide" ng-show="agio < 0">还差 <span class="ui-rmb ng-binding">90</span> 满起送价</a>
-            <button class="ui-btn btn-confirm" ng-show="agio >= 0" ng-click="checkCart()">确认美食</button>
+
+            <button class="ui-btn btn-confirm" >确认美食</button>
         </footer>
     </div>
 
 
-    <a class="menu-cart ng-scope" href="/cart"  >
 
-        <div class="mcart-checkout"  >去结算</div>
-    </a>
     <!-- Menu navigation -->
     <nav id="menu">
         <ul>
