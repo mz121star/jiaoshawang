@@ -31,79 +31,37 @@
     </div>
     <div class="subHeader"><i class="i-home i-small"></i>Welcome friend!</div>
 
-    <!-- Banner -->
-    <div class="bannerPane">
-        <section class="slider">
-            <div class="flexslider">
-                <ul class="slides">
-                    <li>
-                        <img src="img/blog/1.jpg" />
-                    </li>
-                    <li>
-                        <img src="img/blog/2.jpg" />
-                    </li>
-                    <li>
-                        <img src="img/blog/3.jpg" />
-                    </li>
-                </ul>
+    <div class="geo-rst-list">
+    <a class="grst-block ng-scope" ng-repeat="restaurant in items(isPremium) | limitTo: limit |filter: search" ng-class="{closed: !(restaurant.status == 1 || restaurant.status == 5)}" ng-href="/dl-fjxdgssl?premium=0" href="/dl-fjxdgssl?premium=0">
+        <img class="grst-logo" width="42" height="42" ng-src="http://fuss10.elemecdn.com/6/5d/36561127451fc71c441099883ad11jpeg.jpeg" alt="福佳星岛港式烧腊" src="http://fuss10.elemecdn.com/6/5d/36561127451fc71c441099883ad11jpeg.jpeg">
+        <div class="grst-detail">
+            <div class="grst-name">
+                <span ng-bind="restaurant.name" class="ng-binding">福佳星岛港式烧腊</span>
+                <!-- ngRepeat: icon in restaurant.icons.attributes --><span class="rst-badge-large ng-binding ng-scope" ng-repeat="icon in restaurant.icons.attributes" ng-bind="icon.icon_name" style="background: #82782F;" title="该餐厅支持立减优惠，每单满40元立减6元">减</span><!-- end ngRepeat: icon in restaurant.icons.attributes -->
             </div>
-        </section>
-    </div>
-    <!-- End Banner -->
-
+            <!-- ngIf: restaurant.status == 1 -->
+            <!-- ngIf: restaurant.status == 1 -->
+            <!-- ngIf: restaurant.status !== 1 --><div class="grst-status ng-scope" ng-if="restaurant.status !== 1">
+            <!-- ngIf: restaurant.is_now_book_only --><span class="bookable ng-scope" ng-if="restaurant.is_now_book_only">接受预订</span><!-- end ngIf: restaurant.is_now_book_only -->
+            <!-- ngIf: !restaurant.is_now_book_only -->
+        </div><!-- end ngIf: restaurant.status !== 1 -->
+            <div class="grst-misc">
+                <!-- ngIf: restaurant.month_sales --><span ng-if="restaurant.month_sales" ng-bind="'月售 ' + restaurant.month_sales + ' 单 / '" class="ng-binding ng-scope">月售 746 单 / </span><!-- end ngIf: restaurant.month_sales -->
+                <span ng-bind="restaurant.deliver_amount + ' 元起送'" class="ng-binding">13 元起送</span>
+                <!-- ngIf: !restaurant.is_now_book_only && restaurant.deliver_time -->
+                <!-- ngIf: restaurant.is_now_book_only --><span ng-if="restaurant.is_now_book_only" ng-bind="' / ' + restaurant.open_time + ' 开始送餐'" class="ng-binding ng-scope"> / 10:00 开始送餐</span><!-- end ngIf: restaurant.is_now_book_only -->
+            </div>
+            <!-- ngIf: restaurant.icons.activities --><div class="grst-activity ng-scope" ng-if="restaurant.icons.activities">
+            <!-- ngRepeat: icon in restaurant.icons.activities --><p class="grst-activity-detail ng-scope" ng-repeat="icon in restaurant.icons.activities">
+            <span class="rst-badge ng-binding" ng-bind="icon.icon_name" style="background: #D0DCC4;">雪</span>
+            <span ng-bind="icon.name" title="大连赠600ml雪碧" class="ng-binding">大连赠600ml雪碧</span>
+        </p><!-- end ngRepeat: icon in restaurant.icons.activities -->
+        </div><!-- end ngIf: restaurant.icons.activities -->
+        </div>
+    </a>
+        </div>
     <!-- Content -->
 
-
-    <div class="exploreSiteFullPane">
-
-        <a href="#" class="explorePane active">
-					<span class="i-pane i-blue">
-						<i class="fa fa-paper-plane"></i>
-					</span>
-            <h4>雅思</h4>
-        </a>
-        <a href="blog.html" class="explorePane middle">
-					<span class="i-pane i-blue">
-					<i class="fa fa-flag"></i>
-					</span>
-            <h4>托福</h4>
-        </a>
-        <a href="blog.html" class="explorePane">
-					<span class="i-pane i-blue">
-						<i class="fa fa-globe"></i>
-					</span>
-            <h4>德福</h4>
-        </a>
-        <a href="blog.html" class="explorePane">
-					<span class="i-pane i-blue">
-					<i class="fa fa-book"></i>
-					</span>
-            <h4>法语</h4>
-        </a>
-        <a href="blog.html" class="explorePane middle">
-					<span class="i-pane i-blue">
-					<i class="fa fa-graduation-cap"></i>
-					</span>
-            <h4>留学</h4>
-        </a>
-        <a href="contact.html" class="explorePane">
-					<span class="i-pane i-blue">
-						<i class="fa fa-pencil"></i>
-					</span>
-            <h4>报名</h4>
-        </a>
-    </div>
-
-    <!-- Social Icons -->
-    <div class="socialMedia scl-grey">
-        <a href="#" class="ico-facebook" title="facebook">facebook</a>
-        <a href="#" class="ico-twitter" title="twittertwitter">twitter</a>
-        <a href="#" class="ico-linkedin" title="linkedin">linkedin</a>
-        <a href="#" class="ico-gplus" title="gplus">gplus</a>
-        <a href="#" class="ico-youtube" title="youtube">youtube</a>
-        <a href="#" class="ico-tumblr" title="tumblr">tumblr</a>
-        <a href="#" class="ico-pinterest" title="pinterest">pinterest</a>
-    </div>
 
     <!-- Menu navigation -->
     <nav id="menu">

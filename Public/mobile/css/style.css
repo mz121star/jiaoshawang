@@ -89,11 +89,12 @@ pre
     /* opacity: 0.5; */
     /* border-radius: 20px 20px 0px 0px; */
     /* background: url(../images/fbg.jpg); */
+    background-color: #3199e8;
 }
 
 .subHeader, .subFooter {
     font-size: 15px;
-    color: #fff;
+    color: #0072F0;
     text-align: center;
     line-height: 40px;
     height: 40px;
@@ -104,6 +105,7 @@ pre
     /* margin-top: 6px; */
     /* background: url(../images/fbg.jpg); */
     /* border-top: 1px solid #fff; */
+    background-color: #E6E6E6;
 }
 
 
