@@ -110,23 +110,16 @@
                 </svg>
                 </div>
                 <div class="mdish-ordered ng-isolate-scope" sync-food="food.id" id="id_4080285"></div>
-                <div class="mdish-price ui-rmb ng-binding" parabola="" role="button" data-count="1" data-food-name="港式腊肠饭" data-food-originprice="" data-food-payonline="0">13</div>
+                <a   class="add-cart mdish-price ui-rmb ng-binding" >13</a>
             </div>
             <!-- ngIf: food.originPrice -->
             <!-- ngIf: menu.mustPayOnline -->
         </div>
 
     </div>
-    <a class="menu-cart ng-scope" href="/cart" ng-controller="cartCtrl">
-        <div class="mcart-summary">
-            <svg class="eleme-svg svg-cart" id="mcart" viewBox="0 0 14 16">
-                <use xlink:href="#svg-cart"></use>
-            </svg>
-            <span class="ui-quantity ng-binding" ng-bind="totalPieces">6</span>
-            <span class="ui-rmb mcart-price ng-binding" ng-bind="totalCost">103</span>
-        </div>
-        <div class="mcart-note ng-hide" ng-show="agio < 0"> 还差 <span class="ui-rmb ng-binding">90</span> 起送</div>
-        <div class="mcart-checkout" ng-show="agio >= 0">去结算</div>
+    <a class="menu-cart ng-scope" href="/cart"  >
+
+        <div class="mcart-checkout"  >去结算</div>
     </a>
     <!-- Menu navigation -->
     <nav id="menu">
