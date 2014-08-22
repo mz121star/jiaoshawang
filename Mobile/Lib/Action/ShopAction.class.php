@@ -2,24 +2,27 @@
 
 class ShopAction extends PublicAction {
 
-    public function index(){
+    public function detail(){
         $shopid = $this->_get('shopid');
         //获取店铺菜品
         $food = M("Food");
-        $topfoodlist = $food->where('user_id="'.$shopid.'" and food_top="1"')->order(array('id'=>'desc'))->select();
-        $this->assign('topfoodlist', $topfoodlist);
-        $commonfoodlist = $food->where('user_id="'.$shopid.'" and food_top="0"')->order(array('id'=>'desc'))->select();
-        $this->assign('commonfoodlist', $commonfoodlist);
+        $orderdetail = M("orderdetail");
+        $foodlist = $food->where('user_id="'.$shopid.'"')->order(array('id'=>'desc'))->select();
+        $foods = array();
+        foreach ($foodlist as $value) {
+            $value['food_number'] = $orderdetail->where('food_id = "'.$value['id'].'"')->count();
+            $foods[] = $value;
+        }
+        $this->assign('foodlist', $foods);
         //获取店铺信息
         $shop = M("Shop");
+        $shoptype = M("shoptype");
         $shopinfo = $shop->where('user_id="'.$shopid.'"')->find();
+        $shoptype = $shoptype->where('id="'.$shopinfo['shop_type'].'"')->find();
         $foodnumber = count($topfoodlist) + count($commonfoodlist);
         $this->assign('shopinfo', $shopinfo);
+        $this->assign('shoptype', $shoptype);
         $this->assign('foodnumber', $foodnumber);
-        //获取店铺公告
-        $shopnotice = M("shopnotice");
-        $noticelist = $shopnotice->where('user_id="'.$shopid.'"')->field('id, notice_title')->order(array('notice_date'=>'desc'))->select();
-        $this->assign('noticelist', $noticelist);
 
         $cartlist = array();
         $carttotle = 0;
