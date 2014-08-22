@@ -197,7 +197,7 @@ h2.title{ font-weight: bold; margin-bottom:20px; }
 .c-orange { color: #e0af50; }
 .c-red { color: #ff7a73; }
 
-i { /* background: url("fonts/icons.svg") no-repeat left top; */ display:inline-block; position:relative; font-size: 36px;}
+i { /* background: url("fonts/icons.svg") no-repeat left top; */ display:inline-block; position:relative; font-size: 36px; color: white;}
 
 /*i.i-phone { width:72px; height:72px; background: url(fonts/phoneicon.svg) no-repeat left top; top: 50%; left:50%; margin: -36px 0px 0px -65px; }*/
 i.i-phone { width:72px; height:72px; background-position: 0px 0px; top: 50%; left:50%; margin: -36px 0px 0px -65px; }
