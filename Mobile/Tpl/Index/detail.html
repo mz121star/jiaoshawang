@@ -117,6 +117,17 @@
         </div>
 
     </div>
+    <a class="menu-cart ng-scope" href="/cart" ng-controller="cartCtrl">
+        <div class="mcart-summary">
+            <svg class="eleme-svg svg-cart" id="mcart" viewBox="0 0 14 16">
+                <use xlink:href="#svg-cart"></use>
+            </svg>
+            <span class="ui-quantity ng-binding" ng-bind="totalPieces">6</span>
+            <span class="ui-rmb mcart-price ng-binding" ng-bind="totalCost">103</span>
+        </div>
+        <div class="mcart-note ng-hide" ng-show="agio < 0"> 还差 <span class="ui-rmb ng-binding">90</span> 起送</div>
+        <div class="mcart-checkout" ng-show="agio >= 0">去结算</div>
+    </a>
     <!-- Menu navigation -->
     <nav id="menu">
         <ul>
