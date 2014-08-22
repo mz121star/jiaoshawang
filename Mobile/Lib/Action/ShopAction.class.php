@@ -39,4 +39,43 @@ class ShopAction extends PublicAction {
         $this->assign('carttotle', $carttotle);
         $this->display();
     }
+    
+    public function orders() {
+        $userid = $this->userInfo['user_id'];
+        $orderobj = M("order");
+        $orderdetailobj = M("orderdetail");
+        $shopobj = M("shop");
+        import('ORG.Util.Page');
+        $count = $orderobj->where('order_people="'.$userid.'"')->count();
+        $page = new Page($count, 1000);
+        $orderlist = $orderobj->where('order_people="'.$userid.'"')->limit($page->firstRow.','.$page->listRows)->order(array('order_createdate'=>'desc'))->select();
+        foreach ($orderlist as $key => $order) {
+            $detaillist = $orderdetailobj->where('order_id="'.$order['id'].'"')->select();
+            $orderlist[$key]['orderdetail'] = $detaillist;
+            
+            $shopinfo = $shopobj->where('user_id="'.$order['food_shop'].'"')->field('shop_name, shop_deliver_money, shop_image')->find();
+            $orderlist[$key]['shop_deliver_money'] = $shopinfo['shop_deliver_money'];
+            $orderlist[$key]['shop_name'] = $shopinfo['shop_name'];
+            $orderlist[$key]['shop_image'] = $shopinfo['shop_image'];
+        }
+        $show = $page->show();
+        $this->assign('page',$show);
+        $this->assign('orderlist', $orderlist);
+        $this->display();
+    }
+    
+    public function orderdetail() {
+        $userid = $this->userInfo['user_id'];
+        $orderid = $this->_get('orderid');
+        $orderobj = M("order");
+        $orderdetailobj = M("orderdetail");
+
+        $orderinfo = $orderobj->where('id="'.$orderid.'"')->find();
+        $detaillist = $orderdetailobj->where('order_id="'.$orderid.'"')->select();
+        
+        $this->assign('orderinfo', $orderinfo);
+        $this->assign('detaillist', $detaillist);
+        $this->assign('totalfood', count($detaillist));
+        $this->display();
+    }
 }

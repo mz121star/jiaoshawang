@@ -29,30 +29,34 @@
 				</span>
         <a class="backBtn" href="javascript:history.back();"><i class="fa fa-home"></i></a>
     </div>
-    <div class="subHeader"><i class="i-home i-small"></i>登录</div>
+    <div class="subHeader"><i class="i-home i-small"></i>订单中心</div>
 
-
-    <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" name="loginform" action="__GROUP__/index/dologin" method="post">
-        <div class="logreg-inputs">
-            <div class="input-group" >
-                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="text" name="user_id" placeholder="用户名"  required="" auto-fill-sync="">
-                <p class="input-tip">请输入用户名</p>
+<foreach name="orderlist" item="order">
+    <a class="trade-order ng-scope" href="__GROUP__/order/detail/{$order.id}">
+        <p class="torder-time ng-binding" >{$order.order_createdate}</p>
+        <div class="torder-summary">
+            <div class="torder-rst">
+                <img class="torder-rst-logo"  src="/upload/{$order.shop_image}">
+                <div class="torder-misc">
+                    <p class="rst-name ng-binding" ng-bind="order.restaurant_name">{$order.shop_name}</p>
+                    <p class="ui-rmb total-cost ng-binding" ng-bind="order.total">{$order.order_price}</p>
+                </div>
             </div>
-
-            <div class="input-group" >
-                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="password"   name="user_pw" placeholder="密码" required=""  >
-                <p class="input-tip">请输入密码</p>
-            </div>
-
-
+            <if condition="$order.order_status eq 1">
+            <div class="torder-status ng-isolate-scope blue" order-status="" status="order.status_code">等待处理</div>
+            <elseif condition="$order.order_status eq 2"/>
+            <div class="torder-status ng-isolate-scope blue" order-status="" status="order.status_code">订单已确认</div>
+            <elseif condition="$order.order_status eq 3"/>
+           <div class="torder-status ng-isolate-scope blue" order-status="" status="order.status_code">已取消</div>
+            </if>
+            
         </div>
-        <input type="submit" class="ui-btn logreg-btn" value="登录">
-    </form>
-
+    </a>
+</foreach>
 
 
     <!-- Menu navigation -->
-    
+
     <include file="Index:sidebar"/>
 </div>
 

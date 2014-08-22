@@ -1,23 +1,30 @@
 <nav id="menu">
         <ul>
             <li>
-                <a href="#">
+                <if condition="$Think.session.userinfo.user_id eq ''">
+                    <a href="/mobile.php/index/login">
                     <i class="i-blog i-small"></i>登录
                 </a>
-
+                <else />
+                 <a href="/mobile.php/index/logout">
+                    <i class="i-blog i-small"></i>{$Think.session.userinfo.user_id}, 退出登录
+                </a>
+                </if>
+<if condition="$Think.session.userinfo.user_id eq ''">
             </li>
             <li>
-                <a href="#">
+                <a href="/mobile.php/index/reg">
                     <i class="i-blog i-small"></i>注册会员
                 </a>
 
             </li>
+            <else />
             <li>
-                <a href="__GROUP__/index">
+                <a href="__GROUP__/shop/orders">
                     <i class="i-about i-small"></i>订单中心
                 </a>
             </li>
-
+</if>
 
 
         </ul>

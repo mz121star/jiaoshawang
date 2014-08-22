@@ -56,21 +56,25 @@
                 </div>
             </div>
         </li></foreach>
+            <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" name="loginform" action="__GROUP__/cart/ordersuccess" method="post">
+                <input type="hidden" name="area_select" value="1">
+                <input type="hidden" name="arrive" value="">
+                <input type="hidden" name="beta" value="">
             <div class="ui-padding-block">
                 <div class="input-group" >
-                    <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-minlength" type="text" name="address"   placeholder="请填写详细送餐地址" required="" ng-minlength="3"  >
+                    <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-minlength" type="text" name="louhao1"   placeholder="请填写详细送餐地址" required="" ng-minlength="3"  >
 
                 </div>
                 <div class="input-group" >
-                    <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-pattern" type="tel" name="phone"  placeholder="请填写能够联系到您的手机号" required=""  >
+                    <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-pattern" type="tel" name="mobile"  placeholder="请填写能够联系到您的手机号" required=""  >
 
                 </div>
                 <div class="input-group clear-margin">
-                    <input class="ui-input ng-pristine ng-valid" type="tel" name="phone_bk" ng-model="addr.phone_bk" placeholder="备用联系电话（选填）">
+                    <input class="ui-input ng-pristine ng-valid" type="tel" name="name"  placeholder="联系人姓名">
                 </div>
             </div>
         </ul>
-        <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" name="loginform" action="__GROUP__/cart/ordersuccess" method="post">
+        
         <footer class="cart-footer">
             <p class="cart-summary">
 
