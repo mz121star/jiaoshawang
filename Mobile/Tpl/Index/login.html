@@ -5,7 +5,7 @@
     <meta name="author" content="www.frebsite.nl" />
     <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
 
-    <title>风翼网</title>
+    <title>叫啥网</title>
     <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
     <link type="text/css" rel="stylesheet" href="/mobile/css/font-awesome.min.css" />
@@ -25,51 +25,35 @@
     <div id="header">
         <a href="#menu"><i class="fa fa-bars"></i> </a>
 				<span id="Logo" class="svg">
-					福佳星岛港式烧腊
+					叫啥网
 				</span>
         <a class="backBtn" href="javascript:history.back();"><i class="fa fa-home"></i></a>
     </div>
-    <div class="subHeader"><i class="i-home i-small"></i>特色港式烧腊</div>
+    <div class="subHeader"><i class="i-home i-small"></i>登录</div>
 
 
-    <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" name="loginform" novalidate="">
+    <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" name="loginform" action="__GROUP__/index/dologin" method="post">
         <div class="logreg-inputs">
             <div class="input-group" >
-                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="text" name="username" placeholder="用户名/电子邮箱"  required="" auto-fill-sync="">
-                <p class="input-tip">请输入用户名或电子邮箱</p>
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="text" name="user_id" placeholder="用户名/电子邮箱"  required="" auto-fill-sync="">
+                <p class="input-tip">请输入用户名</p>
             </div>
 
             <div class="input-group" >
-                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="password"   name="password" placeholder="密码" required=""  >
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="password"   name="user_pw" placeholder="密码" required=""  >
                 <p class="input-tip">请输入密码</p>
             </div>
 
 
         </div>
-        <button class="ui-btn logreg-btn" ng-click="login()" ng-disabled="loginform.$invalid" disabled="disabled">登录</button>
+        <input type="submit" class="ui-btn logreg-btn" value="登录">
     </form>
 
 
 
     <!-- Menu navigation -->
-    <nav id="menu">
-        <ul>
-
-            <li>
-                <a href="#">
-                    <i class="i-about i-small"></i>我要订餐
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="i-blog i-small"></i>订单中心
-                </a>
-
-            </li>
-
-
-        </ul>
-    </nav>
+    
+    <include file="Index:sidebar"/>
 </div>
 
 </body>

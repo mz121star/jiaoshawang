@@ -5,7 +5,7 @@
     <meta name="author" content="www.frebsite.nl" />
     <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
 
-    <title>风翼网</title>
+    <title>叫啥网</title>
     <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
     <link type="text/css" rel="stylesheet" href="/mobile/css/font-awesome.min.css" />
@@ -25,38 +25,38 @@
     <div id="header">
         <a href="#menu"><i class="fa fa-bars"></i> </a>
 				<span id="Logo" class="svg">
-					福佳星岛港式烧腊
+					叫啥网
 				</span>
         <a class="backBtn" href="javascript:history.back();"><i class="fa fa-home"></i></a>
     </div>
-    <div class="subHeader"><i class="i-home i-small"></i>特色港式烧腊</div>
+    <div class="subHeader"><i class="i-home i-small"></i>注册</div>
 
 
-    <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" autocomplete="off" name="regform" novalidate="" ng-submit="register()">
+    <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" autocomplete="off" name="regform" action="__GROUP__/index/adduser" method="post">
         <div class="logreg-inputs">
             <div class="input-group" ng-class="{ 'ui_error': regform.username.$invalid &amp;&amp; regform.username.$dirty &amp;&amp; invalidusername}">
-                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-minlength" type="text" placeholder="用户名" name="username" ng-minlength="5" ng-maxlength="24" ng-model="user.username" required="" ng-blur="message('username')">
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-minlength" type="text" placeholder="用户名" name="user_id">
                 <p class="input-tip">
                     <span ng-show="regform.username.$error.required" class="">请输入用户名</span>
                     <span ng-show="regform.username.$error.maxlength || regform.username.$error.minlength" class="ng-hide">用户名长度在 5 到 24 位之间</span>
                 </p>
             </div>
             <div class="input-group" ng-class="{ 'ui_error': regform.password.$invalid &amp;&amp; regform.password.$dirty &amp;&amp; invalidpassword }">
-                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-minlength" type="password" name="password" placeholder="请输入密码" ng-minlength="6" ng-model="user.password" required="" ng-blur="message('password')" ng-keyup="passwordCheck()">
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-minlength" type="password" name="user_pw1" placeholder="请输入密码" ng-minlength="6" ng-model="user.password" required="" ng-blur="message('password')" ng-keyup="passwordCheck()">
                 <p class="input-tip">
                     <span ng-show="regform.password.$error.required" class="">请输入密码</span>
                     <span ng-show="regform.password.$error.minlength" class="ng-hide">密码最少 6 位</span>
                 </p>
             </div>
             <div class="input-group" ng-class="{ 'ui_error': regform.repeat.$dirty &amp;&amp; (invalidrepeat || pwnotmatch)}">
-                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="password" name="repeat" placeholder="请再次输入密码" ng-model="user.repeat" required="" ng-blur="passwordCheck()">
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="password" name="user_pw2" placeholder="请再次输入密码" ng-model="user.repeat" required="" ng-blur="passwordCheck()">
                 <p class="input-tip">
                     <span ng-show="regform.repeat.$error.required" class="">请再次输入密码</span>
                     <span ng-show="pwnotmatch" class="ng-hide">两次密码输入不一致</span>
                 </p>
             </div>
             <div class="input-group" >
-                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-pattern" type="phone" name="phone" placeholder="手机号" />
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-pattern" type="phone" name="people_phone" placeholder="手机号" />
                 <p class="input-tip">
 
                 </p>
@@ -69,24 +69,7 @@
 
 
     <!-- Menu navigation -->
-    <nav id="menu">
-        <ul>
-
-            <li>
-                <a href="#">
-                    <i class="i-about i-small"></i>我要订餐
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="i-blog i-small"></i>订单中心
-                </a>
-
-            </li>
-
-
-        </ul>
-    </nav>
+    <include file="Index:sidebar"/>
 </div>
 
 </body>
