@@ -56,15 +56,19 @@
                 </div>
             </div>
         </li></foreach>
-<!--             ngRepeat: extra in extras track by $index <li class="cart-extra ng-scope" ng-repeat="extra in extras track by $index">
-            <span class="cdish-name ng-binding" ng-bind="extra.name">立减优惠</span>
-            <span class="ui-multiple cdish-quantity ng-binding" ng-bind="extra.quantity">1</span>
-            <span class="ui-rmb cdish-cost ng-binding" ng-bind="extra.price">-6</span>
-        </li> end ngRepeat: extra in extras track by $index <li class="cart-extra ng-scope" ng-repeat="extra in extras track by $index">
-            <span class="cdish-name ng-binding" ng-bind="extra.name">雪碧</span>
-            <span class="ui-multiple cdish-quantity ng-binding" ng-bind="extra.quantity">6</span>
-            <span class="ui-rmb cdish-cost ng-binding" ng-bind="extra.price">0</span>
-        </li> end ngRepeat: extra in extras track by $index -->
+            <div class="ui-padding-block">
+                <div class="input-group" >
+                    <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-minlength" type="text" name="address"   placeholder="请填写详细送餐地址" required="" ng-minlength="3"  >
+
+                </div>
+                <div class="input-group" >
+                    <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-pattern" type="tel" name="phone"  placeholder="请填写能够联系到您的手机号" required=""  >
+
+                </div>
+                <div class="input-group clear-margin">
+                    <input class="ui-input ng-pristine ng-valid" type="tel" name="phone_bk" ng-model="addr.phone_bk" placeholder="备用联系电话（选填）">
+                </div>
+            </div>
         </ul>
         <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" name="loginform" action="__GROUP__/cart/ordersuccess" method="post">
         <footer class="cart-footer">
