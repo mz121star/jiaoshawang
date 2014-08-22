@@ -4,6 +4,6 @@ $private_config = array(
                            'URL_ROUTER_ON' => true,
                            'URL_CASE_INSENSITIVE' =>true,
                            'URL_ROUTE_RULES' => array(
-                                                    'shop/detail/:shopid' => 'Shop/index',
+                                                    'shop/detail/:shopid' => 'Shop/detail',
                                                 ));//私有配置
 return array_merge($common_config, $private_config);
