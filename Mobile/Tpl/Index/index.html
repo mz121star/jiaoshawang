@@ -140,8 +140,28 @@
 </div>
 
 <script>
-$(document).ready(function() {
 
+$(document).ready(function() {
+    var time = 0;
+    var cid = 35;
+    function settypes(id) {
+        if (time) {
+            window.location.href = "" + "#?cid=" + id + "&time=" + time;
+        } else {
+            window.location.href = "" + "#?cid=" + id;
+        }
+
+
+    }
+
+    function settimes(id) {
+        if (cid) {
+            window.location.href = "" + "#?time=" + id + "&cid=" + cid;
+        } else {
+            window.location.href = "" + "#?time=" + id;
+        }
+
+    }
 
 $("#popupDialog-type").click(function(){
 $.tipsWindow({
