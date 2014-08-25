@@ -18,6 +18,28 @@
     <script type="text/javascript" src="/mobile/js/jquery.flexslider.js"></script>
     <script type="text/javascript" src="/mobile/js/o-script.js"></script>
     <script type="text/javascript" src="/js/jquery.tipswindow-2.2.js"></script>
+    <script>
+        var time = 0;
+        var cid = 35;
+        function settypes(id) {
+            if (time) {
+                window.location.href = "" + "#?cid=" + id + "&time=" + time;
+            } else {
+                window.location.href = "" + "#?cid=" + id;
+            }
+
+
+        }
+
+        function settimes(id) {
+            if (cid) {
+                window.location.href = "" + "#?time=" + id + "&cid=" + cid;
+            } else {
+                window.location.href = "" + "#?time=" + id;
+            }
+
+        }
+    </script>
 </head>
 <body class="o-page">
 <div id="page">
@@ -142,26 +164,7 @@
 <script>
 
 $(document).ready(function() {
-    var time = 0;
-    var cid = 35;
-    function settypes(id) {
-        if (time) {
-            window.location.href = "" + "#?cid=" + id + "&time=" + time;
-        } else {
-            window.location.href = "" + "#?cid=" + id;
-        }
 
-
-    }
-
-    function settimes(id) {
-        if (cid) {
-            window.location.href = "" + "#?time=" + id + "&cid=" + cid;
-        } else {
-            window.location.href = "" + "#?time=" + id;
-        }
-
-    }
 
 $("#popupDialog-type").click(function(){
 $.tipsWindow({
