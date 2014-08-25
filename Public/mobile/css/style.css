@@ -2808,3 +2808,45 @@ button.logreg-btn {
     text-align: right
 }
 #think_page_trace_open{display: none}
+
+
+.list_tab {
+    display: -webkit-box;
+    border-bottom: 1px solid #CCC5BB;
+    box-shadow: 0 0 .25rem rgba(0,0,0,.2);
+    position: relative;
+    z-index: 1;
+    background-color: #FFF
+}
+
+.list_tab.fixed {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    width: 100%
+}
+
+.list_tab a {
+    font-weight: normal;
+    display: -webkit-box;
+    -webkit-box-flex: 1;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    font-size: 1.4rem;
+    color: #666;
+    padding: 1rem 0;
+    border-right: 1px solid #F1F1F1;
+    text-decoration: none;
+    font-family: "\5FAE\8F6F\96C5\9ED1"
+}
+
+.list_tab a:after {
+    content: "";
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAALBAMAAABv+6sJAAAAIVBMVEUAAABXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1ffA55cAAAACnRSTlMAA5+Ymo8GCa7pLAkHJQAAAFJJREFUCNdjYChgAAIwxbFYAMQSXsHAkLVKEchi1FqVwMC6ahFQWGjVUqCAFVAYKOgAZDIDhYVWLQGyQMJqYEGw8EqQIFQYJAgRBgrCQFQAiAQAGbYU57mg1kEAAAAASUVORK5CYII=") no-repeat 0 center;
+    -webkit-background-size: 10px 6px;
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    margin-left: 6px;
+    vertical-align: 1px
+}
