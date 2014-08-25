@@ -2928,3 +2928,127 @@ button.logreg-btn {
 .pop-list li.sbon .txt {
     background-image: url(../../images/sb_on.png)
 }
+
+.box {
+    width: 100%;
+    height: 100%
+}
+
+.pop-list {
+    position: fixed;
+    z-index: 6;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical
+}
+
+#boxBg {
+    filter: alpha(opacity=50);
+    opacity: .5;
+    background: #000
+}
+
+.boxLoading,.boxError {
+    position: absolute;
+    display: block;
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: -45px;
+    margin-top: -15px;
+    left: 50%;
+    top: 50%;
+    color: #F00
+}
+
+.boxLoading {
+    width: 28px;
+    margin-left: -14px;
+    text-indent: -999em;
+    text-align: center
+}
+
+.boxTitle {
+    position: relative;
+    border: 1px solid #A6C9E1;
+    height: 30px;
+    line-height: 30px
+}
+
+.boxTitle h3 {
+    float: left;
+    font-weight: normal;
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+    text-indent: 10px
+}
+
+.boxTitle span {
+    position: absolute;
+    width: 10px;
+    text-indent: -10em;
+    right: 10px;
+    top: 10px;
+    height: 16px;
+    overflow: hidden;
+    cursor: pointer
+}
+
+.boxTitle span.hover {
+}
+
+.boxContent {
+    padding: 0;
+    border: 1px solid #A6C9E1;
+    border-top: none;
+    text-align: center;
+    overflow: auto
+}
+
+.shadow {
+    box-shadow: 3px 3px 5px #BFBFBF;
+    -moz-box-shadow: 3px 3px 5px #BFBFBF;
+    -webkit-box-shadow: 3px 3px 5px #BFBFBF
+}
+
+@media \0screen\,screen\9 {
+    .m-slide .hd {
+        background-color: transparent;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000);
+        #zoom:1}
+}
+
+@media \0screen\,screen\9 {
+    #loadingBj {
+        background-color: transparent;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#19000000,endColorstr=#19000000);
+        #zoom:1}
+}
+
+@media \0screen\,screen\9 {
+    .ajaxLoad {
+        background-color: transparent;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E5000000,endColorstr=#E5000000);
+        #zoom:1}
+}
+
+@media \0screen\,screen\9 {
+    .pop-tips {
+        background-color: transparent;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CC000000,endColorstr=#CC000000);
+        #zoom:1}
+}
+
+@media \0screen\,screen\9 {
+    .mask {
+        background-color: transparent;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000000,endColorstr=#00000000);
+        #zoom:1}
+}
+#CssGaga {
+    content: "140424155119,adg,325"
+}
