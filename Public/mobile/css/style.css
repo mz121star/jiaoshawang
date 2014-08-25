@@ -2876,7 +2876,7 @@ button.logreg-btn {
     height: 24px;
     overflow: hidden;
     text-indent: -333px;
-    background: url(../images/ico-close.png) no-repeat;
+    background: url(../../images/ico-close.png) no-repeat;
     -webkit-background-size: 24px 24px
 }
 
@@ -2919,12 +2919,12 @@ button.logreg-btn {
     color: #444;
     display: -webkit-box;
     -webkit-box-align: center;
-    background: url(../images/sb.png) no-repeat right center;
+    background: url(../../images/sb.png) no-repeat right center;
     background-size: auto 1.8rem;
     padding-right: 2.4rem;
     word-break: break-all
 }
 
 .pop-list li.sbon .txt {
-    background-image: url(../images/sb_on.png)
+    background-image: url(../../images/sb_on.png)
 }
