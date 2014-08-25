@@ -18,14 +18,17 @@
     <script type="text/javascript" src="/mobile/js/jquery.flexslider.js"></script>
     <script type="text/javascript" src="/mobile/js/o-script.js"></script>
     <script type="text/javascript" src="/js/jquery.tipswindow-2.2.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lcO3zSdb4cgCduHNBT3AoAR9"></script>
+    <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+
     <script>
         var time = 0;
         var cid = 35;
         function settypes(id) {
             if (time) {
-                window.location.href = "" + "#?cid=" + id + "&time=" + time;
+                window.location.href = "" + "/mobile.php?cid=" + id + "&time=" + time;
             } else {
-                window.location.href = "" + "#?cid=" + id;
+                window.location.href = "" + "/mobile.php?cid=" + id;
             }
 
 
@@ -33,9 +36,9 @@
 
         function settimes(id) {
             if (cid) {
-                window.location.href = "" + "#?time=" + id + "&cid=" + cid;
+                window.location.href = "" + "/mobile.php?time=" + id + "&cid=" + cid;
             } else {
-                window.location.href = "" + "#?time=" + id;
+                window.location.href = "" + "/mobile.php?time=" + id;
             }
 
         }
@@ -49,7 +52,7 @@
 				<span id="Logo" class="svg">
 					叫啥网
 				</span>
-        <a class="backBtn" href="/mobile.php"><i class="fa fa-home"></i></a>
+        <a class="backBtn" href="/mobile.php">大连市 </a>
     </div>
     <div class="subHeader">
 
@@ -160,7 +163,36 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
 
+
+
+    var geolocation = new BMap.Geolocation();
+    geolocation.getCurrentPosition(function(r){
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+
+            var myGeo = new BMap.Geocoder();
+            myGeo.getLocation(r.point, function(rs){ //这里弹出“知春路”的详细地址信息，第二步getLocation是反地址解析。
+                var addComp = rs.addressComponents;
+                 alert(addComp.street + ", " + addComp.streetNumber);
+            });
+
+        }
+        else {
+
+        }
+    },{enableHighAccuracy: true})
+    //关于状态码
+    //BMAP_STATUS_SUCCESS	检索成功。对应数值“0”。
+    //BMAP_STATUS_CITY_LIST	城市列表。对应数值“1”。
+    //BMAP_STATUS_UNKNOWN_LOCATION	位置结果未知。对应数值“2”。
+    //BMAP_STATUS_UNKNOWN_ROUTE	导航结果未知。对应数值“3”。
+    //BMAP_STATUS_INVALID_KEY	非法密钥。对应数值“4”。
+    //BMAP_STATUS_INVALID_REQUEST	非法请求。对应数值“5”。
+    //BMAP_STATUS_PERMISSION_DENIED	没有权限。对应数值“6”。(自 1.1 新增)
+    //BMAP_STATUS_SERVICE_UNAVAILABLE	服务不可用。对应数值“7”。(自 1.1 新增)
+    //BMAP_STATUS_TIMEOUT	超时。对应数值“8”。(自 1.1 新增)
+</script>
 <script>
 
 $(document).ready(function() {
