@@ -31,6 +31,23 @@
     </div>
     <div class="subHeader"><i class="i-home i-small"></i>{$shopinfo.type_name}</div>
 
+    <div class="bannerPane">
+        <section class="slider">
+            <div class="flexslider">
+                <ul class="slides">
+
+                    <foreach name="foodlist" item="food">
+                        <if condition="$food.food_image">
+                    <li>
+                        <img src="/upload/{$food.food_image}" />
+                    </li>
+                       <else />
+                        </if>
+                    </foreach>
+                </ul>
+            </div>
+        </section>
+    </div>
 
     <!-- Content -->
     <foreach name="foodlist" item="food">
