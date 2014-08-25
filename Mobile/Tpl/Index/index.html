@@ -52,7 +52,7 @@
 				<span id="Logo" class="svg">
 					叫啥网
 				</span>
-        <a class="backBtn" href="/mobile.php">大连市 </a>
+        <a class="backBtn" href="/mobile.php">[大连市] </a>
     </div>
     <div class="subHeader">
 
@@ -174,7 +174,8 @@
             var myGeo = new BMap.Geocoder();
             myGeo.getLocation(r.point, function(rs){ //这里弹出“知春路”的详细地址信息，第二步getLocation是反地址解析。
                 var addComp = rs.addressComponents;
-                 alert(addComp.street + ", " + addComp.streetNumber);
+
+                $(".backBtn").html("["+addComp.street + ", " + addComp.streetNumber+"]");
             });
 
         }
