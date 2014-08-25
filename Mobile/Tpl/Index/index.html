@@ -17,7 +17,7 @@
     <script type="text/javascript" src="/mobile/js/jquery.mmenu.min.all.js"></script>
     <script type="text/javascript" src="/mobile/js/jquery.flexslider.js"></script>
     <script type="text/javascript" src="/mobile/js/o-script.js"></script>
-
+    <script type="text/javascript" src="/mobile/js/jquery.tipswindow-2.2.js"></script>
 </head>
 <body class="o-page">
 <div id="page">
@@ -77,5 +77,106 @@
     <!-- Menu navigation -->
     <include file="Index:sidebar"/>
 </div>
+<div data-role="popup" id="popupDialog-screen-type" style="display:none;">
+    <div class="pop-list"  id="pop_list_types">
+        <div class="title">
+            <h2>选择分类</h2>
+            <a href="javascript:;" id="c3" class="close">关闭</a>
+        </div>
+        <div class="content">
+            <ul class="panel_sb">
+                <li class="" onclick="settypes(0)">
+                    <div class="txt"  onclick="settypes(0)">全部</div></li>
+
+                <li class="sbon" onclick="settypes(35)">
+
+                    <div class="txt">流行音乐</div></li>
+
+                <li class=""  onclick="settypes(36)">
+
+                    <div class="txt">古典音乐</div></li>
+
+                <li class=""  onclick="settypes(37)">
+
+                    <div class="txt">舞台剧</div></li>
+
+                <li class=""  onclick="settypes(38)">
+
+                    <div class="txt">儿童亲子</div></li>
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div data-role="popup" id="popupDialog-screen-time" style="display:none;">
+    <div class="pop-list"  id="pop_list_times">
+        <div class="title">
+            <h2>选择分类</h2>
+            <a href="javascript:;" id="c4" class="close">关闭</a>
+        </div>
+        <div class="content">
+            <ul class="panel_sb">
+                <li class="sbon" onclick="settime(0)">
+                    <div class="txt" onclick="settimes(0)">全部</div></li>
+
+                <li class=""  onclick="settimes(2)">
+
+                    <div class="txt">明天</div></li>
+
+                <li class=""  onclick="settimes(1)">
+
+                    <div class="txt">周末</div></li>
+
+                <li class=""  onclick="settimes(3)">
+
+                    <div class="txt">一周内</div></li>
+
+                <li class=""  onclick="settimes(4)">
+
+                    <div class="txt">一个月内</div></li>
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+
+
+$("#popupDialog-type").click(function(){
+$.tipsWindow({
+___content:"id:popupDialog-screen-type",
+//___width:"600",
+//___height:"300",
+___drag:"___boxTitle",
+___closeID:"c3",
+___showbg:true
+})
+
+});
+
+
+$("#popupDialog-time").click(function(){
+$.tipsWindow({
+___content:"id:popupDialog-screen-time",
+//___width:"600",
+//___height:"300",
+___drag:"___boxTitle",
+___closeID:"c4",
+___showbg:true
+})
+
+});
+
+})
+
+</script>
+
 </body>
 </html>

@@ -98,7 +98,7 @@ pre
     text-align: center;
     line-height: 40px;
     height: 40px;
-    padding: 0px 10px;
+    /* padding: 0px 10px; */
     position:relative;
     width: 100%;
     /* opacity: 0.6; */
@@ -2816,8 +2816,7 @@ button.logreg-btn {
     box-shadow: 0 0 .25rem rgba(0,0,0,.2);
     position: relative;
     z-index: 1;
-    background-color: #FFF
-}
+    background-color: #1F1F1F;}
 
 .list_tab.fixed {
     position: fixed;
@@ -2832,10 +2831,10 @@ button.logreg-btn {
     -webkit-box-flex: 1;
     -webkit-box-pack: center;
     -webkit-box-align: center;
-    font-size: 1.4rem;
-    color: #666;
-    padding: 1rem 0;
-    border-right: 1px solid #F1F1F1;
+    /* font-size: 1.4rem; */
+    color: #FFF;
+    /* padding: 1rem 0; */
+    border-right: 1px solid #504949;
     text-decoration: none;
     font-family: "\5FAE\8F6F\96C5\9ED1"
 }
@@ -2849,4 +2848,83 @@ button.logreg-btn {
     width: 10px;
     margin-left: 6px;
     vertical-align: 1px
+}
+
+.pop-list .title {
+    position: relative;
+    z-index: 1;
+    width: 100%
+}
+
+.pop-list .title h2 {
+    line-height: 1.0rem;
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: #FFF;
+    padding: 1rem 1rem 2rem 1rem;
+    text-indent: -9999em;
+    width: 0;
+    overflow: hidden
+}
+
+.pop-list .title .close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.0rem;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    text-indent: -333px;
+    background: url(../images/ico-close.png) no-repeat;
+    -webkit-background-size: 24px 24px
+}
+
+.pop-list .content {
+    display: -webit-box;
+    -webkit-box-flex: 1;
+    color: #444;
+    padding: 0 1rem 1.5rem 1rem;
+    height: 70%;
+    overflow-y: scroll
+}
+
+.pop-list .panel_sb {
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #f8f8f8
+}
+
+.pop-list .panel_sb li {
+    padding: 0 1rem;
+    border-bottom: 1px solid #e0e1e2;
+    border-top: 1px solid #FFF;
+    cursor: pointer
+}
+
+.pop-list .panel_sb li:first-of-type {
+    border-top: none
+}
+
+.pop-list .panel_sb li:last-of-type {
+    background-image: none;
+    border-bottom: none
+}
+
+.pop-list li .txt {
+    font-size: 1.4rem;
+    line-height: 1.6em;
+    padding: 1.2rem 0;
+    color: #444;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    background: url(../images/sb.png) no-repeat right center;
+    background-size: auto 1.8rem;
+    padding-right: 2.4rem;
+    word-break: break-all
+}
+
+.pop-list li.sbon .txt {
+    background-image: url(../images/sb_on.png)
 }
