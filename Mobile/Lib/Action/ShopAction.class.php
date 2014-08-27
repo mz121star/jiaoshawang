@@ -37,6 +37,7 @@ class ShopAction extends PublicAction {
         $this->assign('cartlist', $cartlist);
         $this->assign('cartprice', $cartprice);
         $this->assign('carttotle', $carttotle);
+        $this->assign('shopid',$shopid);
         $this->display();
     }
     
@@ -61,6 +62,7 @@ class ShopAction extends PublicAction {
         $show = $page->show();
         $this->assign('page',$show);
         $this->assign('orderlist', $orderlist);
+        $this->assign('shopid',$userid);
         $this->display();
     }
     
@@ -76,6 +78,49 @@ class ShopAction extends PublicAction {
         $this->assign('orderinfo', $orderinfo);
         $this->assign('detaillist', $detaillist);
         $this->assign('totalfood', count($detaillist));
+        $this->display();
+    }
+    
+    public function fav() {
+        $shopid = $this->_get('shopid');
+        $userid = $this->userInfo['user_id'];
+        if (!$userid) {
+            echo '请登录后收藏';exit;
+        }
+        $peoplefav = M("peoplefav");
+        $isfav = $peoplefav->where('user_people="'.$userid.'" and user_shop="'.$shopid.'"')->find();
+        if ($isfav) {
+            echo '已经收藏过该店';exit;
+        }
+        $favid = $peoplefav->add(array('user_people'=>$userid, 'user_shop'=>$shopid, 'fav_date'=>date('Y-m-d H:i:s')));
+        if ($favid) {
+            echo '收藏成功';
+        } else {
+            echo '收藏失败';
+        }
+        exit;
+    }
+    
+    public function cancelfav() {
+        $shopid = $this->_get('shopid');
+        $userid = $this->userInfo['user_id'];
+        if (!$userid) {
+            echo '请登录后删除收藏';exit;
+        }
+        $peoplefav = M("peoplefav");
+        $favid = $peoplefav->where(array('user_people'=>$userid, 'user_shop'=>$shopid))->delete();
+        if ($favid) {
+            $this->redirect('shop/myfav');
+        } else {
+            $this->error('删除收藏失败', 'myfav');
+        }
+    }
+    
+    public function myfav() {
+        $userid = $this->userInfo['user_id'];
+        $peoplefav = M("peoplefav");
+        $favlist = $peoplefav->where('user_people="'.$userid.'"')->field('shop_name, dc_shop.user_id')->join(' dc_shop on dc_shop.user_id = dc_peoplefav.user_shop')->select();
+        $this->assign('favlist', $favlist);
         $this->display();
     }
 }

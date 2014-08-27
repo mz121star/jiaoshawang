@@ -8,5 +8,7 @@ $private_config = array(
                                                     'order/detail/:orderid' => 'Shop/orderdetail',
                                                     'settype/:typeid' => 'Index/settype',
                                                     'setorder/:orderid' => 'Index/setorder',
+                                                    'fav/:shopid' => 'Shop/fav',
+                                                    'cancelfav/:shopid' => 'Shop/cancelfav',
                                                 ));//私有配置
 return array_merge($common_config, $private_config);
