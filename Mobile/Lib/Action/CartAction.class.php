@@ -28,6 +28,14 @@ class CartAction extends PublicAction {
         $people = M("People");
         $peopleinfo = $people->where('user_id="'.$userid.'"')->find();
         $this->assign('peopleinfo', $peopleinfo);
+        
+        $order = M("Order");
+        $lastaddr = '';
+        $orderinfo = $order->field('order_addr')->where('order_people="'.$userid.'"')->order(array('order_createdate'=>'desc'))->limit(1)->find();
+        if ($orderinfo) {
+            $lastaddr = $orderinfo['order_addr'];
+        }
+        $this->assign('lastaddr', $lastaddr);
         $this->display();
     }
     
@@ -59,7 +67,7 @@ class CartAction extends PublicAction {
         }
         $insertdata['order_people'] = $this->userInfo['user_id'];
         $insertdata['order_sendtime'] = $orderinfo['arrive'];
-        $insertdata['order_remark'] = $orderinfo['beta'];
+        $insertdata['order_remark'] = $orderinfo['order_remark'];
         $insertdata['order_createdate'] = date('Y-m-d H:i:s');
         $insertdata['order_price'] = $totalprice;
         $insertdata['order_pay'] = 1;

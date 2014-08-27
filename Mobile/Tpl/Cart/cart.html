@@ -62,15 +62,19 @@
                 <input type="hidden" name="beta" value="">
             <div class="ui-padding-block">
                 <div class="input-group" >
-                    <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-minlength" type="text" name="louhao1"   placeholder="请填写详细送餐地址" required="" ng-minlength="3"  >
+                    <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-minlength" type="text" name="louhao1"   placeholder="请填写详细送餐地址" required="" value="{$lastaddr}" ng-minlength="3"  >
 
                 </div>
                 <div class="input-group" >
                     <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-pattern" type="tel" name="mobile"  placeholder="请填写能够联系到您的手机号" required=""  >
 
                 </div>
-                <div class="input-group clear-margin">
+                <div class="input-group">
                     <input class="ui-input ng-pristine ng-valid" type="tel" name="name"  placeholder="联系人姓名">
+                </div>
+                
+                <div class="input-group clear-margin">
+                    <textarea class="ui-input ng-pristine ng-valid" name="order_remark" placeholder="备注"></textarea>
                 </div>
             </div>
         </ul>
