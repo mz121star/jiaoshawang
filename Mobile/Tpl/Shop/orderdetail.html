@@ -66,7 +66,7 @@
     <section class="trade-block ng-scope">
         <h3 class="tblock-title">订单信息</h3>
         <ul class="tblock-list">
-            <li class="tblock-list-item ng-binding" ng-bind="'订单号：' + order.data.address">订单号：{$orderinfo.id|md5}</li>
+            <li class="tblock-list-item ng-binding" ng-bind="'订单号：' + order.data.address">订单号：{$orderinfo.id|md5|substr=0,8}</li>
             <li class="tblock-list-item ng-binding" ng-bind="'地址：' + order.data.address">地址：{$orderinfo.order_addr}</li>
             <li class="tblock-list-item ng-binding" ng-bind="'电话：' + order.data.phone">电话：{$orderinfo.order_phone}</li>
             <!-- ngIf: order.data.invoice && order.data.invoice !== '无需发票' -->
