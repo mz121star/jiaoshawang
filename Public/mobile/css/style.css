@@ -2314,6 +2314,8 @@ button.logreg-btn {
     padding: 0 10px;
     background: #323941;
     line-height: 1
+;height: 50px;
+    z-index: 999;
 }
 
 .mcart-summary {
@@ -3054,4 +3056,4 @@ button.logreg-btn {
 #CssGaga {
     content: "140424155119,adg,325"
 }
-.mm-page{padding-bottom: 40px}
+.mm-page{padding-bottom: 70px;}
