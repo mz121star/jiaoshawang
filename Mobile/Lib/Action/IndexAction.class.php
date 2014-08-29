@@ -36,6 +36,46 @@ class IndexAction extends PublicAction {
         $this->display();
     }
     
+    public function search() {
+        $userid = $this->userInfo['user_id'];
+        $searchshop = $this->_post('searchshop');
+        $shopobj = M("Shop");
+        if ($searchshop) {
+            $where['shop_name'] = array('like', '%'.$searchshop.'%');
+        } else {
+            $where = array();
+        }
+        $orderobj = M("order");
+        import('ORG.Util.Page');
+        $count = $shopobj->where($where)->count();
+        $page = new Page($count, 10);
+        $shoplist = $shopobj->where($where)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
+        $commonshop = array();
+        $current_time = date('Gis');
+        foreach ($shoplist as $shop) {
+            $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
+            $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
+            if ($current_time >= $beginworktime && $current_time <= $endworktime) {
+                $shop['is_working'] = 1;
+            } else {
+                $shop['is_working'] = 0;
+            }
+            if ($userid && $shop['user_people'] == $userid) {
+                $shop['is_fav'] = 1;
+            } else {
+                $shop['is_fav'] = 0;
+            }
+            $shop['order_number'] = $orderobj->where('food_shop = "'.$shop['user_id'].'"')->count();
+            $commonshop[] = $shop;
+        }
+        $this->assign('commonshop', $commonshop);
+        
+        $shoptype = M('shoptype');
+        $typelist = $shoptype->select();
+        $this->assign('typelist', $typelist);
+        $this->display('index');
+    }
+    
     public function settype(){
         $userid = $this->userInfo['user_id'];
         $shoptype = $this->_get('typeid');
