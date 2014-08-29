@@ -35,9 +35,9 @@
     <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" autocomplete="off" name="regform" action="__GROUP__/index/adduser" method="post">
         <div class="logreg-inputs">
             <div class="input-group" ng-class="{ 'ui_error': regform.username.$invalid &amp;&amp; regform.username.$dirty &amp;&amp; invalidusername}">
-                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-minlength" type="text" placeholder="用户名" name="user_id">
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-minlength" type="text" placeholder="手机号" name="user_id">
                 <p class="input-tip">
-                    <span ng-show="regform.username.$error.required" class="">请输入用户名</span>
+                    <span ng-show="regform.username.$error.required" class="">请输入手机号</span>
                     <span ng-show="regform.username.$error.maxlength || regform.username.$error.minlength" class="ng-hide">用户名长度在 5 到 24 位之间</span>
                 </p>
             </div>
@@ -53,12 +53,6 @@
                 <p class="input-tip">
                     <span ng-show="regform.repeat.$error.required" class="">请再次输入密码</span>
                     <span ng-show="pwnotmatch" class="ng-hide">两次密码输入不一致</span>
-                </p>
-            </div>
-            <div class="input-group" >
-                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-pattern" type="phone" name="people_phone" placeholder="手机号" />
-                <p class="input-tip">
-
                 </p>
             </div>
         </div>
