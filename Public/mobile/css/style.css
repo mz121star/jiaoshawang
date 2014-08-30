@@ -2166,8 +2166,8 @@ button.logreg-btn {
 
 .mdish-minus {
     width: 28px;
-    visibility: hidden
-}
+    /* visibility: hidden
+ */}
 
 .mdish-minus.ui_show {
     visibility: visible
