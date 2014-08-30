@@ -69,11 +69,11 @@ height: 100%;">{$shopinfo.shop_description}</div>
         </div>
         <div class="mdish-status" ng-hide="!(restaurant.status === 1 || restaurant.status === 5) || food.stock === 0">
             <div class="mdish-controls">
-                <div class="mdish-minus" role="button"  ><svg class="eleme-svg svg-minus" viewBox="0 0 12 2">
-                    <use xlink:href="#svg-minus"></use>
+                <div class="mdish-minus" role="button"  >
+                    -
                 </svg>
                 </div>
-                <div class="mdish-ordered ng-isolate-scope" sync-food="food.id" data-foodid="{$food.id}|{$food.food_name}|{$food.food_price}|{$food.food_image}"></div>
+                <div class="mdish-ordered ng-isolate-scope" >2</div>
                 <div class="add-cart mdish-price ui-rmb ng-binding" parabola="" role="button" data-foodname="{$food.food_name}" data-price="{$food.food_price}" data-foodimg="{$food.food_image}"  data-foodid="{$food.id}">{$food.food_price}</div>
             </div>
             <!-- ngIf: food.originPrice -->
