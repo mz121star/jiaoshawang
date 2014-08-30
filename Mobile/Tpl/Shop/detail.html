@@ -94,14 +94,17 @@ height: 100%;">{$shopinfo.shop_description}</div>
     <script>
     $(function(){
         $(".mdish-minus").on("click",function(){
+            var _self=this;
 
-            var num=parseInt($(this).data("num"),10);
+            var numNode=$(".mdish-ordered",$(_self).parent());
+            var num=parseInt($(numNode).data("num"),10);
+
             if(num==0){
 
             }
             else{
-                $(this).data("num",num-1);
-                $(this).html(num-1);
+                $(numNode).data("num",num-1);
+                $(numNode).html(num-1);
             }
 
         })
