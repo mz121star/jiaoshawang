@@ -73,7 +73,7 @@ height: 100%;">{$shopinfo.shop_description}</div>
                     -
                 </svg>
                 </div>
-                <div class="mdish-ordered ng-isolate-scope" >2</div>
+                <div class="mdish-ordered ng-isolate-scope" data-num="0" > 0</div>
                 <div class="add-cart mdish-price ui-rmb ng-binding" parabola="" role="button" data-foodname="{$food.food_name}" data-price="{$food.food_price}" data-foodimg="{$food.food_image}"  data-foodid="{$food.id}">{$food.food_price}</div>
             </div>
             <!-- ngIf: food.originPrice -->
@@ -93,8 +93,26 @@ height: 100%;">{$shopinfo.shop_description}</div>
 </div>
     <script>
     $(function(){
+        $(".mdish-minus").on("click",function(){
+
+            var num=parseInt($(this).data("num"),10);
+            if(num==0){
+
+            }
+            else{
+                $(this).data("num",num-1);
+                $(this).html(num-1);
+            }
+
+        })
         $(".add-cart").on("click",function(){
            var _self=this;
+
+            var numNode=$(".mdish-ordered",$(_self).parent());
+            var num=parseInt($(numNode).data("num"),10);
+            $(numNode).data("num",num+1);
+            $(numNode).html(num+1);
+
             var _data = {
                 "id": $(_self).data("foodid"),
                  "food_name": $(_self).data("foodname"),
