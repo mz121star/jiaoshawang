@@ -69,11 +69,11 @@ height: 100%;">{$shopinfo.shop_description}</div>
         </div>
         <div class="mdish-status" ng-hide="!(restaurant.status === 1 || restaurant.status === 5) || food.stock === 0">
             <div class="mdish-controls">
-                <div class="mdish-minus" role="button"  >
+                <div class="mdish-minus" role="button" data-foodid="{$food.id}">
                     -
                 </svg>
                 </div>
-                <div class="mdish-ordered ng-isolate-scope" data-num="0" > 0</div>
+                <div class="mdish-ordered ng-isolate-scope" data-num="0"> 0</div>
                 <div class="add-cart mdish-price ui-rmb ng-binding" parabola="" role="button" data-foodname="{$food.food_name}" data-price="{$food.food_price}" data-foodimg="{$food.food_image}"  data-foodid="{$food.id}">{$food.food_price}</div>
             </div>
             <!-- ngIf: food.originPrice -->
@@ -98,13 +98,19 @@ height: 100%;">{$shopinfo.shop_description}</div>
 
             var numNode=$(".mdish-ordered",$(_self).parent());
             var num=parseInt($(numNode).data("num"),10);
-
+            var foodid = $(_self).data("foodid");
+            var _data = {
+                "id": foodid
+            }
             if(num==0){
 
             }
             else{
                 $(numNode).data("num",num-1);
                 $(numNode).html(num-1);
+                $.post("/mobile.php/cart/dec", _data).success(function(d){
+                    
+                    })
             }
 
         })

@@ -24,9 +24,15 @@ class FoodAction extends PublicAction {
 
     public function showadd(){
         $usertype = $this->userInfo['user_type'];
-         if ($usertype == 1) {
-             $this->redirect('Food/lists');
-         }
+        if ($usertype == 1) {
+            $this->redirect('Food/lists');
+        }
+        $userid = $this->userInfo['user_id'];
+        $shop = M("Shop");
+        $type = $shop->field('shop_type')->where('user_id="'.$userid.'"')->find();
+        $shoptype = M("Shoptype");
+        $typelist = $shoptype->where('parent_id = '.$type['shop_type'])->order(array('id'=>'desc'))->select();
+        $this->assign('typelist', $typelist);
         $this->display();
     }
     
@@ -39,6 +45,12 @@ class FoodAction extends PublicAction {
             $this->redirect('Food/lists');
         }
         $this->assign('foodinfo', $foodinfo);
+
+        $shop = M("Shop");
+        $type = $shop->field('shop_type')->where('user_id="'.$userid.'"')->find();
+        $shoptype = M("Shoptype");
+        $typelist = $shoptype->where('parent_id = '.$type['shop_type'])->order(array('id'=>'desc'))->select();
+        $this->assign('typelist', $typelist);
         $this->display();
     }
     

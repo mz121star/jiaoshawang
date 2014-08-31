@@ -31,7 +31,7 @@ class IndexAction extends PublicAction {
         $this->assign('commonshop', $commonshop);
         
         $shoptype = M('shoptype');
-        $typelist = $shoptype->select();
+        $typelist = $shoptype->where('parent_id = 0')->select();
         $this->assign('typelist', $typelist);
         $this->display();
     }
@@ -71,7 +71,7 @@ class IndexAction extends PublicAction {
         $this->assign('commonshop', $commonshop);
         
         $shoptype = M('shoptype');
-        $typelist = $shoptype->select();
+        $typelist = $shoptype->where('parent_id = 0')->select();
         $this->assign('typelist', $typelist);
         $this->display('index');
     }
@@ -111,7 +111,7 @@ class IndexAction extends PublicAction {
         $this->assign('commonshop', $commonshop);
         
         $shoptype = M('shoptype');
-        $typelist = $shoptype->select();
+        $typelist = $shoptype->where('parent_id = 0')->select();
         $this->assign('typelist', $typelist);
         $this->display('index');
     }
@@ -153,7 +153,7 @@ class IndexAction extends PublicAction {
         $this->assign('commonshop', $commonshop);
         
         $shoptype = M('shoptype');
-        $typelist = $shoptype->select();
+        $typelist = $shoptype->where('parent_id = 0')->select();
         $this->assign('typelist', $typelist);
         $this->display('index');
     }

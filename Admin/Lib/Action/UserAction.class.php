@@ -42,7 +42,7 @@ class UserAction extends PublicAction {
         $shopinfo['shop_endworktime2'] = $endworktime[1];
         $this->assign('shopinfo', $shopinfo);
         $shoptype = M("Shoptype");
-        $typelist = $shoptype->order(array('id'=>'desc'))->select();
+        $typelist = $shoptype->where('parent_id = 0')->order(array('id'=>'desc'))->select();
         $this->assign('typelist', $typelist);
         $this->display();
     }
