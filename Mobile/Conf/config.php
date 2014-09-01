@@ -5,6 +5,7 @@ $private_config = array(
                            'URL_CASE_INSENSITIVE' =>true,
                            'URL_ROUTE_RULES' => array(
                                                     'shop/detail/:shopid' => 'Shop/detail',
+                                                    'shopdetail/:shopid/:typeid' => 'Shop/detail',
                                                     'order/detail/:orderid' => 'Shop/orderdetail',
                                                     'settype/:typeid' => 'Index/settype',
                                                     'setorder/:orderid' => 'Index/setorder',

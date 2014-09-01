@@ -4,10 +4,15 @@ class ShopAction extends PublicAction {
 
     public function detail(){
         $shopid = $this->_get('shopid');
+        $typeid = $this->_get('typeid');
         //获取店铺菜品
         $food = M("Food");
         $orderdetail = M("orderdetail");
-        $foodlist = $food->where('user_id="'.$shopid.'"')->order(array('id'=>'desc'))->select();
+        if ($typeid) {
+            $foodlist = $food->where('user_id="'.$shopid.'" and food_type = '.$typeid)->order(array('id'=>'desc'))->select();
+        } else {
+            $foodlist = $food->where('user_id="'.$shopid.'"')->order(array('id'=>'desc'))->select();
+        }
         $foods = array();
         foreach ($foodlist as $value) {
             $value['food_number'] = $orderdetail->where('food_id = "'.$value['id'].'"')->count();
@@ -38,6 +43,11 @@ class ShopAction extends PublicAction {
         $this->assign('cartprice', $cartprice);
         $this->assign('carttotle', $carttotle);
         $this->assign('shopid',$shopid);
+        $this->assign('typeid',$typeid);
+
+        $shoptype = M("Shoptype");
+        $typelist = $shoptype->where('parent_id = '.$shopinfo['shop_type'])->order(array('id'=>'desc'))->select();
+        $this->assign('typelist', $typelist);
         $this->display();
     }
     

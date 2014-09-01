@@ -17,6 +17,19 @@
     <script type="text/javascript" src="/mobile/js/jquery.mmenu.min.all.js"></script>
     <script type="text/javascript" src="/mobile/js/jquery.flexslider.js"></script>
     <script type="text/javascript" src="/mobile/js/o-script.js"></script>
+    <script type="text/javascript" src="/js/jquery.tipswindow-2.2.js"></script>
+    <script>
+        var time = 0;
+        function settypes(id) {
+            if (time) {
+                window.location.href = "" + "/mobile.php?cid=" + id + "&time=" + time;
+            } else {
+                window.location.href = "" + "/mobile.php/shopdetail/{$shopid}/"+id;
+            }
+
+
+        }
+    </script>
 
 </head>
 <body class="o-page">
@@ -29,7 +42,11 @@
 				</span>
         <a class="backBtn" href="/mobile.php"><i class="fa fa-home"></i></a>
     </div>
-    <div class="subHeader"><i class="i-home i-small"></i>{$shopinfo.type_name}</div>
+    <div class="subHeader">
+    <div class="list_tab">
+            <a href="javascript:void(0)" class="tab2"  id="popupDialog-type">全部分类</a>
+        </div>
+    </div>
 
     <div class="bannerPane">
         <section class="slider">
@@ -51,7 +68,7 @@
      <div style="padding: 0 10px;
 background-color: #3199e8;
 color: #fff;
-height: 100%;">{$shopinfo.shop_description}</div>
+height: 100%;">{$shopinfo.shop_description|nl2br}</div>
     <!-- Content -->
     <foreach name="foodlist" item="food">
     <div class="menu-dish ng-scope" ng-repeat="food in foods">
@@ -90,6 +107,29 @@ height: 100%;">{$shopinfo.shop_description}</div>
     </a>
     <!-- Menu navigation -->
     <include file="Index:sidebar"/>
+</div>
+
+<div data-role="popup" id="popupDialog-screen-type" style="display:none;">
+    <div class="pop-list"  id="pop_list_types">
+        <div class="title">
+            <h2>选择分类</h2>
+            <a href="javascript:;" id="c3" class="close">关闭</a>
+        </div>
+        <div class="content">
+            <ul class="panel_sb">
+                
+                <li class="sbon" onclick="settypes(0)">
+                    <div class="txt" >全部</div></li>
+<foreach name="typelist" item="type">
+                <li class="" onclick="settypes({$type.id})">
+
+                    <div class="txt">{$type.type_name}</div></li>
+</foreach>
+
+
+            </ul>
+        </div>
+    </div>
 </div>
     <script>
     $(function(){
@@ -158,6 +198,27 @@ height: 100%;">{$shopinfo.shop_description}</div>
     script_version.src = 'http://changyan.sohu.com/upload/mobile/wap-js/version.js?_='+expire_time;
     head.insertBefore(script_version, head.firstChild);
 })();
+</script>
+<script>
+
+$(document).ready(function() {
+
+
+$("#popupDialog-type").click(function(){
+$.tipsWindow({
+___content:"id:popupDialog-screen-type",
+//___width:"600",
+//___height:"300",
+___drag:"___boxTitle",
+___closeID:"c3",
+___showbg:true
+})
+
+});
+
+
+})
+
 </script>
 </body>
 </html>
