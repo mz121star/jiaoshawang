@@ -44,12 +44,13 @@
             </div>
             <if condition="$order.order_status eq 1">
             <div class="torder-status ng-isolate-scope blue" order-status="" status="order.status_code">等待处理</div>
+            <a href="__GROUP__/order/confirm/{$order.id}">确定收货</a>
+            <a href="tel:{$order.shop_phone}">电话催单</a>
             <elseif condition="$order.order_status eq 2"/>
             <div class="torder-status ng-isolate-scope blue" order-status="" status="order.status_code">订单已确认</div>
             <elseif condition="$order.order_status eq 3"/>
            <div class="torder-status ng-isolate-scope blue" order-status="" status="order.status_code">已取消</div>
             </if>
-            
         </div>
     </a>
 </foreach>

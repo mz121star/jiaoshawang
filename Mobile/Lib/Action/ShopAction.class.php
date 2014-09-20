@@ -64,9 +64,10 @@ class ShopAction extends PublicAction {
             $detaillist = $orderdetailobj->where('order_id="'.$order['id'].'"')->select();
             $orderlist[$key]['orderdetail'] = $detaillist;
             
-            $shopinfo = $shopobj->where('user_id="'.$order['food_shop'].'"')->field('shop_name, shop_deliver_money, shop_image')->find();
+            $shopinfo = $shopobj->where('user_id="'.$order['food_shop'].'"')->field('shop_name, shop_phone, shop_deliver_money, shop_image')->find();
             $orderlist[$key]['shop_deliver_money'] = $shopinfo['shop_deliver_money'];
             $orderlist[$key]['shop_name'] = $shopinfo['shop_name'];
+            $orderlist[$key]['shop_phone'] = $shopinfo['shop_phone'];
             $orderlist[$key]['shop_image'] = $shopinfo['shop_image'];
         }
         $show = $page->show();
@@ -89,6 +90,25 @@ class ShopAction extends PublicAction {
         $this->assign('detaillist', $detaillist);
         $this->assign('totalfood', count($detaillist));
         $this->display();
+    }
+
+    public function orderconfirm() {
+        $userid = $this->userInfo['user_id'];
+        $orderid = $this->_get('orderid');
+        $orderobj = M("order");
+        if (!$orderid) {
+            $this->error('没有选择订单');
+        }
+        if (!$userid) {
+            $this->error('请先登录');
+        }
+
+        $isok = $orderobj->where('id="'.$orderid.'"')->setField('order_status', '2');
+        if ($isok) {
+            $this->redirect('shop/orders');
+        } else {
+            $this->error('确定收货失败', 'shop/orders');
+        }
     }
     
     public function fav() {

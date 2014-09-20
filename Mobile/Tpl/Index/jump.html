@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="author" content="www.frebsite.nl" />
+    <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
+
+    <title>提示</title>
+ </head>
+<body>
+<div class="system-message">
+<present name="message">
+<!-- <h1>:)</h1> -->
+	<div class="msgdiv">
+		<img src="__PUBLIC__/Imgs/right.png"/>
+		<p class="success"><?php echo($message); ?></p>
+		<p class="jump">
+		页面自动 <a id="href" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b>
+		</p>
+	</div>
+
+<else/>
+	<div class="msgdiv">
+		<img src="__PUBLIC__/Imgs/error.png"/>
+		<p class="error"><?php echo($error); ?></p>
+		<p class="jump">
+		页面自动 <a id="href" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b>
+		</p>
+	</div>
+</present>
+<p class="detail"></p>
+</div>
+<script type="text/javascript">
+(function(){
+var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+var interval = setInterval(function(){
+	var time = --wait.innerHTML;
+	if(time == 0) {
+		location.href = href;
+		clearInterval(interval);
+	};
+}, 1000);
+})();
+</script>
+</body>

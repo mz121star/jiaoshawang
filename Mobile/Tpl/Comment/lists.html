@@ -17,6 +17,19 @@
     <script type="text/javascript" src="/mobile/js/jquery.mmenu.min.all.js"></script>
     <script type="text/javascript" src="/mobile/js/jquery.flexslider.js"></script>
     <script type="text/javascript" src="/mobile/js/o-script.js"></script>
+    <script type="text/javascript" src="/js/jquery.tipswindow-2.2.js"></script>
+    <script>
+        var time = 0;
+        function settypes(id) {
+            if (time) {
+                window.location.href = "" + "/mobile.php?cid=" + id + "&time=" + time;
+            } else {
+                window.location.href = "" + "/mobile.php/shopdetail/{$shopid}/"+id;
+            }
+
+
+        }
+    </script>
 
 </head>
 <body class="o-page">
@@ -25,34 +38,30 @@
     <div id="header">
         <a href="#menu"><i class="fa fa-bars"></i> </a>
 				<span id="Logo" class="svg">
-					叫啥网
+					{$shopinfo.shop_name}
 				</span>
-        <a class="backBtn" href="javascript:history.back();"><i class="fa fa-home"></i></a>
+        <a class="backBtn" href="/mobile.php"><i class="fa fa-home"></i></a>
     </div>
-    <div class="subHeader"><i class="i-home i-small"></i>我的收藏</div>
 
-    <section class="trade-block ng-scope">
-        <h3 class="tblock-title">
-            收藏列表
-    <span class="tblock-title-helper">
-    </span>
-        </h3>
-        <div class="trade-bill">
-            <foreach name="favlist" item="fav">
-            <ul class="tbill-list">
-                <!-- ngRepeat: food in order.data.detail.group | flatten --><li class="tbill-list-item torder-dish ng-scope" >
-                <span class="tdish-name ng-binding"><a href="__GROUP__/shop/detail/{$fav.user_id}">{$fav.shop_name}</a></span>
-                <a class="ui-multiple tdish-quantity ng-binding" href="/mobile.php/cancelfav/{$fav.user_id}">取消收藏</a>
-            </li><!-- end ngRepeat: food in order.data.detail.group | flatten -->
-            </ul>
-                </foreach>
-        </div>
-    </section>
+    <div id="page1">
 
+    <!-- Content -->
+    <foreach name="commentlist" item="comment">
+    <div class="menu-dish ng-scope" ng-repeat="food in foods">
+        {$comment.comment_content}
+
+    </div>
+    </foreach>
+    </div>
+
+    <a class="menu-cart ng-scope" href="/mobile.php/shop/detail/{$shopinfo.user_id}"  >
+        <div class="mcart-checkout"  >返回详情</div>
+    </a>
+     <a class="menu-cart ng-scope"  id="favshop" style="margin-left: 60%;">
+        <div class="mcart-checkout"  ></div>
+    </a>
     <!-- Menu navigation -->
-
     <include file="Index:sidebar"/>
 </div>
-
 </body>
 </html>

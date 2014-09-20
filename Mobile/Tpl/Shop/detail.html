@@ -177,7 +177,7 @@ font-size: 1.5rem;">{$shopinfo.shop_description|nl2br}</div>
                 "food_image": $(_self).data("foodimg")
             }
             $.post("/mobile.php/cart/add", _data).success(function(d){
-                    alert(d);
+                    
                     })
         });
         

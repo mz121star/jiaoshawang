@@ -2,7 +2,14 @@
     .mm-search{display:none} 
 </style>
 <script>
-    
+    $(function () {
+         $("#logout").on("click",function(){
+            if (confirm('确定要退出登录吗？')) {
+                location.href = "/mobile.php/index/logout";
+            }
+
+        })
+    });
     
 </script>
 <nav id="menu">
@@ -24,7 +31,7 @@
                     <i class="i-blog i-small"></i>登录
                 </a>
                 <else />
-                 <a href="/mobile.php/index/logout">
+                 <a href="javascript:;" id="logout">
                     <i class="i-blog i-small"></i>{$Think.session.userinfo.user_id}, 退出登录
                 </a>
                 </if>

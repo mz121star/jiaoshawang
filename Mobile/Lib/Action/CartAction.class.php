@@ -22,6 +22,9 @@ class CartAction extends PublicAction {
                 $cartprice += $cart['price']*$cart['num'];
             }
         }
+        if (!$cartprice) {
+            $this->error('没有选择菜品');
+        }
         $this->assign('cartlist', $cartlist);
         $this->assign('cartprice', $cartprice);
         $this->assign('carttotle', $carttotle);
@@ -87,7 +90,7 @@ class CartAction extends PublicAction {
                                                   ));
         }
         unset($_SESSION['cart']);
-        $this->redirect('Index/index');
+        $this->redirect('shop/orders');
     }
 
     //购物车ajax方法

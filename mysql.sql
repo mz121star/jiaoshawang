@@ -60,77 +60,78 @@ CREATE TABLE `dc_shoptype` (
   `id` int(11) NOT NULL auto_increment,
   `type_name` varchar(250) NOT NULL,
   `parent_id` int(11) unsigned NOT NULL default 0,
+  `type_order` int(11) unsigned NOT NULL default 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='商户和产品类型表';
-INSERT INTO `dc_shoptype` VALUES (1, '饭店', 0);
-INSERT INTO `dc_shoptype` VALUES (2, '鲜花店', 0);
-INSERT INTO `dc_shoptype` VALUES (3, '超市', 0);
-INSERT INTO `dc_shoptype` VALUES (4, '水果店', 0);
-INSERT INTO `dc_shoptype` VALUES (5, '电脑店', 0);
-INSERT INTO `dc_shoptype` VALUES (6, '成人用品', 0);
-INSERT INTO `dc_shoptype` VALUES (7, '海鲜店', 0);
-INSERT INTO `dc_shoptype` VALUES (8, '蔬菜店', 0);
-INSERT INTO `dc_shoptype` VALUES (9, '蛋糕店', 0);
-INSERT INTO `dc_shoptype` VALUES (10, '药店', 0);
-INSERT INTO `dc_shoptype` VALUES (11, '熟食', 1);
-INSERT INTO `dc_shoptype` VALUES (12, '米粉', 1);
-INSERT INTO `dc_shoptype` VALUES (13, '盖饭', 1);
-INSERT INTO `dc_shoptype` VALUES (14, '饼', 1);
-INSERT INTO `dc_shoptype` VALUES (15, '热菜', 1);
-INSERT INTO `dc_shoptype` VALUES (16, '凉菜', 1);
-INSERT INTO `dc_shoptype` VALUES (17, '炖菜', 1);
-INSERT INTO `dc_shoptype` VALUES (18, '海鲜', 1);
-INSERT INTO `dc_shoptype` VALUES (19, '麻辣香锅', 1);
-INSERT INTO `dc_shoptype` VALUES (20, '麻辣烫', 1);
-INSERT INTO `dc_shoptype` VALUES (21, '特色', 1);
-INSERT INTO `dc_shoptype` VALUES (22, '水饺', 1);
-INSERT INTO `dc_shoptype` VALUES (23, '披萨', 1);
-INSERT INTO `dc_shoptype` VALUES (24, '面', 1);
-INSERT INTO `dc_shoptype` VALUES (25, '套餐', 1);
-INSERT INTO `dc_shoptype` VALUES (26, '饮料', 1);
-INSERT INTO `dc_shoptype` VALUES (27, '肉类', 1);
-INSERT INTO `dc_shoptype` VALUES (28, '汤', 1);
-INSERT INTO `dc_shoptype` VALUES (29, '饭', 1);
-INSERT INTO `dc_shoptype` VALUES (30, '菜类', 1);
-INSERT INTO `dc_shoptype` VALUES (31, '调料', 1);
-INSERT INTO `dc_shoptype` VALUES (32, '小菜', 1);
-INSERT INTO `dc_shoptype` VALUES (33, '粥', 1);
-INSERT INTO `dc_shoptype` VALUES (34, '包子', 1);
-INSERT INTO `dc_shoptype` VALUES (35, '主食', 1);
-INSERT INTO `dc_shoptype` VALUES (36, '烤肉类', 1);
-INSERT INTO `dc_shoptype` VALUES (37, '青菜类', 1);
-INSERT INTO `dc_shoptype` VALUES (38, '烧烤类', 1);
-INSERT INTO `dc_shoptype` VALUES (39, '鲜花', 2);
-INSERT INTO `dc_shoptype` VALUES (40, '饮料酒水', 3);
-INSERT INTO `dc_shoptype` VALUES (41, '香烟', 3);
-INSERT INTO `dc_shoptype` VALUES (42, '休闲食品', 3);
-INSERT INTO `dc_shoptype` VALUES (43, '调味品', 3);
-INSERT INTO `dc_shoptype` VALUES (44, '冲泡', 3);
-INSERT INTO `dc_shoptype` VALUES (45, '清洁洗涤', 3);
-INSERT INTO `dc_shoptype` VALUES (46, '厨具日杂', 3);
-INSERT INTO `dc_shoptype` VALUES (47, '针织', 3);
-INSERT INTO `dc_shoptype` VALUES (48, '水果', 4);
-INSERT INTO `dc_shoptype` VALUES (49, '电脑配件', 5);
-INSERT INTO `dc_shoptype` VALUES (50, '手机配件', 5);
-INSERT INTO `dc_shoptype` VALUES (51, '成人用品', 6);
-INSERT INTO `dc_shoptype` VALUES (52, '海鲜', 7);
-INSERT INTO `dc_shoptype` VALUES (53, '蔬菜', 8);
-INSERT INTO `dc_shoptype` VALUES (54, '蛋糕', 9);
-INSERT INTO `dc_shoptype` VALUES (55, '中药类', 10);
-INSERT INTO `dc_shoptype` VALUES (56, '西药类', 10);
-INSERT INTO `dc_shoptype` VALUES (57, '感冒药类', 10);
-INSERT INTO `dc_shoptype` VALUES (58, '抗菌消炎药类', 10);
-INSERT INTO `dc_shoptype` VALUES (59, '清热解毒类', 10);
-INSERT INTO `dc_shoptype` VALUES (60, '止咳平喘类', 10);
-INSERT INTO `dc_shoptype` VALUES (61, '胃肠道类', 10);
-INSERT INTO `dc_shoptype` VALUES (62, '心脑血管类', 10);
-INSERT INTO `dc_shoptype` VALUES (63, '妇科内服类', 10);
-INSERT INTO `dc_shoptype` VALUES (64, '妇科外用类', 10);
-INSERT INTO `dc_shoptype` VALUES (65, '五官外用类', 10);
-INSERT INTO `dc_shoptype` VALUES (66, '消炎镇痛抗炎抗风湿类', 10);
-INSERT INTO `dc_shoptype` VALUES (67, '食品', 10);
-INSERT INTO `dc_shoptype` VALUES (68, '非食品类', 10);
-INSERT INTO `dc_shoptype` VALUES (69, '医疗机械类', 10);
+INSERT INTO `dc_shoptype` VALUES (1, '饭店', 0, 1);
+INSERT INTO `dc_shoptype` VALUES (2, '鲜花店', 0, 7);
+INSERT INTO `dc_shoptype` VALUES (3, '超市', 0, 2);
+INSERT INTO `dc_shoptype` VALUES (4, '水果店', 0, 3);
+INSERT INTO `dc_shoptype` VALUES (5, '电脑店', 0, 8);
+INSERT INTO `dc_shoptype` VALUES (6, '成人用品', 0, 10);
+INSERT INTO `dc_shoptype` VALUES (7, '海鲜店', 0, 5);
+INSERT INTO `dc_shoptype` VALUES (8, '蔬菜店', 0, 4);
+INSERT INTO `dc_shoptype` VALUES (9, '蛋糕店', 0, 6);
+INSERT INTO `dc_shoptype` VALUES (10, '药店', 0, 9);
+INSERT INTO `dc_shoptype` VALUES (11, '熟食', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (12, '米粉', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (13, '盖饭', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (14, '饼', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (15, '热菜', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (16, '凉菜', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (17, '炖菜', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (18, '海鲜', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (19, '麻辣香锅', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (20, '麻辣烫', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (21, '特色', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (22, '水饺', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (23, '披萨', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (24, '面', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (25, '套餐', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (26, '饮料', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (27, '肉类', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (28, '汤', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (29, '饭', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (30, '菜类', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (31, '调料', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (32, '小菜', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (33, '粥', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (34, '包子', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (35, '主食', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (36, '烤肉类', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (37, '青菜类', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (38, '烧烤类', 1, 0);
+INSERT INTO `dc_shoptype` VALUES (39, '鲜花', 2, 0);
+INSERT INTO `dc_shoptype` VALUES (40, '饮料酒水', 3, 0);
+INSERT INTO `dc_shoptype` VALUES (41, '香烟', 3, 0);
+INSERT INTO `dc_shoptype` VALUES (42, '休闲食品', 3, 0);
+INSERT INTO `dc_shoptype` VALUES (43, '调味品', 3, 0);
+INSERT INTO `dc_shoptype` VALUES (44, '冲泡', 3, 0);
+INSERT INTO `dc_shoptype` VALUES (45, '清洁洗涤', 3, 0);
+INSERT INTO `dc_shoptype` VALUES (46, '厨具日杂', 3, 0);
+INSERT INTO `dc_shoptype` VALUES (47, '针织', 3, 0);
+INSERT INTO `dc_shoptype` VALUES (48, '水果', 4, 0);
+INSERT INTO `dc_shoptype` VALUES (49, '电脑配件', 5, 0);
+INSERT INTO `dc_shoptype` VALUES (50, '手机配件', 5, 0);
+INSERT INTO `dc_shoptype` VALUES (51, '成人用品', 6, 0);
+INSERT INTO `dc_shoptype` VALUES (52, '海鲜', 7, 0);
+INSERT INTO `dc_shoptype` VALUES (53, '蔬菜', 8, 0);
+INSERT INTO `dc_shoptype` VALUES (54, '蛋糕', 9, 0);
+INSERT INTO `dc_shoptype` VALUES (55, '中药类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (56, '西药类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (57, '感冒药类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (58, '抗菌消炎药类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (59, '清热解毒类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (60, '止咳平喘类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (61, '胃肠道类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (62, '心脑血管类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (63, '妇科内服类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (64, '妇科外用类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (65, '五官外用类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (66, '消炎镇痛抗炎抗风湿类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (67, '食品', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (68, '非食品类', 10, 0);
+INSERT INTO `dc_shoptype` VALUES (69, '医疗机械类', 10, 0);
 
 
 DROP TABLE IF EXISTS `dc_shopnotice`;
@@ -216,3 +217,14 @@ CREATE TABLE `dc_orderdetail` (
   `food_count` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='订单详情表';
+
+
+DROP TABLE IF EXISTS `dc_comment`;
+CREATE TABLE `dc_comment` (
+  `id` int(11) NOT NULL auto_increment,
+  `people_id` varchar(250) NOT NULL COMMENT '普通用户ID，关联dc_user表的user_id',
+  `shop_id` varchar(250) NOT NULL COMMENT '商户用户ID，关联dc_user表的user_id',
+  `comment_content` text NOT NULL,
+  `comment_date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户评论表';
