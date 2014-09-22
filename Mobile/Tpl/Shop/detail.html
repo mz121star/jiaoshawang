@@ -67,11 +67,19 @@
     </foreach>
     </div>
     <div id="page2" style="display: none">
-        <div style="padding: 0 10px;
-background-color: #FFFFFF;
-color: #000;
-height: 100%;
-font-size: 1.5rem;">{$shopinfo.shop_description|nl2br}</div>
+        <div class="d_head">
+            <div>
+                <img src="/upload/{$shopinfo.shop_image}">
+                <p>{$shopinfo.shop_name}</p>
+            </div>
+            <div>
+                <a href="tel:{$shopinfo.shop_phone}" class="mdish-price">电话咨询</a>
+            </div>
+
+        </div>
+        <div style="padding: 0 10px;background-color: #FFFFFF;color: #000;height: 100%;font-size: 1.5rem;">
+            {$shopinfo.shop_description|nl2br}
+        </div>
     </div>
 
     <a class="menu-cart ng-scope" href="/mobile.php/cart/cart"  >
