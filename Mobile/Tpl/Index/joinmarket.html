@@ -1,0 +1,46 @@
+<include file="Public:header"/>
+<body class="o-page">
+<div id="page">
+    <!-- Header -->
+    <div id="header">
+        <a href="#menu"><i class="fa fa-bars"></i> </a>
+				<span id="Logo" class="svg">
+					叫啥网
+				</span>
+        <a class="backBtn" href="javascript:history.back();"><i class="fa fa-home"></i></a>
+    </div>
+    <div class="subHeader"><i class="i-home i-small"></i>登录</div>
+
+
+    <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" name="loginform" action="#" method="post">
+        <div class="logreg-inputs">
+            <div class="input-group" >
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="text" name="shopname" placeholder="店名"  required="" auto-fill-sync="">
+                <p class="input-tip">店名</p>
+            </div>
+
+            <div class="input-group" >
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="text"   name="shopaddress" placeholder="地址" required=""  >
+                <p class="input-tip">地址</p>
+            </div>
+            <div class="input-group" >
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="text"   name="shopphone" placeholder="联系电话" required=""  >
+                <p class="input-tip">联系电话</p>
+            </div>
+            <div class="input-group" >
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="text"   name="shoptime" placeholder="预约时间" required=""  >
+                <p class="input-tip">预约时间</p>
+            </div>
+        </div>
+        <input type="submit" class="ui-btn logreg-btn" value="提交">
+    </form>
+
+
+
+    <!-- Menu navigation -->
+
+    <include file="Index:sidebar"/>
+</div>
+
+</body>
+</html>
