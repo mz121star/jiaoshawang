@@ -171,7 +171,9 @@ class IndexAction extends PublicAction {
                 public function reg() {
         $this->display();
     }
-          
+    public function joinmarket() {
+        $this->display();
+    }
                 public function logout() {
         $userInfo = session('userinfo');
         if(!empty($userInfo)){
