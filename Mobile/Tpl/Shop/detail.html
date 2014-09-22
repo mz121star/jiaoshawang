@@ -106,6 +106,87 @@ font-size: 1.5rem;">{$shopinfo.shop_description|nl2br}</div>
         </div>
     </div>
 </div>
+
+
+
+
+<div class="cbox-post-wap cbox-post-b">
+    <div class="post-area-wap post-area-b">
+        <textarea name="cy-cbox" rows="3" class="area-text-wap area-text-b" placeholder="我来说两句..."></textarea>
+        <input type="hidden" name="cyan-reply-id">
+    </div>
+    <div class="post-action-wap post-action-b">
+        <div class="action-function-wap action-function-b">
+            <ul class="function-list-wap function-list-b">
+
+                <li class="list-face-wap list-face-b">
+                    <a class="face-mutual-wap face-mutual-b" href="javascript:void(0)">
+                        <i class="mutual-pic-wap mutual-pic-b"></i>
+                    </a>
+                </li>
+
+
+                <li class="list-upload-wap list-upload-b">
+                    <a class="upload-mutual-wap upload-mutual-b" href="#"><i class="mutual-pic-wap mutual-pic-b"></i></a><div class="upload-file-wap"><input type="file" name="" class="file-wap" onsubmit="return false;" accept="image/jpeg, image/gif, image/bmp, image/jp2, image/x-ms-bmp, image/x-png"></div>
+                    <input name="cy-img-url" type="hidden">
+                </li>
+                <li class="list-upload-img-wap list-upload-img-b list-uploading-wap" style="display:none">
+                    <div class="uploading-wrap-wap"><span class="wrap-icon-wap wrap-icon-b"></span></div>
+                    <div class="uploaddel-wrap-wap"><span class="wrap-img-wap wrap-img-b"><img alt=""></span>
+                        <span class="wrap-close-wap"></span></div>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="action-issue-wap action-issue-b">
+            <div class="issue-site-wap issue-site-b issue-site-e"></div>
+            <div class="issue-btn-wap issue-btn-b">
+                <a class="btn-mutual-wap btn-mutual-b" href="javascript:void(0)"><button type="button" class="mutual-btn-wap mutual-btn-b"></button></a>
+            </div>
+        </div>
+        <div class="face-box-wap" style="display:none">
+            <div class="box-cont-wap">
+                <div class="cont-roll-wap">
+                    <ul class="cont-list-wap">
+                        <li code="/奋斗"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face01.png"></li>
+                        <li code="/鼓掌"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face02.png"></li>
+                        <li code="/发怒"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face03.png"></li>
+                        <li code="/色"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face04.png"></li>
+                        <li code="/给力"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face05.png"></li>
+                        <li code="/憨笑"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face06.png"></li>
+                        <li code="/大哭"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face13.png"></li>
+                        <li code="/疑问"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face14.png"></li>
+                        <li code="/鄙视"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face15.png"></li>
+                        <li code="/钱"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face16.png"></li>
+                        <li code="/闭嘴"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face17.png"></li>
+                        <li code="/可怜"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face18.png"></li>
+                        <li code="/可爱"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face07.png"></li>
+                        <li code="/抓狂"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face08.png"></li>
+                        <li code="/流汗"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face09.png"></li>
+                        <li code="/强"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face10.png"></li>
+                        <li code="/弱"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face11.png"></li>
+                        <li code="/玫瑰"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face12.png"></li>
+                        <li code="/惊讶"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face19.png"></li>
+                        <li code="/浮云"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face20.png"></li>
+                        <li code="/打酱油"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face21.png"></li>
+                        <li code="/握手"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face22.png"></li>
+                        <li code="/拳头"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face23.png"></li>
+                        <li code="/酒"><img src="http://changyan.itc.cn/upload/mobile/wap-imgs/face/face24.png"></li>
+                    </ul>
+                </div>
+                <div class="cont-page-wap"><span class="page-now-wap"></span><span></span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
     <script>
     $(function(){
         $(".mdish-minus").on("click",function(){
@@ -174,25 +255,7 @@ font-size: 1.5rem;">{$shopinfo.shop_description|nl2br}</div>
         })
     })
 </script>
-<div id="SOHUCS"></div>
-<script>
-(function(){
-    var expire_time = parseInt((new Date()).getTime()/(5*60*1000));
-    var head = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
-    var script_version = document.createElement("script"),script_cyan = document.createElement("script");
-    script_version.type = script_cyan.type = "text/javascript";
-    script_version.charset = script_cyan.charset = "utf-8";
-    script_version.onload = function(){
-        script_cyan.id = 'changyan_mobile_js';
-        script_cyan.src = 'http://changyan.itc.cn/upload/mobile/wap-js/changyan_mobile.js?client_id=cyrlB78fj&'
-                        + 'conf=prod_9c1c12392eb00d2e3e96f5a9b447068c&version=' + cyan_resource_version;
-        head.insertBefore(script_cyan, head.firstChild);
-    };
-    script_version.src = 'http://changyan.sohu.com/upload/mobile/wap-js/version.js?_='+expire_time;
-    head.insertBefore(script_version, head.firstChild);
-})();
-</script>
-<script>
+ <script>
 
 $(document).ready(function() {
 
