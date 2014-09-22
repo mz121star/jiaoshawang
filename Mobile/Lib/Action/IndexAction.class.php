@@ -224,4 +224,24 @@ class IndexAction extends PublicAction {
             }
             $this->redirect('Index/login');
         }
+    public function addshop() {
+        $post = $this->filterAllParam('post');
+        if (!$post['shopname']) {
+            $this->error("店名不能为空", 'index');
+        }
+        if (!$post['shopaddress']) {
+            $this->error("地址不能为空", 'index');
+        }
+        if (!$post['shopphone']) {
+            $this->error("电话不能为空", 'index');
+        }
+
+        $user = M("joinmarket");
+
+        $shopid = $user->add($post);
+        if ($shopid) {
+            $this->redirect('Index');
+        }
+
+    }
 }
