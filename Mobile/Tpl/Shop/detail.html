@@ -67,6 +67,7 @@
     </foreach>
     </div>
     <div id="page2" style="display: none">
+        <div style="padding: 5px">
         <div class="d_head" style="height: 50px;padding: 2px 10px 2px 10px">
             <div style="width: 70%;float: left">
                 <img src="/upload/{$shopinfo.shop_image}" width="50" height="50" style="float: left">
@@ -87,10 +88,12 @@
             <p>配送费/元</p>
         </li>
     </div>
+        </div>
+        <div style="padding: 5px">
         <div style="padding: 0 10px;background-color: #FFFFFF;color: #000;height: 100%;font-size: 1.5rem;">
             {$shopinfo.shop_description|nl2br}
         </div>
-
+        </div>
     </div>
 
     <a class="menu-cart ng-scope" href="/mobile.php/cart/cart"  >
