@@ -195,26 +195,28 @@ class IndexAction extends PublicAction {
                     $userInfo = $user->where($_POST)->field('id,user_id,user_type')->find();
                     if(!empty($userInfo) && $userInfo['user_type'] == 3){
                         session('userinfo', $userInfo);
+                        $this->success("登录成功", 'index');
+                    } else {
+                        $this->success("登录失败", 'login');
                     }
-                    $this->redirect('Index/index');
                 }
                 
                 
         public function adduser() {
             $post = $this->filterAllParam('post');
             if (!$post['user_id']) {
-                $this->error("用户名不能为空", 'index');
+                $this->error("用户名不能为空");
             }
             if (!$post['user_pw1']) {
-                $this->error("密码不能为空", 'index');
+                $this->error("密码不能为空");
             }
             if ($post['user_pw1'] != $post['user_pw2']) {
-                $this->error("密码不一致", 'index');
+                $this->error("密码不一致");
             }
             $user = M("User");
             $userInfo = $user->where('user_id="'.$post['user_id'].'"')->field('id')->find();
             if ($userInfo) {
-                $this->error("用户ID已存在", 'index');
+                $this->error("用户ID已存在");
             }
             $post['user_pw'] = md5($post['user_pw1']);
             $userid = $user->add($post);
@@ -222,7 +224,7 @@ class IndexAction extends PublicAction {
                 $people = M("People");
                 $peopleid = $people->add(array('user_id'=>$post['user_id'], 'people_phone'=>$post['people_phone']));
             }
-            $this->redirect('Index/login');
+            $this->success("注册成功", 'login');
         }
     public function addshop() {
         $post = $this->filterAllParam('post');

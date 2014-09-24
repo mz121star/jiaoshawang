@@ -12,6 +12,25 @@ class CartAction extends PublicAction {
         if(empty($userid)){
             $this->redirect('Index/index');
         }
+        $shopid = $this->_get('shopid');
+        $shopobj = M("Shop");
+        $shopinfo = $shopobj->where('user_id="'.$shopid.'"')->field('shop_beginworktime, shop_endworktime')->find();
+        if (!$shopinfo) {
+            $this->redirect('Index/index');
+        }
+        $beginworktime = intval(implode('', explode(':', $shopinfo['shop_beginworktime'])));
+        $endworktime = intval(implode('', explode(':', $shopinfo['shop_endworktime'])));
+        $current_time = date('Gis');
+        if ($current_time >= $beginworktime && $current_time <= $endworktime) {
+            $is_working = 1;
+        } else {
+            $is_working = 0;
+        }
+        if (!$is_working) {
+            unset($_SESSION['cart']);
+            $this->error('非营业时间，请在'.$shopinfo['shop_beginworktime'].' - '.$shopinfo['shop_endworktime'].'时间段内下单');
+        }
+
         $cartlist = array();
         $carttotle = 0;
         $cartprice = 0;
@@ -80,6 +99,9 @@ class CartAction extends PublicAction {
         $insertdata['order_invoice'] = 1;
         $insertdata['order_status'] = 1;
         $order_id = $orderobj->add($insertdata);
+        if (!$order_id) {
+            $this->error("下单失败");
+        }
         foreach ($_SESSION['cart'] as $foodid => $food) {
             $detailid = $orderdetailobj->add(array(
                                                   'order_id' => $order_id,
@@ -90,6 +112,10 @@ class CartAction extends PublicAction {
                                                   ));
         }
         unset($_SESSION['cart']);
+        $this->success("下单成功", 'gotoshoporder');
+    }
+
+    public function gotoshoporder() {
         $this->redirect('shop/orders');
     }
 

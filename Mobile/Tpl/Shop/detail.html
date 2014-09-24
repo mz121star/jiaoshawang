@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <a class="menu-cart ng-scope" href="/mobile.php/cart/cart"  >
+    <a class="menu-cart ng-scope" href="/mobile.php/cart/cart/{$shopid}"  >
         <div class="mcart-checkout"  >去结算</div>
     </a>
      <a class="menu-cart ng-scope"  id="favshop" style="margin-left: 60%;">
@@ -132,13 +132,14 @@
 
 
 
-<div class="cbox-post-wap cbox-post-b">
+<div class="cbox-post-wap cbox-post-b"><form name="form1" method="post" action="__GROUP__/comment/add">
+<input type="hidden" name="shopid" value="{$shopinfo.user_id}">
     <div class="post-area-wap post-area-b">
-        <textarea name="cy-cbox" rows="3" class="area-text-wap area-text-b" placeholder="我来说两句..."></textarea>
+        <textarea name="content" rows="3" class="area-text-wap area-text-b" placeholder="我来说两句..."></textarea>
         <input type="hidden" name="cyan-reply-id">
     </div>
-    <div><input class="mdish-price" value="发布留言"></div>
-</div>
+    <div><button class="mdish-price" type="submit">发布留言</button></div>
+</form></div>
 
 
 

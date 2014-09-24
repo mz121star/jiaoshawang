@@ -20,19 +20,22 @@
                      <input style="width: 30%;background: #1AA2E2;border: 0px;color: #fff;height: 30px;float: left;" class="btn" type="submit"  value="search">
                     </form>
              </li>-->
+             
             <li>
+            <if condition="$Think.session.userinfo.user_id neq ''">
                <a href="#">
                    <img src="/images/head.jpg" width="60" height="60" style="float: left">
                    <div style="float: right;width: 70%">
-                       <p>13840816169</p>
+                       <p>{$Think.session.userinfo.user_id}</p>
                        <p>积分：0</p>
                    </div>
 
                </a>
-               <!-- <a href="#">
+               <else />
+               <a href="#">
                     <p>您尚未登录！请登录！</p>
                 </a>
-                未登录时候显示此信息-->
+                </if>
             </li>
             <li>
                 <a href="__GROUP__/index">
@@ -46,7 +49,7 @@
                 </a>
                 <else />
                  <a href="javascript:;" id="logout">
-                     <i class="iconfont">&#xf017c</i>{$Think.session.userinfo.user_id}, 退出登录
+                     <i class="iconfont">&#xf017c</i>退出登录
                 </a>
                 </if>
 <if condition="$Think.session.userinfo.user_id eq ''">

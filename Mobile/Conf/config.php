@@ -10,6 +10,7 @@ $private_config = array(
                            'URL_ROUTER_ON' => true,
                            'URL_CASE_INSENSITIVE' =>true,
                            'URL_ROUTE_RULES' => array(
+                                                    'cart/cart/:shopid' => 'Cart/cart',
                                                     'shop/detail/:shopid' => 'Shop/detail',
                                                     'shopdetail/:shopid/:typeid' => 'Shop/detail',
                                                     'order/detail/:orderid' => 'Shop/orderdetail',
@@ -18,6 +19,6 @@ $private_config = array(
                                                     'setorder/:orderid' => 'Index/setorder',
                                                     'fav/:shopid' => 'Shop/fav',
                                                     'cancelfav/:shopid' => 'Shop/cancelfav',
-                                                    'comment/:shopid' => 'Comment/lists',
+                                                    'commentlist/:shopid' => 'Comment/lists',
                                                 ));//私有配置
 return array_merge($common_config, $private_config);
