@@ -32,14 +32,14 @@
             <!-- ngIf: restaurant.status == 1 -->
             <!-- ngIf: restaurant.status == 1 -->
             <!-- ngIf: restaurant.status !== 1 --><div class="grst-status ng-scope" ng-if="restaurant.status !== 1">
-            <!-- ngIf: restaurant.is_now_book_only --><span class="bookable ng-scope" ng-if="restaurant.is_now_book_only">接受预订</span><!-- end ngIf: restaurant.is_now_book_only -->
+            <!-- ngIf: restaurant.is_now_book_only --><span class="bookable ng-scope" ng-if="restaurant.is_now_book_only"><if condition="$shop.is_working eq '1'">接受订餐<else />休息中</if></span><!-- end ngIf: restaurant.is_now_book_only -->
             <!-- ngIf: !restaurant.is_now_book_only -->
         </div><!-- end ngIf: restaurant.status !== 1 -->
             <div class="grst-misc">
                 <!-- ngIf: restaurant.month_sales --><span ng-if="restaurant.month_sales" ng-bind="'月售 ' + restaurant.month_sales + ' 单 / '" class="ng-binding ng-scope">月售 {$shop.order_number} 单 / </span><!-- end ngIf: restaurant.month_sales -->
                 <span ng-bind="restaurant.deliver_amount + ' 元起送'" class="ng-binding">{$shop.shop_deliver_beginmoney}元起送</span>
                 <!-- ngIf: !restaurant.is_now_book_only && restaurant.deliver_time -->
-                <!-- ngIf: restaurant.is_now_book_only --><span ng-if="restaurant.is_now_book_only" ng-bind="' / ' + restaurant.open_time + ' 开始送餐'" class="ng-binding ng-scope"> / {$shop.shop_beginworktime} 开始送餐</span><!-- end ngIf: restaurant.is_now_book_only -->
+                <!-- ngIf: restaurant.is_now_book_only --><span ng-if="restaurant.is_now_book_only" ng-bind="' / ' + restaurant.open_time + ' 开始送餐'" class="ng-binding ng-scope"> / {$shop.shop_beginworktime}-{$shop.shop_endworktime} 送餐时间</span><!-- end ngIf: restaurant.is_now_book_only -->
             </div>
 <!--             ngIf: restaurant.icons.activities <div class="grst-activity ng-scope" ng-if="restaurant.icons.activities">
              ngRepeat: icon in restaurant.icons.activities <p class="grst-activity-detail ng-scope" ng-repeat="icon in restaurant.icons.activities">

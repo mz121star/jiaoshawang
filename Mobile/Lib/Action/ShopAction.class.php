@@ -95,16 +95,27 @@ class ShopAction extends PublicAction {
     public function orderconfirm() {
         $userid = $this->userInfo['user_id'];
         $orderid = $this->_get('orderid');
-        $orderobj = M("order");
-        if (!$orderid) {
-            $this->error('没有选择订单');
-        }
         if (!$userid) {
             $this->error('请先登录');
+        }
+        $orderobj = M("order");
+        $orderinfo = $orderobj->where('id="'.$orderid.'" and order_people = "'.$userid.'"')->find();
+        if (!$orderinfo) {
+            $this->error('没有可选订单');
         }
 
         $isok = $orderobj->where('id="'.$orderid.'"')->setField('order_status', '2');
         if ($isok) {
+            $people = M("People");
+            $peopleinfo = $people->field('people_point')->where('user_id="'.$userid.'"')->find();
+            if ($peopleinfo) {
+                $newpoint = $peopleinfo['people_point'] + intval($orderinfo['order_price']);
+                $isok = $people->where('user_id="'.$userid.'"')->setField('people_point', $newpoint);
+                if ($isok) {
+                    $this->userInfo['people_point'] = $newpoint;
+                    session('userinfo', $this->userInfo);
+                }
+            }
             $this->redirect('shop/orders');
         } else {
             $this->error('确定收货失败', 'shop/orders');

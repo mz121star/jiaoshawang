@@ -154,6 +154,8 @@ CREATE TABLE `dc_people` (
   `people_phone` varchar(250) NOT NULL,
   `people_addr` varchar(250) NOT NULL,
   `people_point` int(11) unsigned NOT NULL default 0,
+  `people_invitenum` int(11) unsigned NOT NULL default 0 COMMENT '本人的邀请码',
+  `people_invite` int(11) unsigned NOT NULL default 0 COMMENT '邀请人的邀请码',
   `user_id` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY user_id (user_id)

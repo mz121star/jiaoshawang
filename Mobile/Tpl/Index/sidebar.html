@@ -23,11 +23,11 @@
              
             <li>
             <if condition="$Think.session.userinfo.user_id neq ''">
-               <a href="#">
+               <a href="javascript:;">
                    <img src="/images/head.jpg" width="60" height="60" style="float: left">
                    <div style="float: right;width: 70%">
                        <p>{$Think.session.userinfo.user_id}</p>
-                       <p>积分：0</p>
+                       <p>积分：{$Think.session.userinfo.people_point|default="0"}</p>
                    </div>
 
                </a>

@@ -14,7 +14,7 @@ class CartAction extends PublicAction {
         }
         $shopid = $this->_get('shopid');
         $shopobj = M("Shop");
-        $shopinfo = $shopobj->where('user_id="'.$shopid.'"')->field('shop_beginworktime, shop_endworktime')->find();
+        $shopinfo = $shopobj->where('user_id="'.$shopid.'"')->field('shop_deliver_beginmoney,shop_beginworktime, shop_endworktime')->find();
         if (!$shopinfo) {
             $this->redirect('Index/index');
         }
@@ -44,9 +44,15 @@ class CartAction extends PublicAction {
         if (!$cartprice) {
             $this->error('没有选择菜品');
         }
+        $this->assign('shopid', $shopid);
         $this->assign('cartlist', $cartlist);
         $this->assign('cartprice', $cartprice);
         $this->assign('carttotle', $carttotle);
+        if ($shopinfo['shop_deliver_beginmoney'] > $cartprice) {
+            $this->assign('beginmoney', $shopinfo['shop_deliver_beginmoney']-$cartprice);
+        } else {
+            $this->assign('beginmoney', 0);
+        }
         $people = M("People");
         $peopleinfo = $people->where('user_id="'.$userid.'"')->find();
         $this->assign('peopleinfo', $peopleinfo);

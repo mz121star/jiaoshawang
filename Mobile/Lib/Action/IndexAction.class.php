@@ -194,6 +194,11 @@ class IndexAction extends PublicAction {
                     $_POST['user_status'] = 1;
                     $userInfo = $user->where($_POST)->field('id,user_id,user_type')->find();
                     if(!empty($userInfo) && $userInfo['user_type'] == 3){
+                        $people = M("People");
+                        $peopleinfo = $people->field('people_name,people_email,people_phone,people_addr,people_point,people_invitenum,people_invite')->where('user_id="'.$_POST['user_id'].'"')->find();
+                        if ($peopleinfo) {
+                            $userInfo = array_merge($userInfo, $peopleinfo);
+                        }
                         session('userinfo', $userInfo);
                         $this->success("登录成功", 'index');
                     } else {

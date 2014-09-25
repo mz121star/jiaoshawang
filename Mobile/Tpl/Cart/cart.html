@@ -12,6 +12,7 @@
     <link type="text/css" rel="stylesheet" href="/mobile/css/flexslider.css" />
     <link type="text/css" rel="stylesheet" href="/mobile/css/jquery.mmenu.all.css" />
     <link type="text/css" rel="stylesheet" href="/mobile/css/style.css" />
+    <link rel="stylesheet" href="/mobile/css/ali/iconfont.css">
 
     <script type="text/javascript" src="/mobile/js/jquery.min.js"></script>
     <script type="text/javascript" src="/mobile/js/jquery.mmenu.min.all.js"></script>
@@ -107,8 +108,16 @@
                 <span ng-bind="totalPieces" class="ng-binding">{$carttotle}</span> 份美食
                 <span class="ui-rmb total-cost ng-binding" ng-bind="totalCost">{$cartprice}</span>
             </p>
+            <if condition="$beginmoney neq 0">
+            <p class="cart-summary">
 
+                <span ng-bind="totalPieces" class="ng-binding"></span> 还差
+                <span class="ui-rmb total-cost ng-binding" ng-bind="totalCost">{$beginmoney}</span> 起送
+                <input type="button" class="ui-btn btn-confirm" id="goon" value="继续点餐">
+            </p>
+            <else />
             <input type="submit" class="ui-btn btn-confirm" value="确认美食">
+            </if>
         </footer>
             </form>
     </div>
@@ -127,7 +136,11 @@
             }).success(function(d){
 
                     })
-        })
+        });
+
+        $("#goon").on("click",function(){
+            location.href = "__GROUP__/shop/detail/{$shopid}";
+        });
     })
 </script>
 </body>
