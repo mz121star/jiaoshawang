@@ -43,6 +43,7 @@
                 <span class="cdish-name ng-binding" ng-bind="food.name">{$cart[name]}</span>
                 <span class="ui-multiple cdish-quantity ng-binding" ng-bind="food.quantity">{$cart[num]}</span>
                 <span class="ui-rmb cdish-cost ng-binding" ng-bind="food.originPrice || food.price">{$cart[price]}</span>
+                 <span><a href="javascript:;"  class="delcart" data-id="{$cart[name]}">删除</a> </span>
             </div>
             <div class="mdish-must-payonline ng-hide" ng-show="food.mustPayOnline">支持货到付款</div>
             <div class="cdish-control" ng-class="{'ui_show': showCtrls }">
@@ -138,6 +139,9 @@
                     })
         });
 
+      $(".delcart").on("click",function(e){
+          $(this).parent().remove();
+      })
         $("#goon").on("click",function(){
             location.href = "__GROUP__/shop/detail/{$shopid}";
         });
