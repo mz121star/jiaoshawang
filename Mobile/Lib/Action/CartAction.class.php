@@ -82,6 +82,9 @@ class CartAction extends PublicAction {
             }
             $totalprice += $food['num'] * $food['price'];
         }
+        if (!$totalprice) {
+            $this->error('没有选择菜品', '/mobile.php/shop/detail/'.$orderinfo['shopid']);
+        }
         if ($orderinfo['area_select'] == 191) {
             $people = M("People");
             $peopleinfo = $people->where('user_id="'.$this->userInfo['user_id'].'"')->find();

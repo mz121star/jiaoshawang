@@ -43,7 +43,7 @@
                 <span class="cdish-name ng-binding" ng-bind="food.name">{$cart[name]}</span>
                 <span class="ui-multiple cdish-quantity ng-binding" ng-bind="food.quantity">{$cart[num]}</span>
                 <span class="ui-rmb cdish-cost ng-binding" ng-bind="food.originPrice || food.price">{$cart[price]}</span>
-                 <span><a href="javascript:;"  class="delcart" data-id="{$cart[name]}">删除</a> </span>
+                 <span><a href="javascript:;"  class="delcart" data-id="{$cart[name]}" data-menuid="{$cart[id]}">删除</a> </span>
             </div>
             <div class="mdish-must-payonline ng-hide" ng-show="food.mustPayOnline">支持货到付款</div>
             <div class="cdish-control" ng-class="{'ui_show': showCtrls }">
@@ -61,6 +61,7 @@
             <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" name="loginform" action="__GROUP__/cart/ordersuccess" method="post">
                 <input type="hidden" name="area_select" value="1">
                 <input type="hidden" name="beta" value="">
+                <input type="hidden" name="shopid" value="{$shopid}">
             <div class="ui-padding-block">
                 <div class="input-group" >
                     <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-minlength" type="text" name="louhao1"   placeholder="请填写详细送餐地址" required="" value="{$lastaddr}" ng-minlength="3"  >
@@ -140,8 +141,10 @@
         });
 
       $(".delcart").on("click",function(e){
+          var menuid = $(this).data('menuid');
+          $.post("/mobile.php/cart/delete", { 'id': menuid });
           $(this).parent().parent().parent().remove();
-      })
+      });
         $("#goon").on("click",function(){
             location.href = "__GROUP__/shop/detail/{$shopid}";
         });
