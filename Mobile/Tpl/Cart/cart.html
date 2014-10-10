@@ -140,7 +140,7 @@
         });
 
       $(".delcart").on("click",function(e){
-          $(this).parent().parent().remove();
+          $(this).parent().parent().parent().remove();
       })
         $("#goon").on("click",function(){
             location.href = "__GROUP__/shop/detail/{$shopid}";
