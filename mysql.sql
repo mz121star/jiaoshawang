@@ -228,5 +228,7 @@ CREATE TABLE `dc_comment` (
   `shop_id` varchar(250) NOT NULL COMMENT '商户用户ID，关联dc_user表的user_id',
   `comment_content` text NOT NULL,
   `comment_date` datetime NOT NULL,
+  `comment_good` int(11) unsigned NOT NULL default 0,
+  `comment_bad` int(11) unsigned NOT NULL default 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户评论表';

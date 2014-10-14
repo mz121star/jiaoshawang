@@ -8,7 +8,7 @@ class IndexAction extends PublicAction {
         $orderobj = M("order");
         import('ORG.Util.Page');
         $count = $shopobj->count();
-        $page = new Page($count, 10);
+        $page = new Page($count, 100);
         $shoplist = $shopobj->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
         $commonshop = array();
         $current_time = date('Gis');
@@ -157,24 +157,28 @@ class IndexAction extends PublicAction {
         $this->assign('typelist', $typelist);
         $this->display('index');
     }
-    
-       public function detail(){
-            $this->display();
-        }
-         public function cart(){
-                    $this->display();
-                }
-                public function login() {
-                    $this->display();
-                }
-                
-                public function reg() {
+
+    public function detail(){
         $this->display();
     }
+
+    public function cart(){
+        $this->display();
+    }
+
+    public function login() {
+        $this->display();
+    }
+
+    public function reg() {
+        $this->display();
+    }
+
     public function joinmarket() {
         $this->display();
     }
-                public function logout() {
+
+    public function logout() {
         $userInfo = session('userinfo');
         if(!empty($userInfo)){
             session('userinfo', null);
@@ -183,54 +187,57 @@ class IndexAction extends PublicAction {
         $this->redirect('Index/index');
     }
     
-                public function dologin() {
-                    $userInfo = session('userinfo');
-                    if(!empty($userInfo) && $userInfo['user_type'] == 3 ){
-                        $this->redirect('Index/index');
-                    }
-                    $user = M("User");
-                    $_POST['user_id'] = $this->_post('user_id');
-                    $_POST['user_pw'] = md5($this->_post('user_pw'));
-                    $_POST['user_status'] = 1;
-                    $userInfo = $user->where($_POST)->field('id,user_id,user_type')->find();
-                    if(!empty($userInfo) && $userInfo['user_type'] == 3){
-                        $people = M("People");
-                        $peopleinfo = $people->field('people_name,people_email,people_phone,people_addr,people_point,people_invitenum,people_invite')->where('user_id="'.$_POST['user_id'].'"')->find();
-                        if ($peopleinfo) {
-                            $userInfo = array_merge($userInfo, $peopleinfo);
-                        }
-                        session('userinfo', $userInfo);
-                        $this->success("登录成功", 'index');
-                    } else {
-                        $this->success("登录失败", 'login');
-                    }
-                }
-                
-                
-        public function adduser() {
-            $post = $this->filterAllParam('post');
-            if (!$post['user_id']) {
-                $this->error("用户名不能为空");
-            }
-            if (!$post['user_pw1']) {
-                $this->error("密码不能为空");
-            }
-            if ($post['user_pw1'] != $post['user_pw2']) {
-                $this->error("密码不一致");
-            }
-            $user = M("User");
-            $userInfo = $user->where('user_id="'.$post['user_id'].'"')->field('id')->find();
-            if ($userInfo) {
-                $this->error("用户ID已存在");
-            }
-            $post['user_pw'] = md5($post['user_pw1']);
-            $userid = $user->add($post);
-            if ($userid) {
-                $people = M("People");
-                $peopleid = $people->add(array('user_id'=>$post['user_id'], 'people_phone'=>$post['people_phone']));
-            }
-            $this->success("注册成功", 'login');
+    public function dologin() {
+        $userInfo = session('userinfo');
+        if(!empty($userInfo) && $userInfo['user_type'] == 3 ){
+            $this->redirect('Index/index');
         }
+        $user = M("User");
+        $_POST['user_id'] = $this->_post('user_id');
+        $_POST['user_pw'] = md5($this->_post('user_pw'));
+        $_POST['user_status'] = 1;
+        $userInfo = $user->where($_POST)->field('id,user_id,user_type')->find();
+        if(!empty($userInfo) && $userInfo['user_type'] == 3){
+            $people = M("People");
+            $peopleinfo = $people->field('people_name,people_email,people_phone,people_addr,people_point,people_invitenum,people_invite')->where('user_id="'.$_POST['user_id'].'"')->find();
+            if ($peopleinfo) {
+                $userInfo = array_merge($userInfo, $peopleinfo);
+            }
+            session('userinfo', $userInfo);
+            $this->success("登录成功", 'index');
+        } else {
+            $this->success("登录失败", 'login');
+        }
+    }
+
+    public function adduser() {
+        $post = $this->filterAllParam('post');
+        if (!$post['user_id']) {
+            $this->error("用户名不能为空");
+        }
+        if (!$post['user_pw1']) {
+            $this->error("密码不能为空");
+        }
+        if ($post['user_pw1'] != $post['user_pw2']) {
+            $this->error("密码不一致");
+        }
+        $user = M("User");
+        $userInfo = $user->where('user_id="'.$post['user_id'].'"')->field('id')->find();
+        if ($userInfo) {
+            $this->error("用户ID已存在");
+        }
+        $post['user_pw'] = md5($post['user_pw1']);
+        $userid = $user->add($post);
+        if ($userid) {
+            $people = M("People");
+            $post['people_phone'] = $post['user_id'];
+            $peopleid = $people->add($post);
+            $this->success("注册成功", 'login');
+        } else {
+            $this->error("注册失败");
+        }
+    }
+
     public function addshop() {
         $post = $this->filterAllParam('post');
         if (!$post['shopname']) {
@@ -242,13 +249,45 @@ class IndexAction extends PublicAction {
         if (!$post['shopphone']) {
             $this->error("电话不能为空", 'index');
         }
-
         $user = M("joinmarket");
-
         $shopid = $user->add($post);
         if ($shopid) {
             $this->redirect('Index');
         }
+    }
 
+    public function changeinfo(){
+        $userid = $this->userInfo['user_id'];
+        $people = M("People");
+        $peopleinfo = $people->where('user_id="'.$userid.'"')->find();
+        $this->assign('peopleinfo', $peopleinfo);
+        $this->display();
+    }
+
+    public function upinfo(){
+        $userid = $this->userInfo['user_id'];
+        $post = $this->filterAllParam('post');
+        if ($post['oldpwd']) {
+            $user = M("User");
+            $searchpw = md5($post['oldpwd']);
+            $userInfo = $user->where('user_id="'.$userid.'" and user_pw="'.$searchpw.'"')->field('id')->find();
+            if ($userInfo) {
+                if ($post['pwd1'] && $post['pwd1'] == $post['pwd2']) {
+                    $newpw = md5($post['pwd1']);
+                    $isSuccess = $user->where('user_id="'.$userid.'"')->setField('user_pw', $newpw);
+                } else {
+                    $this->error("两次新密码不一致", 'changeinfo');
+                }
+            } else {
+                $this->error("原密码错误", 'changeinfo');
+            }
+        } else {
+            if ($post['pwd1']) {
+                $this->error("请输入原密码", 'changeinfo');
+            }
+        }
+        $people = M("People");
+        $people->where('user_id="'.$userid.'"')->save($post);
+        $this->success("信息修改成功", 'index');
     }
 }

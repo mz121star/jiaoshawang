@@ -59,11 +59,17 @@ class CartAction extends PublicAction {
         
         $order = M("Order");
         $lastaddr = '';
-        $orderinfo = $order->field('order_addr')->where('order_people="'.$userid.'"')->order(array('order_createdate'=>'desc'))->limit(1)->find();
+        $lastphone = '';
+        $lastpeoplename = '';
+        $orderinfo = $order->field('order_addr,order_phone,order_peoplename')->where('order_people="'.$userid.'"')->order(array('order_createdate'=>'desc'))->limit(1)->find();
         if ($orderinfo) {
             $lastaddr = $orderinfo['order_addr'];
+            $lastphone = $orderinfo['order_phone'];
+            $lastpeoplename = $orderinfo['order_peoplename'];
         }
         $this->assign('lastaddr', $lastaddr);
+        $this->assign('lastphone', $lastphone);
+        $this->assign('lastpeoplename', $lastpeoplename);
         $this->display();
     }
     

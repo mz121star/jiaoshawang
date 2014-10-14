@@ -48,6 +48,11 @@ class ShopAction extends PublicAction {
         $shoptype = M("Shoptype");
         $typelist = $shoptype->where('parent_id = '.$shopinfo['shop_type'])->order(array('id'=>'desc'))->select();
         $this->assign('typelist', $typelist);
+
+        $userid = $this->userInfo['user_id'];
+        $comment = M("comment");
+        $commentlist = $comment->where('shop_id="'.$shopid.'"')->field('dc_comment.id, people_name, people_id, comment_content, comment_date, comment_good, comment_bad')->join(' dc_people on dc_people.user_id = dc_comment.people_id')->select();
+        $this->assign('commentlist', $commentlist);
         $this->display();
     }
     

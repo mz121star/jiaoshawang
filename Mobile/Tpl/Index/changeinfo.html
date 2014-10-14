@@ -1,0 +1,34 @@
+<include file="Public:header"/>
+<body class="o-page">
+<div id="page">
+    <!-- Header -->
+    <div id="header">
+        <a href="#menu"><i class="fa fa-bars"></i> </a>
+				<span id="Logo" class="svg">
+					叫啥网
+				</span>
+        <a class="backBtn" href="javascript:history.back();"><i class="fa fa-home"></i></a>
+    </div>
+    <div class="subHeader"><i class="i-home i-small"></i>个人信息修改</div>
+
+    <form name="frmMpwd" method="post" action="/mobile.php/index/upinfo">
+       <ul class="xleft" style="width80%">
+            <li><span class="x1">登录账号：</span><span style="padding-top:10px">{$peopleinfo.user_id}</span></li>
+            <li><span class="x1">原密码：</span><span><input type="password" name="oldpwd" class="txt1"></span></li>
+            <li><span class="x1">新的密码：</span><span><input type="password" name="pwd1" class="txt1"></span></li>
+            <li><span class="x1">确认密码：</span><span><input type="password" name="pwd2" class="txt1"></span></li>
+            <li><span class="x1">姓名：</span><span><input type="text" name="people_name" class="txt1" value="{$peopleinfo.people_name}"></span></li>
+            <li><span class="x1">邮箱：</span><span><input type="text" name="people_email" class="txt1" value="{$peopleinfo.people_email}"></span></li>
+            <li><span class="x1">收货地址：</span><span><input type="text" name="people_addr" class="txt1" value="{$peopleinfo.people_addr}"></span></li>
+            <li><span class="x1">联系电话：</span><span><input type="text" name="people_phone" class="txt1" value="{$peopleinfo.people_phone}"></span></li>
+            <li><span class="x1"></span><span><input type="submit" name="btn_submit" value="确认修改" class="button3"></span></li>
+        </ul>
+    </form>
+
+    <!-- Menu navigation -->
+
+    <include file="Index:sidebar"/>
+</div>
+
+</body>
+</html>

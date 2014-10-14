@@ -15,25 +15,25 @@
     <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" autocomplete="off" name="regform" action="__GROUP__/index/adduser" method="post">
         <div class="logreg-inputs">
             <div class="input-group" ng-class="{ 'ui_error': regform.username.$invalid &amp;&amp; regform.username.$dirty &amp;&amp; invalidusername}">
-                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-minlength" type="text" placeholder="手机号" name="user_id">
-                <p class="input-tip">
-                    <span ng-show="regform.username.$error.required" class="">请输入手机号</span>
-                    <span ng-show="regform.username.$error.maxlength || regform.username.$error.minlength" class="ng-hide">用户名长度在 5 到 24 位之间</span>
-                </p>
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-minlength" type="text" placeholder="手机号" name="user_id" required="">
+            </div>
+            <div class="input-group" ng-class="{ 'ui_error': regform.username.$invalid &amp;&amp; regform.username.$dirty &amp;&amp; invalidusername}">
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-minlength" type="text" placeholder="姓名" name="people_name">
             </div>
             <div class="input-group" ng-class="{ 'ui_error': regform.password.$invalid &amp;&amp; regform.password.$dirty &amp;&amp; invalidpassword }">
                 <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-minlength" type="password" name="user_pw1" placeholder="请输入密码" ng-minlength="6" ng-model="user.password" required="" ng-blur="message('password')" ng-keyup="passwordCheck()">
-                <p class="input-tip">
-                    <span ng-show="regform.password.$error.required" class="">请输入密码</span>
-                    <span ng-show="regform.password.$error.minlength" class="ng-hide">密码最少 6 位</span>
-                </p>
             </div>
             <div class="input-group" ng-class="{ 'ui_error': regform.repeat.$dirty &amp;&amp; (invalidrepeat || pwnotmatch)}">
                 <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="password" name="user_pw2" placeholder="请再次输入密码" ng-model="user.repeat" required="" ng-blur="passwordCheck()">
-                <p class="input-tip">
-                    <span ng-show="regform.repeat.$error.required" class="">请再次输入密码</span>
-                    <span ng-show="pwnotmatch" class="ng-hide">两次密码输入不一致</span>
-                </p>
+            </div>
+            <div class="input-group" ng-class="{ 'ui_error': regform.repeat.$dirty &amp;&amp; (invalidrepeat || pwnotmatch)}">
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="text" name="people_email" placeholder="联系邮箱" ng-model="user.repeat" ng-blur="passwordCheck()">
+            </div>
+            <div class="input-group" ng-class="{ 'ui_error': regform.repeat.$dirty &amp;&amp; (invalidrepeat || pwnotmatch)}">
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="text" name="people_addr" placeholder="收货地址" ng-model="user.repeat" required="" ng-blur="passwordCheck()">
+            </div>
+            <div class="input-group" ng-class="{ 'ui_error': regform.repeat.$dirty &amp;&amp; (invalidrepeat || pwnotmatch)}">
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required" type="text" name="people_invite" placeholder="邀请码" ng-model="user.repeat" ng-blur="passwordCheck()">
             </div>
         </div>
         <button class="ui-btn logreg-btn" type="submit"  >同意协议并注册</button>

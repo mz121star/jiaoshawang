@@ -20,5 +20,7 @@ $private_config = array(
                                                     'fav/:shopid' => 'Shop/fav',
                                                     'cancelfav/:shopid' => 'Shop/cancelfav',
                                                     'commentlist/:shopid' => 'Comment/lists',
+                                                    'goodcomment/:cid' => 'Comment/good',
+                                                    'badcomment/:cid' => 'Comment/bad',
                                                 ));//私有配置
 return array_merge($common_config, $private_config);

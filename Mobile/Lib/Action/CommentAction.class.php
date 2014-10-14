@@ -19,6 +19,8 @@ class CommentAction extends PublicAction {
             $this->error('请填写评论内容');
         }
         $insert['comment_date'] = date('Y-m-d H:i:s');
+        $insert['comment_good'] = 0;
+        $insert['comment_bad'] = 0;
         $insert['people_id'] = $userid;
         $insert['shop_id'] = $shopid;
         $commentid = $comment->add($insert);
@@ -40,5 +42,29 @@ class CommentAction extends PublicAction {
         $shopinfo = $shop->where('user_id="'.$shopid.'"')->find();
         $this->assign('shopinfo', $shopinfo);
         $this->display();
+    }
+
+    public function good() {
+        $commentid = $this->_get('cid');
+        $comment = M("comment");
+        $commentinfo = $comment->where('id="'.$commentid.'"')->find();
+        if ($commentinfo) {
+            $isok = $comment->where('id="'.$commentid.'"')->setInc('comment_good');
+            echo '赞';exit;
+        } else {
+            echo '无此评论';exit;
+        }
+    }
+
+    public function bad() {
+        $commentid = $this->_get('cid');
+        $comment = M("comment");
+        $commentinfo = $comment->where('id="'.$commentid.'"')->find();
+        if ($commentinfo) {
+            $isok = $comment->where('id="'.$commentid.'"')->setInc('comment_bad');
+            echo '砸';exit;
+        } else {
+            echo '无此评论';exit;
+        }
     }
 }

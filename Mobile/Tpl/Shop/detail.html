@@ -140,7 +140,30 @@
     </div>
     <div><button class="mdish-price" type="submit">发布留言</button></div>
 </form></div>
-
+<foreach name="commentlist" item="comment">
+<div class="menu-dish ng-scope" ng-repeat="food in foods">
+    <div class="mdish-info">
+        <p class="mdish-name ng-binding" ng-bind="food.name">{$comment.comment_content}</p>
+        <p class="mdish-misc">
+            <span class="state_bg1"></span>
+            <span class="mdish-sales ng-scope" ng-if="food.sales > 0">{$comment.people_id}</span>
+        </p>
+        <p class="mdish-misc">
+            <span class="state_bg1"></span>
+            <span class="mdish-sales ng-scope" ng-if="food.sales > 0">{$comment.comment_date}</span>
+        </p>
+        <div class="mdish-badges ng-scope" ng-if="food.attributes.length > 0 || menu.isActivity">
+    </div>
+    </div>
+    <div class="mdish-status" ng-hide="!(restaurant.status === 1 || restaurant.status === 5) || food.stock === 0">
+        <div class="mdish-controls">
+            <div class="upcomment" role="button" data-commentid="{$comment.id}">鲜花<span id="goodcomment{$comment.id}">{$comment.comment_good}</span></div>
+            <div class="mdish-ordered ng-isolate-scope" data-num="0"> </div>
+            <div class="downcomment" role="button" data-commentid="{$comment.id}">鸡蛋<span id="badcomment{$comment.id}">{$comment.comment_bad}</span></div>
+        </div>
+    </div>
+</div>
+</foreach>
 
 
 
@@ -149,6 +172,30 @@
 
     <script>
     $(function(){
+        $(".upcomment").on("click",function(){
+            var _self=this;
+            var commentid = $(_self).data("commentid");
+            $.get("/mobile.php/goodcomment/"+commentid).success(function(d){
+                alert(d);
+                if (d == "赞") {
+                    var goodnum = $("#goodcomment"+commentid).html();
+                    var newnum = parseInt(goodnum) + 1;
+                    $("#goodcomment"+commentid).html(newnum);
+                }
+            })
+        });
+        $(".downcomment").on("click",function(){
+            var _self=this;
+            var commentid = $(_self).data("commentid");
+            $.get("/mobile.php/badcomment/"+commentid).success(function(d){
+                alert(d);
+                if (d == "砸") {
+                    var badnum = $("#badcomment"+commentid).html();
+                    var newnum = parseInt(badnum) + 1;
+                    $("#badcomment"+commentid).html(newnum);
+                }
+            })
+        });
         $(".mdish-minus").on("click",function(){
             var _self=this;
 
