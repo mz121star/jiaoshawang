@@ -157,7 +157,7 @@
     </div>
     <div class="mdish-status" ng-hide="!(restaurant.status === 1 || restaurant.status === 5) || food.stock === 0">
         <div class="mdish-controls">
-            <div class="upcomment" role="button" data-commentid="{$comment.id}">鲜花<span id="goodcomment{$comment.id}">{$comment.comment_good}</span></div>
+            <div class="upcomment" role="button" data-commentid="{$comment.id}"><img src="/images/flower.png" ><span id="goodcomment{$comment.id}">{$comment.comment_good}</span></div>
             <div class="mdish-ordered ng-isolate-scope" data-num="0"> </div>
             <div class="downcomment" role="button" data-commentid="{$comment.id}">鸡蛋<span id="badcomment{$comment.id}">{$comment.comment_bad}</span></div>
         </div>
