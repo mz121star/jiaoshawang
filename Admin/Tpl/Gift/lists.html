@@ -1,0 +1,25 @@
+<h2 class="sub-header">礼品列表</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>礼品名称</th>
+            <th>礼品积分</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <foreach name="giftlist" item="gift">
+          <tr>
+            <td class="col-sm-2">{$gift.gift_name}</td>
+            <td class="col-sm-2">{$gift.gift_number}</td>
+            <td class="col-sm-2">
+                <a href="__GROUP__/modgift/{$gift.id}">编辑</a> 
+                <a href="__GROUP__/delgift/{$gift.id}">删除</a>
+            </td>
+          </tr>
+        </foreach>
+        </tbody>
+      </table>
+      {$page}
+    </div>

@@ -250,6 +250,8 @@ CREATE TABLE `dc_giftexchange` (
   `id` int(11) NOT NULL auto_increment,
   `gift_id` int(11) unsigned NOT NULL COMMENT '礼品ID，对应gift表的ID字段',
   `people_id` int(11) unsigned NOT NULL COMMENT '普通用户ID，关联dc_user表的user_id',
+  `gift_name` varchar(250) NOT NULL COMMENT '礼品名称',
+  `gift_image` varchar(250) NOT NULL COMMENT '礼品图片',
   `exchange_number` int(11) unsigned NOT NULL COMMENT '兑换花费的积分',
   `exchange_addr` varchar(250) NOT NULL COMMENT '礼品收货地址',
   `exchange_date` datetime NOT NULL COMMENT '礼品兑换时间',
