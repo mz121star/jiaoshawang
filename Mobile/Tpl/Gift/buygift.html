@@ -1,0 +1,37 @@
+<include file="Public:header"/>
+<body class="o-page">
+<div id="page">
+    <!-- Header -->
+    <div id="header">
+        <a href="#menu"><i class="fa fa-bars"></i> </a>
+				<span id="Logo" class="svg">
+					叫啥网
+				</span>
+        <a class="backBtn" href="javascript:history.back();"><i class="fa fa-home"></i></a>
+    </div>
+    <div class="subHeader"><i class="i-home i-small"></i>礼品兑换信息</div>
+
+    <form name="frmMpwd" method="post" action="/mobile.php/gift/exchange">
+        <input type="hidden" name="gift_id" value="{$giftinfo.id}">
+        <input type="hidden" name="gift_name" value="{$giftinfo.gift_name}">
+        <input type="hidden" name="gift_image" value="{$giftinfo.gift_image}">
+        <input type="hidden" name="exchange_number" value="{$giftinfo.gift_number}">
+       <ul class="xleft" style="width80%">
+           <li><span class="x1">礼品图片：</span><span style="padding-top:10px"><img src="/upload/{$giftinfo.gift_image}" width="100" height="100"></span></li>
+            <li><span class="x1">礼品名称：</span><span>{$giftinfo.gift_name}</span></li>
+            <li><span class="x1">礼品描述：</span><span>{$giftinfo.gift_desc|nl2br}</span></li>
+            <li><span class="x1">所需积分：</span><span>{$giftinfo.gift_number}</span></li>
+            <li><span class="x1">收货人姓名：</span><span><input type="text" name="exchange_name" class="txt1"></span></li>
+            <li><span class="x1">收货地址：</span><span><input type="text" name="exchange_addr" class="txt1"></span></li>
+            <li><span class="x1">收货人电话：</span><span><input type="text" name="exchange_phone" class="txt1"></span></li>
+            <li><span class="x1"></span><span><input type="submit" name="btn_submit" value="确认兑换" class="button3"></span></li>
+        </ul>
+    </form>
+
+    <!-- Menu navigation -->
+
+    <include file="Index:sidebar"/>
+</div>
+
+</body>
+</html>

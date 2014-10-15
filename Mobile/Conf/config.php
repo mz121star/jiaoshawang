@@ -22,5 +22,6 @@ $private_config = array(
                                                     'commentlist/:shopid' => 'Comment/lists',
                                                     'goodcomment/:cid' => 'Comment/good',
                                                     'badcomment/:cid' => 'Comment/bad',
+                                                    'buygift/:gid' => 'Gift/buygift',
                                                 ));//私有配置
 return array_merge($common_config, $private_config);
