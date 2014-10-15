@@ -48,7 +48,7 @@ class IndexAction extends PublicAction {
         $orderobj = M("order");
         import('ORG.Util.Page');
         $count = $shopobj->where($where)->count();
-        $page = new Page($count, 10);
+        $page = new Page($count, 100);
         $shoplist = $shopobj->where($where)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
         $commonshop = array();
         $current_time = date('Gis');
@@ -83,7 +83,7 @@ class IndexAction extends PublicAction {
         $orderobj = M("order");
         import('ORG.Util.Page');
         $count = $shopobj->count();
-        $page = new Page($count, 10);
+        $page = new Page($count, 100);
         if ($shoptype) {
             $shoplist = $shopobj->where('shop_type = '.$shoptype)->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
         } else {
@@ -123,15 +123,38 @@ class IndexAction extends PublicAction {
         $orderobj = M("order");
         import('ORG.Util.Page');
         $count = $shopobj->count();
-        $page = new Page($count, 10);
+        $page = new Page($count, 100);
         if ($orderid == 1) {
-            $shoplist = $shopobj->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.shop_deliver_money'=>'asc'))->limit($page->firstRow.','.$page->listRows)->select();
+            $shoplist = $shopobj->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.shop_deliver_beginmoney'=>'asc'))->limit($page->firstRow.','.$page->listRows)->select();
         } elseif ($orderid == 2) {
-            $shoplist = $shopobj->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.shop_deliver_time'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
+            $comment = M('comment');
+            $res = $comment->query('SELECT shop_id FROM  `dc_comment`  group by shop_id ORDER BY SUM( comment_good ) DESC');
+            $shoplist = array();
+            $commentshop = array();
+            foreach ($res as $value) {
+                $shopinfo = $shopobj->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->where('user_id = "'.$value['shop_id'].'"')->find();
+                $shoplist[] = $shopinfo;
+                $commentshop[] = $value['shop_id'];
+            }
+            $where['user_id']  = array('not in', $commentshop);
+            $shoplist1 = $shopobj->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->where($where)->limit($page->firstRow.','.$page->listRows)->select();
+            $shoplist = array_merge($shoplist, $shoplist1);
+        } elseif ($orderid == 3) {
+            $res = $orderobj->query('SELECT food_shop FROM `dc_order` group by food_shop order by count(food_shop) desc');
+            $shoplist = array();
+            $commentshop = array();
+            foreach ($res as $value) {
+                $shopinfo = $shopobj->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->where('user_id = "'.$value['food_shop'].'"')->find();
+                $shoplist[] = $shopinfo;
+                $commentshop[] = $value['food_shop'];
+            }
+            $where['user_id']  = array('not in', $commentshop);
+            $shoplist1 = $shopobj->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->where($where)->limit($page->firstRow.','.$page->listRows)->select();
+            $shoplist = array_merge($shoplist, $shoplist1);
         } else {
             $shoplist = $shopobj->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->order(array('dc_shop.id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
         }
-        
+
         $commonshop = array();
         $current_time = date('Gis');
         foreach ($shoplist as $shop) {

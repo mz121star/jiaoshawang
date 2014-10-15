@@ -1,0 +1,38 @@
+<include file="Public:header"/>
+<body class="o-page">
+<div id="page">
+    <!-- Header -->
+    <div id="header">
+        <a href="#menu"><i class="fa fa-bars"></i> </a>
+				<span id="Logo" class="svg">
+					叫啥网
+				</span>
+        <a class="backBtn" href="javascript:history.back();"><i class="fa fa-home"></i></a>
+    </div>
+    <div class="subHeader"><i class="i-home i-small"></i>我的兑换</div>
+
+    <section class="trade-block ng-scope">
+        <h3 class="tblock-title">
+            兑换列表
+    <span class="tblock-title-helper">
+    </span>
+        </h3>
+        <div class="trade-bill">
+            <foreach name="mygiftlist" item="gift">
+            <ul class="tbill-list">
+                <!-- ngRepeat: food in order.data.detail.group | flatten --><li class="tbill-list-item torder-dish ng-scope" >
+                <span class="tdish-name ng-binding"><a href="__GROUP__/buygift/{$gift.gift_id}">{$gift.gift_name}</a></span>
+                <a class="tdish-quantity ng-binding" href="javascript:;">{$gift.exchange_number}积分</a>
+            </li><!-- end ngRepeat: food in order.data.detail.group | flatten -->
+            </ul>
+                </foreach>
+        </div>
+    </section>
+
+    <!-- Menu navigation -->
+
+    <include file="Index:sidebar"/>
+</div>
+
+</body>
+</html>

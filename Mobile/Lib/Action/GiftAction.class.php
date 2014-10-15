@@ -23,15 +23,32 @@ class GiftAction extends PublicAction {
         $this->assign('giftinfo', $giftinfo);
         $this->display();
     }
-    
+
+    public function mygift() {
+        $userid = $this->userInfo['user_id'];
+        if (!$userid) {
+            $this->error('请先登录');
+        }
+        $giftexchange = M("giftexchange");
+        $mygiftlist = $giftexchange->where('people_id = "'.$userid.'"')->select();
+        $this->assign('mygiftlist', $mygiftlist);
+        $this->display();
+    }
+
     public function exchange() {
         $userid = $this->userInfo['user_id'];
         if (!$userid) {
             $this->error('请先登录');
         }
         $post = $this->filterAllParam('post');
+        if (!$post['exchange_name']) {
+            $this->error('请填写收货人姓名');
+        }
         if (!$post['exchange_addr']) {
             $this->error('请填写收货地址');
+        }
+        if (!$post['exchange_phone']) {
+            $this->error('请填写收货人电话');
         }
         $people = M('people');
         $userinfo = $people->field('people_point')->where('user_id = "'.$userid.'"')->find();
