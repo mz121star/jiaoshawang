@@ -25,9 +25,9 @@ class CommentAction extends PublicAction {
         $insert['shop_id'] = $shopid;
         $commentid = $comment->add($insert);
         if ($commentid) {
-            $this->success('评论成功', 'lists');
+            $this->success('评论成功', '/mobile.php/shop/detail/'.$shopid);
         } else {
-            $this->error('评论失败', 'lists');
+            $this->error('评论失败', '/mobile.php/shop/detail/'.$shopid);
         }
     }
 
