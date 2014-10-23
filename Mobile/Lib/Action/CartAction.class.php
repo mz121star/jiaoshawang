@@ -149,7 +149,7 @@ class CartAction extends PublicAction {
                 $fooduser = $foodobj->where('id='.$foodid)->field('user_id')->find();
                 $foodnumber = $foodobj->where('id='.$foodinfo['id'].' and user_id="'.$fooduser['user_id'].'"')->field('user_id')->count();
                 if (!$foodnumber) {
-                    echo '请选择同一店铺的菜肴';exit;
+                    unset($_SESSION['cart'][$foodid]);
                 }
             }
         }
