@@ -320,7 +320,7 @@ class IndexAction extends PublicAction {
             $userid = rand(10000,99999);
         }
         vendor("phpqrcode.phpqrcode");
-        $data = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+        $data = 'http://'.$_SERVER['SERVER_NAME'].'/mobile.php';
         // 纠错级别：L、M、Q、H
         $level = 'Q';
         // 点的大小：1到10,用于手机端4就可以了
