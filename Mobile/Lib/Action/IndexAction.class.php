@@ -313,4 +313,53 @@ class IndexAction extends PublicAction {
         $people->where('user_id="'.$userid.'"')->save($post);
         $this->success("信息修改成功", 'index');
     }
+
+    public function share() {
+        $userid = $this->userInfo['user_id'];
+        if (!$userid) {
+            $userid = rand(10000,99999);
+        }
+        vendor("phpqrcode.phpqrcode");
+        $data = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+        // 纠错级别：L、M、Q、H
+        $level = 'Q';
+        // 点的大小：1到10,用于手机端4就可以了
+        $size = 6;
+        // 下面注释了把二维码图片保存到本地的代码,如果要保存图片,用$fileName替换第二个参数false
+        $path = $_SERVER['DOCUMENT_ROOT'].'/upload/';
+        // 生成的文件名
+        $fileName = $level.$size.'_'.$userid.'_share.png';
+        QRcode::png($data, $path.$fileName, $level, $size);
+        $this->assign('fileName', $fileName);
+        $this->display();
+    }
+
+    public function talk() {
+        $this->display();
+    }
+
+    public function savetalk() {
+        $userid = $this->userInfo['user_id'];
+        $post = $this->filterAllParam('post');
+        if (!$post['talkuser_name']) {
+            $this->error("请填写姓名");
+        }
+        if (!$post['talkuser_phone']) {
+            $this->error("请填写电话");
+        }
+        if (!$post['talkuser_content']) {
+            $this->error("请填写留言内容");
+        }
+        if ($userid) {
+            $post['talkuser_id'] = $userid;
+        }
+        $post['talk_date'] = date('Y-m-d H:i:s');
+        $talk = M("talk");
+        $id = $talk->add($post);
+        if ($id) {
+            $this->success("留言成功", 'index');
+        } else {
+            $this->error("留言失败");
+        }
+    }
 }

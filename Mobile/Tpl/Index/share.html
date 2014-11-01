@@ -1,0 +1,31 @@
+<include file="Public:header"/>
+<body class="o-page">
+<div id="page">
+    <!-- Header -->
+    <div id="header">
+        <a href="#menu"><i class="fa fa-bars"></i> </a>
+				<span id="Logo" class="svg">
+					叫啥网
+				</span>
+        <a class="backBtn" href="javascript:history.back();"><i class="fa fa-home"></i></a>
+    </div>
+    <div class="subHeader"><i class="i-home i-small"></i>保存二维码至本地，微信扫一扫分享</div>
+
+
+    <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" autocomplete="off" name="regform" action="__GROUP__/index/adduser" method="post">
+        <div class="logreg-inputs">
+            <div class="input-group" ng-class="{ 'ui_error': regform.username.$invalid &amp;&amp; regform.username.$dirty &amp;&amp; invalidusername}">
+                <img src="/upload/{$fileName}" width="" height="" style="border:none;">
+            </div>
+        </div>
+
+    </form>
+
+
+
+    <!-- Menu navigation -->
+    <include file="Index:sidebar"/>
+</div>
+
+</body>
+</html>

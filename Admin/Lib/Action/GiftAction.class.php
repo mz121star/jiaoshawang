@@ -14,6 +14,29 @@ class GiftAction extends PublicAction {
         $this->display();
     }
 
+    public function talk(){
+        $talk = M("talk");
+        import('ORG.Util.Page');
+        $count = $talk->count();
+        $page = new Page($count, 20);
+        $talklist = $talk->limit($page->firstRow.','.$page->listRows)->select();
+        $show = $page->show();
+        $this->assign('page',$show);
+        $this->assign('talklist', $talklist);
+        $this->display();
+    }
+
+    public function showtalk(){
+        $tid = $this->_get('tid');
+        $talk = M("talk");
+        $talkinfo = $talk->where('id='.$tid)->find();
+        if (!$talkinfo) {
+            $this->redirect('gift/talk');
+        }
+        $this->assign('talkinfo', $talkinfo);
+        $this->display();
+    }
+
     public function showadd(){
         $this->display();
     }

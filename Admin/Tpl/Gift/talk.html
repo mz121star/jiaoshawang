@@ -1,0 +1,26 @@
+<h2 class="sub-header">有奖留言列表</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>留言者姓名</th>
+            <th>留言者电话</th>
+            <th>留言日期</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <foreach name="talklist" item="talk">
+          <tr>
+            <td class="col-sm-2">{$talk.talkuser_name}</td>
+            <td class="col-sm-2">{$talk.talkuser_phone}</td>
+            <td class="col-sm-2">{$talk.talk_date}</td>
+            <td class="col-sm-2">
+                <a href="__GROUP__/showtalk/{$talk.id}">查看留言内容</a>
+            </td>
+          </tr>
+        </foreach>
+        </tbody>
+      </table>
+      {$page}
+    </div>

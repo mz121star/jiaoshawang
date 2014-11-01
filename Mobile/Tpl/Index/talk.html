@@ -1,0 +1,59 @@
+<include file="Public:header"/>
+<body class="o-page">
+<div id="page">
+    <!-- Header -->
+    <div id="header">
+        <a href="#menu"><i class="fa fa-bars"></i> </a>
+				<span id="Logo" class="svg">
+					叫啥网
+				</span>
+        <a class="backBtn" href="javascript:history.back();"><i class="fa fa-home"></i></a>
+    </div>
+    <div class="subHeader"><i class="i-home i-small"></i>有奖留言,如果建议被采纳会获得精美礼品</div>
+
+
+    <form class="logreg-form ng-scope ng-pristine ng-invalid ng-invalid-required" autocomplete="off" name="regform" id="regform" action="__GROUP__/index/savetalk" method="post">
+        <div class="logreg-inputs">
+            <div class="input-group" ng-class="{ 'ui_error': regform.username.$invalid &amp;&amp; regform.username.$dirty &amp;&amp; invalidusername}">
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-minlength" type="text" placeholder="姓名" name="talkuser_name" id="talkuser_name" required="">
+            </div>
+            <div class="input-group" ng-class="{ 'ui_error': regform.username.$invalid &amp;&amp; regform.username.$dirty &amp;&amp; invalidusername}">
+                <input class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-minlength" type="tel" placeholder="电话" name="talkuser_phone" id="talkuser_phone">
+            </div>
+            <div class="input-group" ng-class="{ 'ui_error': regform.password.$invalid &amp;&amp; regform.password.$dirty &amp;&amp; invalidpassword }">
+                <textarea class="ui-input ng-pristine ng-invalid ng-invalid-required ng-valid-minlength" name="talkuser_content" id="talkuser_content" rows="" cols=""></textarea>
+            </div>
+        </div>
+        <button class="ui-btn logreg-btn" type="button" id="subtalk" >提交留言</button>
+
+    </form>
+
+
+
+    <!-- Menu navigation -->
+    <include file="Index:sidebar"/>
+</div>
+<script type="text/javascript">
+$(function () {
+    $("#subtalk").click(function () {
+        var talkuser_name = $("#talkuser_name").val();
+        var talkuser_phone = $("#talkuser_phone").val();
+        var talkuser_content = $("#talkuser_content").val();
+        if (!talkuser_name) {
+            alert("请填写姓名");
+            return false;
+        }
+        if (!talkuser_phone) {
+            alert("请填写电话");
+            return false;
+        }
+        if (!talkuser_content) {
+            alert("请填写留言内容");
+            return false;
+        }
+        $("#regform").submit();
+    });
+});
+</script>
+</body>
+</html>

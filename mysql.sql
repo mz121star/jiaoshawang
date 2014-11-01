@@ -259,3 +259,17 @@ CREATE TABLE `dc_giftexchange` (
   `exchange_date` datetime NOT NULL COMMENT '礼品兑换时间',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='礼品兑换表';
+
+
+DROP TABLE IF EXISTS `dc_talk`;
+CREATE TABLE `dc_talk` (
+  `id` int(11) NOT NULL auto_increment,
+  `talkuser_id` varchar(250) NOT NULL COMMENT '留言者用户ID，关联dc_user表的user_id',
+  `talkuser_name` varchar(250) NOT NULL COMMENT '留言者姓名',
+  `talkuser_phone` varchar(250) NOT NULL COMMENT '留言者电话',
+  `talkuser_content` text NOT NULL COMMENT '留言内容',
+  `talk_date` datetime NOT NULL COMMENT '留言时间',
+  `talk_status` enum('1','2') NOT NULL COMMENT '留言状态，1是未采纳，2是已采纳',
+  `talk_gift` enum('1','2') NOT NULL COMMENT '是否有奖品，1是没有，2是有',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='有奖留言表';
