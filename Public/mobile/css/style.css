@@ -1132,7 +1132,7 @@ input.ui-input:focus,textarea.ui-textarea:focus {
 }
 
 .ui-multiple:before {
-    content: "\d7";
+    //content: "\d7";
     margin: 0 0.2em 0 0;
     font-family: Verdana,sans-serif;
     font-size: 0.9em
@@ -3078,4 +3078,20 @@ button.logreg-btn {
     font-size: 15px;
     font-weight: bold;
     text-align: center;
+}
+
+.biga{
+    display: inline-block;
+    width: 25px ;
+    height: 25px;
+    inline-height:25px;
+    vertical-align: middle;
+        font-size:20px;
+    background-color: white;
+    border:1px solid silver;
+    color:black;
+    text-decoration: none;
+    border-radius: 10px;
+    text-align: center;
+ 
 }
