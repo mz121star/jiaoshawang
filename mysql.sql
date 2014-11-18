@@ -201,8 +201,8 @@ CREATE TABLE `dc_order` (
   `order_receipt` enum('1','2') NOT NULL COMMENT '收货状态，1是未收货，2是已收货',
   `order_invoice` enum('1','2') NOT NULL COMMENT '是否索取发票，1是不索取，2是索取',
   `order_status` enum('1','2','3') NOT NULL COMMENT '订单状态，1是正常，2是完结，3是取消',
-  `order_sendtime` time NOT NULL,
-  `order_price` tinyint(3) unsigned NOT NULL COMMENT '订单总金额',
+  `order_sendtime` varchar(250) NOT NULL,
+  `order_price` int(11) unsigned NOT NULL COMMENT '订单总金额',
   `order_remark` varchar(250) NOT NULL,
   `order_createdate` datetime NOT NULL,
   PRIMARY KEY (`id`)

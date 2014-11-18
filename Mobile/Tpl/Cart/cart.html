@@ -41,7 +41,7 @@
         <li class="cart-dish ng-scope" ng-repeat="food in remoteList">
             <div class="cdish-detail" ng-click="showCtrls = !showCtrls">
                 <span class="cdish-name ng-binding" ng-bind="food.name">{$cart[name]}</span>
-                <span class="ui-multiple cdish-quantity ng-binding" ng-bind="food.quantity"><a class="biga bigaremove" href="#">-</a><span class="order-num"  style="font-size:15px">{$cart[num]}</span><a  class="biga bigaplus" href="#">+</a></span>
+                <span class="ui-multiple cdish-quantity ng-binding" ng-bind="food.quantity"><a class="biga bigaremove" href="#" data-menuid="{$cart[id]}">-</a><span class="order-num"  style="font-size:15px">{$cart[num]}</span><a  class="biga bigaplus" href="#" data-menuid="{$cart[id]}">+</a></span>
                 <span class="ui-rmb cdish-cost ng-binding" ng-bind="food.originPrice || food.price">{$cart[price]}</span>
                  <span><a href="javascript:;"  class="delcart" data-id="{$cart[name]}" data-menuid="{$cart[id]}">删除</a> </span>
             </div>
@@ -76,7 +76,8 @@
                 </div>
 
                 <div class="input-group">
-                    <select name="arrive">
+                    <input class="ui-input ng-pristine ng-valid" type="text" name="arrive" value="" placeholder="请填写想要送到的时间">
+<!--                    <select name="arrive">
                         <option value="">请选择送到时间</option>
                         <option value="06:00">6:00</option>
                         <option value="07:00">7:00</option>
@@ -95,7 +96,7 @@
                         <option value="20:00">20:00</option>
                         <option value="21:00">21:00</option>
                         <option value="22:00">22:00</option>
-                    </select>
+                    </select>-->
                 </div>
                 
                 <div class="input-group clear-margin">
@@ -150,17 +151,24 @@
         });
         
         $(".bigaplus").on("click",function(){
-            var numdom=$(".order-num",$(this).parent());
-            var num=parseInt($(numdom).html(),10);
-            
-            $(numdom).html(num+1);
+            var menuid = $(this).data('menuid');
+            var tempobj = $(this);
+            $.post("/mobile.php/cart/inc", { 'id': menuid }, function(data){
+                var numdom=tempobj.prev();
+                var num=parseInt($(numdom).html(),10);
+                $(numdom).html(num+1);
+            });
         })
         
         $(".bigaremove").on("click",function(){
-              var numdom=$(".order-num",$(this).parent());
-            var num=parseInt($(numdom).html(),10);
-            if(num>0)
-            $(numdom).html(num-1);
+            var menuid = $(this).data('menuid');
+            var tempobj = $(this);
+            $.post("/mobile.php/cart/dec", { 'id': menuid }, function(data){
+                var numdom=tempobj.next();
+                var num=parseInt($(numdom).html(),10);
+                if(num>1)
+                $(numdom).html(num-1);
+            });
         })
     })
 </script>
