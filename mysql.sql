@@ -49,6 +49,8 @@ CREATE TABLE `dc_shop` (
   `shop_addr` varchar(250) NOT NULL,
   `shop_top` enum('0','1') NOT NULL,
   `shop_type` int(11) unsigned NOT NULL default 0 COMMENT '类型ID，关联dc_shoptype表的id',
+  `shop_lng` float(10,6) NOT NULL,
+  `shop_lat` float(10,6) NOT NULL,
   `user_id` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY user_id (user_id)
