@@ -17,6 +17,8 @@ $private_config = array(
                                                   'upstatus/:userid/:status' => 'User/upstatus',
                                                   'modfood/:foodid' => 'Food/modfood',
                                                   'delfood/:foodid' => 'Food/delfood',
+                                                  'modtype/:typeid' => 'Food/modtype',
+                                                  'deltype/:typeid' => 'Food/deltype',
                                                   'modnotice/:noticeid' => 'Notice/modnotice',
                                                   'delnotice/:noticeid' => 'Notice/delnotice',
                                                   'cancelorder/:orderid' => 'Order/cancelorder',
@@ -26,7 +28,7 @@ $private_config = array(
                                                   'showtalk/:tid' => 'Gift/showtalk',
                                                   ),
                         'SHOP_ROLE' => array(
-                                            'Food'=>array('lists', 'showadd', 'save', 'modfood', 'delfood'),
+                                            'Food'=>array('lists', 'showadd', 'save', 'modfood', 'delfood', 'typelist', 'addtype', 'modtype', 'deltype', 'typesave'),
                                             'Notice'=>array('lists', 'showadd', 'save', 'modnotice', 'delnotice'),
                                             'Order'=>array('lists', 'cancelorder', 'detailorder'),
                                             'User'=>array('modself', 'upself')

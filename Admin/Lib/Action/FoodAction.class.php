@@ -30,8 +30,11 @@ class FoodAction extends PublicAction {
         $userid = $this->userInfo['user_id'];
         $shop = M("Shop");
         $type = $shop->field('shop_type')->where('user_id="'.$userid.'"')->find();
-        $shoptype = M("Shoptype");
-        $typelist = $shoptype->where('parent_id = '.$type['shop_type'])->order(array('id'=>'desc'))->select();
+//        $shoptype = M("Shoptype");
+//        $typelist = $shoptype->where('parent_id = '.$type['shop_type'])->order(array('id'=>'desc'))->select();
+//        $this->assign('typelist', $typelist);
+        $foodtype = M("foodtype");
+        $typelist = $foodtype->where('user_id = "'.$userid.'"')->order(array('id'=>'desc'))->select();
         $this->assign('typelist', $typelist);
         $this->display();
     }
@@ -46,11 +49,14 @@ class FoodAction extends PublicAction {
         }
         $this->assign('foodinfo', $foodinfo);
 
-        $shop = M("Shop");
-        $type = $shop->field('shop_type')->where('user_id="'.$userid.'"')->find();
-        $shoptype = M("Shoptype");
-        $typelist = $shoptype->where('parent_id = '.$type['shop_type'])->order(array('id'=>'desc'))->select();
+        $foodtype = M("foodtype");
+        $typelist = $foodtype->where('user_id = "'.$userid.'"')->order(array('id'=>'desc'))->select();
         $this->assign('typelist', $typelist);
+//        $shop = M("Shop");
+//        $type = $shop->field('shop_type')->where('user_id="'.$userid.'"')->find();
+//        $shoptype = M("Shoptype");
+//        $typelist = $shoptype->where('parent_id = '.$type['shop_type'])->order(array('id'=>'desc'))->select();
+//        $this->assign('typelist', $typelist);
         $this->display();
     }
     
@@ -109,5 +115,77 @@ class FoodAction extends PublicAction {
             $foodid = $food->add($post);
         }
         $this->redirect('Food/lists');
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+    public function typelist(){
+        $foodtype = M("Foodtype");
+        import('ORG.Util.Page');
+        $userid = $this->userInfo['user_id'];
+        $usertype = $this->userInfo['user_type'];
+        if ($usertype == 1) {
+            $count = $foodtype->count();
+            $page = new Page($count, 10);
+            $typelist = $foodtype->order(array('id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
+        } else {
+            $count = $foodtype->where('user_id="'.$userid.'"')->count();
+            $page = new Page($count, 10);
+            $typelist = $foodtype->where('user_id="'.$userid.'"')->order(array('id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
+        }
+        $show = $page->show();
+        $this->assign('page',$show);
+        $this->assign('typelist', $typelist);
+        $this->display();
+    }
+
+    public function modtype() {
+        $typeid = $this->_get('typeid');
+        $userid = $this->userInfo['user_id'];
+        $foodtype = M("Foodtype");
+        $typeinfo = $foodtype->where('id='.$typeid.' and user_id="'.$userid.'"')->find();
+        if (!$typeinfo) {
+            $this->redirect('Food/typelist');
+        }
+        $this->assign('typeinfo', $typeinfo);
+        $this->display();
+    }
+    
+    public function deltype(){
+        $typeid = $this->_get('typeid');
+        $userid = $this->userInfo['user_id'];
+        $usertype = $this->userInfo['user_type'];
+        $foodtype = M("Foodtype");
+        if ($usertype == 1) {
+            $typenumber = $foodtype->where('id='.$typeid)->delete();
+        } else {
+            $typeinfo = $foodtype->where('id='.$typeid.' and user_id="'.$userid.'"')->find();
+            if ($typeinfo) {
+                $typenumber = $foodtype->where('id='.$typeid.' and user_id="'.$userid.'"')->delete();
+            }
+        }
+        if ($typenumber) {
+            $food = M("Food");
+            if ($usertype == 1) {
+                $food->where('type_id='.$typeid)->setField('type_id', 0);
+            } else {
+                $food->where('type_id='.$typeid.' and user_id="'.$userid.'"')->setField('type_id', 0);
+            }
+            $this->redirect('Food/typelist');
+        } else {
+            $this->error("删除失败");
+        }
+    }
+
+    public function typesave(){
+        $userid = $this->userInfo['user_id'];
+        $foodtype = M("Foodtype");
+        $post = $this->filterAllParam('post');
+        $post['user_id'] = $userid;
+        if (isset($post['id']) && $post['id']) {
+            $foodnumber = $foodtype->where('id='.$post['id'].' and user_id="'.$userid.'"')->save($post);
+        } else {
+            $foodid = $foodtype->add($post);
+        }
+        $this->redirect('Food/typelist');
     }
 }

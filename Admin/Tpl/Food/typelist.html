@@ -1,0 +1,25 @@
+<h2 class="sub-header">菜品类型列表</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>类型名</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <foreach name="typelist" item="type">
+          <tr>
+            <td class="col-sm-2">{$type.type_name}</td>
+            <td class="col-sm-2">
+                <if condition="$Think.session.userinfo.user_type eq 2">
+                <a href="__GROUP__/modtype/{$type.id}">编辑</a> 
+                </if>
+                <a href="__GROUP__/deltype/{$type.id}">删除</a>
+            </td>
+          </tr>
+        </foreach>
+        </tbody>
+      </table>
+      {$page}
+    </div>

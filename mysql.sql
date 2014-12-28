@@ -183,10 +183,20 @@ CREATE TABLE `dc_food` (
   `food_description` text NOT NULL,
   `food_image` varchar(250) NOT NULL,
   `food_top` enum('0','1') NOT NULL,
-  `food_type` int(11) unsigned NOT NULL default 0 COMMENT '类型ID，关联dc_shoptype表的id',
+  `food_type` int(11) unsigned NOT NULL default 0 COMMENT '关联dc_shoptype表的id',
   `user_id` varchar(250) NOT NULL,
+  `type_id` int(11) unsigned NOT NULL default 0 COMMENT '类型ID，关联dc_foodtype表的id',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='菜品表';
+
+
+DROP TABLE IF EXISTS `dc_foodtype`;
+CREATE TABLE `dc_foodtype` (
+  `id` int(11) NOT NULL auto_increment,
+  `type_name` varchar(250) NOT NULL,
+  `user_id` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='菜品类型表';
 
 
 DROP TABLE IF EXISTS `dc_order`;
