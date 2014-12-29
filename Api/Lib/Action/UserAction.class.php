@@ -61,18 +61,49 @@ class UserAction extends Action {
     }
 
     /*
-     * call example : http://yourservername/api.php/user/myfav?uid=xx
+     * call example : http://yourservername/api.php/user/myfav?uid=zb
      * call method : get
      */
     public function myfav() {
         $userid = htmlspecialchars($_GET['uid']);
+        $peoplefav = M("peoplefav");
+        $favshoplist = $peoplefav->where('user_people = "'.$userid.'"')->select();
+        $shop = M("shop");
+        $shoplist = array();
+        foreach ($favshoplist as $favshop) {
+            $shopinfo = $shop->where('user_id = "'.$favshop['user_shop'].'"')->find();
+            $shopinfo['fav_date'] = $favshop['fav_date'];
+            $shoplist[] = $shopinfo;
+        }
+        $this->response($shoplist, 'json');
     }
 
     /*
-     * call example : http://yourservername/api.php/user/myorder?uid=xx
+     * call example : http://yourservername/api.php/user/myorder?uid=zb
      * call method : get
      */
     public function myorder() {
         $userid = htmlspecialchars($_GET['uid']);
+        $order = M("order");
+        $orderlist = $order->where('order_people = "'.$userid.'"')->select();
+        $this->response($orderlist, 'json');
+    }
+    
+    /*
+     * call example : http://yourservername/api.php/user/orderdetail?id=8
+     * call method : get
+     */
+    public function orderdetail() {
+        $orderid = htmlspecialchars($_GET['id']);
+        $order = M("order");
+        $orderinfo = $order->where('id = "'.$orderid.'"')->find();
+        if (!$orderinfo) {
+            $this->response(array('message' => '无此订单'), 'json');
+        } else {
+            $orderdetail = M("orderdetail");
+            $detail = $orderdetail->where('order_id = "'.$orderinfo['id'].'"')->select();
+            $orderinfo['order_detail'] = $detail;
+            $this->response($orderinfo, 'json');
+        }
     }
 }
