@@ -15,7 +15,7 @@ class UserAction extends Action {
         $data['user_pw'] = md5($userpw);
         $data['user_status'] = 1;
         $data['user_type'] = 3;
-        $userInfo = $user->where($data)->field('id,user_id')->find();
+        $userInfo = $user->where($data)->field('user_pw', true)->find();
         if ($userInfo) {
             $people = M("people");
             $peopleInfo = $people->where('user_id = "'.$userInfo['user_id'].'"')->find();

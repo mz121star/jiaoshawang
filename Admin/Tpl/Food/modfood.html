@@ -37,7 +37,7 @@
                 <select name="type_id" class="form-control">
                     <option value="0">请选择类型</option>
                     <foreach name="typelist" item="type">
-                    <option value="{$type.id}" <if condition="$foodinfo['food_type'] eq $type['id']">selected</if>>{$type.type_name}</option>
+                    <option value="{$type.id}" <if condition="$foodinfo['type_id'] eq $type['id']">selected</if>>{$type.type_name}</option>
                     </foreach>
                 </select>
               </div>
