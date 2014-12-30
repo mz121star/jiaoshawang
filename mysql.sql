@@ -53,7 +53,8 @@ CREATE TABLE `dc_shop` (
   `shop_lat` float(10,6) NOT NULL,
   `user_id` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY user_id (user_id)
+  UNIQUE KEY user_id (user_id),
+  INDEX lng_lat (shop_lng,shop_lat)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='商户信息表';
 
 

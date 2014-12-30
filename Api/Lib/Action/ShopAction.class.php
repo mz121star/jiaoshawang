@@ -29,7 +29,31 @@ class ShopAction extends Action {
         $shoplist = $shop->join(' dc_user ON dc_user.user_id = dc_shop.user_id')->field('dc_user.user_id,dc_shop.id,shop_name,shop_image,shop_email,shop_phone,user_status')->order(array('dc_user.id'=>'desc'))->select();
         $this->response($shoplist, 'json');
     }
-
+    
+    /*
+     * call example : http://yourservername/api.php/shop/distance?lng=11&lat=222&distance=2
+     * call method : get
+     */
+    public function distance_get() {
+        $lng = htmlspecialchars($_GET['lng']);
+        $lat = htmlspecialchars($_GET['lat']);
+        $distance = htmlspecialchars($_GET['distance']);
+        if (!$lng || !$lat) {
+            $this->response(array('message' => '请给出具体位置'), 'json');
+        }
+        if (!$distance) {
+            $distance = 0.5;
+        }
+        $squares = getSquarePoint($lng, $lat, $distance);
+        $info_sql = "select * from `dc_shop` where shop_lat<>0 and shop_lat>{$squares['right-bottom']['lat']} and shop_lat<{$squares['left-top']['lat']} and shop_lng>{$squares['left-top']['lng']} and shop_lng<{$squares['right-bottom']['lng']} ";
+        $model = new Model();
+        $result = $model->query($info_sql);
+        if ($result === false) {
+            $this->response(array('message' => '查询数据出错'), 'json');
+        } else {
+            $this->response($result, 'json');
+        }
+    }
 
     /*
      * call example : http://yourservername/api.php/shop/search?search_name=丸子
