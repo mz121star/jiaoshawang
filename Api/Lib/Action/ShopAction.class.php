@@ -21,13 +21,31 @@ class ShopAction extends Action {
     }
 
     /*
-     * call example : http://yourservername/api.php/shop/list
+     * call example : http://yourservername/api.php/shop/list?uid=xxx
      * call method : get
      */
     public function list_get() {
+        $userid = htmlspecialchars($_GET['uid']);
         $shop = M("Shop");
-        $shoplist = $shop->join(' dc_user ON dc_user.user_id = dc_shop.user_id')->field('dc_user.user_id,dc_shop.id,shop_name,shop_image,shop_email,shop_phone,user_status')->order(array('dc_user.id'=>'desc'))->select();
-        $this->response($shoplist, 'json');
+        $shoplist = $shop->join('dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->field('dc_shop.id,shop_name,shop_image,shop_email,shop_phone,user_people,shop_beginworktime,shop_endworktime,shop_deliver_money,shop_deliver_beginmoney,shop_deliver_time,shop_lng,shop_lat')->order(array('dc_shop.id'=>'desc'))->select();
+        $shops = array();
+        $current_time = date('Gis');
+        foreach ($shoplist as $shop) {
+            $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
+            $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
+            if ($current_time >= $beginworktime && $current_time <= $endworktime) {
+                $shop['is_working'] = 1;
+            } else {
+                $shop['is_working'] = 0;
+            }
+            if ($userid && $shop['user_people'] == $userid) {
+                $shop['is_fav'] = 1;
+            } else {
+                $shop['is_fav'] = 0;
+            }
+            $shops[] = $shop;
+        }
+        $this->response($shops, 'json');
     }
     
     /*

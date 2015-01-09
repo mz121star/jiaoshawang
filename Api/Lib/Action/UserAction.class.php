@@ -66,8 +66,14 @@ class UserAction extends Action {
      */
     public function myfav() {
         $userid = htmlspecialchars($_GET['uid']);
+        if (!$userid) {
+            $this->response(array('message' => '请给出用户'), 'json');
+        }
         $peoplefav = M("peoplefav");
         $favshoplist = $peoplefav->where('user_people = "'.$userid.'"')->select();
+        if (!count($favshoplist)) {
+            $this->response(array('message' => '无收藏'), 'json');
+        }
         $shop = M("shop");
         $shoplist = array();
         foreach ($favshoplist as $favshop) {
@@ -84,8 +90,14 @@ class UserAction extends Action {
      */
     public function myorder() {
         $userid = htmlspecialchars($_GET['uid']);
+        if (!$userid) {
+            $this->response(array('message' => '请给出用户'), 'json');
+        }
         $order = M("order");
         $orderlist = $order->where('order_people = "'.$userid.'"')->select();
+        if (!count($orderlist)) {
+            $this->response(array('message' => '无订单'), 'json');
+        }
         $this->response($orderlist, 'json');
     }
     
@@ -95,6 +107,9 @@ class UserAction extends Action {
      */
     public function orderdetail() {
         $orderid = htmlspecialchars($_GET['id']);
+        if (!$orderid) {
+            $this->response(array('message' => '请给出订单ID'), 'json');
+        }
         $order = M("order");
         $orderinfo = $order->where('id = "'.$orderid.'"')->find();
         if (!$orderinfo) {
