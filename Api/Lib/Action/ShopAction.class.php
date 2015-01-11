@@ -27,7 +27,8 @@ class ShopAction extends Action {
     public function list_get() {
         $userid = htmlspecialchars($_GET['uid']);
         $shop = M("Shop");
-        $shoplist = $shop->join('dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->field('dc_shop.id,shop_name,shop_image,shop_email,shop_phone,user_people,shop_beginworktime,shop_endworktime,shop_deliver_money,shop_deliver_beginmoney,shop_deliver_time,shop_lng,shop_lat')->order(array('dc_shop.id'=>'desc'))->select();
+        $peoplefav = M("peoplefav");
+        $shoplist = $shop->order(array('id'=>'desc'))->select();
         $shops = array();
         $current_time = date('Gis');
         foreach ($shoplist as $shop) {
@@ -38,11 +39,7 @@ class ShopAction extends Action {
             } else {
                 $shop['is_working'] = 0;
             }
-            if ($userid && $shop['user_people'] == $userid) {
-                $shop['is_fav'] = 1;
-            } else {
-                $shop['is_fav'] = 0;
-            }
+            $shop['is_fav'] = $peoplefav->where('user_people = "'.$userid.'" and user_shop = "'.$shop['user_id'].'"')->count();
             $shops[] = $shop;
         }
         $this->response($shops, 'json');
