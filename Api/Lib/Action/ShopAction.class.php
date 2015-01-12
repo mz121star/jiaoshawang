@@ -28,6 +28,7 @@ class ShopAction extends Action {
         $userid = htmlspecialchars($_GET['uid']);
         $shop = M("Shop");
         $peoplefav = M("peoplefav");
+        $order = M('order');
         $shoplist = $shop->order(array('id'=>'desc'))->select();
         $shops = array();
         $current_time = date('Gis');
@@ -40,6 +41,7 @@ class ShopAction extends Action {
                 $shop['is_working'] = 0;
             }
             $shop['is_fav'] = $peoplefav->where('user_people = "'.$userid.'" and user_shop = "'.$shop['user_id'].'"')->count();
+            $shop['order_num'] = $order->where('food_shop = "'.$shop['user_id'].'"')->count();
             $shops[] = $shop;
         }
         $this->response($shops, 'json');
