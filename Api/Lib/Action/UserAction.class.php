@@ -34,6 +34,37 @@ class UserAction extends Action {
     }
 
     /*
+     * call example : http://yourservername/api.php/user/regist
+     * call method : post
+     */
+    public function regist_post() {
+        $post = $this->filterAllParam('post');
+        if (!$post['user_id']) {
+            $this->response(array('message' => '用户名不能为空'), 'json');
+        }
+        if (!$post['user_pw1']) {
+            $this->response(array('message' => '密码不能为空'), 'json');
+        }
+        if ($post['user_pw1'] != $post['user_pw2']) {
+            $this->response(array('message' => '密码不一致'), 'json');
+        }
+        $user = M("User");
+        $userInfo = $user->where('user_id="'.$post['user_id'].'"')->field('id')->find();
+        if ($userInfo) {
+            $this->response(array('message' => '用户ID已存在'), 'json');
+        }
+        $post['user_pw'] = md5($post['user_pw1']);
+        $userid = $user->add($post);
+        if ($userid) {
+            $people = M("People");
+            $peopleid = $people->add($post);
+            $this->response(array('message' => '注册成功'), 'json');
+        } else {
+            $this->response(array('message' => '注册失败'), 'json');
+        }
+    }
+
+    /*
      * call example : http://yourservername/api.php/user/favshop
      * call method : post
      */

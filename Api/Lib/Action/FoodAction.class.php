@@ -14,6 +14,10 @@ class FoodAction extends Action {
         $food = M("food");
         $fooddetail = $food->where('id = "'.$food_id.'"')->find();
         if ($fooddetail) {
+            $foodtype = M("foodtype");
+            $typeinfo = $foodtype->where('id = "'.$fooddetail['type_id'].'"')->find();
+            $fooddetail['type_name'] = $typeinfo['type_name'];
+            $fooddetail['food_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$fooddetail['food_image'];
             $this->response($fooddetail, 'json');
         } else {
             $this->response(array('message' => '无此菜肴'), 'json');
@@ -30,7 +34,15 @@ class FoodAction extends Action {
             $this->response(array('message' => '请选择要查看的商户'), 'json');
         }
         $food = M("food");
-        $foodlist = $food->where('user_id = "'.$shop_user_id.'"')->select();
+        $foods = $food->where('user_id = "'.$shop_user_id.'"')->select();
+        $foodtype = M("foodtype");
+        $foodlist = array();
+        foreach ($foods as $food) {
+            $typeinfo = $foodtype->where('id = "'.$food['type_id'].'"')->find();
+            $food['type_name'] = $typeinfo['type_name'];
+            $food['food_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$food['food_image'];
+            $foodlist[] = $food;
+        }
         $this->response($foodlist, 'json');
     }
 
@@ -58,7 +70,15 @@ class FoodAction extends Action {
             $this->response(array('message' => '请选择要查看的类型'), 'json');
         }
         $food = M("food");
-        $foodlist = $food->where('type_id = "'.$type_id.'"')->select();
+        $foods = $food->where('type_id = "'.$type_id.'"')->select();
+        $foodtype = M("foodtype");
+        $foodlist = array();
+        foreach ($foods as $food) {
+            $typeinfo = $foodtype->where('id = "'.$food['type_id'].'"')->find();
+            $food['type_name'] = $typeinfo['type_name'];
+            $food['food_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$food['food_image'];
+            $foodlist[] = $food;
+        }
         $this->response($foodlist, 'json');
     }
 }

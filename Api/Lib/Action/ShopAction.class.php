@@ -14,6 +14,7 @@ class ShopAction extends Action {
         $shop = M("Shop");
         $shopdetail = $shop->where('id = "'.$shop_id.'"')->find();
         if ($shopdetail) {
+            $shopdetail['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shopdetail['shop_image'];
             $this->response($shopdetail, 'json');
         } else {
             $this->response(array('message' => '无此店铺'), 'json');
@@ -42,6 +43,7 @@ class ShopAction extends Action {
             }
             $shop['is_fav'] = $peoplefav->where('user_people = "'.$userid.'" and user_shop = "'.$shop['user_id'].'"')->count();
             $shop['order_num'] = $order->where('food_shop = "'.$shop['user_id'].'"')->count();
+            $shop['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shop['shop_image'];
             $shops[] = $shop;
         }
         $this->response($shops, 'json');
@@ -68,7 +70,12 @@ class ShopAction extends Action {
         if ($result === false) {
             $this->response(array('message' => '查询数据出错'), 'json');
         } else {
-            $this->response($result, 'json');
+            $shoplist = array();
+            foreach ($result as $shop) {
+                $shop['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shop['shop_image'];
+                $shoplist[] = $shop;
+            }
+            $this->response($shoplist, 'json');
         }
     }
 
@@ -85,13 +92,23 @@ class ShopAction extends Action {
         $where['shop_name'] = array('like', '%'.$search_name.'%');
         $shoplist = $shop->where($where)->select();
         if ($shoplist) {
-            $this->response($shoplist, 'json');
+            $shoplist_array = array();
+            foreach ($shoplist as $shop) {
+                $shop['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shop['shop_image'];
+                $shoplist_array[] = $shop;
+            }
+            $this->response($shoplist_array, 'json');
         } else {
             $food = M("food");
             $where['food_name'] = array('like', '%'.$search_name.'%');
             $foodlist = $food->where($where)->select();
             if ($foodlist) {
-                $this->response($foodlist, 'json');
+                $foodlist_array = array();
+                foreach ($foodlist as $food) {
+                    $food['food_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$food['food_image'];
+                    $foodlist_array[] = $food;
+                }
+                $this->response($foodlist_array, 'json');
             } else {
                 $this->response(array('message' => '没有发现商铺或菜品'), 'json');
             }
