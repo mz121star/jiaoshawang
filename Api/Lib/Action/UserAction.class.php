@@ -37,7 +37,7 @@ class UserAction extends Action {
      * call example : http://yourservername/api.php/user/favshop
      * call method : post
      */
-    public function favshop() {
+    public function favshop_post() {
         $userid = htmlspecialchars($_GET['uid']);
         $shopid = htmlspecialchars($_GET['sid']);
         $people = M("people");
@@ -64,7 +64,7 @@ class UserAction extends Action {
      * call example : http://yourservername/api.php/user/myfav?uid=zb
      * call method : get
      */
-    public function myfav() {
+    public function myfav_get() {
         $userid = htmlspecialchars($_GET['uid']);
         if (!$userid) {
             $this->response(array('message' => '请给出用户'), 'json');
@@ -85,10 +85,29 @@ class UserAction extends Action {
     }
 
     /*
+     * call example : http://yourservername/api.php/user/cancelfav
+     * call method : get
+     */
+    public function cancelfav_post() {
+        $userid = htmlspecialchars($_GET['uid']);
+        $shopid = htmlspecialchars($_GET['sid']);
+        if (!$userid) {
+            $this->response(array('message' => '请登录后删除收藏'), 'json');
+        }
+        $peoplefav = M("peoplefav");
+        $favid = $peoplefav->where(array('user_people'=>$userid, 'user_shop'=>$shopid))->delete();
+        if ($favid) {
+            $this->response(array('message' => '删除收藏成功'), 'json');
+        } else {
+            $this->response(array('message' => '删除收藏失败'), 'json');
+        }
+    }
+
+    /*
      * call example : http://yourservername/api.php/user/myorder?uid=zb
      * call method : get
      */
-    public function myorder() {
+    public function myorder_get() {
         $userid = htmlspecialchars($_GET['uid']);
         if (!$userid) {
             $this->response(array('message' => '请给出用户'), 'json');
@@ -105,7 +124,7 @@ class UserAction extends Action {
      * call example : http://yourservername/api.php/user/orderdetail?id=8
      * call method : get
      */
-    public function orderdetail() {
+    public function orderdetail_get() {
         $orderid = htmlspecialchars($_GET['id']);
         if (!$orderid) {
             $this->response(array('message' => '请给出订单ID'), 'json');
