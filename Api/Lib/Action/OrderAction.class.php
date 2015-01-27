@@ -13,13 +13,13 @@ class OrderAction extends Action {
         $insertdata = array();
         $i = 1;
         $totalprice = 0;
-        foreach ($orderinfo['cart'] as $foodid => $food) {
+        foreach ($orderinfo['cart'] as $food) {
             if ($i == 1) {
                 $foodobj = M("food");
-                $fooduser = $foodobj->where('id='.$foodid)->field('user_id')->find();
+                $fooduser = $foodobj->where('id='.$food['food_id'])->field('user_id')->find();
                 $insertdata['food_shop'] = $fooduser['user_id'];
             }
-            $totalprice += $food['num'] * $food['price'];
+            $totalprice += $food['food_count'] * $food['food_price'];
         }
         if (!$totalprice) {
             $this->response(array('message' => '没有选择菜品'), 'json');
@@ -50,13 +50,13 @@ class OrderAction extends Action {
         if (!$order_id) {
             $this->response(array('message' => '下单失败'), 'json');
         }
-        foreach ($orderinfo['cart'] as $foodid => $food) {
+        foreach ($orderinfo['cart'] as $food) {
             $detailid = $orderdetailobj->add(array(
                                                   'order_id' => $order_id,
-                                                  'food_id' => $foodid,
-                                                  'food_name' => $food['name'],
-                                                  'food_price' => $food['price'],
-                                                  'food_count' => $food['num']
+                                                  'food_id' => $food['food_id'],
+                                                  'food_name' => $food['food_name'],
+                                                  'food_price' => $food['food_price'],
+                                                  'food_count' => $food['food_count']
                                                   ));
         }
         $this->response(array('message' => '下单成功'), 'json');
