@@ -14,6 +14,9 @@ class OrderAction extends Action {
         $i = 1;
         $totalprice = 0;
         foreach ($orderinfo['cart'] as $food) {
+            if (!is_array($food)) {
+                $food = json_decode($food, true);
+            }
             if ($i == 1) {
                 $foodobj = M("food");
                 $fooduser = $foodobj->where('id='.$food['food_id'])->field('user_id')->find();
@@ -51,6 +54,9 @@ class OrderAction extends Action {
             $this->response(array('message' => '下单失败'), 'json');
         }
         foreach ($orderinfo['cart'] as $food) {
+            if (!is_array($food)) {
+                $food = json_decode($food, true);
+            }
             $detailid = $orderdetailobj->add(array(
                                                   'order_id' => $order_id,
                                                   'food_id' => $food['food_id'],
