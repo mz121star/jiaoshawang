@@ -29,15 +29,15 @@ function filterAllParam($type = 'get') {
         $param = array();
         if ($type == 'get') {
             foreach ($_GET as $key => $value) {
-                $param[$key] = $this->_get($key);
+                $param[$key] = htmlspecialchars($value);
             }
         } elseif ($type == 'post') {
             foreach ($_POST as $key => $value) {
-                $param[$key] = $this->_post($key);
+                $param[$key] = htmlspecialchars($value);
             }
         } else {
             foreach ($_REQUEST as $key => $value) {
-                $param[$key] = $this->_param($key);
+                $param[$key] = htmlspecialchars($value);
             }
         }
         return $param;
