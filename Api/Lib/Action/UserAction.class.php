@@ -148,7 +148,47 @@ class UserAction extends Action {
         if (!count($orderlist)) {
             $this->response(array('message' => '无订单'), 'json');
         }
-        $this->response($orderlist, 'json');
+        $myorderlist = array();
+        $shopobj = M('shop');
+        foreach ($orderlist as $order) {
+            $shopinfo = $shopobj->field('shop_name,shop_image')->where('user_id = "'.$order['food_shop'].'"')->find();
+            $order['shop_name'] = $shopinfo['shop_name'];
+            $order['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shopinfo['shop_image'];
+            if ($order['order_pay'] == '1') {
+                $order['order_pay'] = '货到付款';
+            } else {
+                $order['order_pay'] = '在线支付';
+            }
+            if ($order['order_paystatus'] == '1') {
+                $order['order_paystatus'] = '未付款';
+            } else {
+                $order['order_paystatus'] = '已付款';
+            }
+            if ($order['order_delivery'] == '1') {
+                $order['order_delivery'] = '未发货';
+            } else {
+                $order['order_delivery'] = '已发货';
+            }
+            if ($order['order_receipt'] == '1') {
+                $order['order_receipt'] = '未收货';
+            } else {
+                $order['order_receipt'] = '已收货';
+            }
+            if ($order['order_invoice'] == '1') {
+                $order['order_invoice'] = '不索取发票';
+            } else {
+                $order['order_invoice'] = '索取发票';
+            }
+            if ($order['order_status'] == '1') {
+                $order['order_status'] = '正常';
+            } elseif ($order['order_status'] == '2') {
+                $order['order_status'] = '完结';
+            } else {
+                $order['order_status'] = '取消';
+            }
+            $myorderlist[] = $order;
+        }
+        $this->response($myorderlist, 'json');
     }
     
     /*
