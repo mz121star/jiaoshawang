@@ -50,10 +50,11 @@ class ShopAction extends Action {
     }
     
     /*
-     * call example : http://yourservername/api.php/shop/distance?lng=11&lat=222&distance=2
+     * call example : http://yourservername/api.php/shop/distance?lng=11&lat=222&distance=2&uid=xxx
      * call method : get
      */
     public function distance_get() {
+        $userid = htmlspecialchars($_GET['uid']);
         $lng = htmlspecialchars($_GET['lng']);
         $lat = htmlspecialchars($_GET['lat']);
         $distance = htmlspecialchars($_GET['distance']);
@@ -70,8 +71,19 @@ class ShopAction extends Action {
         if ($result === false) {
             $this->response(array('message' => '查询数据出错'), 'json');
         } else {
+            $peoplefav = M("peoplefav");
+            $order = M('order');
             $shoplist = array();
             foreach ($result as $shop) {
+                $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
+                $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
+                if ($current_time >= $beginworktime && $current_time <= $endworktime) {
+                    $shop['is_working'] = 1;
+                } else {
+                    $shop['is_working'] = 0;
+                }
+                $shop['is_fav'] = $peoplefav->where('user_people = "'.$userid.'" and user_shop = "'.$shop['user_id'].'"')->count();
+                $shop['order_num'] = $order->where('food_shop = "'.$shop['user_id'].'"')->count();
                 $shop['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shop['shop_image'];
                 $shoplist[] = $shop;
             }
