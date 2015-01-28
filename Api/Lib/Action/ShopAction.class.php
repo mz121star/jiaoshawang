@@ -65,8 +65,7 @@ class ShopAction extends Action {
             $distance = 0.5;
         }
         $squares = getSquarePoint($lng, $lat, $distance);
-        $this->response($squares, 'json');
-        $info_sql = "select * from `dc_shop` where shop_lat<>0 and shop_lat>{$squares['right-bottom']['lat']} and shop_lat<{$squares['left-top']['lat']} and shop_lng>{$squares['left-top']['lng']} and shop_lng<{$squares['right-bottom']['lng']} ";
+        $info_sql = "select * from `dc_shop` where shop_lat<>0 and shop_lat>{$squares['right-bottom']['lat']} and shop_lat<{$squares['left-top']['lat']} and shop_lng>{$squares['left-top']['lng']} and shop_lng<{$squares['right-bottom']['lng']}";
         $model = new Model();
         $result = $model->query($info_sql);
         if ($result === false) {
