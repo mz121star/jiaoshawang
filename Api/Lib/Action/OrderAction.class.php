@@ -15,10 +15,10 @@ class OrderAction extends Action {
         $insertdata = array();
         $i = 1;
         $totalprice = 0;
-        $this->response($orderinfo, 'json');
         if (!is_array($orderinfo['cart'])) {
             $orderinfo['cart'] = json_decode($orderinfo['cart'], true);
         }
+        $this->response($orderinfo, 'json');
         foreach ($orderinfo['cart'] as $food) {
             if (!is_array($food)) {
                 $food = json_decode($food, true);
