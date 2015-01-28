@@ -24,3 +24,21 @@ function getSquarePoint($lng, $lat, $distance = 0.5){
                             'right-bottom'=>array('lat'=>$lat - $dlat, 'lng'=>$lng + $dlng)
                             );
 }
+
+function filterAllParam($type = 'get') {
+        $param = array();
+        if ($type == 'get') {
+            foreach ($_GET as $key => $value) {
+                $param[$key] = $this->_get($key);
+            }
+        } elseif ($type == 'post') {
+            foreach ($_POST as $key => $value) {
+                $param[$key] = $this->_post($key);
+            }
+        } else {
+            foreach ($_REQUEST as $key => $value) {
+                $param[$key] = $this->_param($key);
+            }
+        }
+        return $param;
+    }

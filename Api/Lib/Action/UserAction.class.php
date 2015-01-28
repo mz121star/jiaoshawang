@@ -38,7 +38,7 @@ class UserAction extends Action {
      * call method : post
      */
     public function regist_post() {
-        $post = $this->filterAllParam('post');
+        $post = filterAllParam('post');
         if (!$post['user_id']) {
             $this->response(array('message' => '用户名不能为空'), 'json');
         }
