@@ -32,6 +32,24 @@ class OrderAction extends Action {
         if (!$totalprice) {
             $this->response(array('message' => '没有选择菜品'), 'json');
         }
+        if (empty($orderinfo['user_id'])) {
+            $this->response(array('message' => '请选择下单人'), 'json');
+        }
+        if (empty($orderinfo['order_addr'])) {
+            $this->response(array('message' => '请填写下单地址'), 'json');
+        }
+        if (empty($orderinfo['order_phone'])) {
+            $this->response(array('message' => '请填写联系电话'), 'json');
+        }
+        if (empty($orderinfo['sendtime'])) {
+            $this->response(array('message' => '请选择送餐时间'), 'json');
+        }
+        if (empty($orderinfo['peoplename'])) {
+            $orderinfo['peoplename'] = '顾客';
+        }
+        if (empty($orderinfo['order_remark'])) {
+            $orderinfo['order_remark'] = '无';
+        }
         if ($orderinfo['area_select'] == 191) {
             $people = M("People");
             $peopleinfo = $people->where('user_id="'.$orderinfo['user_id'].'"')->find();
