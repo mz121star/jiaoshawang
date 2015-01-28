@@ -13,6 +13,9 @@ class OrderAction extends Action {
         $insertdata = array();
         $i = 1;
         $totalprice = 0;
+        if (!is_array($orderinfo['cart'])) {
+            $orderinfo['cart'] = json_decode($orderinfo['cart'], true);
+        }
         foreach ($orderinfo['cart'] as $food) {
             if (!is_array($food)) {
                 $food = json_decode($food, true);
