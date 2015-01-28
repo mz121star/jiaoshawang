@@ -16,6 +16,7 @@ class OrderAction extends Action {
         if (!is_array($orderinfo['cart'])) {
             $orderinfo['cart'] = json_decode($orderinfo['cart'], true);
         }
+        $this->response($orderinfo['cart'], 'json');
         foreach ($orderinfo['cart'] as $food) {
             if (!is_array($food)) {
                 $food = json_decode($food, true);
