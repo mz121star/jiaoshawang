@@ -205,6 +205,43 @@ class UserAction extends Action {
         if (!$orderinfo) {
             $this->response(array('message' => '无此订单'), 'json');
         } else {
+            $shopobj = M('shop');
+            $shopinfo = $shopobj->field('shop_name,shop_image')->where('user_id = "'.$orderinfo['food_shop'].'"')->find();
+            $orderinfo['shop_name'] = $shopinfo['shop_name'];
+            $orderinfo['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shopinfo['shop_image'];
+            if ($orderinfo['order_pay'] == '1') {
+                $orderinfo['order_pay'] = '货到付款';
+            } else {
+                $orderinfo['order_pay'] = '在线支付';
+            }
+            if ($orderinfo['order_paystatus'] == '1') {
+                $orderinfo['order_paystatus'] = '未付款';
+            } else {
+                $orderinfo['order_paystatus'] = '已付款';
+            }
+            if ($orderinfo['order_delivery'] == '1') {
+                $orderinfo['order_delivery'] = '未发货';
+            } else {
+                $orderinfo['order_delivery'] = '已发货';
+            }
+            if ($orderinfo['order_receipt'] == '1') {
+                $orderinfo['order_receipt'] = '未收货';
+            } else {
+                $orderinfo['order_receipt'] = '已收货';
+            }
+            if ($orderinfo['order_invoice'] == '1') {
+                $orderinfo['order_invoice'] = '不索取发票';
+            } else {
+                $orderinfo['order_invoice'] = '索取发票';
+            }
+            if ($orderinfo['order_status'] == '1') {
+                $orderinfo['order_status'] = '正常';
+            } elseif ($orderinfo['order_status'] == '2') {
+                $orderinfo['order_status'] = '完结';
+            } else {
+                $orderinfo['order_status'] = '取消';
+            }
+
             $orderdetail = M("orderdetail");
             $detail = $orderdetail->where('order_id = "'.$orderinfo['id'].'"')->select();
             $orderinfo['order_detail'] = $detail;
