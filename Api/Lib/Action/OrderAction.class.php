@@ -9,7 +9,9 @@ class OrderAction extends Action {
     public function create_post() {
         $orderobj = M("order");
         $orderdetailobj = M("orderdetail");
+        $cart_content = $_POST['cart'];
         $orderinfo = filterAllParam('post');
+        $orderinfo['cart'] = $cart_content;
         $insertdata = array();
         $i = 1;
         $totalprice = 0;
