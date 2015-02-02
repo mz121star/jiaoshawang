@@ -12,7 +12,7 @@ class PayAction extends Action {
      * 付款
      */
     public function pay_post(){
-        require_once(dirname(__FILE__) . '/../../Pingpp/Pingpp.php');
+        require_once(dirname(__FILE__) . '/../../../Pingpp/Pingpp.php');
         $input_data = json_decode(file_get_contents("php://input"), true);
         if (empty($input_data['channel']) || empty($input_data['amount'])) {
             $this->response(array('message' => '支付信息不全'), 'json');
@@ -104,7 +104,7 @@ class PayAction extends Action {
      * 退款
      */
     public function refund_post() {
-        require_once(dirname(__FILE__) . '/../../Pingpp/Pingpp.php');
+        require_once(dirname(__FILE__) . '/../../../Pingpp/Pingpp.php');
         Pingpp::setApiKey($this->appkey);
         $ch = Pingpp_Charge::retrieve("ch_id");
         $ch->refunds->create(
@@ -121,7 +121,7 @@ class PayAction extends Action {
      * 交易查询
      */
     public function retrieve_post() {
-        require_once(dirname(__FILE__) . '/../../Pingpp/Pingpp.php');
+        require_once(dirname(__FILE__) . '/../../../Pingpp/Pingpp.php');
         Pingpp::setApiKey($this->appkey);
         $ch = Pingpp_Charge::retrieve("ch_id");
     }
