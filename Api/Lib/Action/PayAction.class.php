@@ -18,9 +18,9 @@ class PayAction extends Action {
             $this->response(array('message' => '支付信息不全'), 'json');
         }
         $channel = strtolower($input_data['channel']);
-        $amount = $input_data['amount'];
+        $amount = $input_data['amount'] * 100;
 //        $orderNo = substr(md5(time()), 0, 12);
-        $orderNo = $input_data['orderno'] * 100;
+        $orderNo = $input_data['orderno'];
 
         //$extra 在渠道为 upmp_wap 和 alipay_wap 时，需要填入相应的参数，具体见技术指南。其他渠道时可以传空值也可以不传。
         $extra = array();
@@ -85,7 +85,7 @@ class PayAction extends Action {
      * call method : post
      * 付款后的通知回调
      */
-    public function notify_get() {
+    public function notify_post() {
         $input_data = json_decode(file_get_contents("php://input"), true);
         if ($input_data['object'] == 'charge') {
             //TODO update database
