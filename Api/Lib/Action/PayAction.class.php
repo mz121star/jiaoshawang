@@ -2,9 +2,7 @@
 
 class PayAction extends Action {
     
-    private $testkey = 'sk_test_vfXrX540Oa1GbzjLuDS8G0G0';
-    
-    private $livekey = '';
+    private $appkey = 'sk_test_vfXrX540Oa1GbzjLuDS8G0G0';
     
     private $appid = 'app_u1Kmr9rrTG00mT4O';
 
@@ -22,7 +20,7 @@ class PayAction extends Action {
         $channel = strtolower($input_data['channel']);
         $amount = $input_data['amount'];
 //        $orderNo = substr(md5(time()), 0, 12);
-        $orderNo = $input_data['orderno'];
+        $orderNo = $input_data['orderno'] * 100;
 
         //$extra 在渠道为 upmp_wap 和 alipay_wap 时，需要填入相应的参数，具体见技术指南。其他渠道时可以传空值也可以不传。
         $extra = array();
@@ -40,18 +38,18 @@ class PayAction extends Action {
                 break;
         }
 
-        Pingpp::setApiKey($this->testkey);
+        Pingpp::setApiKey($this->appkey);
         $ch = Pingpp_Charge::create(
             array(
-                "subject"   => "Your Subject",
-                "body"      => "Your Body",
-                "amount"    => $amount,
-                "order_no"  => $orderNo,
-                "currency"  => "cny",
-                "extra"     => $extra,
-                "channel"   => $channel,
-                "client_ip" => $_SERVER["REMOTE_ADDR"],
-                "app"       => array("id" => $this->appid)
+                "subject"        => "Test Subject",
+                "body"             => "Test Body",
+                "amount"       => $amount,
+                "order_no"    => $orderNo,
+                "currency"     => "cny",
+                "extra"            => $extra,
+                "channel"      => $channel,
+                "client_ip"    => $_SERVER["REMOTE_ADDR"],
+                "app"               => array("id" => $this->appid)
             )
         );
 
@@ -59,10 +57,27 @@ class PayAction extends Action {
     }
     
     public function success_get() {
-        
+        $this->response(array('message' => '支付成功'), 'json');
     }
     public function cancel_get() {
-        
+        $this->response(array('message' => '取消支付'), 'json');
+    }
+    public function result_get() {
+        if (isset($_GET['code'])) {
+            echo '银联：';
+            $code = $_GET['code'];
+            if ($code == 0) {
+                echo '支付成功';
+            } else if($code == 1) {
+                echo '支付失败';
+            } else if($code == -1) {
+                echo '支付取消';
+            } else {
+                echo '未知错误('.$code.')';
+            }
+        } else {
+            echo '支付宝：支付成功';
+        }
     }
     
     /*
@@ -72,18 +87,13 @@ class PayAction extends Action {
      */
     public function notify_get() {
         $input_data = json_decode(file_get_contents("php://input"), true);
-        if($input_data['object'] == 'charge')
-        {
+        if ($input_data['object'] == 'charge') {
             //TODO update database
             echo 'success';
-        }
-        else if($input_data['object'] == 'refund')
-        {
+        } else if($input_data['object'] == 'refund') {
             //TODO update database
             echo 'success';
-        }
-        else
-        {
+        } else {
             echo 'fail';
         }
     }
@@ -93,10 +103,9 @@ class PayAction extends Action {
      * call method : post
      * 退款
      */
-    public function refund_get() {
+    public function refund_post() {
         require_once(dirname(__FILE__) . '/../../Pingpp/Pingpp.php');
-
-        Pingpp::setApiKey("YOUR-KEY");
+        Pingpp::setApiKey($this->appkey);
         $ch = Pingpp_Charge::retrieve("ch_id");
         $ch->refunds->create(
             array(
@@ -111,10 +120,9 @@ class PayAction extends Action {
      * call method : post
      * 交易查询
      */
-    public function retrieve_get() {
+    public function retrieve_post() {
         require_once(dirname(__FILE__) . '/../../Pingpp/Pingpp.php');
-
-        Pingpp::setApiKey("YOUR-KEY");
+        Pingpp::setApiKey($this->appkey);
         $ch = Pingpp_Charge::retrieve("ch_id");
     }
 }
