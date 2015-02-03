@@ -101,7 +101,7 @@ class UserAction extends Action {
             $this->response(array('message' => '请给出用户'), 'json');
         }
         $peoplefav = M("peoplefav");
-        $favshoplist = $peoplefav->where('user_people = "'.$userid.'"')->select();
+        $favshoplist = $peoplefav->where('user_people = "'.$userid.'"')->order('fav_date desc')->select();
         if (!count($favshoplist)) {
             $this->response(array('message' => '无收藏'), 'json');
         }
@@ -144,7 +144,7 @@ class UserAction extends Action {
             $this->response(array('message' => '请给出用户'), 'json');
         }
         $order = M("order");
-        $orderlist = $order->where('order_people = "'.$userid.'"')->select();
+        $orderlist = $order->where('order_people = "'.$userid.'"')->order('order_createdate desc')->select();
         if (!count($orderlist)) {
             $this->response(array('message' => '无订单'), 'json');
         }
