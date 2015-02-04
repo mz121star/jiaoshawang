@@ -126,4 +126,32 @@ class ShopAction extends Action {
             }
         }
     }
+    
+    /*
+     * call example : http://yourservername/api.php/shop/getshopbytype?tid=12
+     * call method : get
+     */
+    public function getshopbytype_get() {
+        $tid = htmlspecialchars($_GET['tid']);
+        $shop = M("Shop");
+        $peoplefav = M("peoplefav");
+        $order = M('order');
+        $shoplist = $shop->order(array('shop_type'=>$tid))->select();
+        $shops = array();
+        $current_time = date('Gis');
+        foreach ($shoplist as $shop) {
+            $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
+            $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
+            if ($current_time >= $beginworktime && $current_time <= $endworktime) {
+                $shop['is_working'] = 1;
+            } else {
+                $shop['is_working'] = 0;
+            }
+            $shop['is_fav'] = $peoplefav->where('user_people = "'.$userid.'" and user_shop = "'.$shop['user_id'].'"')->count();
+            $shop['order_num'] = $order->where('food_shop = "'.$shop['user_id'].'"')->count();
+            $shop['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shop['shop_image'];
+            $shops[] = $shop;
+        }
+        $this->response($shops, 'json');
+    }
 }
