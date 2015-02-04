@@ -208,7 +208,7 @@ CREATE TABLE `dc_order` (
   `order_addr` varchar(250) NOT NULL,
   `order_phone` varchar(250) NOT NULL,
   `order_peoplename` varchar(250) NOT NULL,
-  `order_pay` enum('1','2') NOT NULL COMMENT '支付方式，1是货到付款，2是在线支付',
+  `order_pay` enum('2','1') NOT NULL COMMENT '支付方式，1是货到付款，2是在线支付',
   `order_paystatus` enum('1','2') NOT NULL COMMENT '支付状态，1是未付款，2是已付款',
   `order_delivery` enum('1','2') NOT NULL COMMENT '发货状态，1是未发货，2是已发货',
   `order_receipt` enum('1','2') NOT NULL COMMENT '收货状态，1是未收货，2是已收货',
@@ -218,6 +218,8 @@ CREATE TABLE `dc_order` (
   `order_price` int(11) unsigned NOT NULL COMMENT '订单总金额',
   `order_remark` varchar(250) NOT NULL,
   `order_createdate` datetime NOT NULL,
+  `order_createdate` datetime NOT NULL,
+  `order_trade_no` varchar(250) NOT NULL COMMENT '支付宝交易号',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='订单表';
 

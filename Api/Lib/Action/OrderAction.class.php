@@ -88,7 +88,7 @@ class OrderAction extends Action {
                                                   'food_count' => $food['food_count']
                                                   ));
         }
-        $this->response(array('message' => '下单成功'), 'json');
+        $this->response(array('message' => '下单成功', 'order_number'=>$order_id, 'order_price'=>$totalprice), 'json');
     }
 
     /*
