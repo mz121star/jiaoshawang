@@ -218,7 +218,6 @@ CREATE TABLE `dc_order` (
   `order_price` int(11) unsigned NOT NULL COMMENT '订单总金额',
   `order_remark` varchar(250) NOT NULL,
   `order_createdate` datetime NOT NULL,
-  `order_createdate` datetime NOT NULL,
   `order_trade_no` varchar(250) NOT NULL COMMENT '支付宝交易号',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='订单表';

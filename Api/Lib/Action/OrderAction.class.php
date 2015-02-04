@@ -72,6 +72,7 @@ class OrderAction extends Action {
         $insertdata['order_receipt'] = 1;
         $insertdata['order_invoice'] = 1;
         $insertdata['order_status'] = 1;
+        $insertdata['order_trade_no'] = '';
         $order_id = $orderobj->add($insertdata);
         if (!$order_id) {
             $this->response(array('message' => '下单失败'), 'json');
