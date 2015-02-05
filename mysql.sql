@@ -245,6 +245,7 @@ CREATE TABLE `dc_comment` (
   `comment_date` datetime NOT NULL,
   `comment_good` int(11) unsigned NOT NULL default 0,
   `comment_bad` int(11) unsigned NOT NULL default 0,
+  `comment_star` int(11) unsigned NOT NULL default 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户评论表';
 
