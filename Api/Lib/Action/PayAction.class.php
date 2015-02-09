@@ -138,7 +138,7 @@ class PayAction extends Action {
         //计算得出通知验证结果
         $alipayNotify = new AlipayNotify($alipay_config);
         $verify_result = $alipayNotify->verifyNotify();
-
+        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/upload/order.txt', 'verify_result : '.$verify_result.'======out_trade_no : '.$out_trade_no.'====trade_no : '.$trade_no.'=====trade_status : '.$trade_status."\n\n");
         if($verify_result) {//验证成功
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //请在这里加上商户的业务逻辑程序代
@@ -179,7 +179,6 @@ class PayAction extends Action {
                     $update = array('order_paystatus'=>'2', 'order_trade_no'=>$trade_no);
                     $order->where('id = "'.$out_trade_no.'"')->setField($update);
                 }
-                file_put_contents($_SERVER['DOCUMENT_ROOT'].'/upload/order.txt', 'out_trade_no : '.$out_trade_no.'====trade_no : '.$trade_no.'=====trade_status : '.$trade_status."\n\n");
                 //调试用，写文本函数记录程序运行情况是否正常
                 //logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
             }
