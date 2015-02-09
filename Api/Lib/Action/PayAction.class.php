@@ -138,7 +138,7 @@ class PayAction extends Action {
         //计算得出通知验证结果
         $alipayNotify = new AlipayNotify($alipay_config);
         $verify_result = $alipayNotify->verifyNotify();
-        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/upload/order.txt', 'verify_result : '.$verify_result.'======out_trade_no : '.$out_trade_no.'====trade_no : '.$trade_no.'=====trade_status : '.$trade_status."\n\n");
+        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/upload/order.txt', 'verify_result : '.$verify_result.'======out_trade_no : '.$_POST['out_trade_no'].'====trade_no : '.$_POST['trade_no'].'=====trade_status : '.$_POST['trade_status']."\n\n");
         if($verify_result) {//验证成功
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //请在这里加上商户的业务逻辑程序代
