@@ -66,7 +66,7 @@ class OrderAction extends Action {
         $insertdata['order_remark'] = $orderinfo['order_remark'];
         $insertdata['order_createdate'] = date('Y-m-d H:i:s');
         $insertdata['order_price'] = $totalprice;
-        $insertdata['order_pay'] = 1;
+        $insertdata['order_pay'] = $orderinfo['order_pay'];
         $insertdata['order_paystatus'] = 1;
         $insertdata['order_delivery'] = 1;
         $insertdata['order_receipt'] = 1;

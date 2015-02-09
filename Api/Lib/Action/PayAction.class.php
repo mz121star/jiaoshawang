@@ -175,9 +175,11 @@ class PayAction extends Action {
                 $order = M('order');
                 $orderinfo = $order->where('id = "'.$out_trade_no.'"')->find();
                 if ($orderinfo) {
+                    file_put_contents($_SERVER['DOCUMENT_ROOT'].'/upload/order.txt', "test\n");
                     $update = array('order_paystatus'=>'2', 'order_trade_no'=>$trade_no);
                     $order->where('id = "'.$out_trade_no.'"')->setField($update);
                 }
+                file_put_contents($_SERVER['DOCUMENT_ROOT'].'/upload/order.txt', 'out_trade_no : '.$out_trade_no.'====trade_no : '.$trade_no.'=====trade_status : '.$trade_status."\n\n");
                 //调试用，写文本函数记录程序运行情况是否正常
                 //logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
             }
