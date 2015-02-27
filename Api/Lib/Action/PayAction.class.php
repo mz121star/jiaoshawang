@@ -138,6 +138,16 @@ class PayAction extends Action {
         //计算得出通知验证结果
         $alipayNotify = new AlipayNotify($alipay_config);
         $verify_result = $alipayNotify->verifyNotify();
+        
+        //临时方案
+        if ($_POST['trade_status'] == 'TRADE_SUCCESS') {
+            $order = M('order');
+            $orderinfo = $order->where('id = "'.$_POST['out_trade_no'].'"')->find();
+            if ($orderinfo) {
+                $update = array('order_paystatus'=>'2', 'order_trade_no'=>$_POST['trade_no']);
+                $order->where('id = "'.$_POST['out_trade_no'].'"')->setField($update);
+            }
+        }
 
         if($verify_result) {//验证成功
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
