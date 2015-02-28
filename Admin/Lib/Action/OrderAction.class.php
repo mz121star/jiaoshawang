@@ -66,15 +66,12 @@ class OrderAction extends PublicAction {
             $this->error("您无权取消此订单", 'lists');
         }
         $get = $this->filterAllParam('get');
-        echo '<pre>';
-                print_r($get);
         if ($get['orderid']) {
             $order = M("Order");
             $orderinfo = $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->find();
             if (!$orderinfo) {
                 $this->error("无此订单", 'lists');
             }
-            print_r($orderinfo);exit;
             if ($orderinfo['order_paystatus'] == 1) {
                 $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->setField('order_status', '3');
             } elseif ($orderinfo['order_paystatus'] == 2) {
@@ -87,7 +84,8 @@ class OrderAction extends PublicAction {
                 curl_setopt($ch, CURLOPT_HEADER, 0);
                 $output = curl_exec($ch);
                 curl_close($ch);
-                
+                echo '<pre>';
+                print_r($orderinfo);exit;
             }
             $this->redirect('Order/lists');
         } else {
