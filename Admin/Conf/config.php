@@ -23,6 +23,7 @@ $private_config = array(
                                                   'delnotice/:noticeid' => 'Notice/delnotice',
                                                   'cancelorder/:orderid' => 'Order/cancelorder',
                                                   'detailorder/:orderid' => 'Order/detailorder',
+                                                  'refundorder/:orderid' => 'Order/refundorder',
                                                   'confirmorder/:orderid' => 'Order/confirmorder',
                                                   'delshoptype/:typeid' => 'User/shoptype',
                                                   'showtalk/:tid' => 'Gift/showtalk',

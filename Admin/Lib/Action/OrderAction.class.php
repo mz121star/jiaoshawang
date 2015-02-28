@@ -12,11 +12,11 @@ class OrderAction extends PublicAction {
         if ($usertype == 1) {
             $count = $order->count();
             $page = new Page($count, 10);
-            $orderlist = $order->field('dc_order.id,shop_name as name,order_price,order_status,order_createdate')->join(' dc_shop ON dc_shop.user_id = dc_order.food_shop')->limit($page->firstRow.','.$page->listRows)->order(array('order_createdate'=>'desc'))->select();
+            $orderlist = $order->field('dc_order.id,shop_name as name,order_price,order_status,order_createdate,order_paystatus,order_receipt')->join(' dc_shop ON dc_shop.user_id = dc_order.food_shop')->limit($page->firstRow.','.$page->listRows)->order(array('order_createdate'=>'desc'))->select();
         } else {
             $count = $order->where('food_shop="'.$userid.'"')->count();
             $page = new Page($count, 10);
-            $orderlist = $order->where('food_shop="'.$userid.'"')->field('dc_order.id,people_name as name,food_shop,order_price,order_status,order_createdate')->join(' dc_people ON dc_people.user_id = dc_order.order_people')->limit($page->firstRow.','.$page->listRows)->order(array('order_createdate'=>'desc'))->select();
+            $orderlist = $order->where('food_shop="'.$userid.'"')->field('dc_order.id,people_name as name,food_shop,order_price,order_status,order_createdate,order_paystatus,order_receipt')->join(' dc_people ON dc_people.user_id = dc_order.order_people')->limit($page->firstRow.','.$page->listRows)->order(array('order_createdate'=>'desc'))->select();
         }
         $show = $page->show();
         $this->assign('page',$show);
@@ -58,6 +58,40 @@ class OrderAction extends PublicAction {
             $this->error("未知订单ID", 'lists');
         }
     } 
+    
+    public function refundorder() {
+        $userid = $this->userInfo['user_id'];
+        $usertype = $this->userInfo['user_type'];
+        if ($usertype == 1) {
+            $this->error("您无权取消此订单", 'lists');
+        }
+        $get = $this->filterAllParam('get');
+        if ($get['orderid']) {
+            $order = M("Order");
+            $orderinfo = $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->find();
+            if (!$orderinfo) {
+                $this->error("无此订单", 'lists');
+            }
+            if ($orderinfo['order_paystatus'] == 1) {
+                $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->setField('order_status', '3');
+            } elseif ($orderinfo['order_paystatus'] == 2) {
+                $refundurl = 'http://'.$_SERVER['SERVER_NAME'].'/api.php/pay/refund';
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $refundurl);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('amount'=>$orderinfo['order_price'])));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                $output = curl_exec($ch);
+                curl_close($ch);
+                echo '<pre>';
+                print_r($output);exit;
+            }
+            $this->redirect('Order/lists');
+        } else {
+            $this->error("未知订单ID", 'lists');
+        }
+    }
 
     public function detailorder() {
         $userid = $this->userInfo['user_id'];

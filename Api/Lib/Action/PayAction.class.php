@@ -104,12 +104,16 @@ class PayAction extends Action {
      * 退款
      */
     public function refund_post() {
+        $amount = I('post.amount');
+        if (!$amount) {
+            $amount = 0;
+        }
         require_once(dirname(__FILE__) . '/../../../Pingpp/Pingpp.php');
         Pingpp::setApiKey($this->appkey);
         $ch = Pingpp_Charge::retrieve("ch_id");
         $ch->refunds->create(
             array(
-                "amount" => 10,
+                "amount" => $amount,
                 "description" => "apple"
             )
         );

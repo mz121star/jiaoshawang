@@ -22,6 +22,9 @@
                 <a href="__GROUP__/confirmorder/{$order.id}">确认</a> 
                 <a href="__GROUP__/cancelorder/{$order.id}">取消</a> 
                 </if>
+                <if condition="$order.order_status eq 4">
+                <a href="javascript:;" id="refundorder_{$order.id}">同意取消</a>
+                </if>
                 <a href="__GROUP__/detailorder/{$order.id}">查看详细</a>
             </td>
           </tr>
@@ -30,3 +33,14 @@
       </table>
         {$page}
     </div>
+
+<script type="text/javascript">
+$(function () {
+    $("a[id^='refundorder_']").click(function () {
+        if (confirm("未付款订单将直接取消，已付款订单将退款，确定同意吗？")) {
+            var id = this.id.split("_");
+            location.href = "__MODULE__/refundorder/"+id[1];
+        }
+    });
+});
+</script>
