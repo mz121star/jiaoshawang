@@ -39,7 +39,7 @@ $(function () {
     $("a[id^='refundorder_']").click(function () {
         if (confirm("未付款订单将直接取消，已付款订单将退款，确定同意吗？")) {
             var id = this.id.split("_");
-            location.href = "__MODULE__/refundorder/"+id[1];
+            location.href = "__GROUP__/refundorder/"+id[1];
         }
     });
 });
