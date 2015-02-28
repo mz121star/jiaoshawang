@@ -15,7 +15,7 @@
           <tr>
             <td class="col-sm-2">{$order.name}</td>
             <td class="col-sm-2">{$order.order_price}</td>
-            <td class="col-sm-2"><if condition="$order.order_status eq 1">正常<elseif condition="$order.order_status eq 2"/>完结<elseif condition="$order.order_status eq 3"/>取消</if></td>
+            <td class="col-sm-2"><if condition="$order.order_status eq 1">正常<elseif condition="$order.order_status eq 2"/>完结<elseif condition="$order.order_status eq 3"/>取消<elseif condition="$order.order_status eq 4"/>申请退款</if></td>
             <td class="col-sm-2">{$order.order_createdate}</td>
             <td class="col-sm-2">
                 <if condition="$order.order_status eq 1">
