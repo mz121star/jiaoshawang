@@ -85,7 +85,7 @@ class OrderAction extends PublicAction {
                 $output = curl_exec($ch);
                 curl_close($ch);
                 echo '<pre>';
-                print_r($orderinfo);exit;
+                print_r($output);exit;
             }
             $this->redirect('Order/lists');
         } else {
