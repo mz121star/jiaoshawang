@@ -104,7 +104,7 @@ class PayAction extends Action {
      * 退款
      */
     public function refund_post() {
-        $amount = I('post.amount');
+        $amount = $this->_post('amount');
         if (!$amount) {
             $amount = 0;
         }
