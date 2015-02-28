@@ -107,6 +107,8 @@ class PayAction extends Action {
         $amount = $_POST['amount'];
         if (!$amount) {
             $amount = 0;
+        } else {
+            $amount = $amount * 100;
         }
         require_once(dirname(__FILE__) . '/../../../Pingpp/Pingpp.php');
         Pingpp::setApiKey($this->appkey);
