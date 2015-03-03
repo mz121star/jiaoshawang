@@ -39,6 +39,11 @@ class CommentAction extends Action {
         $comment = M("comment");
         $cid = $comment->add($data);
         if ($cid) {
+            $order_id = htmlspecialchars($_POST['order_id']);
+            if ($order_id) {
+                $order = M("order");
+                $isok = $order->where(array('id' => $order_id))->setField('order_comment_id', $cid);
+            }
             $this->response(array('message' => '评论成功'), 'json');
         } else {
             $this->response(array('message' => '评论失败'), 'json');
