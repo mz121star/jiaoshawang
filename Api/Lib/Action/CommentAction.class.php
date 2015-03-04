@@ -44,7 +44,7 @@ class CommentAction extends Action {
                 $order = M("order");
                 $isok = $order->where(array('id' => $order_id))->setField('order_comment_id', $cid);
             }
-            $this->response(array('message' => '评论成功'), 'json');
+            $this->response(array('message' => $order_id.'===='.$cid), 'json');
         } else {
             $this->response(array('message' => '评论失败'), 'json');
         }
