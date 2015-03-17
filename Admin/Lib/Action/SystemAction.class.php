@@ -80,6 +80,12 @@ class SystemAction extends PublicAction {
     public function savetype() {
         $post = $this->filterAllParam('post');
         $shoptype = M("shoptype");
+        if (!isset($post['oldtop'])) {
+            $post['oldtop'] = array();
+        }
+        if (!isset($post['is_top'])) {
+            $post['is_top'] = array();
+        }
         $deletetop = array_diff($post['oldtop'], $post['is_top']);
         $newtop = array_diff($post['is_top'], $post['oldtop']);
         foreach ($newtop as $value1) {
