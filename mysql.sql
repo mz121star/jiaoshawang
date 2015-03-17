@@ -64,10 +64,11 @@ CREATE TABLE `dc_shoptype` (
   `type_name` varchar(250) NOT NULL,
   `parent_id` int(11) unsigned NOT NULL default 0,
   `type_order` int(11) unsigned NOT NULL default 0,
+    `type_image` varchar(250),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='商户和产品类型表';
-INSERT INTO `dc_shoptype` VALUES (1, '饭店', 0, 1);
-INSERT INTO `dc_shoptype` VALUES (2, '鲜花店', 0, 7);
+INSERT INTO `dc_shoptype` VALUES (1, '饭店', 0, 1,'food_u');
+INSERT INTO `dc_shoptype` VALUES (2, '鲜花店', 0, 7,'snack_u');
 INSERT INTO `dc_shoptype` VALUES (3, '超市', 0, 2);
 INSERT INTO `dc_shoptype` VALUES (4, '水果店', 0, 3);
 INSERT INTO `dc_shoptype` VALUES (5, '电脑店', 0, 8);
