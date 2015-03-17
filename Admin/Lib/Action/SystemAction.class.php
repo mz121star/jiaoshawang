@@ -66,4 +66,28 @@ class SystemAction extends PublicAction {
         }
         $this->redirect('System/showimage');
     }
+    
+    public function showtype() {
+        $shoptype = M("shoptype");
+        $systypeinfo = $shoptype->select();
+        $this->assign('typeinfo', $systypeinfo);
+        
+        $toptype = $shoptype->where('is_top = "1"')->select();
+        $this->assign('toptype', $toptype);
+        $this->display();
+    }
+    
+    public function savetype() {
+        $post = $this->filterAllParam('post');
+        $shoptype = M("shoptype");
+        $deletetop = array_diff($post['oldtop'], $post['is_top']);
+        $newtop = array_diff($post['is_top'], $post['oldtop']);
+        foreach ($newtop as $value1) {
+            $shoptype->where('id = "'.$value1.'"')->setField('is_top', '1');
+        }
+        foreach ($deletetop as $value2) {
+            $shoptype->where('id = "'.$value2.'"')->setField('is_top', '0');
+        }
+        $this->success('修改成功', U('System/showtype'));
+    }
 }

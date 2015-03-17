@@ -162,12 +162,14 @@ class ShopAction extends Action {
     public function getshoptype_get() {
         $pid = htmlspecialchars($_GET['pid']);
         $shoptype = M("shoptype");
-        if ($pid == 'all') {
-            $typelist = $shoptype->order('type_order')->select();
-        } else {
-            $pid = intval($pid);
-            $typelist = $shoptype->where(array('parent_id'=>$pid))->order('type_order')->select();
-        }
+
+        $typelist = $shoptype->where(array('is_top'=>'1'))->order('type_order')->select();
+//        if ($pid == 'all') {
+//            $typelist = $shoptype->order('type_order')->select();
+//        } else {
+//            $pid = intval($pid);
+//            $typelist = $shoptype->where(array('parent_id'=>$pid))->order('type_order')->select();
+//        }
         $this->response($typelist, 'json');
     }
 }
