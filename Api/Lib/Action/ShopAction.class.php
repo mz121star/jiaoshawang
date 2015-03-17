@@ -136,7 +136,7 @@ class ShopAction extends Action {
         $shop = M("Shop");
         $peoplefav = M("peoplefav");
         $order = M('order');
-        $shoplist = $shop->order(array('shop_type'=>$tid))->select();
+        $shoplist = $shop->where(array('shop_type'=>$tid))->select();
         $shops = array();
         $current_time = date('Gis');
         foreach ($shoplist as $shop) {
@@ -153,5 +153,21 @@ class ShopAction extends Action {
             $shops[] = $shop;
         }
         $this->response($shops, 'json');
+    }
+    
+    /*
+     * call example : http://yourservername/api.php/shop/getshoptype?pid=0
+     * call method : get
+     */
+    public function getshoptype_get() {
+        $pid = htmlspecialchars($_GET['pid']);
+        $shoptype = M("shoptype");
+        if ($pid == 'all') {
+            $typelist = $shoptype->order('type_order')->select();
+        } else {
+            $pid = intval($pid);
+            $typelist = $shoptype->where(array('parent_id'=>$pid))->order('type_order')->select();
+        }
+        $this->response($typelist, 'json');
     }
 }
