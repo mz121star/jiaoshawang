@@ -51,6 +51,7 @@ CREATE TABLE `dc_shop` (
   `shop_type` int(11) unsigned NOT NULL default 0 COMMENT '类型ID，关联dc_shoptype表的id',
   `shop_lng` float(10,6) NOT NULL,
   `shop_lat` float(10,6) NOT NULL,
+  `shop_pay` enum('1','2','3') NOT NULL COMMENT '支持的支付方式，1是货到付款，2是在线支付，3是两者都支持',
   `user_id` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY user_id (user_id),
@@ -64,7 +65,7 @@ CREATE TABLE `dc_shoptype` (
   `type_name` varchar(250) NOT NULL,
   `parent_id` int(11) unsigned NOT NULL default 0,
   `type_order` int(11) unsigned NOT NULL default 0,
-    `type_image` varchar(250),
+  `type_image` varchar(250),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='商户和产品类型表';
 INSERT INTO `dc_shoptype` VALUES (1, '饭店', 0, 1,'food_u');
