@@ -69,14 +69,14 @@ CREATE TABLE `dc_shoptype` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='商户和产品类型表';
 INSERT INTO `dc_shoptype` VALUES (1, '饭店', 0, 1,'food_u');
-INSERT INTO `dc_shoptype` VALUES (2, '鲜花店', 0, 7,'snack_u');
-INSERT INTO `dc_shoptype` VALUES (3, '超市', 0, 2);
-INSERT INTO `dc_shoptype` VALUES (4, '水果店', 0, 3);
-INSERT INTO `dc_shoptype` VALUES (5, '电脑店', 0, 8);
+INSERT INTO `dc_shoptype` VALUES (2, '鲜花店', 0, 7,'flower');
+INSERT INTO `dc_shoptype` VALUES (3, '超市', 0, 2,'seafood_o');
+INSERT INTO `dc_shoptype` VALUES (4, '水果店', 0, 3,'performance_o');
+INSERT INTO `dc_shoptype` VALUES (5, '电脑店', 0, 8,'performance_o');
 INSERT INTO `dc_shoptype` VALUES (6, '成人用品', 0, 10);
 INSERT INTO `dc_shoptype` VALUES (7, '海鲜店', 0, 5);
 INSERT INTO `dc_shoptype` VALUES (8, '蔬菜店', 0, 4);
-INSERT INTO `dc_shoptype` VALUES (9, '蛋糕店', 0, 6);
+INSERT INTO `dc_shoptype` VALUES (9, '蛋糕店', 0, 6,'snack_u');
 INSERT INTO `dc_shoptype` VALUES (10, '药店', 0, 9);
 INSERT INTO `dc_shoptype` VALUES (11, '熟食', 1, 0);
 INSERT INTO `dc_shoptype` VALUES (12, '米粉', 1, 0);
