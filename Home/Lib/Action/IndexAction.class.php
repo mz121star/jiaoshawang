@@ -57,7 +57,7 @@ class IndexAction extends PublicAction {
         $this->redirect('User/changeinfo');
     }
 
-    public function index() {
+    public function index1() {
         $userid = $this->userInfo['user_id'];
         $shopobj = M("Shop");
         $shoplist = $shopobj->where('shop_top="1"')->field('dc_shop.id, shop_name, shop_beginworktime, shop_endworktime, shop_deliver_money, shop_deliver_beginmoney, shop_deliver_time, shop_image, shop_top, user_id,user_people')->join(' dc_peoplefav ON dc_peoplefav.user_shop = dc_shop.user_id')->limit('0,5')->select();
@@ -107,8 +107,49 @@ class IndexAction extends PublicAction {
         $syspicinfo = $system->select();
         $this->assign('syspicinfo', $syspicinfo);
         $this->assign('firstpicinfo', $syspicinfo[0]['system_pic']);
-        $this->display();
+        $this->display('index1');
     }
     
-    
+    public function index() {
+        $userid = $this->userInfo['user_id'];
+        $domain = 'http://'.$_SERVER['SERVER_NAME'];
+        $typelist_json = file_get_contents($domain.'/api.php/shop/getshoptype?pid=0');
+        $typelist = json_decode($typelist_json, true);
+        $this->assign('typelist', $typelist);
+        
+        $peoplefav = M("peoplefav");
+        $orderobj = M('order');
+        $shopnotice = M('shopnotice');
+        
+        $lng = htmlspecialchars($_GET['lng']);
+        $lat = htmlspecialchars($_GET['lat']);
+        $distance = 0.5;
+        $order = htmlspecialchars($_GET['order']);
+        $orderby = ' order by '.$order;
+        
+        $squares = getSquarePoint($lng, $lat, $distance);
+//        $info_sql = "select * from `dc_shop` where shop_lat<>0 and shop_lat>{$squares['right-bottom']['lat']} and shop_lat<{$squares['left-top']['lat']} and shop_lng>{$squares['left-top']['lng']} and shop_lng<{$squares['right-bottom']['lng']}".$orderby;
+        $info_sql = 'select * from dc_shop';
+        $model = new Model();
+        $shoplist = $model->query($info_sql);
+        $topshop = array();
+        $current_time = date('Gis');
+        foreach ($shoplist as $shop) {
+            $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
+            $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
+            if ($current_time >= $beginworktime && $current_time <= $endworktime) {
+                $shop['is_working'] = 1;
+            } else {
+                $shop['is_working'] = 0;
+            }
+            $shop['is_fav'] = $peoplefav->where('user_people = "'.$userid.'" and user_shop = "'.$shop['user_id'].'"')->count();
+            $shop['order_num'] = $orderobj->where('food_shop = "'.$shop['user_id'].'"')->count();
+            $shop['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shop['shop_image'];
+            $noticelist = $shopnotice->where('user_id = "'.$shop['user_id'].'"')->order('notice_date desc')->find();
+            $shop['shopnotice'] =$noticelist['notice_content'];
+            $topshop[] = $shop;
+        }
+        $this->assign('topshop', $topshop);
+        $this->display('index1');
+    }
 }

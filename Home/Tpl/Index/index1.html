@@ -1,0 +1,193 @@
+<include file="Public:header1"/>
+<div class="page-wrap">
+        <div class="inner-wrap">
+
+
+
+  
+
+
+
+
+
+<div class="inner-bg">
+
+  
+  	<div class="notice">
+  	  <ul class="shown">
+  	  		  <li style="display: none;" class="banner-lists">
+              <a href="http://{$Think.server.server_name}" target="_blank">
+                <img src="/waimai/feac6fa91b666cd38601dec3bdbf171d61684.jpg" height="80" width="960">
+              </a>
+  	    		</li>
+  	  		  <li style="display: list-item;" class="banner-lists current">
+              <a href="http://{$Think.server.server_name}" target="_blank">
+                <img src="/waimai/3b76190a0b76de13ba0945b711069e9d42215.jpg" height="80" width="960">
+              </a>
+  	    		</li>
+  	  </ul>
+  	    <div class="btns clearfix" style="margin-left:-18px">
+  	    		<a href="javascript:;" class="fl icon i-banner-point" id="banner-pic-0"></a>
+  	    		<a href="javascript:;" class="fl icon i-banner-point active" id="banner-pic-1"></a>
+  	    </div>
+        <a href="javascript:;" id="banner-prev" class="prev"><i class="icon i-banner-prev"></i></a>
+        <a href="javascript:;" id="banner-next" class="next"><i class="icon i-banner-next"></i></a>
+    </div>
+
+    <div class="rest-banner">
+      <div class="tab clearfix">
+        <a href="http://waimai.meituan.com/home/wwymjeu9218k" class="fl rest-tab active">餐厅</a>
+        <a href="http://waimai.meituan.com/food/topsale/wwymjeu9218k" class="fl hot-food">热卖美食</a>
+      </div>
+      <div style="height: 65px;" class="imgsort-wrapper jq-hover">
+          <i class="icon i-sort-triangledown"></i>
+        <ul class="clearfix">
+          <li class="fl selected">
+            <a href="__GROUP__" class="imgsort-list" title="全部">
+              <i class="icon-sort icon-s-all fl"></i>
+              <span class="imgsort-info fl">全部</span>
+            </a>
+          </li>
+          <foreach name="typelist" item="type">
+            <li class="fl  ">
+              <a class="imgsort-list" title="{$type.type_name}" href="__GROUP__">
+                <i class="icon-sort icon-s-restaurant"></i>
+                <span class="imgsort-info">{$type.type_name}</span>
+              </a>
+            </li>
+            </foreach>
+        </ul>
+      </div>
+<!--      <div class="rest-filter clearfix">
+        <div class="rest-filter clearfix">
+          
+              <a title="下单立减" href="http://waimai.meituan.com/home/wwymjeu9218k?sort_type=0&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;classify_type=fulldiscount%7Ccate_all">
+                <span class="sprite checkbox "></span>
+                <span class="txt">    下单立减
+    
+</span>
+              </a>
+              <a title="下单赠饮料" href="http://waimai.meituan.com/home/wwymjeu9218k?sort_type=0&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;classify_type=fulldonation%7Ccate_all">
+                <span class="sprite checkbox "></span>
+                <span class="txt">    下单赠饮料
+    
+</span>
+              </a>
+              <a title="新用户优惠" href="http://waimai.meituan.com/home/wwymjeu9218k?sort_type=0&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;classify_type=firstdiscount%7Ccate_all">
+                <span class="sprite checkbox "></span>
+                <span class="txt">    新用户优惠
+    
+</span>
+              </a>
+              <a title="超时赔付" href="http://waimai.meituan.com/home/wwymjeu9218k?sort_type=0&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;classify_type=compensate%7Ccate_all">
+                <span class="sprite checkbox "></span>
+                <span class="txt">    超时赔付
+    
+</span>
+              </a>
+              <a title="支持发票" href="http://waimai.meituan.com/home/wwymjeu9218k?sort_type=0&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;classify_type=invoice%7Ccate_all">
+                <span class="sprite checkbox "></span>
+                <span class="txt">    支持发票
+    
+</span>
+              </a>
+          
+            <a title="在线支付" href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;price_type=0&amp;sort_type=0&amp;support_invoice=0&amp;support_online_pay=1">
+              <span class="sprite checkbox "></span>
+              <span class="txt">在线支付</span>
+            </a>
+          
+        </div>
+      </div>-->
+      <div class="sort-filter" id="sortFilter">
+        <a class="sort default-sort active" href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;sort_type=0">默认排序</a>
+        <a class="sort sa-sort " href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;sort_type=1">销量<i class="icon i-orderdown"></i></a>
+        <a class="sort ct-sort " href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;sort_type=2">评价<i class="icon i-orderdown"></i></a>
+        <a class="sort ti-sort " href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;sort_type=3">送餐速度<i class="icon i-orderup"></i></a>
+        <div class="fl clearfix">
+          <span class="fl label">起送价筛选</span>
+          <div class="prices">
+            <a class="all" href="javascript:;">
+              全部餐厅<i class="icon i-triangle-dn"></i>
+            </a>
+            <ul>
+              <li><a class="selected" href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;sort_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;price_type=0">全部餐厅</a></li>
+              <li><a href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;sort_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;price_type=1">10元以下</a></li>
+              <li><a href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;sort_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;price_type=2">20元以下</a></li>
+              <li><a href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;sort_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;price_type=3">30元以下</a></li>
+            </ul>
+          </div>          
+        </div>
+      </div>
+    </div>
+  <div class="rest-list">
+    <ul class="list clearfix">
+<foreach name="topshop" item="shop">
+        <li class="fl">  	
+    <div data-title="{$shop.shop_name}" data-bulletin="{$shop.shopnotice}" class="restaurant transition" data-all="1" data-firstdiscount="1" data-fulldiscount="1" data-minpricelevel="1">
+        <if condition="$shop.is_working eq 0"><div class="rest-mask"></if>
+        <a class="rest-atag" href="__GROUP__/shop/detail/{$shop.user_id}" target="_blank">
+          <div class="top-content">
+            <div class="preview fl">
+              <img style="background-image: url(&quot;{$shop.shop_image}&quot;);" data-rid="9991" data-index="0" class="scroll-loading" src="/waimai/a.gif" data-src="{$shop.shop_image}">
+            </div>
+            <div class="content">
+              <div class="name">
+                <span title="{$shop.shop_name}">{$shop.shop_name}</span>
+              </div>
+              <div class="tags">
+                    <span title="中式炒菜">中式炒菜</span>
+                    <span title="快餐小吃">快餐小吃</span>
+              </div>
+              <div class="price">
+                <span class="start-price">{$shop.shop_deliver_beginmoney}元起送</span>
+                <span class="send-price">
+                  <if condition="$shop.shop_deliver_money eq 0">免配送费<else />配送费：{$shop.shop_deliver_money}元/次</if>
+                </span>
+              </div>
+                <div class="timer-tip">
+                  <span class="timer cc-yellow borderradius-2">
+                      <if condition="$shop.is_working eq 1"><span class="state_bg1">接受预订</span><else /><span class="state_bg3">休息中</span></if>
+                  </span>
+                </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <div class="others">
+            <div class="discount fr">
+                <if condition="$shop.shop_pay neq '3'">
+                  <i class="icon i-pay fl"></i>
+                <script type="text/template" data-icon="i-pay">该餐厅支持在线支付</script>
+                </if>
+<!--                  <i class="icon i-first fl"></i>
+                <script type="text/template" data-icon="i-first">(手机客户端专享)新用户首次下单,立减8元</script>
+                  <i class="icon i-minus fl"></i>
+                <script type="text/template" data-icon="i-minus">满10元减4元;满20元减7元(在线支付专享)</script>-->
+            </div>
+          </div>
+        </a>
+        <if condition="$shop.is_working eq 0"></div></if>
+        
+        <if condition="$shop.is_fav eq 1">
+        <a href="javascript:jsheader.collect_cancel('{$shop.user_id}');" class="un-favorite j-save-up" data-poiid="9991" title="点击取消收藏">
+          <i class="icon i-heart-16"></i>
+          <span>已收藏</span>
+        </a>
+        <else />
+        <a href="javascript:jsheader.collect('{$shop.user_id}');" class="un-favorite j-save-up" data-poiid="9991" title="收藏餐厅">
+          <i class="icon i-heart-16"></i>
+          <span>收藏</span>
+        </a>
+        </if>
+    </div>
+</li>
+</foreach>
+
+    </ul>
+  </div>
+  
+</div>
+
+          </div>
+    </div>
+<include file="Public:footer1"/>

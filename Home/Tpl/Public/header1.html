@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="ie9"><![endif]-->
+<!--[if IE 8]><html class="ie8"><![endif]-->
+<!--[if IE 7]><html class="ie7"><![endif]-->
+<!--[if IE 6]><html class="ie6"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html><!--<![endif]--><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>我的快送</title>
+
+    <script src="/waimai/mta.js" async=""></script>
+    <script src="/waimai/analytics.js" async=""></script>
+    <script type="text/javascript">
+    var MT = {};
+    MT.BOOTSTAMP = new Date().getTime();
+    MT.STATIC_ROOT = "http://xs01.meituan.net/waimai_web/5512b3f9";
+    MT.ENV = "production";
+    </script>
+    <link rel="stylesheet" href="/waimai/home.css">
+
+    <script>
+
+      (function(a,b){function d(){var a=document.createElement("script");a.async=!0,a.src="/waimai/mta.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)}if(a.MeituanAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},"complete"===document.readyState)d();else{var c=window.onload;window.onload=function(){d(),c&&c()}}})(window,"mta");
+      mta("create","5371750ce87460c1504d7ca2");
+      mta("send","page");    
+    </script>
+	<script src="/waimai/home.js" data-requiremodule="home" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script>
+    <script src="/js/header.js"></script>
+    </head>
+	<body>
+	  <div class="triffle" id="triffle">
+
+	    <a href="javascript:;" class="top"><i class="icon i-backtop"></i></a>
+<!--	    <a id="aside-feedback" target="_blank" href="http://{$Think.server.server_name}/help/feedback" class="fb">意见反馈</a>-->
+	  </div>
+	  <div class="stick-qrcode" id="stickQrcode">
+      <a class="index-xiaomei qrcode" href="http://{$Think.server.server_name}/mobile/download/default" target="_blank">
+        <i class="icon i-qrcode-cross"></i>
+        <span class="code qrcode"></span>
+      </a>
+	  </div>
+	  <div class="wrapper">
+	      <div id="top-tips" class="top-tips" style="display: none;">
+	        <a class="j-top-tips-close top-tips-close" href="javascript:;"><i class="icon i-top-tips-close"></i></a>
+	        <div class="j-top-tips-content top-tips-content" data-id=""></div>
+	      </div>
+  	  <div class="page-header">
+        <div class="top-nav">
+          <div class="topnav-wrap">
+            <div class="fr welcome">
+              	<span id="dis-login" class="action fl"><a class="j-register ct-white fl" href="javascript:jsheader.showreg();">注册</a><a class="j-login ct-white fr" href="javascript:jsheader.showlogin();">登录</a>｜ </span>
+<!--              <a id="top-nav-send-fb" class="ct-white send-fb fl" href="http://{$Think.server.server_name}/help/feedback">找客服</a>
+              <a class="ct-white send-fb fl" href="http://{$Think.server.server_name}/help/faq">常见问题</a>-->
+              <a target="_blank" href="http://{$Think.server.server_name}" class="site-name ct-white fl"><i class="icon i-tuan-new"></i><span>我的快送</span></a>
+            </div>
+            <a href="http://{$Think.server.server_name}/mobile.php" class="wap ct-white fl"><i class="icon i-phone-new"></i><span>手机版</span></a>
+              <span class="current-city fl" id="current-city">大连</span>
+            
+            
+              
+              <span class="address fl" id="address">
+                <span id="curr-location" class="current-address fl">网络产业大厦</span>
+                <div class="change fl clearfix" id="changePosition">
+                  <a href="/index.php/index/map" class="change-link">
+                    <span class="fl">[切换地址]</span>
+                  </a>
+                </div>
+              </span>
+            
+          </div>
+        </div>
+        <div class="middle-nav">
+          <div class="middlenav-wrap clearfix">
+            <div class="desire fr">
+              
+              
+              <a href="http://{$Think.server.server_name}/" class="ca-lightgrey home-page"><i class="icon i-home"></i><span>主页</span></a>
+              <span class="vertical-line">|</span>
+              <a href="/index.php/User/orderdetail" class="ca-lightgrey check-order"><i class="icon i-basket"></i><span>我的外卖</span></a>
+            </div>
+            <h1 class="logo fl">
+              <a href="http://{$Think.server.server_name}/" title="我的快送"><img src="/waimai/normal.png" alt="我的快送"></a>
+            </h1>
+            <div class="search-box fl">
+              <input class="header-search fl" value="搜索餐厅，美食" type="text">
+              <a href="javascript:;" class="doSearch fl">搜索</a>
+              <div class="result-box">
+                <div class="result-left fl">
+                  <div class="rest-words ct-black">餐厅</div>
+                  <div class="food-words ct-black">美食</div>
+                </div>
+                <div class="result-right fl">
+                  <ul class="rest-lists">
+                  </ul>
+                  <div class="line"></div>
+                  <ul class="food-lists">
+                  </ul>
+                </div>
+              </div>
+              <div class="no-result">
+                没有找到相关结果，请换个关键字搜索！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
