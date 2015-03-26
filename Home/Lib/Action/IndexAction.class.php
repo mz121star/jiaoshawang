@@ -124,12 +124,25 @@ class IndexAction extends PublicAction {
         $lng = htmlspecialchars($_GET['lng']);
         $lat = htmlspecialchars($_GET['lat']);
         $distance = 0.5;
+        
         $order = htmlspecialchars($_GET['order']);
-        $orderby = ' order by '.$order;
+        $orderby = '';
+        if ($order == 3) {
+            $orderby = ' order by shop_deliver_time desc';
+        }
+        $tid = htmlspecialchars($_GET['tid']);
+        $where = '';
+        if ($tid) {
+            $where .= ' and shop_type = "'.$tid.'"';
+        }
+        $startsong = htmlspecialchars($_GET['startsong']);
+        if ($startsong == 10 || $startsong == 20 || $startsong == 30) {
+            $where .= ' and shop_deliver_beginmoney <= "'.$startsong.'"';
+        }
         
         $squares = getSquarePoint($lng, $lat, $distance);
-//        $info_sql = "select * from `dc_shop` where shop_lat<>0 and shop_lat>{$squares['right-bottom']['lat']} and shop_lat<{$squares['left-top']['lat']} and shop_lng>{$squares['left-top']['lng']} and shop_lng<{$squares['right-bottom']['lng']}".$orderby;
-        $info_sql = 'select * from dc_shop';
+//        $info_sql = "select * from `dc_shop` where shop_lat<>0 and shop_lat>{$squares['right-bottom']['lat']} and shop_lat<{$squares['left-top']['lat']} and shop_lng>{$squares['left-top']['lng']} and shop_lng<{$squares['right-bottom']['lng']}".$where.$orderby;
+        $info_sql = 'select * from dc_shop'.$where.$orderby;
         $model = new Model();
         $shoplist = $model->query($info_sql);
         $topshop = array();
@@ -150,6 +163,9 @@ class IndexAction extends PublicAction {
             $topshop[] = $shop;
         }
         $this->assign('topshop', $topshop);
+        $this->assign('tid', ($tid)?$tid:0);
+        $this->assign('orderby', ($order)?$order:0);
+        $this->assign('startsong', ($startsong)?$startsong:10000);
         $this->display('index1');
     }
 }

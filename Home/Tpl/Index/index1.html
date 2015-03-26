@@ -42,15 +42,15 @@
       <div style="height: 65px;" class="imgsort-wrapper jq-hover">
           <i class="icon i-sort-triangledown"></i>
         <ul class="clearfix">
-          <li class="fl selected">
+          <li class="fl <if condition="$tid eq 0">selected</if>">
             <a href="__GROUP__" class="imgsort-list" title="全部">
               <i class="icon-sort icon-s-all fl"></i>
               <span class="imgsort-info fl">全部</span>
             </a>
           </li>
           <foreach name="typelist" item="type">
-            <li class="fl  ">
-              <a class="imgsort-list" title="{$type.type_name}" href="__GROUP__">
+            <li class="fl  <if condition="$tid eq $type[id]">selected</if>">
+              <a class="imgsort-list" title="{$type.type_name}" href="__GROUP__/typeby/{$type.id}/{$orderby}/{$startsong}">
                 <i class="icon-sort icon-s-restaurant"></i>
                 <span class="imgsort-info">{$type.type_name}</span>
               </a>
@@ -100,10 +100,10 @@
         </div>
       </div>-->
       <div class="sort-filter" id="sortFilter">
-        <a class="sort default-sort active" href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;sort_type=0">默认排序</a>
-        <a class="sort sa-sort " href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;sort_type=1">销量<i class="icon i-orderdown"></i></a>
-        <a class="sort ct-sort " href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;sort_type=2">评价<i class="icon i-orderdown"></i></a>
-        <a class="sort ti-sort " href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;price_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;sort_type=3">送餐速度<i class="icon i-orderup"></i></a>
+        <a class="sort default-sort <if condition="$order eq 0">active</if>" href="__GROUP__/orderby/0/{$tid}/{$startsong}">默认排序</a>
+        <a class="sort sa-sort <if condition="$order eq 1">active</if>" href="__GROUP__/orderby/1/{$tid}/{$startsong}">销量<i class="icon i-orderdown"></i></a>
+        <a class="sort ct-sort <if condition="$order eq 2">active</if>" href="__GROUP__/orderby/2/{$tid}/{$startsong}">评价<i class="icon i-orderdown"></i></a>
+        <a class="sort ti-sort <if condition="$order eq 3">active</if>" href="__GROUP__/orderby/3/{$tid}/{$startsong}">送餐速度<i class="icon i-orderup"></i></a>
         <div class="fl clearfix">
           <span class="fl label">起送价筛选</span>
           <div class="prices">
@@ -111,10 +111,10 @@
               全部餐厅<i class="icon i-triangle-dn"></i>
             </a>
             <ul>
-              <li><a class="selected" href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;sort_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;price_type=0">全部餐厅</a></li>
-              <li><a href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;sort_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;price_type=1">10元以下</a></li>
-              <li><a href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;sort_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;price_type=2">20元以下</a></li>
-              <li><a href="http://waimai.meituan.com/home/wwymjeu9218k?classify_type=%7Ccate_all&amp;sort_type=0&amp;support_online_pay=0&amp;support_invoice=0&amp;price_type=3">30元以下</a></li>
+              <li><a class="<if condition="$startsong eq 10000">selected</if>" href="__GROUP__/startsong/10000/{$orderby}/{$tid}">全部餐厅</a></li>
+              <li><a class="<if condition="$startsong eq 10">selected</if>" href="__GROUP__/startsong/10/{$orderby}/{$tid}">10元以下</a></li>
+              <li><a class="<if condition="$startsong eq 20">selected</if>" href="__GROUP__/startsong/20/{$orderby}/{$tid}">20元以下</a></li>
+              <li><a class="<if condition="$startsong eq 30">selected</if>" href="__GROUP__/startsong/30/{$orderby}/{$tid}">30元以下</a></li>
             </ul>
           </div>          
         </div>
