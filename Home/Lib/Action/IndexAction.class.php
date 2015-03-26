@@ -120,14 +120,23 @@ class IndexAction extends PublicAction {
         $peoplefav = M("peoplefav");
         $orderobj = M('order');
         $shopnotice = M('shopnotice');
-        
+        $model = new Model();
+
         $lng = htmlspecialchars($_GET['lng']);
         $lat = htmlspecialchars($_GET['lat']);
         $distance = 0.5;
         
         $order = htmlspecialchars($_GET['order']);
         $orderby = '';
-        if ($order == 3) {
+        if ($order == 1) {
+            $mostshop = array();
+            $resultlist = $model->query('SELECT food_shop FROM dc_order GROUP BY food_shop ORDER BY count( food_shop ) desc');
+            foreach ($resultlist as $key => $value) {
+                $mostshop[$value['food_shop']] = $key;
+            }
+        } elseif ($order == 2) {
+            
+        } elseif ($order == 3) {
             $orderby = ' order by shop_deliver_time desc';
         }
         $tid = htmlspecialchars($_GET['tid']);
@@ -142,11 +151,11 @@ class IndexAction extends PublicAction {
         
         $squares = getSquarePoint($lng, $lat, $distance);
 //        $info_sql = "select * from `dc_shop` where shop_lat<>0 and shop_lat>{$squares['right-bottom']['lat']} and shop_lat<{$squares['left-top']['lat']} and shop_lng>{$squares['left-top']['lng']} and shop_lng<{$squares['right-bottom']['lng']}".$where.$orderby;
-        $info_sql = 'select * from dc_shop'.$where.$orderby;
-        $model = new Model();
+        $info_sql = 'select * from dc_shop where 1 '.$where.$orderby;
         $shoplist = $model->query($info_sql);
         $topshop = array();
         $current_time = date('Gis');
+        $i = 0;
         foreach ($shoplist as $shop) {
             $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
             $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
@@ -159,8 +168,22 @@ class IndexAction extends PublicAction {
             $shop['order_num'] = $orderobj->where('food_shop = "'.$shop['user_id'].'"')->count();
             $shop['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shop['shop_image'];
             $noticelist = $shopnotice->where('user_id = "'.$shop['user_id'].'"')->order('notice_date desc')->find();
-            $shop['shopnotice'] =$noticelist['notice_content'];
-            $topshop[] = $shop;
+            $shop['shopnotice'] = $noticelist['notice_content'];
+            if ($order == 1) {
+                if (isset($mostshop[$shop['user_id']])) {
+                    $thisshoporder = $mostshop[$shop['user_id']];
+                } else {
+                    $thisshoporder = count($mostshop);
+                    $thisshoporder = $thisshoporder + $i;
+                }
+                $topshop[$thisshoporder] = $shop;
+            } else {
+                $topshop[] = $shop;
+            }
+            $i++;
+        }
+        if ($order == 1) {
+            ksort($topshop);
         }
         $this->assign('topshop', $topshop);
         $this->assign('tid', ($tid)?$tid:0);

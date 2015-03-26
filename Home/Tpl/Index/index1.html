@@ -36,8 +36,8 @@
 
     <div class="rest-banner">
       <div class="tab clearfix">
-        <a href="http://waimai.meituan.com/home/wwymjeu9218k" class="fl rest-tab active">餐厅</a>
-        <a href="http://waimai.meituan.com/food/topsale/wwymjeu9218k" class="fl hot-food">热卖美食</a>
+        <a href="__GROUP__" class="fl rest-tab active">餐厅</a>
+        <a href="__GROUP__" class="fl hot-food">热卖美食</a>
       </div>
       <div style="height: 65px;" class="imgsort-wrapper jq-hover">
           <i class="icon i-sort-triangledown"></i>
@@ -100,15 +100,19 @@
         </div>
       </div>-->
       <div class="sort-filter" id="sortFilter">
-        <a class="sort default-sort <if condition="$order eq 0">active</if>" href="__GROUP__/orderby/0/{$tid}/{$startsong}">默认排序</a>
-        <a class="sort sa-sort <if condition="$order eq 1">active</if>" href="__GROUP__/orderby/1/{$tid}/{$startsong}">销量<i class="icon i-orderdown"></i></a>
-        <a class="sort ct-sort <if condition="$order eq 2">active</if>" href="__GROUP__/orderby/2/{$tid}/{$startsong}">评价<i class="icon i-orderdown"></i></a>
-        <a class="sort ti-sort <if condition="$order eq 3">active</if>" href="__GROUP__/orderby/3/{$tid}/{$startsong}">送餐速度<i class="icon i-orderup"></i></a>
+        <a class="sort default-sort <if condition="$orderby eq 0">active</if>" href="__GROUP__/orderby/0/{$tid}/{$startsong}">默认排序</a>
+        <a class="sort sa-sort <if condition="$orderby eq 1">active</if>" href="__GROUP__/orderby/1/{$tid}/{$startsong}">销量<i class="icon i-orderdown"></i></a>
+        <!-- <a class="sort ct-sort <if condition="$order eq 2">active</if>" href="__GROUP__/orderby/2/{$tid}/{$startsong}">评价<i class="icon i-orderdown"></i></a> -->
+        <a class="sort ti-sort <if condition="$orderby eq 3">active</if>" href="__GROUP__/orderby/3/{$tid}/{$startsong}">送餐速度<i class="icon i-orderdown"></i></a>
         <div class="fl clearfix">
           <span class="fl label">起送价筛选</span>
           <div class="prices">
             <a class="all" href="javascript:;">
-              全部餐厅<i class="icon i-triangle-dn"></i>
+              <if condition="$startsong eq 10000">全部餐厅</if>
+              <if condition="$startsong eq 10">10元以下</if>
+              <if condition="$startsong eq 20">20元以下</if>
+              <if condition="$startsong eq 30">30元以下</if>
+              <i class="icon i-triangle-dn"></i>
             </a>
             <ul>
               <li><a class="<if condition="$startsong eq 10000">selected</if>" href="__GROUP__/startsong/10000/{$orderby}/{$tid}">全部餐厅</a></li>
