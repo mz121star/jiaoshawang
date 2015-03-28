@@ -172,4 +172,31 @@ class ShopAction extends Action {
 //        }
         $this->response($typelist, 'json');
     }
+
+    /*
+     * call example : http://yourservername/api.php/shop/gettopshop
+     * call method : get
+     */
+    public function gettopshop_get() {
+        $shop = M("Shop");
+        $peoplefav = M("peoplefav");
+        $order = M('order');
+        $shoplist = $shop->where(array('shop_top'=>'1'))->select();
+        $shops = array();
+        $current_time = date('Gis');
+        foreach ($shoplist as $shop) {
+            $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
+            $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
+            if ($current_time >= $beginworktime && $current_time <= $endworktime) {
+                $shop['is_working'] = 1;
+            } else {
+                $shop['is_working'] = 0;
+            }
+            $shop['is_fav'] = $peoplefav->where('user_people = "'.$userid.'" and user_shop = "'.$shop['user_id'].'"')->count();
+            $shop['order_num'] = $order->where('food_shop = "'.$shop['user_id'].'"')->count();
+            $shop['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shop['shop_image'];
+            $shops[] = $shop;
+        }
+        $this->response($shops, 'json');
+    }
 }
