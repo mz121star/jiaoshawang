@@ -78,6 +78,10 @@
           </ul>
 
             <if condition="$Think.session.userinfo.user_type eq 1">
+         <ul class="nav nav-sidebar">
+            <li <if condition="$current_c eq 'Advert' and $current_a eq 'lists'">class="active"</if>><a href="__GROUP__/Advert/lists">广告列表</a></li>
+            <li <if condition="$current_c eq 'Advert' and $current_a eq 'showadd'">class="active"</if>><a href="__GROUP__/Advert/showadd">添加广告</a></li>
+          </ul>
           <ul class="nav nav-sidebar">
             <li <if condition="$current_c eq 'System' and $current_a eq 'showset'">class="active"</if>><a href="__GROUP__/System/showset">系统信息配置</a></li>
             <li <if condition="$current_c eq 'System' and $current_a eq 'showimage'">class="active"</if>><a href="__GROUP__/System/showimage">首页图片配置</a></li>

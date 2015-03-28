@@ -1,0 +1,52 @@
+<h2 class="sub-header">广告列表</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>广告名称</th>
+            <th>广告状态</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <foreach name="advertlist" item="advert">
+          <tr>
+            <td class="col-sm-2">{$advert.advert_title}</td>
+            <td class="col-sm-2"><if condition="$advert.advert_status eq '0'">停用<else />启用</if></td>
+            <td class="col-sm-2">
+                <a href="__GROUP__/modadvert/{$advert.id}">编辑</a> 
+                <if condition="$advert.advert_status eq '0'">
+                <a href="javascript:;" id="startadvert_{$advert.id}">启用</a>
+                <else />
+                <a href="javascript:;" id="stopadvert_{$advert.id}">停用</a>
+                </if>
+                <a href="javascript:;" id="deladvert_{$advert.id}">删除</a>
+            </td>
+          </tr>
+        </foreach>
+        </tbody>
+      </table>
+      {$page}
+    </div>
+<script type="text/javascript">
+$(function () {
+    $("a[id^='startadvert_']").click(function () {
+        if (confirm("确认要启用吗？")) {
+            var id = this.id.split("_");
+            location.href = "__GROUP__/startadvert/"+id[1];
+        }
+    });
+    $("a[id^='stopadvert_']").click(function () {
+        if (confirm("确认要停用吗？")) {
+            var id = this.id.split("_");
+            location.href = "__GROUP__/stopadvert/"+id[1];
+        }
+    });
+    $("a[id^='deladvert_']").click(function () {
+        if (confirm("确认要删除吗？")) {
+            var id = this.id.split("_");
+            location.href = "__GROUP__/deladvert/"+id[1];
+        }
+    });
+});
+</script>

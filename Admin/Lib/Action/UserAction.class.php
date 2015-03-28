@@ -8,7 +8,7 @@ class UserAction extends PublicAction {
         $count = $shop->count();
         $page = new Page($count, 10);
         $show = $page->show();
-        $userlist = $shop->join(' dc_user ON dc_user.user_id = dc_shop.user_id')->field('dc_user.user_id,shop_name,shop_email,shop_phone,user_status')->order(array('dc_user.id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
+        $userlist = $shop->join(' dc_user ON dc_user.user_id = dc_shop.user_id')->field('dc_user.user_id,shop_name,shop_email,shop_phone,shop_top,user_status')->order(array('dc_user.id'=>'desc'))->limit($page->firstRow.','.$page->listRows)->select();
         $this->assign('userlist', $userlist);
         $this->assign('page',$show);
         $this->display();
@@ -171,6 +171,20 @@ class UserAction extends PublicAction {
         $status = $this->_get('status');
         $user = M("User");
         $user->where('user_id="'.$userid.'"')->setField('user_status', $status);
+        $this->redirect('User/shoplist');
+    }
+
+    public function topshop() {
+        $userid = $this->_get('userid');
+        $shop = M("Shop");
+        $shop->where('user_id="'.$userid.'"')->setField('shop_top', '1');
+        $this->redirect('User/shoplist');
+    }
+
+    public function topcancel() {
+        $userid = $this->_get('userid');
+        $shop = M("Shop");
+        $shop->where('user_id="'.$userid.'"')->setField('shop_top', '0');
         $this->redirect('User/shoplist');
     }
 

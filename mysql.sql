@@ -292,3 +292,16 @@ CREATE TABLE `dc_talk` (
   `talk_gift` enum('1','2') NOT NULL COMMENT '是否有奖品，1是没有，2是有',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='有奖留言表';
+
+
+DROP TABLE IF EXISTS `dc_advert`;
+CREATE TABLE `dc_advert` (
+  `id` int(11) NOT NULL auto_increment,
+  `advert_title` varchar(250) NOT NULL COMMENT '广告标题',
+  `advert_image` varchar(250) NOT NULL COMMENT '广告图片',
+  `advert_desc` varchar(250) NOT NULL COMMENT '广告说明',
+  `advert_content` text NOT NULL COMMENT '广告内容',
+  `advert_addtime` datetime NOT NULL COMMENT '添加时间',
+  `advert_status` enum('1','0') NOT NULL COMMENT '广告状态，1是启用，0是停用',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告表';

@@ -20,6 +20,11 @@
             <td class="col-sm-2">
                 <a href="__GROUP__/modshop/{$user.user_id}">编辑</a> 
                 <a href="__GROUP__/delshop/{$user.user_id}">删除</a>
+                <if condition="$user.shop_top eq '0'">
+                <a href="javascript:;" id="topuser_{$user.user_id}">推荐首页</a>
+                <else />
+                <a href="javascript:;" id="topcancel_{$user.user_id}">取消推荐</a>
+                </if>
             </td>
           </tr>
         </foreach>
@@ -27,3 +32,19 @@
       </table>
       {$page}
     </div>
+<script type="text/javascript">
+$(function () {
+    $("a[id^='topuser_']").click(function () {
+        if (confirm("确认要推荐吗？")) {
+            var id = this.id.split("_");
+            location.href = "__GROUP__/topshop/"+id[1];
+        }
+    });
+    $("a[id^='topcancel_']").click(function () {
+        if (confirm("确认要取消推荐吗？")) {
+            var id = this.id.split("_");
+            location.href = "__GROUP__/topcancel/"+id[1];
+        }
+    });
+});
+</script>

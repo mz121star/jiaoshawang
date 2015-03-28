@@ -48,6 +48,11 @@ class UserAction extends Action {
         if ($post['user_pw1'] != $post['user_pw2']) {
             $this->response(array('message' => '密码不一致'), 'json');
         }
+        $people = M("People");
+        $phone_count = $people->where('people_phone="'.$post['people_phone'].'"')->count();
+        if ($phone_count) {
+            $this->response(array('message' => '手机号已经注册过'), 'json');
+        }
         $user = M("User");
         $userInfo = $user->where('user_id="'.$post['user_id'].'"')->field('id')->find();
         if ($userInfo) {
@@ -56,7 +61,6 @@ class UserAction extends Action {
         $post['user_pw'] = md5($post['user_pw1']);
         $userid = $user->add($post);
         if ($userid) {
-            $people = M("People");
             $peopleid = $people->add($post);
             $this->response(array('message' => '注册成功'), 'json');
         } else {
