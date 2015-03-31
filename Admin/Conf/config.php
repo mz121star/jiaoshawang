@@ -23,10 +23,13 @@ $private_config = array(
                                                   'deltype/:typeid' => 'Food/deltype',
                                                   'modnotice/:noticeid' => 'Notice/modnotice',
                                                   'delnotice/:noticeid' => 'Notice/delnotice',
-                                                  'cancelorder/:orderid' => 'Order/cancelorder',
                                                   'detailorder/:orderid' => 'Order/detailorder',
                                                   'refundorder/:orderid' => 'Order/refundorder',
+
                                                   'confirmorder/:orderid' => 'Order/confirmorder',
+                                                  'cancelorder/:orderid' => 'Order/cancelorder',
+                                                  'acceptorder/:orderid' => 'Order/acceptorder',
+
                                                   'delshoptype/:typeid' => 'User/shoptype',
                                                   'showtalk/:tid' => 'Gift/showtalk',
                                                   'deladvert/:aid' => 'Advert/deladvert',
@@ -37,7 +40,7 @@ $private_config = array(
                         'SHOP_ROLE' => array(
                                             'Food'=>array('lists', 'showadd', 'save', 'modfood', 'delfood', 'typelist', 'addtype', 'modtype', 'deltype', 'typesave'),
                                             'Notice'=>array('lists', 'showadd', 'save', 'modnotice', 'delnotice'),
-                                            'Order'=>array('lists', 'cancelorder', 'detailorder','refundorder'),
+                                            'Order'=>array('lists', 'cancelorder', 'detailorder','refundorder', 'acceptorder'),
                                             'User'=>array('modself', 'upself')
                                             )
                         );

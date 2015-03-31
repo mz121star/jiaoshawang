@@ -30,10 +30,15 @@ class OrderAction extends PublicAction {
         $get = $this->filterAllParam('get');
         if ($get['orderid']) {
             $order = M("Order");
+            $orderinfo =  $order->where('id= '.$get['orderid'])->find();
+            $order_status = 3;
+            if ($orderinfo['order_paystatus'] == '2') {
+                $order_status = 4;
+            }
             if ($usertype == 1) {
-                $order->where('id= '.$get['orderid'])->setField('order_status', '3');
+                $order->where('id= '.$get['orderid'])->setField('order_status', $order_status);
             } else {
-                $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->setField('order_status', '3');
+                $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->setField('order_status', $order_status);
             }
             $this->redirect('Order/lists');
         } else {
@@ -58,7 +63,25 @@ class OrderAction extends PublicAction {
             $this->error("未知订单ID", 'lists');
         }
     } 
-    
+
+    public function acceptorder() {
+        $userid = $this->userInfo['user_id'];
+        $usertype = $this->userInfo['user_type'];
+        $get = $this->filterAllParam('get');
+        if ($get['orderid']) {
+            $order = M("Order");
+            $changeorder = array('order_status'=>'5');
+            if ($usertype == 1) {
+                $order->where('id= '.$get['orderid'])->save($changeorder);
+            } else {
+                $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->save($changeorder);
+            }
+            $this->redirect('Order/lists');
+        } else {
+            $this->error("未知订单ID", 'lists');
+        }
+    }
+
     public function refundorder() {
         $userid = $this->userInfo['user_id'];
         $usertype = $this->userInfo['user_type'];

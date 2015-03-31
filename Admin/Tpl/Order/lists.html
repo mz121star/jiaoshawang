@@ -15,12 +15,12 @@
           <tr>
             <td class="col-sm-2">{$order.name}</td>
             <td class="col-sm-2">{$order.order_price}</td>
-            <td class="col-sm-2"><if condition="$order.order_status eq 1">正常<elseif condition="$order.order_status eq 2"/>完结<elseif condition="$order.order_status eq 3"/>取消<elseif condition="$order.order_status eq 4"/>申请退款</if></td>
+            <td class="col-sm-2"><if condition="$order.order_status eq 1">初始订单<elseif condition="$order.order_status eq 2"/>完结订单<elseif condition="$order.order_status eq 3"/>订单已取消<elseif condition="$order.order_status eq 4"/>申请退款<elseif condition="$order.order_status eq 5"/>商家已接单</if></td>
             <td class="col-sm-2">{$order.order_createdate}</td>
             <td class="col-sm-2">
                 <if condition="$order.order_status eq 1">
-                <a href="__GROUP__/confirmorder/{$order.id}">确认</a> 
-                <a href="__GROUP__/cancelorder/{$order.id}">取消</a> 
+                <a href="__GROUP__/acceptorder/{$order.id}">接单</a> 
+                <a href="__GROUP__/cancelorder/{$order.id}">放弃</a> 
                 </if>
 <!--                <if condition="$order.order_status eq 4">
                 <a href="javascript:;" id="refundorder_{$order.id}">同意取消</a>

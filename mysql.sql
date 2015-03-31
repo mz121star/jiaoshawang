@@ -216,7 +216,7 @@ CREATE TABLE `dc_order` (
   `order_delivery` enum('1','2') NOT NULL COMMENT '发货状态，1是未发货，2是已发货',
   `order_receipt` enum('1','2') NOT NULL COMMENT '收货状态，1是未收货，2是已收货',
   `order_invoice` enum('1','2') NOT NULL COMMENT '是否索取发票，1是不索取，2是索取',
-  `order_status` enum('1','2','3','4') NOT NULL COMMENT '订单状态，1是正常，2是完结，3是取消，4是申请取消',
+  `order_status` enum('1','2','3','4','5') NOT NULL COMMENT '订单状态，1是正常，2是完结，3是取消，4是申请取消，5是商家接单',
   `order_sendtime` varchar(250) NOT NULL,
   `order_price` float(6, 2) NOT NULL COMMENT '订单总金额',
   `order_remark` varchar(250) NOT NULL,
