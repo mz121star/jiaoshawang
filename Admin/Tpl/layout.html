@@ -16,6 +16,21 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/docs.min.js"></script>
+    <if condition="$Think.session.userinfo.user_type eq 2">
+    <script>
+        $(function () {
+            function notify_order() {
+                $.get('http://{$Think.server.server_name}/api.php/order/notify?uid={$Think.session.userinfo.user_id}&notify=1', function (data) {
+                    var result = $.parseJSON(data);
+                    if (result.ordernum > 0) {
+                        $("#ordernum").html("("+result.ordernum+")");
+                    }
+                });
+            }
+            window.setInterval(notify_order, 5000);
+        });
+    </script>
+    </if>
   </head>
   <body>
 
@@ -74,7 +89,7 @@
           </ul>
 
           <ul class="nav nav-sidebar">
-            <li <if condition="$current_c eq 'Order' and $current_a eq 'lists'">class="active"</if>><a href="__GROUP__/Order/lists">订单管理</a></li>
+              <li <if condition="$current_c eq 'Order' and $current_a eq 'lists'">class="active"</if>><a href="__GROUP__/Order/lists">订单管理<if condition="$Think.session.userinfo.user_type eq 2"><span style="color: red;" id="ordernum">(1)</span></if></a></li>
           </ul>
 
             <if condition="$Think.session.userinfo.user_type eq 1">

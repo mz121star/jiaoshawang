@@ -149,4 +149,66 @@ class OrderAction extends Action {
             $this->response(array('message' => '取消订单失败'), 'json');
         }
     }
+    
+    /*
+     * call example : http://yourservername/api.php/order/notify?uid=test1&notify=1
+     * call method : get
+     */
+    public function notify_get() {
+        $shopid = htmlspecialchars($_GET['uid']);
+        $notify = htmlspecialchars($_GET['notify']);
+        if (!$shopid) {
+            $this->response(array('message' => '请指定要查看的用户'), 'json');
+        }
+        $startdate = date('Y-m-d H:i:s', mktime (date('H'),  date('i')-5,  0 ,  date('m'),  date('d'),  date('Y')));
+        $enddate = date('Y-m-d H:i:s', mktime (date('H'),  date('i'),  0 ,  date('m'),  date('d'),  date('Y')));
+        $orderobj = M("order");
+        $where['food_shop'] = $shopid;
+        $where['order_paystatus'] = '2';
+        $where['order_status'] = '1';
+        $where['order_createdate'] = array('between', array($startdate, $enddate));
+        if ($notify) {
+            $ordernum = $orderobj->where($where)->count();
+            $this->response(array('ordernum' => $ordernum), 'json');
+        } else {
+            $notifylist = $orderobj->where($where)->select();
+            $orderlist = array();
+            foreach ($notifylist as $order) {
+                if ($order['order_pay'] == '1') {
+                    $order['order_pay'] = '货到付款';
+                } else {
+                    $order['order_pay'] = '在线支付';
+                }
+                if ($order['order_paystatus'] == '1') {
+                    $order['order_paystatus'] = '未付款';
+                } else {
+                    $order['order_paystatus'] = '已付款';
+                }
+                if ($order['order_delivery'] == '1') {
+                    $order['order_delivery'] = '未发货';
+                } else {
+                    $order['order_delivery'] = '已发货';
+                }
+                if ($order['order_receipt'] == '1') {
+                    $order['order_receipt'] = '未收货';
+                } else {
+                    $order['order_receipt'] = '已收货';
+                }
+                if ($order['order_invoice'] == '1') {
+                    $order['order_invoice'] = '不索取发票';
+                } else {
+                    $order['order_invoice'] = '索取发票';
+                }
+                if ($order['order_status'] == '1') {
+                    $order['order_status'] = '正常';
+                } elseif ($order['order_status'] == '2') {
+                    $order['order_status'] = '完结';
+                } else {
+                    $order['order_status'] = '取消';
+                }
+                $orderlist[] = $order;
+            }
+            $this->response($orderlist, 'json');
+        }
+    }
 }
