@@ -29,9 +29,10 @@ class SmsAction extends Action {
         } else if ($type == 'order') {
             $param = $code;
             $templateId = '4596';
+        } else if ($type == 'findpw') {
+            $param = $code;
+            $templateId = '4861';
         }
-//        session(array('name'=>'session_id','expire'=>3600));
-//        session('smscode', $code);
         $templateSMS = json_encode(array('templateSMS' => array('appId' => $appId, 'param'=>$param, 'to' => $to, 'templateId' => $templateId)));
         
         $ch = curl_init();
@@ -51,6 +52,13 @@ class SmsAction extends Action {
             
             $result = json_decode($responseBody, true);
             if ($result['resp']['respCode'] == '000000') {
+                $smscode = M('smscode');
+                $smsinfo = $smscode->where('sms_phone = "'.$to.'"')->find();
+                if ($smsinfo) {
+                    $smscode->where('sms_phone = "'.$to.'"')->setField(array('sms_code'=>$code, 'sms_adddate'=>date('Y-m-d H:i:s')));
+                } else {
+                    $smscode->add(array('sms_phone'=>$to, 'sms_code'=>$code, 'sms_expire'=>3, 'sms_adddate'=>date('Y-m-d H:i:s')));
+                }
                 $this->response(array('statuscode' => 0, 'msg' => $code), 'json');
             } else {
                 $this->response(array('statuscode' => 1, 'msg' => '发送短信失败'), 'json');

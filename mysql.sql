@@ -305,3 +305,14 @@ CREATE TABLE `dc_advert` (
   `advert_status` enum('1','0') NOT NULL COMMENT '广告状态，1是启用，0是停用',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告表';
+
+
+DROP TABLE IF EXISTS `dc_smscode`;
+CREATE TABLE `dc_smscode` (
+  `id` int(11) NOT NULL auto_increment,
+  `sms_phone` varchar(20) NOT NULL COMMENT '手机号',
+  `sms_code` varchar(20) NOT NULL COMMENT '手机验证码',
+  `sms_expire` tinyint(4) unsigned NOT NULL COMMENT '过期时间，分钟单位',
+  `sms_adddate` datetime NOT NULL COMMENT '验证码添加时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='手机验证码表';

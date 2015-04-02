@@ -69,6 +69,48 @@ class UserAction extends Action {
     }
 
     /*
+     * call example : http://yourservername/api.php/user/uppw
+     * call method : post
+     */
+    public function uppw_post() {
+        $post = filterAllParam('post');
+        if (!$post['phone']) {
+            $this->response(array('message' => '请提供手机号'), 'json');
+        }
+        if (!$post['smscode']) {
+            $this->response(array('message' => '请提供验证码'), 'json');
+        }
+        if (!$post['newpw']) {
+            $this->response(array('message' => '请提供密码'), 'json');
+        }
+        $smscode = M('smscode');
+        $smsinfo = $smscode->where('sms_phone = "'.$post['phone'].'"')->find();
+        if (!$smsinfo) {
+            $this->response(array('message' => '提供的手机号不存在'), 'json');
+        }
+        if ($smscode['sms_code'] != $post['smscode']) {
+            $this->response(array('message' => '验证码错误'), 'json');
+        }
+        $expire = strtotime($smscode['sms_adddate']) + $smscode['sms_expire'] * 60;
+        if ($expire < time()) {
+            $this->response(array('message' => '验证码已过期'), 'json');
+        }
+        $people = M("people");
+        $peopleinfo = $people->field('user_id')->where('people_phone = "'.$post['phone'].'"')->find();
+        if (!$peopleinfo) {
+            $this->response(array('message' => '用户不存在'), 'json');
+        }
+        $user = M("User");
+        $newpw = md5($post['newpw']);
+        $isok = $user->where('user_id = "'.$peopleinfo['user_id'].'"')->setField('user_pw', $newpw);
+        if ($isok) {
+            $this->response(array('message' => '密码修改成功'), 'json');
+        } else {
+            $this->response(array('message' => '密码修改失败'), 'json');
+        }
+    }
+
+    /*
      * call example : http://yourservername/api.php/user/favshop
      * call method : post
      */
