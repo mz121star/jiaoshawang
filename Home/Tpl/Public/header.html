@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>叫啥网 </title>
@@ -56,12 +57,12 @@
                 href="/index.php/index/map">[切换地址]</a></span></li>
         <li class="x2">
             <if condition="$Think.session.userinfo.user_id eq ''">
-            <span class="xqq"><a href="/common.php?app=api.login&plat=qq"></a></span> <span class="xsina"><a
-                href="/common.php?app=api.login&plat=weibo"></a></span>		<span class="x2x">
+                <span class="xqq"><a href="/common.php?app=api.login&plat=qq"></a></span> <span class="xsina"><a
+                    href="/common.php?app=api.login&plat=weibo"></a></span>		<span class="x2x">
 		<a href="javascript:jsheader.showlogin();">登录</a>&nbsp;&nbsp;<a href="javascript:jsheader.showreg();">注册</a>
 				</span>
-            <else />
-            欢迎： {$Think.session.userinfo.user_id} , <a href="/index.php/index/logout">退出登录</a>
+                <else/>
+                欢迎： {$Think.session.userinfo.user_id} , <a href="/index.php/index/logout">退出登录</a>
             </if>
         </li>
     </ul>
@@ -72,9 +73,15 @@
             <div class="loginbox">
                 <ul class="xleft">
                     <li><span class="x1">用户名：</span><span><input type="text" name="user_id" class="txt1"/></span></li>
-                    <li><span class="x1">密码：</span><span><input name="user_pw" type="password" class="txt1"/></span></li>
-                    <li id="id_verify_code" style="display:none"><span class="x1">验证码：</span><span><input name="verifycode" type="text" class="txt2"  onfocus="jsheader.show_verify('#id_verify');"/>&nbsp;<img src="/webcss/default/" id="id_verify_pic" onclick="this.src='/common.php?app=sys&app_act=verifycode&app_contenttype=img&app_rnd='+Math.random();" style="display:none"></span></li>
-                    <li><span class="x1"></span><span><label><input type="checkbox" name="autologin" value="1" checked>下次自动登录</label>&nbsp;&nbsp;<a href="/index.php?app=index&app_act=findpwd">忘记密码?</a><br><br>
+                    <li><span class="x1">密码：</span><span><input name="user_pw" type="password" class="txt1"/></span>
+                    </li>
+                    <li id="id_verify_code" style="display:none"><span class="x1">验证码：</span><span><input
+                            name="verifycode" type="text" class="txt2" onfocus="jsheader.show_verify('#id_verify');"/>&nbsp;<img
+                            src="/webcss/default/" id="id_verify_pic"
+                            onclick="this.src='/common.php?app=sys&app_act=verifycode&app_contenttype=img&app_rnd='+Math.random();"
+                            style="display:none"></span></li>
+                    <li><span class="x1"></span><span><label><input type="checkbox" name="autologin" value="1" checked>下次自动登录</label>&nbsp;&nbsp;<a
+                            href="/index.php?app=index&app_act=findpwd">忘记密码?</a><br><br>
 			<input type="submit" name="btn_submit" value="登 录" class="button1" style="font-size:22px">
 			</span></li>
                 </ul>
@@ -89,13 +96,17 @@
 
     <div class="mainbg" id="id_mainbg">
         <div class="topmenu">
-            <li><img src="/images/logo.png"></li>
+            <li><a href="/index.php"><img src="/waimai/normal.png" alt="我的快送"></a></li>
             <li class="x1">
-                <a href="/" <if condition="$current_c neq 'User'">class="x2"</if>>首页</a>
-              <!--  <a href="/index.php?app=act.gift">礼品兑换</a>-->
-            <!--    <a href="/index.php?app_act=help">帮助中心 </a>
-                <a href="/index.php?app_act=msg">意见反馈 </a>-->
-                <a href="/index.php/User/orderdetail" <if condition="$current_c eq 'User'">class="x2"</if>>管理中心</a>
+                <a href="/"
+                <if condition="$current_c neq 'User'">class="x2"</if>
+                >首页</a>
+                <!--  <a href="/index.php?app=act.gift">礼品兑换</a>-->
+                <!--    <a href="/index.php?app_act=help">帮助中心 </a>
+                    <a href="/index.php?app_act=msg">意见反馈 </a>-->
+                <a href="/index.php/User/orderdetail"
+                <if condition="$current_c eq 'User'">class="x2"</if>
+                >管理中心</a>
             </li>
         </div>
     </div>
