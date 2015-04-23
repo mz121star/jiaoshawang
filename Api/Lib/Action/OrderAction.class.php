@@ -166,8 +166,10 @@ class OrderAction extends Action {
         $where['order_paystatus'] = '2';
         $where['order_status'] = '1';
         $where['order_createdate'] = array('between', array($startdate, $enddate));
-        $ordernum = $orderobj->where($where)->count();
-        $this->response(array('ordernum' => $ordernum), 'json');
+        $orderinfo = $orderobj->where($where)->select();
+        $ordernum = count($orderinfo);
+        $orderinfo = json_encode($orderinfo);
+        $this->response(array('ordernum' => $ordernum, 'orderinfo'=>$orderinfo), 'json');
     }
 
     /*
