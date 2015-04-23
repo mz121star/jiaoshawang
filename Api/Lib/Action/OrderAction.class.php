@@ -237,8 +237,8 @@ class OrderAction extends Action {
      * call method : post
      */
     public function acceptorder_post() {
-        $userid = htmlspecialchars($_POST['user_id']);
-        $orderid = htmlspecialchars($_POST['orderid']);
+        $userid = htmlspecialchars($_POST['uid']);
+        $orderid = htmlspecialchars($_POST['oid']);
         if ($orderid) {
             $order = M("Order");
             $changeorder = array('order_status'=>'5');
