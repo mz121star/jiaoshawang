@@ -32,6 +32,46 @@ class UserAction extends Action {
             $this->response(array('message' => '用户名或密码错误'), 'json');
         }
     }
+    
+    /*
+     * call example : http://yourservername/api.php/user/login2
+     * call method : post
+     */
+    public function login2_post(){
+        $userid = htmlspecialchars($_POST['userid']);
+        $userpw = htmlspecialchars($_POST['userpw']);
+
+        $user = M("User");
+        $data['user_id'] = $userid;
+        $data['user_pw'] = md5($userpw);
+        $data['user_status'] = 1;
+        $data['user_type'] = 2;
+        $userInfo = $user->where($data)->field('user_pw', true)->find();
+        if ($userInfo) {
+            $shop = M("shop");
+            $shopInfo = $shop->where('user_id = "'.$userInfo['user_id'].'"')->find();
+            $result['user_id'] = $userInfo['user_id'];
+            if ($shopInfo) {
+                $result['shop_name'] = $shopInfo['shop_name'];
+                $result['shop_email'] = $shopInfo['shop_email'];
+                $result['shop_description'] = $shopInfo['shop_description'];
+                $result['shop_beginworktime'] = $shopInfo['shop_beginworktime'];
+                $result['shop_endworktime'] = $shopInfo['shop_endworktime'];
+                $result['shop_deliver_money'] = $shopInfo['shop_deliver_money'];
+                $result['shop_deliver_beginmoney'] = $shopInfo['shop_deliver_beginmoney'];
+                $result['shop_deliver_time'] = $shopInfo['shop_deliver_time'];
+                $result['shop_image'] = $shopInfo['shop_image'];
+                $result['shop_phone'] = $shopInfo['shop_phone'];
+                $result['shop_addr'] = $shopInfo['shop_addr'];
+                $result['shop_lng'] = $shopInfo['shop_lng'];
+                $result['shop_lat'] = $shopInfo['shop_lat'];
+                $result['shop_pay'] = $shopInfo['shop_pay'];
+            }
+            $this->response($result, 'json');
+        } else {
+            $this->response(array('message' => '用户名或密码错误'), 'json');
+        }
+    }
 
     /*
      * call example : http://yourservername/api.php/user/regist
