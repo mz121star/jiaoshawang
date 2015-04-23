@@ -231,4 +231,25 @@ class OrderAction extends Action {
         }
         $this->response($orderlist, 'json');
     }
+    
+    /*
+     * call example : http://yourservername/api.php/order/acceptorder
+     * call method : post
+     */
+    public function acceptorder_post() {
+        $userid = htmlspecialchars($_POST['user_id']);
+        $orderid = htmlspecialchars($_POST['orderid']);
+        if ($orderid) {
+            $order = M("Order");
+            $changeorder = array('order_status'=>'5');
+            $isok = $order->where('id= "'.$orderid.'" and food_shop="'.$userid.'"')->save($changeorder);
+            if ($isok === false) {
+                $this->response(array('message' => '接单失败'), 'json');
+            } else {
+                $this->response(array('message' => '接单成功'), 'json');
+            }
+        } else {
+            $this->response(array('message' => '未知订单'), 'json');
+        }
+    }
 }
