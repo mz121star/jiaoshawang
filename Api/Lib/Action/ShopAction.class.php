@@ -62,12 +62,13 @@ class ShopAction extends Action {
             $this->response(array('message' => '请给出具体位置'), 'json');
         }
         if (!$distance) {
-            $distance = 0.5;
+            $distance = 0.9;
         }
         $squares = getSquarePoint($lng, $lat, $distance);
         $info_sql = "select * from `dc_shop` where shop_lat<>0 and shop_lat>{$squares['right-bottom']['lat']} and shop_lat<{$squares['left-top']['lat']} and shop_lng>{$squares['left-top']['lng']} and shop_lng<{$squares['right-bottom']['lng']}";
         $model = new Model();
         $result = $model->query($info_sql);
+        $current_time = date('Gis');
         if ($result === false) {
             $this->response(array('message' => '查询数据出错'), 'json');
         } else {
