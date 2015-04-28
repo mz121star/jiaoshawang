@@ -93,10 +93,11 @@ class ShopAction extends Action {
     }
 
     /*
-     * call example : http://yourservername/api.php/shop/search?search_name=丸子
+     * call example : http://yourservername/api.php/shop/search?search_name=丸子&uid=xxx
      * call method : get
      */
     public function search_get() {
+        $userid = htmlspecialchars($_GET['uid']);
         $search_name = htmlspecialchars($_GET['search_name']);
         if (!$search_name) {
             $this->response(array('message' => '请输入要查询的内容'), 'json');
@@ -104,9 +105,21 @@ class ShopAction extends Action {
         $shop = M("Shop");
         $where['shop_name'] = array('like', '%'.$search_name.'%');
         $shoplist = $shop->where($where)->select();
+        $current_time = date('Gis');
+        $peoplefav = M("peoplefav");
+        $order = M('order');
         if ($shoplist) {
             $shoplist_array = array();
             foreach ($shoplist as $shop) {
+                $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
+                $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
+                if ($current_time >= $beginworktime && $current_time <= $endworktime) {
+                    $shop['is_working'] = 1;
+                } else {
+                    $shop['is_working'] = 0;
+                }
+                $shop['is_fav'] = $peoplefav->where('user_people = "'.$userid.'" and user_shop = "'.$shop['user_id'].'"')->count();
+                $shop['order_num'] = $order->where('food_shop = "'.$shop['user_id'].'"')->count();
                 $shop['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shop['shop_image'];
                 $shoplist_array[] = $shop;
             }
