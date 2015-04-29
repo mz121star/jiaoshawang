@@ -76,7 +76,41 @@ class SystemAction extends PublicAction {
         $this->assign('toptype', $toptype);
         $this->display();
     }
-    
+
+    public function shownav() {
+        $nav = M("nav");
+        if ($this->isPost()){
+            $nav_name = $this->_post('nav_name');
+            $nav_phone = $this->_post('nav_phone');
+            $nav_type = $this->_post('nav_type');
+            if (!$nav_name) {
+                $this->error("请填写名称");
+            }
+            if (!$nav_phone) {
+                $this->error("请填写电话");
+            }
+            if (!$nav_type) {
+                $this->error("请填写类别");
+            }
+            $nav->add(array('nav_name'=>$nav_name,'nav_phone'=>$nav_phone,'nav_type'=>$nav_type));
+        }
+
+        $navlist = $nav->select();
+        $this->assign('navlist', $navlist);
+        $this->display();
+    }
+
+    public function delnav() {
+        $nav = M("nav");
+        $navid = $this->_get('navid');
+        $isok = $nav->where('id = "'.$navid.'"')->delete();
+        if ($isok) {
+            $this->success("删除成功");
+        } else {
+            $this->error("删除失败");
+        }
+    }
+
     public function savetype() {
         $post = $this->filterAllParam('post');
         $shoptype = M("shoptype");

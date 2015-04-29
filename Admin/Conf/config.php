@@ -21,6 +21,7 @@ $private_config = array(
                                                   'delfood/:foodid' => 'Food/delfood',
                                                   'modtype/:typeid' => 'Food/modtype',
                                                   'deltype/:typeid' => 'Food/deltype',
+                                                  'delnav/:navid' => 'System/delnav',
                                                   'modnotice/:noticeid' => 'Notice/modnotice',
                                                   'delnotice/:noticeid' => 'Notice/delnotice',
                                                   'detailorder/:orderid' => 'Order/detailorder',

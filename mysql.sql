@@ -316,3 +316,13 @@ CREATE TABLE `dc_smscode` (
   `sms_adddate` datetime NOT NULL COMMENT '验证码添加时间',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='手机验证码表';
+
+
+DROP TABLE IF EXISTS `dc_nav`;
+CREATE TABLE `dc_nav` (
+  `id` int(11) NOT NULL auto_increment,
+  `nav_name` varchar(20) NOT NULL COMMENT '名称',
+  `nav_phone` varchar(20) NOT NULL COMMENT '手机号',
+  `nav_type` tinyint(4) unsigned NOT NULL COMMENT '类型',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='店铺导航表';
