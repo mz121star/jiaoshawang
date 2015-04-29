@@ -142,7 +142,7 @@ class OrderAction extends Action {
             $this->response(array('message' => '没有可选订单'), 'json');
         }
 
-        $isok = $orderobj->where('id="'.$orderid.'"')->setField('order_status', '3');
+        $isok = $orderobj->where('id="'.$orderid.'"')->setField('order_status', '4');
         if ($isok) {
             $this->response(array('message' => '取消订单成功'), 'json');
         } else {
