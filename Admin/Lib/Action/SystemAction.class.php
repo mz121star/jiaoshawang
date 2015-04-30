@@ -94,6 +94,10 @@ class SystemAction extends PublicAction {
             }
             $nav->add(array('nav_name'=>$nav_name,'nav_phone'=>$nav_phone,'nav_type'=>$nav_type));
         }
+        
+        $shoptype = M("shoptype");
+        $systypeinfo = $shoptype->where('is_top ="1"')->select();
+        $this->assign('typeinfo', $systypeinfo);
 
         $navlist = $nav->select();
         $this->assign('navlist', $navlist);

@@ -213,4 +213,19 @@ class ShopAction extends Action {
         }
         $this->response($shops, 'json');
     }
+    
+    /*
+     * call example : http://yourservername/api.php/shop/getnavbytype?tid=12
+     * call method : get
+     */
+    public function getnavbytype_get() {
+        $tid = htmlspecialchars($_GET['tid']);
+        $where = array();
+        if (!empty($tid)) {
+            $where = array('nav_type'=>$tid);
+        }
+        $nav = M("nav");
+        $navlist = $nav->where($where)->select();
+        $this->response($navlist, 'json');
+    }
 }

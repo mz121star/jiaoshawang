@@ -323,6 +323,6 @@ CREATE TABLE `dc_nav` (
   `id` int(11) NOT NULL auto_increment,
   `nav_name` varchar(20) NOT NULL COMMENT '名称',
   `nav_phone` varchar(20) NOT NULL COMMENT '手机号',
-  `nav_type` tinyint(4) unsigned NOT NULL COMMENT '类型',
+  `nav_type` tinyint(4) unsigned NOT NULL COMMENT '类型，关联dc_shoptype表的id字段',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='店铺导航表';

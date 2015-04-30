@@ -1,83 +1,88 @@
 <h1 class="page-header">添加信息</h1>
 <div class="row placeholders">
-	<div class="col-md-7">
-		<form class="form-horizontal" role="form" method="post" id="navform" action="__GROUP__/system/shownav">
-			<div class="form-group">
-			  <label for="helpername" class="col-sm-2 control-label">名称</label>
-			  <div class="col-sm-10">
-				  <input type="text" class="form-control" id="nav_name" name="nav_name" value="">
-			  </div>
-			</div>
+    <div class="col-md-7">
+        <form class="form-horizontal" role="form" method="post" id="navform" action="__GROUP__/system/shownav">
             <div class="form-group">
-			  <label for="helpername" class="col-sm-2 control-label">电话</label>
-			  <div class="col-sm-10">
-				  <input type="text" class="form-control" id="nav_phone" name="nav_phone" value="">
-			  </div>
-			</div>
+                <label for="helpername" class="col-sm-2 control-label">名称</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="nav_name" name="nav_name" value="">
+                </div>
+            </div>
             <div class="form-group">
-			  <label for="helpername" class="col-sm-2 control-label">类别</label>
-			  <div class="col-sm-10">
-				  <input type="text" class="form-control" id="nav_type" name="nav_type" value="">
-			  </div>
-			</div>
-			<div class="form-group">
-			  <div class="col-sm-offset-2 col-sm-10">
-				<button type="button" id="addbtn" class="btn btn-default">添加</button>
-			  </div>
-			</div>
-		  </form>
-	</div>
+                <label for="helpername" class="col-sm-2 control-label">电话</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="nav_phone" name="nav_phone" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="helpername" class="col-sm-2 control-label">类别</label>
+                <div class="col-sm-10">
+                    <select id="nav_type" name="nav_type" class="form-control">
+                        <option value="">请选择</option>
+                        <foreach name="typeinfo" item="type">
+                        <option value="{$type.id}">{$type.type_name}</option>
+                        </foreach>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" id="addbtn" class="btn btn-default">添加</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 <h2 class="sub-header">信息分类列表</h2>
-    <div class="table-responsive">
-      <table class="table table-striped">
+<div class="table-responsive">
+    <table class="table table-striped">
         <thead>
-          <tr>
-            <th>名称</th>
-            <th>电话</th>
-            <th>Action</th>
-          </tr>
+            <tr>
+                <th>名称</th>
+                <th>电话</th>
+                <th>Action</th>
+            </tr>
         </thead>
         <tbody>
         <foreach name="navlist" item="nav">
-          <tr>
-            <td class="col-sm-2">{$nav.nav_name}</td>
-            <td class="col-sm-2">{$nav.nav_phone}</td>
-            <td class="col-sm-2">
-                <a href="javascript:;" id="delnav_{$nav.id}">删除</a>
-            </td>
-          </tr>
+            <tr>
+                <td class="col-sm-2">{$nav.nav_name}</td>
+                <td class="col-sm-2">{$nav.nav_phone}</td>
+                <td class="col-sm-2">
+                    <a href="javascript:;" id="delnav_{$nav.id}">删除</a>
+                </td>
+            </tr>
         </foreach>
         </tbody>
-      </table>
-      {$page}
-    </div>
+    </table>
+    {$page}
+</div>
 <script type="text/javascript">
-$(function () {
-    $("#addbtn").click(function () {
-        var nav_name = $.trim($("#nav_name").val());
-        if (!nav_name) {
-            alert("请填写名称");
-            return false;
-        }
-        var nav_phone = $.trim($("#nav_phone").val());
-        if (!nav_name) {
-            alert("请填写电话");
-            return false;
-        }
-        var nav_type = $.trim($("#nav_type").val());
-        if (!nav_name) {
-            alert("请填写类别");
-            return false;
-        }
-        $("#navform").submit();
-    });
+    $(function () {
+        $("#addbtn").click(function () {
+            var nav_name = $.trim($("#nav_name").val());
+            if (!nav_name) {
+                alert("请填写名称");
+                return false;
+            }
+            var nav_phone = $.trim($("#nav_phone").val());
+            if (!nav_phone) {
+                alert("请填写电话");
+                return false;
+            }
+            var nav_type = $.trim($("#nav_type").val());
+            if (!nav_type) {
+                alert("请选择类别");
+                return false;
+            }
+            $("#navform").submit();
+        });
 
-    $("a[id^='delnav_']").click(function () {
-        if (confirm("确认要删除吗？")) {
-            var id = this.id.split("_");
-            location.href = "__GROUP__/delnav/"+id[1];
-        }
+        $("a[id^='delnav_']").click(function () {
+            if (confirm("确认要删除吗？")) {
+                var id = this.id.split("_");
+                location.href = "__GROUP__/delnav/" + id[1];
+            }
+        });
     });
-});
 </script>
