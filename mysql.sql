@@ -44,6 +44,7 @@ CREATE TABLE `dc_shop` (
   `shop_deliver_money` tinyint(3) unsigned NOT NULL default 0,
   `shop_deliver_beginmoney` tinyint(3) unsigned NOT NULL default 0,
   `shop_deliver_time` tinyint(3) unsigned NOT NULL default 0,
+  `shop_send_distance` tinyint(3) unsigned NOT NULL default 2 COMMENT '支持的配送距离，单位公里',
   `shop_image` varchar(250) NOT NULL,
   `shop_phone` varchar(250) NOT NULL,
   `shop_addr` varchar(250) NOT NULL,
