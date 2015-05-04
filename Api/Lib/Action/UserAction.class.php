@@ -269,8 +269,14 @@ class UserAction extends Action {
                 $order['order_status'] = '正常';
             } elseif ($order['order_status'] == '2') {
                 $order['order_status'] = '完结';
-            } else {
+            } elseif ($order['order_status'] == '3') {
                 $order['order_status'] = '取消';
+            } elseif ($order['order_status'] == '4') {
+                $order['order_status'] = '申请取消';
+            } elseif ($order['order_status'] == '5') {
+                $order['order_status'] = '商家接单';
+            } else {
+                $order['order_status'] = '错误';
             }
             $myorderlist[] = $order;
         }
@@ -324,10 +330,15 @@ class UserAction extends Action {
                 $orderinfo['order_status'] = '正常';
             } elseif ($orderinfo['order_status'] == '2') {
                 $orderinfo['order_status'] = '完结';
-            } else {
+            } elseif ($orderinfo['order_status'] == '3') {
                 $orderinfo['order_status'] = '取消';
+            } elseif ($orderinfo['order_status'] == '4') {
+                $orderinfo['order_status'] = '申请取消';
+            } elseif ($orderinfo['order_status'] == '5') {
+                $orderinfo['order_status'] = '商家接单';
+            } else {
+                $orderinfo['order_status'] = '错误';
             }
-
             $orderdetail = M("orderdetail");
             $detail = $orderdetail->where('order_id = "'.$orderinfo['id'].'"')->select();
             $orderinfo['order_detail'] = $detail;
