@@ -142,31 +142,51 @@ class ShopAction extends Action {
     }
     
     /*
-     * call example : http://yourservername/api.php/shop/getshopbytype?tid=12
+     * call example : http://yourservername/api.php/shop/getshopbytype?tid=12&lng=11&lat=222&distance=2&uid=xxx
      * call method : get
      */
     public function getshopbytype_get() {
         $tid = htmlspecialchars($_GET['tid']);
-        $shop = M("Shop");
-        $peoplefav = M("peoplefav");
-        $order = M('order');
-        $shoplist = $shop->where(array('shop_type'=>$tid))->select();
-        $shops = array();
-        $current_time = date('Gis');
-        foreach ($shoplist as $shop) {
-            $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
-            $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
-            if ($current_time >= $beginworktime && $current_time <= $endworktime) {
-                $shop['is_working'] = 1;
-            } else {
-                $shop['is_working'] = 0;
-            }
-            $shop['is_fav'] = $peoplefav->where('user_people = "'.$userid.'" and user_shop = "'.$shop['user_id'].'"')->count();
-            $shop['order_num'] = $order->where('food_shop = "'.$shop['user_id'].'"')->count();
-            $shop['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shop['shop_image'];
-            $shops[] = $shop;
+        $userid = htmlspecialchars($_GET['uid']);
+        $lng = htmlspecialchars($_GET['lng']);
+        $lat = htmlspecialchars($_GET['lat']);
+        $distance = htmlspecialchars($_GET['distance']);
+        if (!$lng || !$lat) {
+            $this->response(array('message' => '请给出具体位置'), 'json');
         }
-        $this->response($shops, 'json');
+        if (!$distance) {
+            $distance = 0.9;
+        }
+        $typewhere = '';
+        if ($tid) {
+            $typewhere = ' and shop_type = "'.$tid.'"';
+        }
+        $squares = getSquarePoint($lng, $lat, $distance);
+        $info_sql = "select * from `dc_shop` where shop_lat<>0 and shop_lat>{$squares['right-bottom']['lat']} and shop_lat<{$squares['left-top']['lat']} and shop_lng>{$squares['left-top']['lng']} and shop_lng<{$squares['right-bottom']['lng']}".$typewhere;
+        $model = new Model();
+        $result = $model->query($info_sql);
+        $current_time = date('Gis');
+        if ($result === false) {
+            $this->response(array('message' => '查询数据出错'), 'json');
+        } else {
+            $peoplefav = M("peoplefav");
+            $order = M('order');
+            $shops = array();
+            foreach ($result as $shop) {
+                $beginworktime = intval(implode('', explode(':', $shop['shop_beginworktime'])));
+                $endworktime = intval(implode('', explode(':', $shop['shop_endworktime'])));
+                if ($current_time >= $beginworktime && $current_time <= $endworktime) {
+                    $shop['is_working'] = 1;
+                } else {
+                    $shop['is_working'] = 0;
+                }
+                $shop['is_fav'] = $peoplefav->where('user_people = "'.$userid.'" and user_shop = "'.$shop['user_id'].'"')->count();
+                $shop['order_num'] = $order->where('food_shop = "'.$shop['user_id'].'"')->count();
+                $shop['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shop['shop_image'];
+                $shops[] = $shop;
+            }
+            $this->response($shops, 'json');
+        }
     }
     
     /*
