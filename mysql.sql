@@ -47,6 +47,7 @@ CREATE TABLE `dc_shop` (
   `shop_send_distance` tinyint(3) unsigned NOT NULL default 2 COMMENT '支持的配送距离，单位公里',
   `shop_image` varchar(250) NOT NULL,
   `shop_phone` varchar(250) NOT NULL,
+  `shop_smsphone` varchar(250) NOT NULL,
   `shop_addr` varchar(250) NOT NULL,
   `shop_top` enum('0','1') NOT NULL,
   `shop_type` int(11) unsigned NOT NULL default 0 COMMENT '类型ID，关联dc_shoptype表的id',

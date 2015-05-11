@@ -32,6 +32,9 @@ class SmsAction extends Action {
         } else if ($type == 'findpw') {
             $param = $code;
             $templateId = '4861';
+        } elseif ($type == 'notify') {
+            $param = $code;
+            $templateId = '6490';
         }
         $templateSMS = json_encode(array('templateSMS' => array('appId' => $appId, 'param'=>$param, 'to' => $to, 'templateId' => $templateId)));
         
