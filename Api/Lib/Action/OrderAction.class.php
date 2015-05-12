@@ -155,8 +155,6 @@ class OrderAction extends Action {
      * call method : get
      */
     public function notify_get() {
-        echo '<pre>';
-        print_r($_SERVER);exit;
         $shopid = htmlspecialchars($_GET['uid']);
         if (!$shopid) {
             $this->response(array('message' => '请指定要查看的用户'), 'json');
