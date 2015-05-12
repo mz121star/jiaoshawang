@@ -33,7 +33,7 @@ class SmsAction extends Action {
             $param = $code;
             $templateId = '4861';
         } elseif ($type == 'notify') {
-            $param = $code;
+            $param = date('H:i:s');
             $templateId = '6490';
         }
         $templateSMS = json_encode(array('templateSMS' => array('appId' => $appId, 'param'=>$param, 'to' => $to, 'templateId' => $templateId)));
