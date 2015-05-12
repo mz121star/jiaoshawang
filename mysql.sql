@@ -30,7 +30,7 @@ CREATE TABLE `dc_user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY user_id (user_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表';
-INSERT INTO `dc_user` VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', 1);
+INSERT INTO `dc_user` VALUES (1, 'admin', 'e6608053c55492c6da3ecd446ef12bde', '1', 1);
 
 
 DROP TABLE IF EXISTS `dc_shop`;
