@@ -151,7 +151,7 @@ class OrderAction extends Action {
     }
     
     /*
-     * call example : http://yourservername/api.php/order/notify?uid=test1
+     * call example : http://yourservername/api.php/order/notify?uid=test
      * call method : get
      */
     public function notify_get() {
