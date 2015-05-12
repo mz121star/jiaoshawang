@@ -32,7 +32,7 @@ class SmsAction extends Action {
         } else if ($type == 'findpw') {
             $param = $code;
             $templateId = '4861';
-        } elseif ($type == 'notify') {
+        } else if ($type == 'notify') {
             $param = date('H:i:s');
             $templateId = '6490';
         }
