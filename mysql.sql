@@ -223,6 +223,7 @@ CREATE TABLE `dc_order` (
   `order_price` float(6, 2) NOT NULL COMMENT '订单总金额',
   `order_remark` varchar(250) NOT NULL,
   `order_createdate` datetime NOT NULL,
+  `order_cancel_reason` text NOT NULL COMMENT '退款原因',
   `order_trade_no` varchar(250) NOT NULL COMMENT '支付宝交易号',
   `order_comment_id` int(11) unsigned NOT NULL default 0 COMMENT '订单评论ID',
   PRIMARY KEY (`id`)

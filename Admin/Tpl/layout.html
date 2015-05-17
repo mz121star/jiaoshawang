@@ -23,6 +23,7 @@
                 $.get('http://{$Think.server.server_name}/api.php/order/notify?uid={$Think.session.userinfo.user_id}', function (data) {
                     if (data.ordernum > 0) {
                         document.getElementById('ordersound').play();
+                        location.href = "__GROUP__/Order/lists";
                     }
                 });
                 $.get('http://{$Think.server.server_name}/api.php/order/shownotify?uid={$Think.session.userinfo.user_id}', function (data) {
@@ -80,7 +81,7 @@
           <ul class="nav nav-sidebar">
             <li <if condition="$current_c eq 'Food' and $current_a eq 'lists'">class="active"</if>><a href="__GROUP__/Food/lists">商品列表</a></li>
              <if condition="$Think.session.userinfo.user_type eq 2">
-            <li <if condition="$current_c eq 'Food' and $current_a eq 'showadd'">class="active"</if>><a href="__GROUP__/Food/showadd">添加菜肴</a></li>
+            <li <if condition="$current_c eq 'Food' and $current_a eq 'showadd'">class="active"</if>><a href="__GROUP__/Food/showadd">添加商品</a></li>
             </if>
           </ul>
 

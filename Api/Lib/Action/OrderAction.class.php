@@ -133,6 +133,11 @@ class OrderAction extends Action {
     public function cancel_post() {
         $userid = htmlspecialchars($_POST['uid']);
         $orderid = htmlspecialchars($_POST['oid']);
+        if (isset($_POST['reason']) && $_POST['reason']) {
+            $reason = htmlspecialchars($_POST['reason']);
+        } else {
+            $reason = '';
+        }
         if (!$orderid || !$userid) {
             $this->response(array('message' => '信息不足'), 'json');
         }
@@ -142,11 +147,15 @@ class OrderAction extends Action {
             $this->response(array('message' => '没有可选订单'), 'json');
         }
 
-        $isok = $orderobj->where('id="'.$orderid.'"')->setField('order_status', '4');
+        $where['order_status'] = '4';
+        if ($reason) {
+            $where['order_cancel_reason'] = $reason;
+        }
+        $isok = $orderobj->where('id="'.$orderid.'"')->setField($where);
         if ($isok) {
-            $this->response(array('message' => '取消订单成功'), 'json');
+            $this->response(array('message' => '申请取消订单成功'), 'json');
         } else {
-            $this->response(array('message' => '取消订单失败'), 'json');
+            $this->response(array('message' => '申请取消订单失败'), 'json');
         }
     }
     
