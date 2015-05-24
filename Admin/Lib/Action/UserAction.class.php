@@ -30,6 +30,35 @@ class UserAction extends PublicAction {
         $this->display();
     }
 
+    public function modpw(){
+        $userid = $this->_get('userid');
+        $this->assign('userid', $userid);
+        $from = $this->_get('from');
+        $this->assign('from', $from);
+        $this->display();
+    }
+
+    public function uppw(){
+        $userid = $this->_post('userid');
+        if ($userid == 'admin') {
+            $this->error("没有权限");
+        }
+        $user_pw = $this->_post('user_pw');
+        $user_pw = md5($user_pw);
+        $from = $this->_post('from');
+        $user = M("User");
+        $isok = $user->where('user_id = "'.$userid.'"')->setField('user_pw', $user_pw);
+        if ($isok) {
+            if ($from == 'shop') {
+                $this->success("修改成功", U('user/shoplist'));
+            } else {
+                $this->success("修改成功", U('user/peoplelist'));
+            }
+        } else {
+            $this->error("修改失败，请重试");
+        }
+    }
+
     public function modshop(){
         $userid = $this->_get('userid');
         $shop = M("Shop");

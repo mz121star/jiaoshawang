@@ -17,6 +17,7 @@ $private_config = array(
                                                   'modpeople/:userid' => 'User/modpeople',
                                                   'delpeople/:userid' => 'User/delpeople',
                                                   'upstatus/:userid/:status' => 'User/upstatus',
+                                                  'modpw/:userid/:from' => 'User/modpw',
                                                   'modfood/:foodid' => 'Food/modfood',
                                                   'delfood/:foodid' => 'Food/delfood',
                                                   'modtype/:typeid' => 'Food/modtype',

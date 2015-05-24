@@ -17,7 +17,7 @@
             <td class="col-sm-2">{$user.shop_name}</td>
             <td>{$user.shop_email}</td>
             <td class="col-sm-2">{$user.shop_phone}</td>
-            <td class="col-sm-2">
+            <td class="col-sm-3">
                 <a href="__GROUP__/modshop/{$user.user_id}">编辑</a> 
                 <a href="__GROUP__/delshop/{$user.user_id}">删除</a>
                 <if condition="$user.shop_top eq '0'">
@@ -25,6 +25,7 @@
                 <else />
                 <a href="javascript:;" id="topcancel_{$user.user_id}">取消推荐</a>
                 </if>
+                <a href="__GROUP__/modpw/{$user.user_id}/shop">修改密码</a>
             </td>
           </tr>
         </foreach>
