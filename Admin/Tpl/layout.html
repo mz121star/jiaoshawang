@@ -23,7 +23,6 @@
                 $.get('http://{$Think.server.server_name}/api.php/order/notify?uid={$Think.session.userinfo.user_id}', function (data) {
                     if (data.ordernum > 0) {
                         document.getElementById('ordersound').play();
-                        location.href = "__GROUP__/Order/lists";
                     }
                 });
                 $.get('http://{$Think.server.server_name}/api.php/order/shownotify?uid={$Think.session.userinfo.user_id}', function (data) {
