@@ -184,16 +184,16 @@ class OrderAction extends Action {
             if ($shopinfo && $shopinfo['shop_smsphone']) {
                 $smsphone = explode(',', $shopinfo['shop_smsphone']);
                 foreach ($smsphone as $phone) {
-//                    $phone = trim($phone);
-//                    $ch = curl_init();
-//                    curl_setopt($ch, CURLOPT_URL, 'http://'.$_SERVER['SERVER_NAME'].'/api.php/sms/send');
-//                    curl_setopt($ch, CURLOPT_POST, 1);
-//                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('phone'=>$phone, 'type'=>'notify')));
-//                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-//                    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-//                    $smsresult = curl_exec($ch);
-//                    curl_close($ch);
+                    $phone = trim($phone);
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, 'http://'.$_SERVER['SERVER_NAME'].'/api.php/sms/send');
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('phone'=>$phone, 'type'=>'notify')));
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+                    $smsresult = curl_exec($ch);
+                    curl_close($ch);
                 }
             }
         }
