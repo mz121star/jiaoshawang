@@ -284,6 +284,69 @@ class UserAction extends Action {
     }
     
     /*
+     * call example : http://yourservername/api.php/user/shoporderlist?uid=zb
+     * call method : get
+     */
+    public function shoporderlist_get() {
+        $userid = htmlspecialchars($_GET['uid']);
+        if (!$userid) {
+            $this->response(array('message' => '请给出用户'), 'json');
+        }
+        $order = M("order");
+        $orderlist = $order->where('food_shop = "'.$userid.'"')->order('order_createdate desc')->select();
+        if (!count($orderlist)) {
+            $this->response(array('message' => '无订单'), 'json');
+        }
+        $myorderlist = array();
+        $peopleobj = M('people');
+        foreach ($orderlist as $order) {
+            $peopleinfo = $peopleobj->field('people_name,people_phone')->where('user_id = "'.$order['order_people'].'"')->find();
+            $order['people_name'] = $peopleinfo['people_name'];
+            $order['people_phone'] = $peopleinfo['people_phone'];
+            if ($order['order_pay'] == '1') {
+                $order['order_pay'] = '货到付款';
+            } else {
+                $order['order_pay'] = '在线支付';
+            }
+            if ($order['order_paystatus'] == '1') {
+                $order['order_paystatus'] = '未付款';
+            } else {
+                $order['order_paystatus'] = '已付款';
+            }
+            if ($order['order_delivery'] == '1') {
+                $order['order_delivery'] = '未发货';
+            } else {
+                $order['order_delivery'] = '已发货';
+            }
+            if ($order['order_receipt'] == '1') {
+                $order['order_receipt'] = '未收货';
+            } else {
+                $order['order_receipt'] = '已收货';
+            }
+            if ($order['order_invoice'] == '1') {
+                $order['order_invoice'] = '不索取发票';
+            } else {
+                $order['order_invoice'] = '索取发票';
+            }
+            if ($order['order_status'] == '1') {
+                $order['order_status'] = '正常';
+            } elseif ($order['order_status'] == '2') {
+                $order['order_status'] = '完结';
+            } elseif ($order['order_status'] == '3') {
+                $order['order_status'] = '取消';
+            } elseif ($order['order_status'] == '4') {
+                $order['order_status'] = '申请取消';
+            } elseif ($order['order_status'] == '5') {
+                $order['order_status'] = '商家接单';
+            } else {
+                $order['order_status'] = '错误';
+            }
+            $myorderlist[] = $order;
+        }
+        $this->response($myorderlist, 'json');
+    }
+    
+    /*
      * call example : http://yourservername/api.php/user/orderdetail?id=8
      * call method : get
      */
