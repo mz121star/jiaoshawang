@@ -282,4 +282,25 @@ class OrderAction extends Action {
             $this->response(array('message' => '未知订单'), 'json');
         }
     }
+    
+    /*
+     * call example : http://yourservername/api.php/order/agreecancel
+     * call method : post
+     */
+    public function agreecancel_post() {
+        $userid = htmlspecialchars($_POST['uid']);
+        $orderid = htmlspecialchars($_POST['oid']);
+        if ($orderid) {
+            $order = M("Order");
+            $changeorder = array('order_status'=>'3');
+            $isok = $order->where('id= "'.$orderid.'" and food_shop="'.$userid.'"')->save($changeorder);
+            if ($isok === false) {
+                $this->response(array('message' => '取消成功'), 'json');
+            } else {
+                $this->response(array('message' => '取消失败'), 'json');
+            }
+        } else {
+            $this->response(array('message' => '未知订单'), 'json');
+        }
+    }
 }
