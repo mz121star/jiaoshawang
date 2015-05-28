@@ -295,9 +295,9 @@ class OrderAction extends Action {
             $changeorder = array('order_status'=>'3');
             $isok = $order->where('id= "'.$orderid.'" and food_shop="'.$userid.'"')->save($changeorder);
             if ($isok === false) {
-                $this->response(array('message' => '取消成功'), 'json');
-            } else {
                 $this->response(array('message' => '取消失败'), 'json');
+            } else {
+                $this->response(array('message' => '取消成功'), 'json');
             }
         } else {
             $this->response(array('message' => '未知订单'), 'json');
