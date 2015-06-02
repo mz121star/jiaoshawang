@@ -23,10 +23,10 @@
     <form name="frm_main" method="post" action="/index.php/Cart/ordersuccess" onsubmit="return thisjs.save();">
         <input type="hidden" name="cart_ids" value="">
         <input type="hidden" name="addprice" value="">
-        <div class="xtitle"><a href="/index.php?app_act=shop&id=4">天天粥铺</a></div>
+        <div class="xtitle"><a href="/index.php?app_act=shop&id=4"></a></div>
         <div style="float:left;width:100%" id="id_shop_4">
             <div id="id_list_4">
-                <table class="mlist"><tr class="tit"><td>菜品</td><td>单价</td><td class="num">数量</td><td class="count">金额小计</td><td class="act">操作</td></tr>
+                <table class="mlist"><tr class="tit"><td>商品</td><td>单价</td><td class="num">数量</td><td class="count">金额小计</td><td class="act">操作</td></tr>
                     <foreach name="cartlist" item="cart">
                     <tr class="x_list1"><td>
                         {$cart[name]}<input type="hidden" name="menuprice[]" value="{$cart[price]}">

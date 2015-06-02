@@ -44,7 +44,7 @@
     <li class="li2"><span class="xcol1">配送费:</span><span class="xcol2"><if condition="$shopinfo.shop_deliver_money eq 0">免费<else />{$shopinfo.shop_deliver_money}元/次</if></span></li>
     <li class="li2"><span class="xcol1">起送价:</span><span class="xcol2">{$shopinfo.shop_deliver_beginmoney} 元</span></li>
     <li class="li2"><span class="xcol1">配送时间:</span><span class="xcol2">{$shopinfo.shop_deliver_time}分钟</span></li>
-    <li class="li2"><span class="xcol1">订餐电话:</span><span class="xcol2">{$shopinfo.shop_phone}</span></li>	<li class="li2"><span class="xcol1">店铺地址:</span><span class="xcol2">{$shopinfo.shop_addr}</span></li>	<li class="tit"><span style="float:left">店铺公告</span><a href="/index.php/notice/list" style="float:right;margin-right:10px;font-size:12px;color:#ff8800;font-weight:200">更多</a></li>
+    <li class="li2"><span class="xcol1">订餐电话:</span><span class="xcol2">{$shopinfo.shop_phone}</span></li>	<li class="li2"><span class="xcol1">店铺地址:</span><span class="xcol2">{$shopinfo.shop_addr}</span></li>	<!--<li class="tit"><span style="float:left">店铺公告</span><a href="/index.php/notice/list" style="float:right;margin-right:10px;font-size:12px;color:#ff8800;font-weight:200">更多</a></li>-->
     <li class="li">
         <foreach name="noticelist" item="notice">
         <a href="/index.php/notice/{$notice.id}">{$notice.notice_title}</a>
