@@ -43,7 +43,7 @@ $private_config = array(
                         'SHOP_ROLE' => array(
                                             'Food'=>array('lists', 'showadd', 'save', 'modfood', 'delfood', 'typelist', 'addtype', 'modtype', 'deltype', 'typesave'),
                                             'Notice'=>array('lists', 'showadd', 'save', 'modnotice', 'delnotice'),
-                                            'Order'=>array('lists', 'cancelorder', 'detailorder','refundorder', 'acceptorder'),
+                                            'Order'=>array('lists', 'cancelorder', 'detailorder','refundorder', 'acceptorder','refuseorder'),
                                             'User'=>array('modself', 'upself')
                                             )
                         );
