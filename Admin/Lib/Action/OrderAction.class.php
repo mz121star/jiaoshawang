@@ -117,7 +117,7 @@ class OrderAction extends PublicAction {
         }
     }
 
-    public function refundorder() {
+    public function refuseorder() {
         $userid = $this->userInfo['user_id'];
         $usertype = $this->userInfo['user_type'];
         if ($usertype == 1) {
