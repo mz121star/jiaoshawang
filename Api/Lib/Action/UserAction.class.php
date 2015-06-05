@@ -275,6 +275,8 @@ class UserAction extends Action {
                 $order['order_status'] = '申请取消';
             } elseif ($order['order_status'] == '5') {
                 $order['order_status'] = '商家接单';
+            } elseif ($order['order_status'] == '6') {
+                $order['order_status'] = '客服介入';
             } else {
                 $order['order_status'] = '错误';
             }
@@ -338,6 +340,8 @@ class UserAction extends Action {
                 $order['order_status'] = '申请取消';
             } elseif ($order['order_status'] == '5') {
                 $order['order_status'] = '商家接单';
+            } elseif ($order['order_status'] == '6') {
+                $order['order_status'] = '客服介入';
             } else {
                 $order['order_status'] = '错误';
             }
@@ -399,6 +403,8 @@ class UserAction extends Action {
                 $orderinfo['order_status'] = '申请取消';
             } elseif ($orderinfo['order_status'] == '5') {
                 $orderinfo['order_status'] = '商家接单';
+            } elseif ($orderinfo['order_status'] == '6') {
+                $orderinfo['order_status'] = '客服介入';
             } else {
                 $orderinfo['order_status'] = '错误';
             }
