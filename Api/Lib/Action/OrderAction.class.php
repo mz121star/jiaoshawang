@@ -303,4 +303,24 @@ class OrderAction extends Action {
             $this->response(array('message' => '未知订单'), 'json');
         }
     }
+
+    /*
+     * call example : http://yourservername/api.php/order/refusecancel
+     * call method : post
+     */
+    public function refusecancel_post() {
+        $orderid = htmlspecialchars($_POST['oid']);
+        if ($orderid) {
+            $order = M("Order");
+            $changeorder = array('order_status'=>'6');
+            $isok = $order->where('id= "'.$orderid.'"')->save($changeorder);
+            if ($isok === false) {
+                $this->response(array('message' => '出现错误，请重试'), 'json');
+            } else {
+                $this->response(array('message' => '等待客服介入'), 'json');
+            }
+        } else {
+            $this->response(array('message' => '未知订单'), 'json');
+        }
+    }
 }

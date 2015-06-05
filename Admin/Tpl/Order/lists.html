@@ -24,6 +24,10 @@
                 </if>
                 <if condition="$order.order_status eq 4">
                 <a href="javascript:;" id="refundorder_{$order.id}">同意取消</a>
+                <a href="javascript:;" id="refuseorder_{$order.id}">拒绝取消</a>
+                </if>
+                <if condition="$order.order_status eq 6">
+                <a href="javascript:;" id="wait_{$order.id}">等待客服介入</a>
                 </if>
                 <a href="__GROUP__/detailorder/{$order.id}">查看详细</a>
             </td>
@@ -40,6 +44,12 @@ $(function () {
         if (confirm("未付款订单将直接取消，已付款订单将退款，确定同意吗？")) {
             var id = this.id.split("_");
             location.href = "__GROUP__/refundorder/"+id[1];
+        }
+    });
+    $("a[id^='refuseorder_']").click(function () {
+        if (confirm("拒绝取消将导致客服人员介入，确认拒绝吗？")) {
+            var id = this.id.split("_");
+            location.href = "__GROUP__/refuseorder/"+id[1];
         }
     });
 });

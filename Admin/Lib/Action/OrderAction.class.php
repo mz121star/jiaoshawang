@@ -98,18 +98,39 @@ class OrderAction extends PublicAction {
             if ($orderinfo['order_paystatus'] == 1) {
                 $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->setField('order_status', '3');
             } elseif ($orderinfo['order_paystatus'] == 2) {
-                $refundurl = 'http://'.$_SERVER['SERVER_NAME'].'/api.php/pay/refund';
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $refundurl);
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('amount'=>$orderinfo['order_price'])));
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_HEADER, 0);
-                $output = curl_exec($ch);
-                curl_close($ch);
-                echo '<pre>';
-                print_r($output);exit;
+                $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->setField('order_status', '3');
+//                $refundurl = 'http://'.$_SERVER['SERVER_NAME'].'/api.php/pay/refund';
+//                $ch = curl_init();
+//                curl_setopt($ch, CURLOPT_URL, $refundurl);
+//                curl_setopt($ch, CURLOPT_POST, 1);
+//                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('amount'=>$orderinfo['order_price'])));
+//                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+//                curl_setopt($ch, CURLOPT_HEADER, 0);
+//                $output = curl_exec($ch);
+//                curl_close($ch);
+//                echo '<pre>';
+//                print_r($output);exit;
             }
+            $this->redirect('Order/lists');
+        } else {
+            $this->error("未知订单ID", 'lists');
+        }
+    }
+
+    public function refundorder() {
+        $userid = $this->userInfo['user_id'];
+        $usertype = $this->userInfo['user_type'];
+        if ($usertype == 1) {
+            $this->error("您无权拒绝取消此订单", 'lists');
+        }
+        $get = $this->filterAllParam('get');
+        if ($get['orderid']) {
+            $order = M("Order");
+            $orderinfo = $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->find();
+            if (!$orderinfo) {
+                $this->error("无此订单", 'lists');
+            }
+            $order->where('id= '.$get['orderid'].' and food_shop="'.$userid.'"')->setField('order_status', '6');
             $this->redirect('Order/lists');
         } else {
             $this->error("未知订单ID", 'lists');
