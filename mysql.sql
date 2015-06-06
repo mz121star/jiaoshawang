@@ -31,7 +31,7 @@ CREATE TABLE `dc_user` (
   UNIQUE KEY user_id (user_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表';
 INSERT INTO `dc_user` VALUES (1, 'admin', 'e6608053c55492c6da3ecd446ef12bde', '1', 1);
-
+#admin密码201418
 
 DROP TABLE IF EXISTS `dc_shop`;
 CREATE TABLE `dc_shop` (
@@ -140,6 +140,10 @@ INSERT INTO `dc_shoptype` VALUES (66, '消炎镇痛抗炎抗风湿类', 10, 0, '
 INSERT INTO `dc_shoptype` VALUES (67, '食品', 10, 0, '', '0');
 INSERT INTO `dc_shoptype` VALUES (68, '非食品类', 10, 0, '', '0');
 INSERT INTO `dc_shoptype` VALUES (69, '医疗机械类', 10, 0, '', '0');
+
+INSERT INTO `dc_shoptype` VALUES (70, '土特产', 0, 11, 'seafood_o', '0');
+INSERT INTO `dc_shoptype` VALUES (71, '粮油', 0, 12, 'seafood_o', '0');
+INSERT INTO `dc_shoptype` VALUES (72, '五金日杂', 0, 13, 'seafood_o', '0');
 
 
 DROP TABLE IF EXISTS `dc_shopnotice`;
