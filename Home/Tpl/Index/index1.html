@@ -36,8 +36,8 @@
 
     <div class="rest-banner">
       <div class="tab clearfix">
-        <a href="__GROUP__" class="fl rest-tab active">餐厅</a>
-        <a href="__GROUP__" class="fl hot-food">热卖美食</a>
+        <a href="__GROUP__" class="fl rest-tab active">推荐商家</a>
+        <a href="__GROUP__" class="fl hot-food"></a>
       </div>
       <div style="height: 65px;" class="imgsort-wrapper jq-hover">
           <i class="icon i-sort-triangledown"></i>
@@ -140,8 +140,7 @@
                 <span title="{$shop.shop_name}">{$shop.shop_name}</span>
               </div>
               <div class="tags">
-                    <span title="中式炒菜">中式炒菜</span>
-                    <span title="快餐小吃">快餐小吃</span>
+                    <span title="{$shop.type_name}">{$shop.type_name}</span>
               </div>
               <div class="price">
                 <span class="start-price">{$shop.shop_deliver_beginmoney}元起送</span>

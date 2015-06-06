@@ -58,18 +58,25 @@
         <div class="top-nav">
           <div class="topnav-wrap">
             <div class="fr welcome">
-              	<span id="dis-login" class="action fl"><a class="j-register ct-white fl" href="javascript:jsheader.showreg();">注册</a><a class="j-login ct-white fr" href="javascript:jsheader.showlogin();">登录</a>｜ </span>
+            
+              	<span id="dis-login" class="action fl">
+                <if condition="$Think.session.userinfo.user_id eq ''">
+                <a class="j-register ct-white fl" href="javascript:jsheader.showreg();">注册</a><a class="j-login ct-white fr" href="javascript:jsheader.showlogin();">登录</a>｜ 
+                <else/>
+                {$Think.session.userinfo.user_id}<a class="j-register ct-white fl" href="/index.php/index/logout">注销</a>
+            </if>
+            </span>
 <!--              <a id="top-nav-send-fb" class="ct-white send-fb fl" href="http://{$Think.server.server_name}/help/feedback">找客服</a>
               <a class="ct-white send-fb fl" href="http://{$Think.server.server_name}/help/faq">常见问题</a>-->
               <a target="_blank" href="http://{$Think.server.server_name}" class="site-name ct-white fl"><i class="icon i-tuan-new"></i><span>个人中心</span></a>
             </div>
             <a href="http://{$Think.server.server_name}/mobile.php" class="wap ct-white fl"><i class="icon i-phone-new"></i><span>手机版</span></a>
-              <span class="current-city fl" id="current-city">大连</span>
+              <span class="current-city fl" id="current-city"></span>
             
             
               
               <span class="address fl" id="address">
-                <span id="curr-location" class="current-address fl">网络产业大厦</span>
+                <span id="curr-location" class="current-address fl">{$Think.get.address}</span>
                 <div class="change fl clearfix" id="changePosition">
                   <a href="/index.php/index/map" class="change-link">
                     <span class="fl">[切换地址]</span>

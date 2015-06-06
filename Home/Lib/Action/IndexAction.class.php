@@ -120,6 +120,7 @@ class IndexAction extends PublicAction {
         $peoplefav = M("peoplefav");
         $orderobj = M('order');
         $shopnotice = M('shopnotice');
+        $shoptype = M('shoptype');
         $model = new Model();
 
         $lng = htmlspecialchars($_GET['lng']);
@@ -164,6 +165,8 @@ class IndexAction extends PublicAction {
             } else {
                 $shop['is_working'] = 0;
             }
+            $typeinfo = $shoptype->where('id = "'.$shop['shop_type'].'"')->find();
+            $shop['type_name'] = $typeinfo['type_name'];
             $shop['is_fav'] = $peoplefav->where('user_people = "'.$userid.'" and user_shop = "'.$shop['user_id'].'"')->count();
             $shop['order_num'] = $orderobj->where('food_shop = "'.$shop['user_id'].'"')->count();
             $shop['shop_image'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$shop['shop_image'];
