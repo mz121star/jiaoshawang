@@ -96,30 +96,37 @@ class UserAction extends PublicAction {
         if ($user_pw) {
             $user = M("User");
             $infonum = $user->where('user_id="'.$userid.'"')->setField('user_pw', md5($user_pw));
-        }
-        $isdelimage = $this->_post('delshop_image');
-        if ($isdelimage) {
-            $_POST['shop_image'] = '';
-            unlink('./upload/'.$isdelimage);
-        }
-        if ($_FILES['shop_image']['name']) {
-            import('ORG.Net.UploadFile');
-            $upload = new UploadFile();
-            $upload->maxSize = 3145728;//3M
-            $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg');
-            $upload->savePath = './upload/';
-            if(!$upload->upload()) {
-                $this->error($upload->getErrorMsg());
-            }else{
-                $info = $upload->getUploadFileInfo();
+            if ($infonum) {
+                $this->error('修改成功');
+            } else {
+                $this->error('修改失败');
             }
-            $_POST['shop_image'] = $info[0]['savename'];
+        } else {
+            $this->error('请填写密码');
         }
-        $shop = M("Shop");
-        $post = $this->filterAllParam('post');
-        $post['shop_beginworktime'] = intval($post['shop_beginworktime1']).':'.intval($post['shop_beginworktime2']);
-        $post['shop_endworktime'] = intval($post['shop_endworktime1']).':'.intval($post['shop_endworktime2']);
-        $shop->where('user_id="'.$userid.'"')->save($post);
+//        $isdelimage = $this->_post('delshop_image');
+//        if ($isdelimage) {
+//            $_POST['shop_image'] = '';
+//            unlink('./upload/'.$isdelimage);
+//        }
+//        if ($_FILES['shop_image']['name']) {
+//            import('ORG.Net.UploadFile');
+//            $upload = new UploadFile();
+//            $upload->maxSize = 3145728;//3M
+//            $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg');
+//            $upload->savePath = './upload/';
+//            if(!$upload->upload()) {
+//                $this->error($upload->getErrorMsg());
+//            }else{
+//                $info = $upload->getUploadFileInfo();
+//            }
+//            $_POST['shop_image'] = $info[0]['savename'];
+//        }
+//        $shop = M("Shop");
+//        $post = $this->filterAllParam('post');
+//        $post['shop_beginworktime'] = intval($post['shop_beginworktime1']).':'.intval($post['shop_beginworktime2']);
+//        $post['shop_endworktime'] = intval($post['shop_endworktime1']).':'.intval($post['shop_endworktime2']);
+//        $shop->where('user_id="'.$userid.'"')->save($post);
         $this->redirect('User/modself');
     }
 
