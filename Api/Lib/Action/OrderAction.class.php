@@ -177,6 +177,14 @@ class OrderAction extends Action {
         $where['order_createdate'] = array('between', array($startdate, $enddate));
         $orderinfo = $orderobj->where($where)->select();
         $ordernum = count($orderinfo);
+        if (!$ordernum) {
+            $where1['food_shop'] = $shopid;
+            $where1['order_pay'] = '1';
+            $where1['order_status'] = '1';
+            $where1['order_createdate'] = array('between', array($startdate, $enddate));
+            $orderinfo = $orderobj->where($where1)->select();
+            $ordernum = count($orderinfo);
+        }
         $orderinfo = json_encode($orderinfo);
         if ($ordernum > 0) {
             $shop = M("Shop");
